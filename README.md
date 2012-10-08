@@ -4,16 +4,17 @@ _WS2012_
 
 # Teammitglieder:
  - Thomas Rieder
+ - Markus Zisser
  - ADD NAME HERE
 
 # TODO:
  - Alles (:
  
 # Syllabus
- - Überblick über das objektorientierte Programmierparadigma und entsprechende Programmiersprachen
+ - ï¿½berblick ï¿½ber das objektorientierte Programmierparadigma und entsprechende Programmiersprachen
  - Fortgeschrittenere objektorientierte Sprachkonzepte in Java, gute Kenntnisse einfacher Sprachkonzepte werden vorausgesetzt
- - Sprachkonzepte für Generizität, Nebenläufigkeit und Modularisierung in Java
+ - Sprachkonzepte fï¿½r Generizitï¿½t, Nebenlï¿½ufigkeit und Modularisierung in Java
  - Produktive Verwendung dieser Konzepte in einer dem objektorientierten Paradigma entsprechenden Weise
- - Genaue Betrachtung der Ersetzbarkeit und anderer für die Wiederverwendung in objektorientierten Programmen bedeutender Prinzipien
- - Zusammenhänge zwischen verschiedenen objektorientierten Konzepten und Prinzipien
- - Ausgewählte Entwurfsmuster und objektorientierte Programmiertechniken
+ - Genaue Betrachtung der Ersetzbarkeit und anderer fï¿½r die Wiederverwendung in objektorientierten Programmen bedeutender Prinzipien
+ - Zusammenhï¿½nge zwischen verschiedenen objektorientierten Konzepten und Prinzipien
+ - Ausgewï¿½hlte Entwurfsmuster und objektorientierte Programmiertechniken
