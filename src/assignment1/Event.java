@@ -42,6 +42,8 @@ public abstract class Event {
 		return duration;
 	}
 	
+	public abstract Double getCost();
+	
 	
 	
 
