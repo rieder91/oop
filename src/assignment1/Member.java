@@ -14,14 +14,23 @@ public class Member {
 	 * @param instrument
 	 * @param telephoneNumber
 	 */
-	public Member(String firstName, String lastName, String instrument, String telephoneNumber) {
+	public Member(String firstName, String lastName, String instrument,
+			String telephoneNumber) {
+		this.telephoneNumber = telephoneNumber;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.instrument = instrument;
 	}
 
 	/**
 	 * 
-	 * @return 
+	 * @return
 	 */
 	public String toString() {
+		String ret = "Vorname: " + this.firstName + " Nachname: "
+				+ this.lastName + " Instrument: " + this.instrument
+				+ " Telephonnummer: " + this.telephoneNumber;
+		return ret;
 	}
 
 }

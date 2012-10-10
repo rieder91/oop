@@ -10,6 +10,7 @@ public class Track {
 	 * @return 
 	 */
 	public String toString() {
+		return this.name+": "+this.length;
 	}
 
 	/**
@@ -19,6 +20,8 @@ public class Track {
 	 * @return 
 	 */
 	public Track(Double length, String name) {
+		this.length=length;
+		this.name=name;
 	}
 
 }
