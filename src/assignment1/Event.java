@@ -1,0 +1,33 @@
+package assignment1;
+
+import java.util.Date;
+
+public abstract class Event {
+	private String place;
+	private Date time;
+	private Integer duration;
+
+	
+	/**
+	 * 
+	 * @return 
+	 */
+	public String toString() {
+		String ret = place + time + duration;
+		return ret;
+	}
+
+	/**
+	 * 
+	 * @param time
+	 * @param date
+	 * @param duration
+	 */
+	public Event(Date time, String place, Integer duration) {
+		super();
+		this.place = place;
+		this.time = time;
+		this.duration = duration;
+	}
+
+}
