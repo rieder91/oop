@@ -6,7 +6,8 @@ public class TempAssignment1Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Hello Assignment 1 Package");
+		// TODO Auto-generated method stub
+		System.out.println("langweilig");
 	}
 
 }
