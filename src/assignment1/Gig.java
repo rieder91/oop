@@ -22,5 +22,10 @@ public class Gig extends Event {
 	 */
 	public Gig(Date time, String place, Integer duration, Double pay) {
 	}
+	
+	public Double getFinances() {
+		// TODO
+		return null;
+	}
 
 }

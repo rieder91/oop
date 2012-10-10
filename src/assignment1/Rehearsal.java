@@ -23,5 +23,10 @@ public class Rehearsal extends Event {
 	 */
 	public Rehearsal(Date time, String place, Integer duration, Double cost) {
 	}
-
+	
+	public Double getFinances() {
+		// TODO
+		return null;
+	}
+	
 }
