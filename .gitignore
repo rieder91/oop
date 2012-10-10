@@ -1,4 +1,7 @@
 /bin
 *.class
 *.pdf
+.project
+.classpath
+/.settings
 
