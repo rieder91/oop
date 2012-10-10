@@ -22,9 +22,10 @@ public class Member {
 		this.instrument = instrument;
 	}
 
-	/**
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @return
+	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
 		String ret = "Vorname: " + this.firstName + " Nachname: "
@@ -33,4 +34,15 @@ public class Member {
 		return ret;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	public int hashCode() {
+
+		return this.firstName.hashCode() + this.instrument.hashCode()
+				+ this.lastName.hashCode() + this.telephoneNumber.hashCode();
+
+	}
 }
