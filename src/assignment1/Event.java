@@ -30,4 +30,19 @@ public abstract class Event {
 		this.duration = duration;
 	}
 
+	public String getPlace() {
+		return place;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public Integer getDuration() {
+		return duration;
+	}
+	
+	
+	
+
 }
