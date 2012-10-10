@@ -5,7 +5,7 @@ _WS2012_
 # Teammitglieder:
  - Thomas Rieder
  - Markus Zisser
- - ADD NAME HERE
+ - Dominic Riedl
 
 # TODO:
  - Alles (:
