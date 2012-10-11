@@ -28,7 +28,7 @@ public class Rehearsal extends Event {
 	}
 	
 	public Double getFinances() {
-		return this.cost;
+		return this.cost * -1;
 	}
 	
 }
