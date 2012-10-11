@@ -11,7 +11,7 @@ public class Rehearsal extends Event {
 	 * @return 
 	 */
 	public String toString() {
-		return super.toString() + " "+ this.cost;
+		return super.toString() + " Costs: " + this.cost;
 	}
 
 	/**

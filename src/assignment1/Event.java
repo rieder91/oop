@@ -13,7 +13,7 @@ public abstract class Event {
 	 * @return 
 	 */
 	public String toString() {
-		String ret = place + time + duration;
+		String ret = "Place: " + place + " Time: " + time + " Duration: " + duration;
 		return ret;
 	}
 

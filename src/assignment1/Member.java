@@ -28,9 +28,9 @@ public class Member {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		String ret = "Vorname: " + this.firstName + " Nachname: "
+		String ret = "First name: " + this.firstName + " Last name: "
 				+ this.lastName + " Instrument: " + this.instrument
-				+ " Telephonnummer: " + this.telephoneNumber;
+				+ " Telephone number: " + this.telephoneNumber;
 		return ret;
 	}
 
