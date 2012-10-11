@@ -2,7 +2,7 @@ package assignment1;
 
 public class Track {
 
-	private Double length;
+	private Integer length;
 	private String name;
 
 	/*
@@ -20,7 +20,7 @@ public class Track {
 	 * @param name
 	 * @return
 	 */
-	public Track(String name, Double length) {
+	public Track(String name, Integer length) {
 		this.length = length;
 		this.name = name;
 	}
