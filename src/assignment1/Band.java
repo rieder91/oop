@@ -291,7 +291,7 @@ public class Band {
 	 *            the types of events that should be returned
 	 * @return an ArrayList of all events within the given time period
 	 */
-	public ArrayList<Event> getEventsFromTo(Date d1, Date d2,
+	public ArrayList<Event> getEvents(Date d1, Date d2,
 			ArrayList<Class<? extends Event>> types)
 			throws InvalidDateException {
 		ArrayList<Event> ret = new ArrayList<Event>();
@@ -344,7 +344,7 @@ public class Band {
 	 * @return an ArrayList of all members that were part of the band on the
 	 *         given day
 	 */
-	public ArrayList<Member> getMemberAt(Date d) {
+	public ArrayList<Member> getMembers(Date d) {
 		ArrayList<Member> ret = new ArrayList<Member>();
 
 		for (Member m : memberDates.keySet()) {
