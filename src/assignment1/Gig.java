@@ -11,7 +11,7 @@ public class Gig extends Event {
 	 * @return
 	 */
 	public String toString() {
-		return super.toString() + this.pay;
+		return super.toString() + " " + this.pay;
 	}
 
 	/**
