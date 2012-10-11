@@ -43,4 +43,27 @@ public abstract class Event {
 	}
 	
 	public abstract Double getFinances();
+	
+	/** 
+	 * compares two events
+	 * 
+	 * @return 
+	 * 			true if the events are equal
+	 * 			false if the events are not equal
+	 */
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!this.getClass().equals(o.getClass())) {
+			return false;
+
+		}
+		if (this.place.equals(((Event) o).place)
+				&& this.time.equals(((Event) o).time)) {
+			return true;
+
+		}
+		return false;
+	}
 }
