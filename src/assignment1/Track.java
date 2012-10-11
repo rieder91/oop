@@ -20,7 +20,7 @@ public class Track {
 	 * @param name
 	 * @return
 	 */
-	public Track(Double length, String name) {
+	public Track(String name, Double length) {
 		this.length = length;
 		this.name = name;
 	}
