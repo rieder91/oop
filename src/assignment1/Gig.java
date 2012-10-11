@@ -11,6 +11,7 @@ public class Gig extends Event {
 	 * @return
 	 */
 	public String toString() {
+		return super.toString() + this.pay;
 	}
 
 	/**
@@ -21,11 +22,12 @@ public class Gig extends Event {
 	 * @param pay
 	 */
 	public Gig(Date time, String place, Integer duration, Double pay) {
+		super(time, place, duration);
+		this.pay = pay;
 	}
 	
 	public Double getFinances() {
-		// TODO
-		return null;
+		return this.pay;
 	}
 
 }

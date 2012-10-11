@@ -11,6 +11,7 @@ public class Rehearsal extends Event {
 	 * @return 
 	 */
 	public String toString() {
+		return super.toString() + this.cost;
 	}
 
 	/**
@@ -22,11 +23,12 @@ public class Rehearsal extends Event {
 	 * @return 
 	 */
 	public Rehearsal(Date time, String place, Integer duration, Double cost) {
+		super(time, place, duration);
+		this.cost = cost;
 	}
 	
 	public Double getFinances() {
-		// TODO
-		return null;
+		return this.cost;
 	}
 	
 }
