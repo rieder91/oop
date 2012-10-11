@@ -11,7 +11,7 @@ public class Track {
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
-		return this.name + ": " + this.length;
+		return this.name + " - " + this.length/60 + ":" + (this.length % 60 < 10 ? "0" + this.length % 60 : this.length % 60);
 	}
 
 	/**
