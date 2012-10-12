@@ -8,21 +8,25 @@ public abstract class Event {
 	private Date time;
 	private Integer duration;
 
-	
 	/**
 	 * 
-	 * @return 
+	 * @return a string representation of a Event
 	 */
 	public String toString() {
-		String ret = "Place: " + place + " Time: " + time + " Duration: " + duration;
+		String ret = "Place: " + place + " Time: " + time + " Duration: "
+				+ duration;
 		return ret;
 	}
 
 	/**
+	 * three parameter constructor
 	 * 
 	 * @param time
-	 * @param date
+	 *            the time of the event
+	 * @param place
+	 *            the place of the event
 	 * @param duration
+	 *            the duration of the event
 	 */
 	public Event(Date time, String place, Integer duration) {
 		super();
@@ -31,26 +35,36 @@ public abstract class Event {
 		this.duration = duration;
 	}
 
+	/**
+	 * @return the place of the event
+	 */
 	public String getPlace() {
 		return place;
 	}
 
+	/**
+	 * @return the time when the event takes place
+	 */
 	public Date getTime() {
 		return time;
 	}
 
+	/**
+	 * @return the duration of the event
+	 */
 	public Integer getDuration() {
 		return duration;
 	}
-	
+
+	/**
+	 * @return the cost/pay of the event
+	 */
 	public abstract BigDecimal getFinances();
-	
-	/** 
+
+	/**
 	 * compares two events
 	 * 
-	 * @return 
-	 * 			true if the events are equal
-	 * 			false if the events are not equal
+	 * @return true if the events are equal false if the events are not equal
 	 */
 	public boolean equals(Object o) {
 		if (this == o) {

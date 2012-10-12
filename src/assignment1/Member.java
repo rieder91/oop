@@ -49,12 +49,10 @@ public class Member {
 
 	}
 
-	/** 
+	/**
 	 * compares two member
 	 * 
-	 * @return 
-	 * 			true if the member are equal
-	 * 			false if the member are not equal
+	 * @return true if the member are equal false if the member are not equal
 	 */
 	public boolean equals(Object o) {
 		if (this == o) {
