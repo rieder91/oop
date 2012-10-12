@@ -1,5 +1,6 @@
 package assignment1;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public abstract class Event {
@@ -42,7 +43,7 @@ public abstract class Event {
 		return duration;
 	}
 	
-	public abstract Double getFinances();
+	public abstract BigDecimal getFinances();
 	
 	/** 
 	 * compares two events

@@ -1,10 +1,11 @@
 package assignment1;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Rehearsal extends Event {
 
-	private Double cost;
+	private BigDecimal cost;
 
 	/**
 	 * 
@@ -22,13 +23,19 @@ public class Rehearsal extends Event {
 	 * @param cost
 	 * @return 
 	 */
-	public Rehearsal(Date time, String place, Integer duration, Double cost) {
+	public Rehearsal(Date time, String place, Integer duration, BigDecimal cost) {
 		super(time, place, duration);
 		this.cost = cost;
 	}
 	
-	public Double getFinances() {
-		return this.cost * -1;
+	public Rehearsal(Date time, String place, Integer duration, Double cost) {
+		super(time, place, duration);
+		this.cost = new BigDecimal(cost);
+	}
+	
+	
+	public BigDecimal getFinances() {
+		return this.cost.multiply(new BigDecimal(-1.0));
 	}
 	
 }

@@ -1,10 +1,11 @@
 package assignment1;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Gig extends Event {
 
-	private Double pay;
+	private BigDecimal pay;
 
 	/**
 	 * 
@@ -21,12 +22,17 @@ public class Gig extends Event {
 	 * @param duration
 	 * @param pay
 	 */
-	public Gig(Date time, String place, Integer duration, Double pay) {
+	public Gig(Date time, String place, Integer duration, BigDecimal pay) {
 		super(time, place, duration);
 		this.pay = pay;
 	}
 	
-	public Double getFinances() {
+	public Gig(Date time, String place, Integer duration, Double pay) {
+		super(time, place, duration);
+		this.pay = new BigDecimal(pay);
+	}
+	
+	public BigDecimal getFinances() {
 		return this.pay;
 	}
 
