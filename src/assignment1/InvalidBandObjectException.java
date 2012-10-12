@@ -1,7 +1,7 @@
 package assignment1;
 
-@SuppressWarnings("serial")
 public class InvalidBandObjectException extends Exception {
+	private static final long serialVersionUID = 1L;
 
 	public InvalidBandObjectException() {
 	}

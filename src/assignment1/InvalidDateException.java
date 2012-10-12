@@ -1,12 +1,9 @@
 package assignment1;
 
-/**
- * 
- * @author Thomas
- *
- */
-@SuppressWarnings("serial")
+
 public class InvalidDateException extends Exception {
+	private static final long serialVersionUID = 1L;
+
 	public InvalidDateException() {
 		
 	}
