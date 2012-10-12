@@ -1,8 +1,8 @@
-package assignment1;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import assignment1.*;
 
 public class Test {
 
