@@ -1,5 +1,6 @@
 package assignment1;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -318,17 +319,17 @@ public class Band {
 	 *            to-date
 	 * @return the sum of the costs of all events within the given time period
 	 */
-	public Double getBilling(Date d1, Date d2,
+	public BigDecimal getBilling(Date d1, Date d2,
 			ArrayList<Class<? extends Event>> types)
 			throws InvalidDateException {
-		Double ret = 0.0;
+		BigDecimal ret = new BigDecimal(0.0);
 		if (d1.after(d2)) {
 			throw new InvalidDateException("from-date AFTER to-date");
 		} else {
 			for (Event e : events) {
 				if (types.contains(e.getClass())) {
 					if (e.getTime().after(d1) && e.getTime().before(d2)) {
-						ret += e.getFinances();
+						ret = ret.add(e.getFinances());
 					}
 				}
 			}
