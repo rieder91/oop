@@ -86,37 +86,52 @@ public class Test {
 				ultraCoders.removeTrack(byob, formatDate.parse("10.03.2012"));
 
 				ultraCoders.addTrack(stairway, formatDate.parse("30.05.2012"));
+				
 			} catch (InvalidDateException e) {
 				System.out.println(e.getMessage());
 			} catch (InvalidBandObjectException e) {
 				System.out.println(e.getMessage());
 			} finally {
+				System.out.println("Printing the whole band...");
 				System.out.println(ultraCoders);
 			}
 
 			// Several queries
 			try {
+				System.out.println("\nAll Tracks at 29.05.2011");
 				System.out.println(ultraCoders.getTracks(formatDate
 						.parse("29.05.2011")));
+				
+				System.out.println("\nAll Tracks at 29.04.2012");
 				System.out.println(ultraCoders.getTracks(formatDate
 						.parse("29.04.2012")));
+				
+				System.out.println("\nAll Tracks at 30.06.2012");
 				System.out.println(ultraCoders.getTracks(formatDate
 						.parse("30.06.2012")));
-
+				
+				System.out.println("\nAll Members at 27.05.2011");
 				System.out.println(ultraCoders.getMembers(formatDate
 						.parse("27.05.2011")));
+				
+				System.out.println("\nAll Members at 11.06.2011");
 				System.out.println(ultraCoders.getMembers(formatDate
 						.parse("11.06.2011")));
+				
+				System.out.println("\nAll Members at 11.09.2012");
 				System.out.println(ultraCoders.getMembers(formatDate
 						.parse("11.09.2012")));
 
+				System.out.println("\nAll Events from 01.01.2010 to 01.01.2012");
 				System.out.println(ultraCoders.getEvents(
 						formatDate.parse("01.01.2010"),
 						formatDate.parse("01.01.2012"), types));
-
+				
+				System.out.println("\nRevenue from 01.01.2010 to 01.06.2012");
 				System.out.println(ultraCoders.getBilling(
 						formatDate.parse("01.01.2010"),
-						formatDate.parse("01.01.2012"), types));
+						formatDate.parse("01.06.2012"), types));
+				
 			} catch (InvalidDateException e) {
 				System.out.println(e.getMessage());
 			}
