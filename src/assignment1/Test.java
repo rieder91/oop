@@ -44,12 +44,16 @@ public class Test {
 
 			Track thunderstruck = new Track("Thunderstruck", 321);
 			Track stairway = new Track("Stairway to Heaven", 482);
-
+			Track prayer = new Track("Prayer of the Refugee", 199);
+			Track bloodBrothers = new Track("Blood Brothers", 214);
+			Track byob = new Track("B.Y.O.B.", 256);
+			Track myCurse = new Track("My Curse", 245);
+			
 			// Creating the band history
 			try {
 				ultraCoders.addMember(thomas, format.parse("17.06.2010"));
 				ultraCoders.addMember(markus, format.parse("02.01.2010"));
-				ultraCoders.addMember(dominic, format.parse("06.11.2012"));
+				ultraCoders.addMember(dominic, format.parse("06.11.2009"));
 
 				ultraCoders.addEvent(novarock2010);
 				ultraCoders.addEvent(novarock2011);
@@ -60,12 +64,20 @@ public class Test {
 
 				ultraCoders.addTrack(thunderstruck, format.parse("30.3.2010"));
 				ultraCoders.addTrack(stairway, format.parse("16.06.2011"));
+				ultraCoders.addTrack(prayer, format.parse("10.09.2011"));
+				ultraCoders.addTrack(bloodBrothers, format.parse("15.09.2011"));
+				ultraCoders.addTrack(byob, format.parse("30.11.2011"));
+				ultraCoders.addTrack(myCurse, format.parse("05.03.2012"));
 
 				ultraCoders.removeMember(thomas, format.parse("25.05.2011"));
 				ultraCoders.addMember(thomas, format.parse("30.05.2011"));
 				ultraCoders.removeMember(thomas, format.parse("25.06.2011"));
-				ultraCoders.addMember(thomas, format.parse("30.06.2011"));
-
+				ultraCoders.addMember(thomas, format.parse("30.08.2012"));
+				
+				ultraCoders.removeTrack(stairway, format.parse("20.04.2012"));
+				ultraCoders.removeTrack(byob, format.parse("10.03.2012"));
+				
+				ultraCoders.addTrack(stairway, format.parse("30.05.2012"));
 			} catch (InvalidDateException e) {
 				System.out.println(e.getMessage());
 			} catch (InvalidBandObjectException e) {
@@ -78,11 +90,22 @@ public class Test {
 			try {
 				System.out.println(ultraCoders.getTracks(format
 						.parse("29.05.2011")));
+				System.out.println(ultraCoders.getTracks(format
+						.parse("29.04.2012")));
+				System.out.println(ultraCoders.getTracks(format
+						.parse("30.06.2012")));
+				
 				System.out.println(ultraCoders.getMembers(format
-						.parse("29.06.2011")));
+						.parse("27.05.2011")));
+				System.out.println(ultraCoders.getMembers(format
+						.parse("11.06.2011")));
+				System.out.println(ultraCoders.getMembers(format
+						.parse("11.09.2012")));
+				
 				System.out.println(ultraCoders.getEvents(
 						format.parse("01.01.2010"), format.parse("01.01.2012"),
 						types));
+				
 				System.out.println(ultraCoders.getBilling(
 						format.parse("01.01.2010"), format.parse("01.01.2012"),
 						types));
