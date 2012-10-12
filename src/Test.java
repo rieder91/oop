@@ -45,7 +45,7 @@ public class Test {
 					formatTime.parse("15.08.2011 20:00"),
 					"Vienna Sound Studio Mk II", 7, 1000.0);
 
-			Track thunderstruck = new Track("Thunderstruck", 321);
+			Track thunderstruck = new Track("Thunderstruck3", 321);
 			Track stairway = new Track("Stairway to Heaven", 482);
 			Track prayer = new Track("Prayer of the Refugee", 199);
 			Track bloodBrothers = new Track("Blood Brothers", 214);
