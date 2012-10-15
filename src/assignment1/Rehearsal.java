@@ -5,7 +5,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * used to store information about rehearsals
+ * Class that contains the cost of a rehearsal.
+ * 
+ * A rehearsal is an event, the event information is stored in event.
  * 
  * @author OOP Gruppe 187
  */
@@ -14,7 +16,7 @@ public class Rehearsal extends Event {
 	private BigDecimal cost;
 
 	/**
-	 * @return a string representation of a Rehersal
+	 * @return a string representation of a rehearsal
 	 */
 	@Override
 	public String toString() {

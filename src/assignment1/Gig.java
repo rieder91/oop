@@ -5,7 +5,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * used to store information about gigs
+ * Class that contains the pay of a gig.
+ * 
+ * A gig is an event, the event information is stored in event.
  * 
  * @author OOP Gruppe 187
  */
