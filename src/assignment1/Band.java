@@ -5,6 +5,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+/**
+ * Class that contains all the information belonging to the band. Members,
+ * tracks and events can be added and removed. There are validity checks for the
+ * dates and to avoid duplicate elements.
+ * 
+ * A history is saved in order to enable queries about the bands' past. There
+ * are Getters for Events, Tracks and Members which return all Objects at either
+ * a given key date or within a range. A Billing-Method has also been
+ * implementen which calculates the bands revenue within a given timeframe.
+ * 
+ * 
+ * @author OOP Gruppe 187
+ * 
+ */
 public class Band {
 
 	// global band information
@@ -119,7 +133,6 @@ public class Band {
 	public void addTrack(Track t, Date d) throws InvalidDateException,
 			InvalidBandObjectException {
 		if (!tracks.contains(t)) {
-			tracks.add(t);
 			if (trackDates.containsKey(t)) {
 				// the track has already been added in the past - we need to add
 				// a new date
@@ -130,11 +143,13 @@ public class Band {
 							"new date prior to last remove date");
 				} else {
 					trackDates.get(t).add(d);
+					tracks.add(t);
 				}
 			} else {
 				ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
 				trackDates.put(t, newHistory);
+				tracks.add(t);
 			}
 		} else {
 			throw new InvalidBandObjectException("track already exists");
@@ -159,10 +174,10 @@ public class Band {
 		ArrayList<Date> history = trackDates.get(t);
 		Date joinDate = history.get(history.size() - 1);
 
-		if (joinDate.after(d)) {
-			throw new InvalidDateException("new date prior to last add date");
-		} else if (!tracks.contains(t)) {
+		if (!tracks.contains(t)) {
 			throw new InvalidBandObjectException("track doesnt exist");
+		} else if (joinDate.after(d)) {
+			throw new InvalidDateException("new date prior to last add date");
 		} else {
 			tracks.remove(t);
 			if (previousTracks.containsKey(t)) {
@@ -225,7 +240,6 @@ public class Band {
 	public void addMember(Member m, Date d) throws InvalidDateException,
 			InvalidBandObjectException {
 		if (!members.contains(m)) {
-			members.add(m);
 			if (memberDates.containsKey(m)) {
 				// the member has already been part of the band once before
 				// date
@@ -235,12 +249,14 @@ public class Band {
 					throw new InvalidDateException(
 							"new date prior to last remove date");
 				} else {
+					members.add(m);
 					memberDates.get(m).add(d);
 				}
 			} else {
 				ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
 				memberDates.put(m, newHistory);
+				members.add(m);
 			}
 		} else {
 			throw new InvalidBandObjectException("member already exists");
@@ -264,10 +280,10 @@ public class Band {
 			InvalidBandObjectException {
 		ArrayList<Date> history = memberDates.get(m);
 		Date joinDate = history.get(history.size() - 1);
-		if (joinDate.after(d)) {
-			throw new InvalidDateException("new date prior to last add date");
-		} else if (!members.contains(m)) {
+		if (!members.contains(m)) {
 			throw new InvalidBandObjectException("member doesnt exist");
+		} else if (joinDate.after(d)) {
+			throw new InvalidDateException("new date prior to last add date");
 		} else {
 			members.remove(m);
 			if (previousMembers.containsKey(m)) {
