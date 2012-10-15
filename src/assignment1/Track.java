@@ -34,35 +34,48 @@ public class Track {
 
 	/**
 	 * 
-	 * @return a hash value that represents the track
+	 * @return a hash value representing the track
 	 */
+	@Override
 	public int hashCode() {
-		return this.length.hashCode() + this.name.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((length == null) ? 0 : length.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
 	}
 
 	/**
 	 * compares two tracks
 	 * 
-	 * @return true if the tracks are equal false if the tracks are not equal
+	 * @return true if the tracks are equal false otherwise
 	 */
-	public boolean equals(Object o) {
-		if (this == o) {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
-
-		if (o == null) {
+		if (obj == null) {
 			return false;
 		}
-
-		if (!this.getClass().equals(o.getClass())) {
+		if (!(obj instanceof Track)) {
 			return false;
-
 		}
-		if (this.length.equals(((Track) o).length)
-				&& this.name.equals(((Track) o).name)) {
-			return true;
-
+		Track other = (Track) obj;
+		if (length == null) {
+			if (other.length != null) {
+				return false;
+			}
+		} else if (!length.equals(other.length)) {
+			return false;
 		}
-		return false;
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		return true;
 	}
 }

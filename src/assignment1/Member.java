@@ -40,40 +40,68 @@ public class Member {
 
 	/**
 	 * 
-	 * @return a hash value that represents the member
+	 * @return a hash value representing the track
 	 */
+	@Override
 	public int hashCode() {
-
-		return this.firstName.hashCode() + this.instrument.hashCode()
-				+ this.lastName.hashCode() + this.telephoneNumber.hashCode();
-
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result
+				+ ((instrument == null) ? 0 : instrument.hashCode());
+		result = prime * result
+				+ ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result
+				+ ((telephoneNumber == null) ? 0 : telephoneNumber.hashCode());
+		return result;
 	}
 
 	/**
-	 * compares two member
+	 * compares two members
 	 * 
-	 * @return true if the member are equal false if the member are not equal
+	 * @return true if the members are equal false otherwise
 	 */
-	public boolean equals(Object o) {
-		if (this == o) {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
-
-		if (o == null) {
+		if (obj == null) {
 			return false;
 		}
-
-		if (!this.getClass().equals(o.getClass())) {
+		if (!(obj instanceof Member)) {
 			return false;
-
 		}
-		if (this.firstName.equals(((Member) o).firstName)
-				&& this.instrument.equals(((Member) o).instrument)
-				&& this.lastName.equals(((Member) o).lastName)
-				&& this.telephoneNumber.equals(((Member) o).telephoneNumber)) {
-			return true;
-
+		Member other = (Member) obj;
+		if (firstName == null) {
+			if (other.firstName != null) {
+				return false;
+			}
+		} else if (!firstName.equals(other.firstName)) {
+			return false;
 		}
-		return false;
+		if (instrument == null) {
+			if (other.instrument != null) {
+				return false;
+			}
+		} else if (!instrument.equals(other.instrument)) {
+			return false;
+		}
+		if (lastName == null) {
+			if (other.lastName != null) {
+				return false;
+			}
+		} else if (!lastName.equals(other.lastName)) {
+			return false;
+		}
+		if (telephoneNumber == null) {
+			if (other.telephoneNumber != null) {
+				return false;
+			}
+		} else if (!telephoneNumber.equals(other.telephoneNumber)) {
+			return false;
+		}
+		return true;
 	}
 }
