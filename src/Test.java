@@ -74,44 +74,44 @@ public class Test {
 		 * Print test case summary
 		 */
 		System.out
-		.println(""
-				+ "Test Case #1\t Add several valid members                                                   \n"
-				+ "Test Case #2\t Try to remove a member with an invalid date                                 \n"
-				+ "Test Case #3\t Remove a member with a valid date                                           \n"
-				+ "Test Case #4\t Try to add a member with an invalid date                                    \n"
-				+ "Test Case #5\t Try to add the same member for the second time                              \n"
-				+ "Test Case #6\t Get all members before one was removed                                      \n"
-				+ "Test Case #7\t Get all members after one was removed                                       \n"
-				+ "Test Case #8\t Get all members after one was removed and added again                       \n"
-				+ "Test Case #9\t Try to add a member which already exists                                    \n"
-				+ "Test Case #10\t Try to remove a member before it joined the band                           \n"
-				+ "Test Case #11\t Remove a valid member for the second time                                  \n"
-				+ "Test Case #12\t Try to remove a member which doesnt exist                                  \n"
-				+ "Test Case #13\t Add several valid tracks                                                   \n"
-				+ "Test Case #14\t Add a track which already exists                                           \n"
-				+ "Test Case #15\t Try to remove a track before it was added                                  \n"
-				+ "Test Case #16\t Remove a valid track                                                       \n"
-				+ "Test Case #17\t Remove a track which doesnt exist                                          \n"
-				+ "Test Case #18\t Add a track before its last removal date                                   \n"
-				+ "Test Case #19\t Add a valid track for the second time                                      \n"
-				+ "Test Case #20\t Gets the Tracklist to a time at which all tracks were present              \n"
-				+ "Test Case #21\t Gets the tracklist to a time at which some tracks were present             \n"
-				+ "Test Case #22\t Gets the tracklist to a time at which one track was removed                \n"
-				+ "Test Case #23\t Gets the tracklist to a time at which the removed track was added again    \n"
-				+ "Test Case #24\t Adds several valid events                                                  \n"
-				+ "Test Case #25\t Try to add an event which already exists                                   \n"
-				+ "Test Case #26\t Try to remove a valid event                                                \n"
-				+ "Test Case #27\t Try to remove an event which doesnt exist                                  \n"
-				+ "Test Case #28\t Try to add an event which was removed before                               \n"
-				+ "Test Case #29\t Get ALL events                                                             \n"
-				+ "Test Case #30\t Get a subset of all events                                                 \n"
-				+ "Test Case #31\t Get the gigs only                                                          \n"
-				+ "Test Case #32\t Get the rehearsals only                                                    \n"
-				+ "Test Case #33\t Get no events at all; check for handling of empty ArrayList-param          \n"
-				+ "Test Case #34\t Get the billing over the entire time period                                \n"
-				+ "Test Case #35\t Get the billing over the entire time period of gigs only                   \n"
-				+ "Test Case #36\t Get the billing over the entire time period of rehearsals only             \n"
-				+ "Test Case #37\t Get the billing over no events; check for handling of empty ArrayList-param\n\n");
+				.println(""
+						+ "Test Case #1\t Add several valid members                                                   \n"
+						+ "Test Case #2\t Try to remove a member with an invalid date                                 \n"
+						+ "Test Case #3\t Remove a member with a valid date                                           \n"
+						+ "Test Case #4\t Try to add a member with an invalid date                                    \n"
+						+ "Test Case #5\t Try to add the same member for the second time                              \n"
+						+ "Test Case #6\t Get all members before one was removed                                      \n"
+						+ "Test Case #7\t Get all members after one was removed                                       \n"
+						+ "Test Case #8\t Get all members after one was removed and added again                       \n"
+						+ "Test Case #9\t Try to add a member which already exists                                    \n"
+						+ "Test Case #10\t Try to remove a member before it joined the band                           \n"
+						+ "Test Case #11\t Remove a valid member for the second time                                  \n"
+						+ "Test Case #12\t Try to remove a member which doesnt exist                                  \n"
+						+ "Test Case #13\t Add several valid tracks                                                   \n"
+						+ "Test Case #14\t Add a track which already exists                                           \n"
+						+ "Test Case #15\t Try to remove a track before it was added                                  \n"
+						+ "Test Case #16\t Remove a valid track                                                       \n"
+						+ "Test Case #17\t Remove a track which doesnt exist                                          \n"
+						+ "Test Case #18\t Add a track before its last removal date                                   \n"
+						+ "Test Case #19\t Add a valid track for the second time                                      \n"
+						+ "Test Case #20\t Gets the Tracklist to a time at which all tracks were present              \n"
+						+ "Test Case #21\t Gets the tracklist to a time at which some tracks were present             \n"
+						+ "Test Case #22\t Gets the tracklist to a time at which one track was removed                \n"
+						+ "Test Case #23\t Gets the tracklist to a time at which the removed track was added again    \n"
+						+ "Test Case #24\t Adds several valid events                                                  \n"
+						+ "Test Case #25\t Try to add an event which already exists                                   \n"
+						+ "Test Case #26\t Try to remove a valid event                                                \n"
+						+ "Test Case #27\t Try to remove an event which doesnt exist                                  \n"
+						+ "Test Case #28\t Try to add an event which was removed before                               \n"
+						+ "Test Case #29\t Get ALL events                                                             \n"
+						+ "Test Case #30\t Get a subset of all events                                                 \n"
+						+ "Test Case #31\t Get the gigs only                                                          \n"
+						+ "Test Case #32\t Get the rehearsals only                                                    \n"
+						+ "Test Case #33\t Get no events at all; check for handling of empty ArrayList-param          \n"
+						+ "Test Case #34\t Get the billing over the entire time period                                \n"
+						+ "Test Case #35\t Get the billing over the entire time period of gigs only                   \n"
+						+ "Test Case #36\t Get the billing over the entire time period of rehearsals only             \n"
+						+ "Test Case #37\t Get the billing over no events; check for handling of empty ArrayList-param\n\n");
 
 		/*
 		 * All variables needed for validation of test cases
@@ -208,7 +208,7 @@ public class Test {
 
 			try {
 				ultraCoders
-				.removeMember(thomas, formatDate.parse("25.05.2010"));
+						.removeMember(thomas, formatDate.parse("25.05.2010"));
 				Validator.report(false, 2);
 			} catch (InvalidDateException e) {
 				Validator.report(true, 2);
@@ -307,7 +307,7 @@ public class Test {
 
 			try {
 				ultraCoders
-				.removeMember(thomas, formatDate.parse("11.04.2001"));
+						.removeMember(thomas, formatDate.parse("11.04.2001"));
 				Validator.report(false, 10);
 			} catch (InvalidDateException e) {
 				Validator.report(true, 10);
@@ -332,7 +332,7 @@ public class Test {
 
 			try {
 				ultraCoders
-				.removeMember(thomas, formatDate.parse("10.04.2012"));
+						.removeMember(thomas, formatDate.parse("10.04.2012"));
 				Validator.report(false, 12);
 			} catch (InvalidBandObjectException e) {
 				Validator.report(true, 12);
@@ -378,7 +378,7 @@ public class Test {
 
 			try {
 				ultraCoders
-				.removeTrack(myCurse, formatDate.parse("05.02.2012"));
+						.removeTrack(myCurse, formatDate.parse("05.02.2012"));
 				Validator.report(false, 15);
 			} catch (InvalidDateException e) {
 				Validator.report(true, 15);
@@ -403,7 +403,7 @@ public class Test {
 
 			try {
 				ultraCoders
-				.removeTrack(myCurse, formatDate.parse("05.05.2012"));
+						.removeTrack(myCurse, formatDate.parse("05.05.2012"));
 				Validator.report(false, 17);
 			} catch (InvalidBandObjectException e) {
 				Validator.report(true, 17);
