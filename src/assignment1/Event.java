@@ -70,12 +70,18 @@ public abstract class Event {
 		if (this == o) {
 			return true;
 		}
+
+		if (o == null) {
+			return false;
+		}
+
 		if (!this.getClass().equals(o.getClass())) {
 			return false;
 
 		}
 		if (this.place.equals(((Event) o).place)
-				&& this.time.equals(((Event) o).time)) {
+				&& this.time.equals(((Event) o).time)
+				&& this.duration.equals(((Event) o).duration)) {
 			return true;
 
 		}
