@@ -1,11 +1,11 @@
-
 package assignment1;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * used to store information about events
+ * used to store information about events; Event is an abstract class which
+ * implements all methods common to both Gig and Rehearsal
  * 
  * @author OOP Gruppe 187
  */
@@ -81,16 +81,22 @@ public abstract class Event {
 	@Override
 	public boolean equals(Object o) {
 
-		if (this == o) { return true; }
+		if (this == o) {
+			return true;
+		}
 
-		if (o == null) { return false; }
+		if (o == null) {
+			return false;
+		}
 
-		if (!this.getClass().equals(o.getClass())) { return false;
+		if (!this.getClass().equals(o.getClass())) {
+			return false;
 
 		}
 		if (this.place.equals(((Event) o).place)
 				&& this.time.equals(((Event) o).time)
-				&& this.duration.equals(((Event) o).duration)) { return true;
+				&& this.duration.equals(((Event) o).duration)) {
+			return true;
 
 		}
 		return false;
