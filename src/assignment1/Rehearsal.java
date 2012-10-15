@@ -57,5 +57,21 @@ public class Rehearsal extends Event {
 	public BigDecimal getFinances() {
 		return this.cost.multiply(new BigDecimal(-1.0));
 	}
+	
+	
+	/**
+	 * compares two events
+	 * 
+	 * @return true if the events are equal false if the events are not equal
+	 */
+	public boolean equals(Object o) {
+		boolean ret = super.equals(o);
+		
+		if(ret && cost.equals(((Rehearsal) o).cost)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }

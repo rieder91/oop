@@ -9,7 +9,7 @@ public class Gig extends Event {
 
 	/**
 	 * 
-	 * @returna string representation of a Gig
+	 * @return a string representation of a Gig
 	 */
 	public String toString() {
 		return super.toString() + " Pay: " + this.pay;
@@ -55,6 +55,21 @@ public class Gig extends Event {
 	 */
 	public BigDecimal getFinances() {
 		return this.pay;
+	}
+	
+	/**
+	 * compares two events
+	 * 
+	 * @return true if the events are equal false if the events are not equal
+	 */
+	public boolean equals(Object o) {
+		boolean ret = super.equals(o);
+		
+		if(ret && pay.equals(((Gig) o).pay)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
