@@ -13,7 +13,7 @@ import java.util.HashMap;
  * A history is saved in order to enable queries about the bands' past. There
  * are Getters for Events, Tracks and Members which return all Objects at either
  * a given key date or within a range. A Billing-Method has also been
- * implementen which calculates the bands revenue within a given timeframe.
+ * implemented which calculates the bands revenue within a given time frame.
  * 
  * 
  * @author OOP Gruppe 187
