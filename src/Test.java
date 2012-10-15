@@ -71,54 +71,61 @@ public class Test {
 		}
 
 		/*
+		 * Print program info
+		 */
+		System.out.println(""
+				+ "Objektorientierte Programmiertechniken - Assignment 1\n"
+				+ "Deadline: 17.10.2012\n" + "Group: 187\n"
+				+ "Members: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
+
+		/*
 		 * Print test case summary
 		 */
 		System.out
 				.println(""
-						+ "Test Case #1\t Add several valid members                                                   \n"
-						+ "Test Case #2\t Try to remove a member with an invalid date                                 \n"
-						+ "Test Case #3\t Remove a member with a valid date                                           \n"
-						+ "Test Case #4\t Try to add a member with an invalid date                                    \n"
-						+ "Test Case #5\t Try to add the same member for the second time                              \n"
-						+ "Test Case #6\t Get all members before one was removed                                      \n"
-						+ "Test Case #7\t Get all members after one was removed                                       \n"
-						+ "Test Case #8\t Get all members after one was removed and added again                       \n"
-						+ "Test Case #9\t Try to add a member which already exists                                    \n"
-						+ "Test Case #10\t Try to remove a member before it joined the band                           \n"
-						+ "Test Case #11\t Remove a valid member for the second time                                  \n"
-						+ "Test Case #12\t Try to remove a member which doesnt exist                                  \n"
-						+ "Test Case #13\t Add several valid tracks                                                   \n"
-						+ "Test Case #14\t Add a track which already exists                                           \n"
-						+ "Test Case #15\t Try to remove a track before it was added                                  \n"
-						+ "Test Case #16\t Remove a valid track                                                       \n"
-						+ "Test Case #17\t Remove a track which doesnt exist                                          \n"
-						+ "Test Case #18\t Add a track before its last removal date                                   \n"
-						+ "Test Case #19\t Add a valid track for the second time                                      \n"
-						+ "Test Case #20\t Gets the Tracklist to a time at which all tracks were present              \n"
-						+ "Test Case #21\t Gets the tracklist to a time at which some tracks were present             \n"
-						+ "Test Case #22\t Gets the tracklist to a time at which one track was removed                \n"
-						+ "Test Case #23\t Gets the tracklist to a time at which the removed track was added again    \n"
-						+ "Test Case #24\t Adds several valid events                                                  \n"
-						+ "Test Case #25\t Try to add an event which already exists                                   \n"
-						+ "Test Case #26\t Try to remove a valid event                                                \n"
-						+ "Test Case #27\t Try to remove an event which doesnt exist                                  \n"
-						+ "Test Case #28\t Try to add an event which was removed before                               \n"
-						+ "Test Case #29\t Get ALL events                                                             \n"
-						+ "Test Case #30\t Get a subset of all events                                                 \n"
-						+ "Test Case #31\t Get the gigs only                                                          \n"
-						+ "Test Case #32\t Get the rehearsals only                                                    \n"
-						+ "Test Case #33\t Get no events at all; check for handling of empty ArrayList-param          \n"
-						+ "Test Case #34\t Get the billing over the entire time period                                \n"
-						+ "Test Case #35\t Get the billing over the entire time period of gigs only                   \n"
-						+ "Test Case #36\t Get the billing over the entire time period of rehearsals only             \n"
-						+ "Test Case #37\t Get the billing over no events; check for handling of empty ArrayList-param\n\n");
+						+ "Test case #01\t Add several valid members                                                  \n"
+						+ "Test case #02\t Try to remove a member with an invalid date                                \n"
+						+ "Test case #03\t Remove a member with a valid date                                          \n"
+						+ "Test case #04\t Try to add a member with an invalid date                                   \n"
+						+ "Test case #05\t Try to add the same member for the second time                             \n"
+						+ "Test case #06\t Get all members before one was removed                                     \n"
+						+ "Test case #07\t Get all members after one was removed                                      \n"
+						+ "Test case #08\t Get all members after one was removed and added again                      \n"
+						+ "Test case #09\t Try to add a member which already exists                                   \n"
+						+ "Test case #10\t Try to remove a member before it joined the band                           \n"
+						+ "Test case #11\t Remove a valid member for the second time                                  \n"
+						+ "Test case #12\t Try to remove a member which doesnt exist                                  \n"
+						+ "Test case #13\t Add several valid tracks                                                   \n"
+						+ "Test case #14\t Add a track which already exists                                           \n"
+						+ "Test case #15\t Try to remove a track before it was added                                  \n"
+						+ "Test case #16\t Remove a valid track                                                       \n"
+						+ "Test case #17\t Remove a track which doesnt exist                                          \n"
+						+ "Test case #18\t Add a track before its last removal date                                   \n"
+						+ "Test case #19\t Add a valid track for the second time                                      \n"
+						+ "Test case #20\t Gets the Tracklist to a time at which all tracks were present              \n"
+						+ "Test case #21\t Gets the tracklist to a time at which some tracks were present             \n"
+						+ "Test case #22\t Gets the tracklist to a time at which one track was removed                \n"
+						+ "Test case #23\t Gets the tracklist to a time at which the removed track was added again    \n"
+						+ "Test case #24\t Adds several valid events                                                  \n"
+						+ "Test case #25\t Try to add an event which already exists                                   \n"
+						+ "Test case #26\t Try to remove a valid event                                                \n"
+						+ "Test case #27\t Try to remove an event which doesnt exist                                  \n"
+						+ "Test case #28\t Try to add an event which was removed before                               \n"
+						+ "Test case #29\t Get ALL events                                                             \n"
+						+ "Test case #30\t Get a subset of all events                                                 \n"
+						+ "Test case #31\t Get the gigs only                                                          \n"
+						+ "Test case #32\t Get the rehearsals only                                                    \n"
+						+ "Test case #33\t Get no events at all; check for handling of empty ArrayList-param          \n"
+						+ "Test case #34\t Get the billing over the entire time period                                \n"
+						+ "Test case #35\t Get the billing over the entire time period of gigs only                   \n"
+						+ "Test case #36\t Get the billing over the entire time period of rehearsals only             \n"
+						+ "Test case #37\t Get the billing over no events; check for handling of empty ArrayList-param\n\n");
 
 		/*
 		 * All variables needed for validation of test cases
-		 * 
-		 * you might want to skip this part
 		 */
 
+		// used in cases: 13, 19, 20, 23
 		ArrayList<Track> allTracks = new ArrayList<Track>();
 		allTracks.add(thunderstruck);
 		allTracks.add(stairway);
@@ -127,15 +134,18 @@ public class Test {
 		allTracks.add(byob);
 		allTracks.add(myCurse);
 
+		// used in cases: 16, 22
 		ArrayList<Track> tracksNoCurse = new ArrayList<Track>();
 		tracksNoCurse.addAll(allTracks);
 		tracksNoCurse.remove(myCurse);
 
+		// used in cases: 21
 		ArrayList<Track> someTracks = new ArrayList<Track>();
 		someTracks.add(thunderstruck);
 		someTracks.add(stairway);
 		someTracks.add(prayer);
 
+		// used in cases: 1, 5, 6, 8
 		ArrayList<Member> allMembers = new ArrayList<Member>();
 		allMembers.add(markus);
 		allMembers.add(thomas);
@@ -143,10 +153,12 @@ public class Test {
 		allMembers.add(dominic);
 		allMembers.add(jane);
 
+		// used in cases: 3, 7, 11
 		ArrayList<Member> membersNoTom = new ArrayList<Member>();
 		membersNoTom.addAll(allMembers);
 		membersNoTom.remove(thomas);
 
+		// used in cases: 24, 28, 29
 		ArrayList<Event> allEvents = new ArrayList<Event>();
 		allEvents.add(novarock2010);
 		allEvents.add(novarock2011);
@@ -154,24 +166,29 @@ public class Test {
 		allEvents.add(postNova2010);
 		allEvents.add(postNova2011);
 
+		// used in cases: 26
 		ArrayList<Event> eventsNo2010 = new ArrayList<Event>();
 		eventsNo2010.addAll(allEvents);
 		eventsNo2010.remove(novarock2010);
 
+		// used in cases: 31
 		ArrayList<Event> gigEventsOnly = new ArrayList<Event>();
 		gigEventsOnly.add(novarock2010);
 		gigEventsOnly.add(novarock2011);
 		gigEventsOnly.add(novarock2012);
 
+		// used in cases: 32
 		ArrayList<Event> rehearsalEventsOnly = new ArrayList<Event>();
 		rehearsalEventsOnly.add(postNova2010);
 		rehearsalEventsOnly.add(postNova2011);
 
+		// used in cases: 30
 		ArrayList<Event> someEvents = new ArrayList<Event>();
 		someEvents.add(novarock2010);
 		someEvents.add(novarock2011);
 		someEvents.add(postNova2010);
 
+		// used in cases: 34, 35, 36, 37 (DUH!)
 		BigDecimal case34, case35, case36, case37;
 		case34 = new BigDecimal(16400);
 		case35 = new BigDecimal(17500);
