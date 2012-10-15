@@ -1,17 +1,24 @@
+
 package assignment1;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * used to store information about rehearsals
+ * 
+ * @author OOP Gruppe 187
+ */
 public class Rehearsal extends Event {
 
 	private BigDecimal cost;
 
 	/**
-	 * 
 	 * @return a string representation of a Rehersal
 	 */
+	@Override
 	public String toString() {
+
 		return super.toString() + " Costs: " + this.cost;
 	}
 
@@ -28,6 +35,7 @@ public class Rehearsal extends Event {
 	 *            the costs of the rehearsal
 	 */
 	public Rehearsal(Date time, String place, Integer duration, BigDecimal cost) {
+
 		super(time, place, duration);
 		this.cost = cost;
 	}
@@ -45,29 +53,31 @@ public class Rehearsal extends Event {
 	 *            the costs of the rehearsal
 	 */
 	public Rehearsal(Date time, String place, Integer duration, Double cost) {
+
 		super(time, place, duration);
 		this.cost = new BigDecimal(cost);
 	}
 
 	/**
-	 * 
-	 * 
 	 * @return the cost of the rehearsal
 	 */
+	@Override
 	public BigDecimal getFinances() {
+
 		return this.cost.multiply(new BigDecimal(-1.0));
 	}
-	
-	
+
 	/**
-	 * compares two events
+	 * compares two rehearsals
 	 * 
-	 * @return true if the events are equal false if the events are not equal
+	 * @return true if the rehearsals are equal false otherwise
 	 */
+	@Override
 	public boolean equals(Object o) {
+
 		boolean ret = super.equals(o);
-		
-		if(ret && cost.equals(((Rehearsal) o).cost)) {
+
+		if (ret && cost.equals(((Rehearsal) o).cost)) {
 			return true;
 		} else {
 			return false;
