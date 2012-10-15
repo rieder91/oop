@@ -8,11 +8,18 @@ package assignment1;
  * 
  */
 public class InvalidBandObjectException extends Exception {
+	// Eclipse is naggin'
 	private static final long serialVersionUID = 1L;
 
-	public InvalidBandObjectException() {
-	}
-
+	/**
+	 * default constructor
+	 */
+	public InvalidBandObjectException() { }
+	
+	/**
+	 * default constructor
+	 * @param msg dbg-message
+	 */
 	public InvalidBandObjectException(String msg) {
 		super(msg);
 	}
