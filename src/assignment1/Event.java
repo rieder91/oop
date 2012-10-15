@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * used to store information about events; Event is an abstract class which
+ * used to store information about a event; Event is an abstract class which
  * implements all methods common to both Gig and Rehearsal
  * 
  * @author OOP Gruppe 187

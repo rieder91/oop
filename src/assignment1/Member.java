@@ -2,7 +2,7 @@
 package assignment1;
 
 /**
- * used to store information about members
+ * Class that contains all the information belonging to a member.
  * 
  * @author OOP Gruppe 187
  */

@@ -2,7 +2,7 @@
 package assignment1;
 
 /**
- * used to store information about tracks
+ * Class that contains all the information belonging to a track.
  * 
  * @author OOP Gruppe 187
  */
