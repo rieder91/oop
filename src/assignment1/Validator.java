@@ -17,10 +17,10 @@ public class Validator {
 
 	/**
 	 * 
-	 * @param a
-	 * @param b
-	 * @param caseNum
-	 * @return
+	 * @param a first param to be compared
+	 * @param b second param to be compared
+	 * @param caseNum number of the test case
+	 * @return true of the params are equal
 	 */
 	public static boolean check(BigDecimal a, BigDecimal b, Integer caseNum) {
 		if (a.equals(b)) {
@@ -39,10 +39,10 @@ public class Validator {
 
 	/**
 	 * 
-	 * @param a
-	 * @param b
-	 * @param caseNum
-	 * @return
+	 * @param a first param to be compared
+	 * @param b second param to be compared
+	 * @param caseNum number of the test case
+	 * @return true of the params are equal
 	 */
 	public static <T> boolean check(ArrayList<T> a, ArrayList<T> b,
 			Integer caseNum) {
