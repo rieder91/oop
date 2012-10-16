@@ -3,11 +3,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import assignment1.Band;
+import assignment1.Event;
+import assignment1.Gig;
+import assignment1.InvalidBandObjectException;
+import assignment1.InvalidDateException;
+import assignment1.Member;
+import assignment1.Rehearsal;
+import assignment1.Track;
+import assignment1.Validator;
 /**
  * Class which runs several test cases for the program's core and validates the results
  * @author OOP Gruppe 187
  */
-import assignment1.*;
 
 public class Test {
 
@@ -21,7 +29,7 @@ public class Test {
 		// Stuff needed for date parsing
 		SimpleDateFormat formatTime = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		SimpleDateFormat formatDate = new SimpleDateFormat("dd.MM.yyyy");
-
+		
 		// Create all the necessary members, tracks, events, ...
 		Band ultraCoders = new Band("Ultra Coders", "Rock");
 
