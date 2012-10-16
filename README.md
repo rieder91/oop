@@ -2,16 +2,16 @@
 ===
 _WS2012, Vienna University of Technology_
 
-## Teammitglieder:
+## Teammitglieder
  - Thomas Rieder
  - Markus Zisser
  - Dominic Riedl
 
-## Work in Progress
+## Done
  - Assignment 1
    - Band Management
 
-## TODO:
+## TODO
  - Assignment 2 - 9
  
 ## Syllabus
