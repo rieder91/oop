@@ -129,7 +129,7 @@ public class Member {
 	 *            disagree
 	 */
 	public void agree(Event e, Date date, boolean agreed) {
-		int idx=this.events.indexOf(new ProposedDate(e,date));
+		int idx = this.events.indexOf(new ProposedDate(e, date));
 		this.events.get(idx).agree(agreed);
 	}
 
@@ -145,7 +145,18 @@ public class Member {
 	 *            disagree
 	 */
 	public void agree(Event e, Date date, String reason, boolean agreed) {
-		int idx=this.events.indexOf(new ProposedDate(e,date));
-		this.events.get(idx).agree(agreed,reason);
+		int idx = this.events.indexOf(new ProposedDate(e, date));
+		this.events.get(idx).agree(agreed, reason);
+	}
+
+	/**
+	 * Adds a new proposed date for an event.
+	 * 
+	 * @param pd
+	 * 			a time proposal for an event
+	 */
+	public void addProposedDate(ProposedDate pd) {
+		if (this.events.indexOf(pd) == -1)
+			this.events.add(pd);
 	}
 }
