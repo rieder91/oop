@@ -6,7 +6,7 @@ import java.util.Date;
  * This class is used to save information about a proposed date.
  * 
  * @author OOP Gruppe 187
- *
+ * 
  */
 public class ProposedDate {
 	private Event e;
@@ -29,7 +29,7 @@ public class ProposedDate {
 	 * @return true if the member agreed false if the member declined
 	 */
 	public boolean isAgreed() {
-		return agreed;
+		return this.agreed;
 	}
 
 	/**
@@ -53,14 +53,14 @@ public class ProposedDate {
 	 * @return the reason why the member accepted oder declined the date
 	 */
 	public String getReason() {
-		return reason;
+		return this.reason;
 	}
 
 	/**
 	 * @return the event
 	 */
 	public Event getE() {
-		return e;
+		return this.e;
 	}
 
 	/**
@@ -70,30 +70,23 @@ public class ProposedDate {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		if (obj == null) {
+		if (obj == null)
 			return false;
-		}
-		if (!(obj instanceof ProposedDate)) {
+		if (!(obj instanceof ProposedDate))
 			return false;
-		}
 		ProposedDate other = (ProposedDate) obj;
-		if (e == null) {
-			if (other.e != null) {
+		if (this.e == null) {
+			if (other.e != null)
 				return false;
-			}
-		} else if (!e.equals(other.e)) {
+		} else if (!this.e.equals(other.e))
 			return false;
-		}
-		if (date == null) {
-			if (other.date != null) {
+		if (this.date == null) {
+			if (other.date != null)
 				return false;
-			}
-		} else if (!date.equals(other.date)) {
+		} else if (!this.date.equals(other.date))
 			return false;
-		}
 		return true;
 	}
 
@@ -101,7 +94,7 @@ public class ProposedDate {
 	 * @return the date
 	 */
 	public Date getDate() {
-		return date;
+		return this.date;
 	}
 
 }

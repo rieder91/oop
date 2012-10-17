@@ -32,7 +32,8 @@ public class Test {
 	 * @param args
 	 *            command line arguments
 	 */
-	// the deprecation suppression is only used for our own classes and not for any in the jdk
+	// the deprecation suppression is only used for our own classes and not for
+	// any in the jdk
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		// Stuff needed for date parsing
@@ -54,11 +55,14 @@ public class Test {
 
 		ArrayList<Class<? extends Event>> noTypes = new ArrayList<Class<? extends Event>>();
 
-		Member thomas = new Member("Thomas", "Rieder", "Keyboard", "+436991221",true);
-		Member markus = new Member("Markus", "Zisser", "Guitar", "01123123123",true);
-		Member dominic = new Member("Dominic", "Riedl", "Drums", "0699123456",true);
-		Member jens = new Member("Jens", "Mander", "Violin", "129081091",false);
-		Member jane = new Member("Jane", "Doe", "Bass", "203957892035",false);
+		Member thomas = new Member("Thomas", "Rieder", "Keyboard",
+				"+436991221", true);
+		Member markus = new Member("Markus", "Zisser", "Guitar", "01123123123",
+				true);
+		Member dominic = new Member("Dominic", "Riedl", "Drums", "0699123456",
+				true);
+		Member jens = new Member("Jens", "Mander", "Violin", "129081091", false);
+		Member jane = new Member("Jane", "Doe", "Bass", "203957892035", false);
 
 		Track thunderstruck = new Track("Thunderstruck", 321);
 		Track stairway = new Track("Stairway to Heaven", 482);
@@ -694,7 +698,7 @@ public class Test {
 			 * 
 			 * should be:
 			 */
-			
+
 			// used in: 38
 			Gig case38 = new Gig(formatDate.parse("01.01.2013"), "Wien", 10,
 					new BigDecimal(10000));
@@ -711,72 +715,72 @@ public class Test {
 
 			novarock2010.restoreEvent(formatDate.parse("05.10.2012"),
 					formatDate.parse("06.10.2012"));
-			
+
 			// used in: 39, 40
 			Gig case39 = new Gig(formatTime.parse("11.07.2010 12:00"),
 					"Pannonia Fields II", 72, 2500.0);
-			
+
 			Validator.check(novarock2010, case39, 39);
 
-			
 			/*
 			 * Test case #40 Try to edit an event with a invalid changeDate
 			 */
-			
+
 			try {
-				novarock2010.updateEvent(case39, formatDate.parse("01.01.1990"));
+				novarock2010
+						.updateEvent(case39, formatDate.parse("01.01.1990"));
 				Validator.report(false, 40);
 			} catch (InvalidDateException e) {
 				Validator.report(true, 40);
 			}
-			
-			
+
 			/*
 			 * Test case #41 remove Event and restore it
 			 */
-			
-			ultraCoders.removeEvent(novarock2010,formatDate.parse("17.10.2012"));
-			ultraCoders.restoreEvent("Pannonia Fields II",72,formatTime.parse("11.07.2010 12:00"));
+
+			ultraCoders.removeEvent(novarock2010,
+					formatDate.parse("17.10.2012"));
+			ultraCoders.restoreEvent("Pannonia Fields II", 72,
+					formatTime.parse("11.07.2010 12:00"));
 			Validator.check(ultraCoders.getEvents(), allEvents, 41);
-			
-			
+
 			/*
 			 * Test case #42 restore not existing Event
 			 */
-			
-			try{
-				ultraCoders.restoreEvent("Pannonia Fields II",72,formatTime.parse("11.07.2010 12:00"));
+
+			try {
+				ultraCoders.restoreEvent("Pannonia Fields II", 72,
+						formatTime.parse("11.07.2010 12:00"));
 				Validator.report(false, 42);
 			} catch (InvalidBandObjectException e) {
 				Validator.report(true, 42);
 			}
-			
 
 			Validator.report();
-			
-			
-			
-			
+
 			/**
-			 *  
-			 *  
+			 * 
+			 * 
 			 * Testing Part
-			 *  
-			 *  
-			 *  
+			 * 
+			 * 
+			 * 
 			 */
-			
+
 			Method memberAddTrack, bandAddMember;
 			try {
-				memberAddTrack = Member.class.getMethod("addTrack", new Class[]{ Track.class });
-				bandAddMember = Band.class.getMethod("addMember", new Class[] {Member.class, Date.class});
-				
-//				markus.setRole(markus, Permission.OWNER);
-				
+				memberAddTrack = Member.class.getMethod("addTrack",
+						new Class[] { Track.class });
+				bandAddMember = Band.class.getMethod("addMember", new Class[] {
+						Member.class, Date.class });
+
+				// markus.setRole(markus, Permission.OWNER);
+
 				Authenticator.checkPermissions(markus, markus, memberAddTrack);
-				
-				Authenticator.checkPermissions(markus, ultraCoders, bandAddMember);
-				
+
+				Authenticator.checkPermissions(markus, ultraCoders,
+						bandAddMember);
+
 			} catch (InsufficientPermissionsException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -787,11 +791,7 @@ public class Test {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-			
-			
-			
+
 		} catch (InvalidDateException e) {
 			System.out.println(e.getMessage());
 		} catch (ParseException e) {

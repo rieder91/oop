@@ -75,7 +75,7 @@ public class Band implements Authenticatable {
 		this.permissions = new HashMap<Method, ArrayList<Permission>>();
 		this.roles = new HashMap<Authenticatable, Permission>();
 
-		initPermissions();
+		this.initPermissions();
 	}
 
 	/**
@@ -106,25 +106,26 @@ public class Band implements Authenticatable {
 	 * 
 	 * @return fancy string for debugging purposes
 	 */
+	@Override
 	public String toString() {
 		String ret = "";
 		ret += "Band name: " + this.name;
 		ret += "\nGenre: " + this.genre;
 
 		ret += "\n\nMembers:\n";
-		for (Member m : members) {
+		for (Member m : this.members) {
 			ret += m.toString();
 			ret += '\n';
 		}
 
 		ret += "\nEvents:\n";
-		for (Event e : events) {
+		for (Event e : this.events) {
 			ret += e.toString();
 			ret += '\n';
 		}
 
 		ret += "\nTracks:\n";
-		for (Track t : tracks) {
+		for (Track t : this.tracks) {
 			ret += t.toString();
 			ret += '\n';
 		}
@@ -148,28 +149,27 @@ public class Band implements Authenticatable {
 	 */
 	public void addTrack(Track t, Date d) throws InvalidDateException,
 			InvalidBandObjectException {
-		if (!tracks.contains(t)) {
-			if (trackDates.containsKey(t)) {
+		if (!this.tracks.contains(t)) {
+			if (this.trackDates.containsKey(t)) {
 				// the track has already been added in the past - we need to add
 				// a new date
-				ArrayList<Date> history = previousTracks.get(t);
+				ArrayList<Date> history = this.previousTracks.get(t);
 				Date removeDate = history.get(history.size() - 1);
-				if (removeDate.after(d)) {
+				if (removeDate.after(d))
 					throw new InvalidDateException(
 							"new date prior to last remove date");
-				} else {
-					trackDates.get(t).add(d);
-					tracks.add(t);
+				else {
+					this.trackDates.get(t).add(d);
+					this.tracks.add(t);
 				}
 			} else {
 				ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
-				trackDates.put(t, newHistory);
-				tracks.add(t);
+				this.trackDates.put(t, newHistory);
+				this.tracks.add(t);
 			}
-		} else {
+		} else
 			throw new InvalidBandObjectException("track already exists");
-		}
 
 	}
 
@@ -187,23 +187,23 @@ public class Band implements Authenticatable {
 	 */
 	public void removeTrack(Track t, Date d) throws InvalidDateException,
 			InvalidBandObjectException {
-		ArrayList<Date> history = trackDates.get(t);
+		ArrayList<Date> history = this.trackDates.get(t);
 		Date joinDate = history.get(history.size() - 1);
 
-		if (!tracks.contains(t)) {
+		if (!this.tracks.contains(t))
 			throw new InvalidBandObjectException("track doesnt exist");
-		} else if (joinDate.after(d)) {
+		else if (joinDate.after(d))
 			throw new InvalidDateException("new date prior to last add date");
-		} else {
-			tracks.remove(t);
+		else {
+			this.tracks.remove(t);
 
-			if (previousTracks.containsKey(t)) {
+			if (this.previousTracks.containsKey(t))
 				// we need to add a new date to the history
-				previousTracks.get(t).add(d);
-			} else {
+				this.previousTracks.get(t).add(d);
+			else {
 				ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
-				previousTracks.put(t, newHistory);
+				this.previousTracks.put(t, newHistory);
 			}
 		}
 	}
@@ -217,16 +217,14 @@ public class Band implements Authenticatable {
 	 *             thrown if the event already exists
 	 */
 	public void addEvent(Event e) throws InvalidBandObjectException {
-		if (!events.contains(e)) {
-			events.add(e);
+		if (!this.events.contains(e)) {
+			this.events.add(e);
 
-			for (Member mem : members) {
+			for (Member mem : this.members)
 				e.setRole(mem, Permission.GROUP);
-			}
 
-		} else {
+		} else
 			throw new InvalidBandObjectException("event already exists");
-		}
 
 	}
 
@@ -239,14 +237,13 @@ public class Band implements Authenticatable {
 	 *             thrown if the event doesnt exist
 	 */
 	public void removeEvent(Event e) throws InvalidBandObjectException {
-		if (!events.contains(e)) {
+		if (!this.events.contains(e))
 			throw new InvalidBandObjectException("event doesnt exist");
-		} else {
-			events.remove(e);
+		else {
+			this.events.remove(e);
 
-			for (Member mem : members) {
+			for (Member mem : this.members)
 				e.setRole(mem, Permission.NONE);
-			}
 		}
 	}
 
@@ -261,18 +258,17 @@ public class Band implements Authenticatable {
 	 *             thrown if the event doesnt exist
 	 */
 	public void removeEvent(Event e, Date d) throws InvalidBandObjectException {
-		if (events.contains(e)) {
-			removeEvent(e);
-			if (previousEvents.containsKey(e)) {
-				previousEvents.get(e).add(d);
-			} else {
+		if (this.events.contains(e)) {
+			this.removeEvent(e);
+			if (this.previousEvents.containsKey(e))
+				this.previousEvents.get(e).add(d);
+			else {
 				ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
-				previousEvents.put(e, newHistory);
+				this.previousEvents.put(e, newHistory);
 			}
-		} else {
+		} else
 			throw new InvalidBandObjectException("event doesnt exist");
-		}
 	}
 
 	/**
@@ -287,15 +283,14 @@ public class Band implements Authenticatable {
 	public void restoreEvent(String place, Integer duration, Date time)
 			throws InvalidBandObjectException {
 		ArrayList<Event> e;
-		e = searchEvent(place, duration, time);
-		if (!e.isEmpty()) {
+		e = this.searchEvent(place, duration, time);
+		if (!e.isEmpty())
 			for (Event rest : e) {
-				addEvent(rest);
-				previousEvents.remove(rest);
+				this.addEvent(rest);
+				this.previousEvents.remove(rest);
 			}
-		} else {
+		else
 			throw new InvalidBandObjectException("event doesnt exist");
-		}
 	}
 
 	/**
@@ -308,12 +303,10 @@ public class Band implements Authenticatable {
 	private ArrayList<Event> searchEvent(String place, Integer duration,
 			Date time) {
 		ArrayList<Event> ret = new ArrayList<Event>();
-		for (Event e : previousEvents.keySet()) {
+		for (Event e : this.previousEvents.keySet())
 			if (place.equals(e.getPlace()) && time.equals(e.getTime())
-					&& duration.equals(e.getDuration())) {
+					&& duration.equals(e.getDuration()))
 				ret.add(e);
-			}
-		}
 		return ret;
 	}
 
@@ -332,40 +325,38 @@ public class Band implements Authenticatable {
 	 */
 	public void addMember(Member m, Date d) throws InvalidDateException,
 			InvalidBandObjectException {
-		if (!members.contains(m)) {
-			if (memberDates.containsKey(m)) {
+		if (!this.members.contains(m)) {
+			if (this.memberDates.containsKey(m)) {
 				// the member has already been part of the band once before
 				// date
-				ArrayList<Date> history = previousMembers.get(m);
+				ArrayList<Date> history = this.previousMembers.get(m);
 				Date leaveDate = history.get(history.size() - 1);
-				if (leaveDate.after(d)) {
+				if (leaveDate.after(d))
 					throw new InvalidDateException(
 							"new date prior to last remove date");
-				} else {
-					members.add(m);
-					memberDates.get(m).add(d);
+				else {
+					this.members.add(m);
+					this.memberDates.get(m).add(d);
 				}
 			} else {
 				ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
-				memberDates.put(m, newHistory);
-				members.add(m);
+				this.memberDates.put(m, newHistory);
+				this.members.add(m);
 			}
 
-			for (Event e : events) {
+			for (Event e : this.events)
 				e.setRole(m, Permission.GROUP);
-			}
 
-			for (Member mem : members) {
+			for (Member mem : this.members) {
 				mem.setRole(m, Permission.GROUP);
 				m.setRole(mem, Permission.GROUP);
 			}
 
 			this.setRole(m, Permission.GROUP);
 
-		} else {
+		} else
 			throw new InvalidBandObjectException("member already exists");
-		}
 	}
 
 	/**
@@ -383,33 +374,32 @@ public class Band implements Authenticatable {
 	 */
 	public void removeMember(Member m, Date d) throws InvalidDateException,
 			InvalidBandObjectException {
-		ArrayList<Date> history = memberDates.get(m);
+		ArrayList<Date> history = this.memberDates.get(m);
 		Date joinDate = history.get(history.size() - 1);
-		if (!members.contains(m)) {
+		if (!this.members.contains(m))
 			throw new InvalidBandObjectException("member doesnt exist");
-		} else if (joinDate.after(d)) {
+		else if (joinDate.after(d))
 			throw new InvalidDateException("new date prior to last add date");
-		} else {
-			members.remove(m);
+		else {
+			this.members.remove(m);
 
-			for (Event e : events) {
+			for (Event e : this.events)
 				e.setRole(m, Permission.NONE);
-			}
 
-			for (Member mem : members) {
+			for (Member mem : this.members) {
 				mem.setRole(m, Permission.NONE);
 				m.setRole(mem, Permission.NONE);
 			}
 
 			this.setRole(m, Permission.NONE);
 
-			if (previousMembers.containsKey(m)) {
+			if (this.previousMembers.containsKey(m))
 				// the member has leave once before
-				previousMembers.get(m).add(d);
-			} else {
+				this.previousMembers.get(m).add(d);
+			else {
 				ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
-				previousMembers.put(m, newHistory);
+				this.previousMembers.put(m, newHistory);
 			}
 		}
 	}
@@ -429,17 +419,13 @@ public class Band implements Authenticatable {
 			ArrayList<Class<? extends Event>> types)
 			throws InvalidDateException {
 		ArrayList<Event> ret = new ArrayList<Event>();
-		if (d1.after(d2)) {
+		if (d1.after(d2))
 			throw new InvalidDateException("from-date AFTER to-date");
-		} else {
-			for (Event e : events) {
-				if (types.contains(e.getClass())) {
-					if (e.getTime().after(d1) && e.getTime().before(d2)) {
+		else
+			for (Event e : this.events)
+				if (types.contains(e.getClass()))
+					if (e.getTime().after(d1) && e.getTime().before(d2))
 						ret.add(e);
-					}
-				}
-			}
-		}
 		return ret;
 	}
 
@@ -456,17 +442,13 @@ public class Band implements Authenticatable {
 			ArrayList<Class<? extends Event>> types)
 			throws InvalidDateException {
 		BigDecimal ret = new BigDecimal(0.0);
-		if (d1.after(d2)) {
+		if (d1.after(d2))
 			throw new InvalidDateException("from-date AFTER to-date");
-		} else {
-			for (Event e : events) {
-				if (types.contains(e.getClass())) {
-					if (e.getTime().after(d1) && e.getTime().before(d2)) {
+		else
+			for (Event e : this.events)
+				if (types.contains(e.getClass()))
+					if (e.getTime().after(d1) && e.getTime().before(d2))
 						ret = ret.add(e.getFinances());
-					}
-				}
-			}
-		}
 		return ret;
 	}
 
@@ -481,27 +463,21 @@ public class Band implements Authenticatable {
 	public ArrayList<Member> getMembers(Date d) {
 		ArrayList<Member> ret = new ArrayList<Member>();
 
-		for (Member m : memberDates.keySet()) {
+		for (Member m : this.memberDates.keySet()) {
 			Date lastValidDate = null;
-			for (Date joinDate : memberDates.get(m)) {
-				if (joinDate.before(d)) {
+			for (Date joinDate : this.memberDates.get(m))
+				if (joinDate.before(d))
 					lastValidDate = joinDate;
-				}
-			}
 
 			// if he left the group, get the "leave-date" after the
 			// lastValidDate
-			if (lastValidDate != null && previousMembers.containsKey(m)) {
-				for (Date leaveDate : previousMembers.get(m)) {
-					if (leaveDate.before(d) && leaveDate.after(lastValidDate)) {
+			if (lastValidDate != null && this.previousMembers.containsKey(m))
+				for (Date leaveDate : this.previousMembers.get(m))
+					if (leaveDate.before(d) && leaveDate.after(lastValidDate))
 						lastValidDate = null;
-					}
-				}
-			}
 
-			if (lastValidDate != null) {
+			if (lastValidDate != null)
 				ret.add(m);
-			}
 
 		}
 		return ret;
@@ -518,25 +494,19 @@ public class Band implements Authenticatable {
 	public ArrayList<Track> getTracks(Date d) {
 		ArrayList<Track> ret = new ArrayList<Track>();
 
-		for (Track t : trackDates.keySet()) {
+		for (Track t : this.trackDates.keySet()) {
 			Date lastValidDate = null;
-			for (Date addDate : trackDates.get(t)) {
-				if (addDate.before(d)) {
+			for (Date addDate : this.trackDates.get(t))
+				if (addDate.before(d))
 					lastValidDate = addDate;
-				}
-			}
 
-			if (lastValidDate != null && previousTracks.containsKey(t)) {
-				for (Date removeDate : previousTracks.get(t)) {
-					if (removeDate.before(d) && removeDate.after(lastValidDate)) {
+			if (lastValidDate != null && this.previousTracks.containsKey(t))
+				for (Date removeDate : this.previousTracks.get(t))
+					if (removeDate.before(d) && removeDate.after(lastValidDate))
 						lastValidDate = null;
-					}
-				}
-			}
 
-			if (lastValidDate != null) {
+			if (lastValidDate != null)
 				ret.add(t);
-			}
 		}
 
 		return ret;
@@ -547,9 +517,8 @@ public class Band implements Authenticatable {
 	 * @param auth
 	 */
 	public void updateGroupPermissions(Authenticatable auth) {
-		for (Member m : members) {
+		for (Member m : this.members)
 			auth.setRole(m, Permission.GROUP);
-		}
 	}
 
 	/**
@@ -558,8 +527,8 @@ public class Band implements Authenticatable {
 	 */
 	@Override
 	public void initPermissions() {
-		permissions = new HashMap<Method, ArrayList<Permission>>();
-		roles = new HashMap<Authenticatable, Permission>();
+		this.permissions = new HashMap<Method, ArrayList<Permission>>();
+		this.roles = new HashMap<Authenticatable, Permission>();
 
 		// get all methods of the class; there is NO difference in the
 		// permissions of methods with the same name but different arguments
@@ -585,9 +554,9 @@ public class Band implements Authenticatable {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.MANAGEMENT);
 				tPerm.add(Permission.GROUP);
-			} else if ("getMembers".equals(m.getName())) {
+			} else if ("getMembers".equals(m.getName()))
 				tPerm.add(Permission.WORLD);
-			} else if ("getTracks".equals(m.getName())) {
+			else if ("getTracks".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.MANAGEMENT);
 				tPerm.add(Permission.GROUP);
@@ -608,12 +577,12 @@ public class Band implements Authenticatable {
 			}
 
 			// save the permissions and reset the temporary list
-			permissions.put(m, new ArrayList<Permission>(tPerm));
+			this.permissions.put(m, new ArrayList<Permission>(tPerm));
 			tPerm.clear();
 		}
 
 		// set the owner to THIS
-		setRole(this, Permission.OWNER);
+		this.setRole(this, Permission.OWNER);
 	}
 
 	/**
@@ -625,11 +594,10 @@ public class Band implements Authenticatable {
 	 */
 	@Override
 	public Permission getRole(Authenticatable auth) {
-		if (roles.containsKey(auth)) {
-			return roles.get(auth);
-		} else {
+		if (this.roles.containsKey(auth))
+			return this.roles.get(auth);
+		else
 			return Permission.NONE;
-		}
 	}
 
 	/**
@@ -643,7 +611,7 @@ public class Band implements Authenticatable {
 	 */
 	@Override
 	public void setRole(Authenticatable auth, Permission p) {
-		roles.put(auth, p);
+		this.roles.put(auth, p);
 	}
 
 	/**
@@ -655,11 +623,9 @@ public class Band implements Authenticatable {
 	 */
 	@Override
 	public boolean allowedMethod(Method m, Permission p) {
-		for (Permission allowed : permissions.get(m)) {
-			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) {
+		for (Permission allowed : this.permissions.get(m))
+			if (allowed.equals(p) || allowed.equals(Permission.WORLD))
 				return true;
-			}
-		}
 		return false;
 	}
 

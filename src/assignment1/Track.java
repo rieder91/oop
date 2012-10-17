@@ -1,4 +1,3 @@
-
 package assignment1;
 
 /**
@@ -47,8 +46,10 @@ public class Track {
 
 		final int prime = 31;
 		int result = 1;
-		result = (prime * result) + ((length == null) ? 0 : length.hashCode());
-		result = (prime * result) + ((name == null) ? 0 : name.hashCode());
+		result = (prime * result)
+				+ ((this.length == null) ? 0 : this.length.hashCode());
+		result = (prime * result)
+				+ ((this.name == null) ? 0 : this.name.hashCode());
 		return result;
 	}
 
@@ -60,18 +61,23 @@ public class Track {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (this == obj) { return true; }
-		if (obj == null) { return false; }
-		if (!(obj instanceof Track)) { return false; }
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Track))
+			return false;
 		Track other = (Track) obj;
-		if (length == null) {
-			if (other.length != null) { return false; }
-		} else
-			if (!length.equals(other.length)) { return false; }
-		if (name == null) {
-			if (other.name != null) { return false; }
-		} else
-			if (!name.equals(other.name)) { return false; }
+		if (this.length == null) {
+			if (other.length != null)
+				return false;
+		} else if (!this.length.equals(other.length))
+			return false;
+		if (this.name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!this.name.equals(other.name))
+			return false;
 		return true;
 	}
 }

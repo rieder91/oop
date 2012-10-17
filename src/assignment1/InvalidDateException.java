@@ -10,15 +10,18 @@ package assignment1;
 public class InvalidDateException extends Exception {
 	// Eclipse is naggin'
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * default constructor
 	 */
-	public InvalidDateException() { }
-	
+	public InvalidDateException() {
+	}
+
 	/**
 	 * default constructor
-	 * @param msg dbg-message
+	 * 
+	 * @param msg
+	 *            dbg-message
 	 */
 	public InvalidDateException(String msg) {
 		super(msg);

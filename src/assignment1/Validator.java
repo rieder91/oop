@@ -26,7 +26,7 @@ public class Validator {
 	 */
 	public static <T> boolean check(ArrayList<T> a, ArrayList<T> b,
 			Integer caseNum) {
-		for (T object : a) {
+		for (T object : a)
 			if (!b.contains(object)) {
 				System.out.println("Test case #"
 						+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
@@ -34,13 +34,12 @@ public class Validator {
 				failedCount++;
 				return false;
 			}
-		}
 		System.out.println("Test case #"
 				+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " successful");
 		successfulCount++;
 		return true;
 	}
-	
+
 	/**
 	 * 
 	 * @param a

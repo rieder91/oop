@@ -1,4 +1,3 @@
-
 package assignment1;
 
 import java.lang.reflect.Method;
@@ -67,7 +66,7 @@ public class Gig extends Event {
 		super(time, place, duration);
 		this.pay = new BigDecimal(pay);
 	}
-	
+
 	/**
 	 * 
 	 * @param name
@@ -76,7 +75,8 @@ public class Gig extends Event {
 	 * @param duration
 	 * @param pay
 	 */
-	public Gig(String name, Date time, String place, Integer duration, BigDecimal pay) {
+	public Gig(String name, Date time, String place, Integer duration,
+			BigDecimal pay) {
 		super(name, time, place, duration);
 		this.pay = pay;
 	}
@@ -100,26 +100,26 @@ public class Gig extends Event {
 
 		boolean ret = super.equals(o);
 
-		if (ret && pay.equals(((Gig) o).pay)) {
+		if (ret && this.pay.equals(((Gig) o).pay))
 			return true;
-		} else {
+		else
 			return false;
-		}
 	}
 
 	@Override
-	public void updateEvent(Event e, Date changeDate) throws InvalidDateException {
-		for(Date d : getEventHistory().keySet()) {
-			if(d.after(changeDate)) {
-				throw new InvalidDateException("change date is before last edit");
-			}
-		}
-		
-		if(e.getClass() == this.getClass()) {
+	public void updateEvent(Event e, Date changeDate)
+			throws InvalidDateException {
+		for (Date d : this.getEventHistory().keySet())
+			if (d.after(changeDate))
+				throw new InvalidDateException(
+						"change date is before last edit");
+
+		if (e.getClass() == this.getClass()) {
 			Gig newGig = (Gig) e;
-			Gig history = new Gig(this.getTime(), this.getPlace(), this.getDuration(), this.pay);
-			addToHistory(history, changeDate);
-			
+			Gig history = new Gig(this.getTime(), this.getPlace(),
+					this.getDuration(), this.pay);
+			this.addToHistory(history, changeDate);
+
 			this.setTime(newGig.getTime());
 			this.setDuration(newGig.getDuration());
 			this.setPlace(newGig.getPlace());
@@ -134,13 +134,14 @@ public class Gig extends Event {
 	 * Reverts the Event to the state at @restoreDate and saves the current state with the date @currentDate
 	 * 
 	 */
-	public void restoreEvent(Date restoreDate, Date currentDate) throws InvalidDateException {
-		Gig oldGig = (Gig) getEventHistory().get(restoreDate);
-		if(oldGig != null) {
-			updateEvent(oldGig, currentDate);
-		} else {
-			throw new InvalidDateException("no event found at the specified date");
-		}
+	public void restoreEvent(Date restoreDate, Date currentDate)
+			throws InvalidDateException {
+		Gig oldGig = (Gig) this.getEventHistory().get(restoreDate);
+		if (oldGig != null)
+			this.updateEvent(oldGig, currentDate);
+		else
+			throw new InvalidDateException(
+					"no event found at the specified date");
 	}
 
 	/**
@@ -149,8 +150,8 @@ public class Gig extends Event {
 	 */
 	@Override
 	public void initPermissions() {
-		permissions = new HashMap<Method, ArrayList<Permission>>();
-		roles = new HashMap<Authenticatable, Permission>();
+		this.permissions = new HashMap<Method, ArrayList<Permission>>();
+		this.roles = new HashMap<Authenticatable, Permission>();
 
 		// get all methods of the class; there is NO difference in the
 		// permissions of methods with the same name but different arguments
@@ -162,19 +163,18 @@ public class Gig extends Event {
 			if ("getFinances".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.MANAGEMENT);
-			} else if ("restoreEvent".equals(m.getName())) {
+			} else if ("restoreEvent".equals(m.getName()))
 				tPerm.add(Permission.OWNER);
-			} else if ("updateEvent".equals(m.getName())) {
+			else if ("updateEvent".equals(m.getName()))
 				tPerm.add(Permission.OWNER);
-			}
 
 			// save the permissions and reset the temporary list
-			permissions.put(m, new ArrayList<Permission>(tPerm));
+			this.permissions.put(m, new ArrayList<Permission>(tPerm));
 			tPerm.clear();
 		}
 
 		// set the owner to THIS
-		setRole(this, Permission.OWNER);
+		this.setRole(this, Permission.OWNER);
 	}
 
 	/**
@@ -186,11 +186,10 @@ public class Gig extends Event {
 	 */
 	@Override
 	public Permission getRole(Authenticatable auth) {
-		if (roles.containsKey(auth)) {
-			return roles.get(auth);
-		} else {
+		if (this.roles.containsKey(auth))
+			return this.roles.get(auth);
+		else
 			return Permission.NONE;
-		}
 	}
 
 	/**
@@ -204,7 +203,7 @@ public class Gig extends Event {
 	 */
 	@Override
 	public void setRole(Authenticatable auth, Permission p) {
-			roles.put(auth, p);
+		this.roles.put(auth, p);
 	}
 
 	/**
@@ -216,11 +215,9 @@ public class Gig extends Event {
 	 */
 	@Override
 	public boolean allowedMethod(Method m, Permission p) {
-		for (Permission allowed : permissions.get(m)) {
-			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) {
+		for (Permission allowed : this.permissions.get(m))
+			if (allowed.equals(p) || allowed.equals(Permission.WORLD))
 				return true;
-			}
-		}
 		return false;
 	}
 }

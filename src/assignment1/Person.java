@@ -13,9 +13,9 @@ public abstract class Person implements Authenticatable {
 
 	public Person() {
 		// TODO Auto-generated constructor stub
-		initPermissions();
+		this.initPermissions();
 	}
-	
+
 	/**
 	 * initializes the permissions for each method of the class; this method
 	 * should be called in the constructor
@@ -32,11 +32,10 @@ public abstract class Person implements Authenticatable {
 	 */
 	@Override
 	public Permission getRole(Authenticatable auth) {
-		if (roles.containsKey(auth)) {
-			return roles.get(auth);
-		} else {
+		if (this.roles.containsKey(auth))
+			return this.roles.get(auth);
+		else
 			return Permission.NONE;
-		}
 	}
 
 	/**
@@ -50,11 +49,10 @@ public abstract class Person implements Authenticatable {
 	 */
 	@Override
 	public void setRole(Authenticatable auth, Permission p) {
-		if(roles.containsKey(auth) && auth.equals(this)) {
+		if (this.roles.containsKey(auth) && auth.equals(this)) {
 			// don't overwrite the own OWNER-permission
-		} else {
-			roles.put(auth, p);
-		}
+		} else
+			this.roles.put(auth, p);
 	}
 
 	/**
@@ -66,11 +64,9 @@ public abstract class Person implements Authenticatable {
 	 */
 	@Override
 	public boolean allowedMethod(Method m, Permission p) {
-		for (Permission allowed : permissions.get(m)) {
-			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) {
+		for (Permission allowed : this.permissions.get(m))
+			if (allowed.equals(p) || allowed.equals(Permission.WORLD))
 				return true;
-			}
-		}
 		return false;
 	}
 

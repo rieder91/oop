@@ -15,7 +15,7 @@ import auth.Authenticatable;
  * @author OOP Gruppe 187
  */
 public abstract class Event implements Authenticatable {
-	
+
 	private String name;
 	private String place;
 	private Date time;
@@ -31,8 +31,8 @@ public abstract class Event implements Authenticatable {
 	@Override
 	public String toString() {
 
-		String ret = "Name: " + name + " Place: " + place + " Time: " + time + " Duration: "
-				+ duration;
+		String ret = "Name: " + this.name + " Place: " + this.place + " Time: "
+				+ this.time + " Duration: " + this.duration;
 		return ret;
 	}
 
@@ -50,7 +50,7 @@ public abstract class Event implements Authenticatable {
 	public Event(Date time, String place, Integer duration) {
 		this("", time, place, duration);
 	}
-	
+
 	/**
 	 * three parameter constructor
 	 * 
@@ -66,21 +66,20 @@ public abstract class Event implements Authenticatable {
 		this.place = place;
 		this.time = time;
 		this.duration = duration;
-		
+
 		this.eventHistory = new HashMap<Date, Event>();
 		this.permissions = new HashMap<Method, ArrayList<Permission>>();
 		this.roles = new HashMap<Authenticatable, Permission>();
-		
-		initPermissions();
+
+		this.initPermissions();
 	}
-	
 
 	/**
 	 * @return the place of the event
 	 */
 	public String getPlace() {
 
-		return place;
+		return this.place;
 	}
 
 	/**
@@ -88,7 +87,7 @@ public abstract class Event implements Authenticatable {
 	 */
 	public Date getTime() {
 
-		return time;
+		return this.time;
 	}
 
 	/**
@@ -96,7 +95,7 @@ public abstract class Event implements Authenticatable {
 	 */
 	public Integer getDuration() {
 
-		return duration;
+		return this.duration;
 	}
 
 	/**
@@ -112,29 +111,23 @@ public abstract class Event implements Authenticatable {
 	@Override
 	public boolean equals(Object o) {
 
-		if (this == o) {
+		if (this == o)
 			return true;
-		}
 
-		if (o == null) {
-			return false;
-		}
-
-		if (!this.getClass().equals(o.getClass())) {
+		if (o == null)
 			return false;
 
-		}
+		if (!this.getClass().equals(o.getClass()))
+			return false;
 		if (this.place.equals(((Event) o).place)
 				&& this.time.equals(((Event) o).time)
-				&& this.duration.equals(((Event) o).duration)) {
+				&& this.duration.equals(((Event) o).duration))
 			return true;
-
-		}
 		return false;
 	}
 
 	public void addToHistory(Event e, Date d) {
-		eventHistory.put(d, e);
+		this.eventHistory.put(d, e);
 	}
 
 	public void setPlace(String place) {
@@ -150,7 +143,7 @@ public abstract class Event implements Authenticatable {
 	}
 
 	public HashMap<Date, Event> getEventHistory() {
-		return eventHistory;
+		return this.eventHistory;
 	}
 
 	public abstract void updateEvent(Event e, Date changeDate)

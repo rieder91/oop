@@ -1,9 +1,11 @@
 package auth;
 
 /**
- * This exception is thrown if someone tries to invoke a method with insufficient privileges
+ * This exception is thrown if someone tries to invoke a method with
+ * insufficient privileges
+ * 
  * @author OOP Gruppe 187
- *
+ * 
  */
 public class InsufficientPermissionsException extends Exception {
 

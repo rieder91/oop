@@ -23,7 +23,6 @@ public class Member extends Person {
 	private ArrayList<Track> repertoire;
 	private boolean substituteMember;
 
-	
 	/**
 	 * Constructor which requires four arguments
 	 * 
@@ -39,16 +38,15 @@ public class Member extends Person {
 	public Member(String firstName, String lastName, String instrument,
 			String telephoneNumber, boolean substituteMember) {
 		super();
-		
+
 		this.telephoneNumber = telephoneNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.instrument = instrument;
 		this.substituteMember = substituteMember;
-		
 
 		// set the owner to THIS
-		setRole(this, Permission.OWNER);
+		this.setRole(this, Permission.OWNER);
 	}
 
 	/**
@@ -90,13 +88,14 @@ public class Member extends Person {
 		final int prime = 31;
 		int result = 1;
 		result = (prime * result)
-				+ ((firstName == null) ? 0 : firstName.hashCode());
+				+ ((this.firstName == null) ? 0 : this.firstName.hashCode());
 		result = (prime * result)
-				+ ((instrument == null) ? 0 : instrument.hashCode());
+				+ ((this.instrument == null) ? 0 : this.instrument.hashCode());
 		result = (prime * result)
-				+ ((lastName == null) ? 0 : lastName.hashCode());
+				+ ((this.lastName == null) ? 0 : this.lastName.hashCode());
 		result = (prime * result)
-				+ ((telephoneNumber == null) ? 0 : telephoneNumber.hashCode());
+				+ ((this.telephoneNumber == null) ? 0 : this.telephoneNumber
+						.hashCode());
 		return result;
 	}
 
@@ -108,44 +107,33 @@ public class Member extends Person {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		if (obj == null) {
+		if (obj == null)
 			return false;
-		}
-		if (!(obj instanceof Member)) {
+		if (!(obj instanceof Member))
 			return false;
-		}
 		Member other = (Member) obj;
-		if (firstName == null) {
-			if (other.firstName != null) {
+		if (this.firstName == null) {
+			if (other.firstName != null)
 				return false;
-			}
-		} else if (!firstName.equals(other.firstName)) {
+		} else if (!this.firstName.equals(other.firstName))
 			return false;
-		}
-		if (instrument == null) {
-			if (other.instrument != null) {
+		if (this.instrument == null) {
+			if (other.instrument != null)
 				return false;
-			}
-		} else if (!instrument.equals(other.instrument)) {
+		} else if (!this.instrument.equals(other.instrument))
 			return false;
-		}
-		if (lastName == null) {
-			if (other.lastName != null) {
+		if (this.lastName == null) {
+			if (other.lastName != null)
 				return false;
-			}
-		} else if (!lastName.equals(other.lastName)) {
+		} else if (!this.lastName.equals(other.lastName))
 			return false;
-		}
-		if (telephoneNumber == null) {
-			if (other.telephoneNumber != null) {
+		if (this.telephoneNumber == null) {
+			if (other.telephoneNumber != null)
 				return false;
-			}
-		} else if (!telephoneNumber.equals(other.telephoneNumber)) {
+		} else if (!this.telephoneNumber.equals(other.telephoneNumber))
 			return false;
-		}
 		return true;
 	}
 
@@ -235,8 +223,8 @@ public class Member extends Person {
 	 */
 	@Override
 	public void initPermissions() {
-		permissions = new HashMap<Method, ArrayList<Permission>>();
-		roles = new HashMap<Authenticatable, Permission>();
+		this.permissions = new HashMap<Method, ArrayList<Permission>>();
+		this.roles = new HashMap<Authenticatable, Permission>();
 
 		// get all methods of the class; there is NO difference in the
 		// permissions of methods with the same name but different arguments
@@ -249,20 +237,19 @@ public class Member extends Person {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.GROUP);
 				tPerm.add(Permission.MANAGEMENT);
-			} else if ("agree".equals(m.getName())) {
+			} else if ("agree".equals(m.getName()))
 				tPerm.add(Permission.OWNER);
-			} else if ("addProposedDate".equals(m.getName())) {
+			else if ("addProposedDate".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.GROUP);
 				tPerm.add(Permission.MANAGEMENT);
-			} else if ("addTrack".equals(m.getName())) {
+			} else if ("addTrack".equals(m.getName()))
 				tPerm.add(Permission.OWNER);
-			} else if ("removeTrack".equals(m.getName())) {
+			else if ("removeTrack".equals(m.getName()))
 				tPerm.add(Permission.OWNER);
-			}
 
 			// save the permissions and reset the temporary list
-			permissions.put(m, new ArrayList<Permission>(tPerm));
+			this.permissions.put(m, new ArrayList<Permission>(tPerm));
 			tPerm.clear();
 		}
 	}

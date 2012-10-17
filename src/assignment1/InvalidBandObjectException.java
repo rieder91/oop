@@ -14,11 +14,14 @@ public class InvalidBandObjectException extends Exception {
 	/**
 	 * default constructor
 	 */
-	public InvalidBandObjectException() { }
-	
+	public InvalidBandObjectException() {
+	}
+
 	/**
 	 * default constructor
-	 * @param msg dbg-message
+	 * 
+	 * @param msg
+	 *            dbg-message
 	 */
 	public InvalidBandObjectException(String msg) {
 		super(msg);
