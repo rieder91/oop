@@ -30,6 +30,9 @@ public class Band {
 	private ArrayList<Member> members;
 	private ArrayList<Track> tracks;
 
+	// History of deletedEvents
+	private HashMap<Event,ArrayList<Date>> previousEvents;
+	
 	// contain the "join dates"
 	private HashMap<Member, ArrayList<Date>> memberDates;
 	private HashMap<Track, ArrayList<Date>> trackDates;
@@ -58,6 +61,8 @@ public class Band {
 
 		memberDates = new HashMap<Member, ArrayList<Date>>();
 		trackDates = new HashMap<Track, ArrayList<Date>>();
+
+		previousEvents = new HashMap<Event, ArrayList<Date>>();
 
 		previousMembers = new HashMap<Member, ArrayList<Date>>();
 		previousTracks = new HashMap<Track, ArrayList<Date>>();
@@ -224,6 +229,73 @@ public class Band {
 		} else {
 			events.remove(e);
 		}
+	}
+	
+	/**
+	 * removes an event from the event-log and places it in a history
+	 * 
+	 * @param e
+	 * 				event to be removed
+	 * @param d
+	 * 				date of removal
+	 * @throws InvalidBandObjectException
+	 * 				thrown if the event doesnt exist
+	 */
+	public void removeEvent(Event e , Date d) throws InvalidBandObjectException {
+		if(events.contains(e)) {
+			removeEvent(e);
+			if (previousEvents.containsKey(e)){
+				previousEvents.get(e).add(d);
+			}
+			else{
+				ArrayList<Date> a = new ArrayList<Date>();
+				a.add(d);
+				previousEvents.put(e,a);
+			}
+		} else {
+			throw new InvalidBandObjectException("event doesnt exist");
+		}		
+	}
+	
+	/**
+	 * 
+	 * @param place
+	 * @param duration
+	 * @param time
+	 * @param restoreDate
+	 * @throws InvalidDateException
+	 * @throws InvalidBandObjectException
+	 */
+	public void restoreEvent(String place, Integer duration, Date time, Date restoreDate) throws InvalidDateException, InvalidBandObjectException {
+		ArrayList<Event> e = new ArrayList<Event>();
+		e = searchEvent(place,duration,time);
+		if(e != null) {
+			for(Event rest : e){
+				addEvent(rest);
+				previousEvents.remove(rest);
+			}
+		} else {
+			throw new InvalidDateException("no events found at the specified date");
+		}
+	}
+	
+	/**
+	 * 
+	 * @param place
+	 * @param duration
+	 * @param time
+	 * @return
+	 */
+	private ArrayList<Event> searchEvent(String place, Integer duration, Date time) {
+		ArrayList<Event> ret = new ArrayList<Event>();
+		for ( Event e : previousEvents.keySet()) {
+			if (place.equals(e.getPlace())
+					&& time.equals(e.getTime())
+					&& duration.equals(e.getDuration())) {
+				ret.add(e);
+			}
+		}
+		return ret;
 	}
 	
 
