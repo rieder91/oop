@@ -71,10 +71,10 @@ public class Band implements Authenticatable {
 		this.previousEvents = new HashMap<Event, ArrayList<Date>>();
 		this.previousMembers = new HashMap<Member, ArrayList<Date>>();
 		this.previousTracks = new HashMap<Track, ArrayList<Date>>();
-		
+
 		this.permissions = new HashMap<Method, ArrayList<Permission>>();
 		this.roles = new HashMap<Authenticatable, Permission>();
-		
+
 		initPermissions();
 	}
 
@@ -266,9 +266,9 @@ public class Band implements Authenticatable {
 			if (previousEvents.containsKey(e)) {
 				previousEvents.get(e).add(d);
 			} else {
-				ArrayList<Date> a = new ArrayList<Date>();
-				a.add(d);
-				previousEvents.put(e, a);
+				ArrayList<Date> newHistory = new ArrayList<Date>();
+				newHistory.add(d);
+				previousEvents.put(e, newHistory);
 			}
 		} else {
 			throw new InvalidBandObjectException("event doesnt exist");
