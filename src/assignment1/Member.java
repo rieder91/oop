@@ -1,6 +1,6 @@
-
 package assignment1;
 
+import java.util.Hashtable;
 /**
  * Class that contains all the information belonging to a member.
  * 
@@ -12,6 +12,7 @@ public class Member {
 	private String lastName;
 	private String instrument;
 	private String telephoneNumber;
+	private Hashtable<Event,ProposedDate> events;
 
 	/**
 	 * Constructor which requires four arguments
@@ -73,26 +74,74 @@ public class Member {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (this == obj) { return true; }
-		if (obj == null) { return false; }
-		if (!(obj instanceof Member)) { return false; }
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Member)) {
+			return false;
+		}
 		Member other = (Member) obj;
 		if (firstName == null) {
-			if (other.firstName != null) { return false; }
-		} else
-			if (!firstName.equals(other.firstName)) { return false; }
+			if (other.firstName != null) {
+				return false;
+			}
+		} else if (!firstName.equals(other.firstName)) {
+			return false;
+		}
 		if (instrument == null) {
-			if (other.instrument != null) { return false; }
-		} else
-			if (!instrument.equals(other.instrument)) { return false; }
+			if (other.instrument != null) {
+				return false;
+			}
+		} else if (!instrument.equals(other.instrument)) {
+			return false;
+		}
 		if (lastName == null) {
-			if (other.lastName != null) { return false; }
-		} else
-			if (!lastName.equals(other.lastName)) { return false; }
+			if (other.lastName != null) {
+				return false;
+			}
+		} else if (!lastName.equals(other.lastName)) {
+			return false;
+		}
 		if (telephoneNumber == null) {
-			if (other.telephoneNumber != null) { return false; }
-		} else
-			if (!telephoneNumber.equals(other.telephoneNumber)) { return false; }
+			if (other.telephoneNumber != null) {
+				return false;
+			}
+		} else if (!telephoneNumber.equals(other.telephoneNumber)) {
+			return false;
+		}
 		return true;
+	}
+
+	/**
+	 * This method is used to agree/disagree to a proposed Date.
+	 * 
+	 * @param e
+	 * 			event you want to agree or disagree
+	 * @param agreed
+	 * 			agree or disagree to the proposed date
+	 * 			true - agree
+	 * 			false - disagree
+	 */
+	public void agree(Event e, boolean agreed){
+		this.events.get(e).agree(agreed);
+	}
+
+	/**
+	 * This method is used to agree/disagree to a proposed Date.
+	 * 
+	 * @param e
+	 * 			event you want to agree or disagree
+	 * @param reason
+	 * 			the reason you have agreed or disagreed
+	 * @param agreed
+	 * 			agree or disagree to the proposed date
+	 * 			true - agree
+	 * 			false - disagree
+	 */
+	public void agree(Event e, String reason, boolean agreed) {
+		this.events.get(e).agree(agreed,reason);
 	}
 }
