@@ -55,11 +55,11 @@ public class Test {
 
 		ArrayList<Class<? extends Event>> noTypes = new ArrayList<Class<? extends Event>>();
 
-		Member thomas = new Member("Thomas", "Rieder", "Keyboard", "+436991221");
-		Member markus = new Member("Markus", "Zisser", "Guitar", "01123123123");
-		Member dominic = new Member("Dominic", "Riedl", "Drums", "0699123456");
-		Member jens = new Member("Jens", "Mander", "Violin", "129081091");
-		Member jane = new Member("Jane", "Doe", "Bass", "203957892035");
+		Member thomas = new Member("Thomas", "Rieder", "Keyboard", "+436991221",true);
+		Member markus = new Member("Markus", "Zisser", "Guitar", "01123123123",true);
+		Member dominic = new Member("Dominic", "Riedl", "Drums", "0699123456",true);
+		Member jens = new Member("Jens", "Mander", "Violin", "129081091",false);
+		Member jane = new Member("Jane", "Doe", "Bass", "203957892035",false);
 
 		Track thunderstruck = new Track("Thunderstruck", 321);
 		Track stairway = new Track("Stairway to Heaven", 482);
