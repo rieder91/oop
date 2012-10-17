@@ -10,9 +10,13 @@ _WS2012, Vienna University of Technology_
 ## Done
  - Assignment 1
    - Band Management
+   
+## WIP
+ - Assignment 2
+   - Pimpin' Assignment 1
 
 ## TODO
- - Assignment 2 - 9
+ - Assignment 3 - 9
  
 ## Syllabus
  - Überblick über das objektorientierte Programmierparadigma und entsprechende Programmiersprachen

@@ -223,8 +223,6 @@ public class Test {
 		case36 = new BigDecimal(-1100);
 		case37 = new BigDecimal(0);
 
-		
-
 		try {
 			
 			/*
