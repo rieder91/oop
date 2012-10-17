@@ -16,7 +16,8 @@ public class Member {
 	private String telephoneNumber;
 	private ArrayList<ProposedDate> events;
 	private ArrayList<Track> repertoire;
-	
+	private boolean substituteMember;
+
 	/**
 	 * Constructor which requires four arguments
 	 * 
@@ -30,8 +31,31 @@ public class Member {
 	 *            the telephone number of the member
 	 */
 	public Member(String firstName, String lastName, String instrument,
+			String telephoneNumber, boolean substituteMember) {
+
+		this.telephoneNumber = telephoneNumber;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.instrument = instrument;
+		this.substituteMember = substituteMember;
+	}
+	
+	/**
+	 * Constructor which requires four arguments
+	 * 
+	 * @param firstName
+	 *            the first name of the member
+	 * @param lastName
+	 *            the last name of the member
+	 * @param instrument
+	 *            the instrument of the member
+	 * @param telephoneNumber
+	 *            the telephone number of the member
+	 */
+	@Deprecated
+	public Member(String firstName, String lastName, String instrument,
 			String telephoneNumber) {
-		
+
 		this.telephoneNumber = telephoneNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -152,40 +176,50 @@ public class Member {
 	 * Adds a new proposed date for an event.
 	 * 
 	 * @param pd
-	 * 			a time proposal for an event
-	 * @throws InvalidBandObjectException 
-	 * 			if the date was already proposed to this member
+	 *            a time proposal for an event
+	 * @throws InvalidBandObjectException
+	 *             if the date was already proposed to this member
 	 */
-	public void addProposedDate(ProposedDate pd) throws InvalidBandObjectException {
+	public void addProposedDate(ProposedDate pd)
+			throws InvalidBandObjectException {
 		if (this.events.indexOf(pd) == -1)
 			this.events.add(pd);
 		else
 			throw new InvalidBandObjectException("proposed date aready exists");
 	}
-	
+
 	/**
 	 * adds a new track to the repertoire of the member
 	 * 
 	 * @param tr
-	 * 			track to be added
+	 *            track to be added
 	 */
-	public void addTrack(Track tr){
-		if(this.repertoire.indexOf(tr)==-1)
+	public void addTrack(Track tr) {
+		if (this.repertoire.indexOf(tr) == -1)
 			this.repertoire.add(tr);
 	}
-	
+
 	/**
 	 * removes a new track from the repertoire of the member
 	 * 
 	 * @param tr
-	 * 			track to be removed
+	 *            track to be removed
 	 * @throws InvalidBandObjectException
-	 * 			
+	 * 
 	 */
-	public void removeTrack(Track tr) throws InvalidBandObjectException{
-		if(this.repertoire.indexOf(tr)==-1)
+	public void removeTrack(Track tr) throws InvalidBandObjectException {
+		if (this.repertoire.indexOf(tr) == -1)
 			this.repertoire.add(tr);
 		else
 			throw new InvalidBandObjectException("track already in repatoire");
+	}
+	
+	/**
+	 * @return
+	 * 		true if the member is a substitute member
+	 * 		false if the member isn't a substitute member
+	 */
+	public boolean isSubstituteMember(){
+		return this.substituteMember;
 	}
 }
