@@ -39,6 +39,28 @@ public class Member {
 		this.instrument = instrument;
 		this.substituteMember = substituteMember;
 	}
+	
+	/**
+	 * Constructor which requires four arguments
+	 * 
+	 * @param firstName
+	 *            the first name of the member
+	 * @param lastName
+	 *            the last name of the member
+	 * @param instrument
+	 *            the instrument of the member
+	 * @param telephoneNumber
+	 *            the telephone number of the member
+	 */
+	@Deprecated
+	public Member(String firstName, String lastName, String instrument,
+			String telephoneNumber) {
+
+		this.telephoneNumber = telephoneNumber;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.instrument = instrument;
+	}
 
 	/**
 	 * @return a string representation of an member
