@@ -3,6 +3,7 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import assignment1.Band;
 import assignment1.Event;
@@ -13,6 +14,7 @@ import assignment1.Member;
 import assignment1.Rehearsal;
 import assignment1.Track;
 import assignment1.Validator;
+import auth.Authenticatable.Permission;
 import auth.Authenticator;
 import auth.InsufficientPermissionsException;
 
@@ -31,6 +33,8 @@ public class Test {
 	 * @param args
 	 *            command line arguments
 	 */
+	// the deprecation suppression is only used for our own classes and not for any in the jdk
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		// Stuff needed for date parsing
 		SimpleDateFormat formatTime = new SimpleDateFormat("dd.MM.yyyy HH:mm");
@@ -763,17 +767,24 @@ public class Test {
 			 *  
 			 */
 			
-			Method memberAddTrack;
+			Method memberAddTrack, bandAddMember;
 			try {
 				memberAddTrack = Member.class.getMethod("addTrack", new Class[]{ Track.class });
-				Authenticator.checkPermissions(markus, markus, memberAddTrack);
+				bandAddMember = Band.class.getMethod("addMember", new Class[] {Member.class, Date.class});
+				
+				thomas.setRole(markus, Permission.OWNER);
+				
+				Authenticator.checkPermissions(markus, thomas, memberAddTrack);
+				
+				Authenticator.checkPermissions(markus, ultraCoders, bandAddMember);
+				
+			} catch (InsufficientPermissionsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} catch (SecurityException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InsufficientPermissionsException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

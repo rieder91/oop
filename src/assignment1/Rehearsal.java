@@ -1,8 +1,14 @@
 
 package assignment1;
 
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+
+import auth.Authenticatable;
 
 /**
  * Class that contains the cost of a rehearsal.
@@ -36,6 +42,7 @@ public class Rehearsal extends Event {
 	 * @param cost
 	 *            the costs of the rehearsal
 	 */
+	@Deprecated
 	public Rehearsal(Date time, String place, Integer duration, BigDecimal cost) {
 
 		super(time, place, duration);
@@ -54,10 +61,24 @@ public class Rehearsal extends Event {
 	 * @param cost
 	 *            the costs of the rehearsal
 	 */
+	@Deprecated
 	public Rehearsal(Date time, String place, Integer duration, Double cost) {
 
 		super(time, place, duration);
 		this.cost = new BigDecimal(cost);
+	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @param time
+	 * @param place
+	 * @param duration
+	 * @param cost
+	 */
+	public Rehearsal(String name, Date time, String place, Integer duration, BigDecimal cost) {
+		super(name, time, place, duration);
+		this.cost = cost;
 	}
 
 	/**
@@ -88,7 +109,13 @@ public class Rehearsal extends Event {
 	
 	
 	@Override
-	public void updateEvent(Event e, Date changeDate) {
+	public void updateEvent(Event e, Date changeDate) throws InvalidDateException {
+		for(Date d : getEventHistory().keySet()) {
+			if(d.after(changeDate)) {
+				throw new InvalidDateException("change date is before last edit");
+			}
+		}
+		
 		if(e.getClass() == this.getClass()) {
 			Rehearsal newRehearsal = (Rehearsal) e;
 			Rehearsal history = new Rehearsal(this.getTime(), this.getPlace(), this.getDuration(), this.cost);
@@ -97,18 +124,102 @@ public class Rehearsal extends Event {
 			this.setTime(newRehearsal.getTime());
 			this.setDuration(newRehearsal.getDuration());
 			this.setPlace(newRehearsal.getPlace());
-			this.cost = new BigDecimal(0);
-			this.cost.add(newRehearsal.cost);
-			
+			this.cost = newRehearsal.cost;
 		} else {
 			// type error
 		}
 	}
 
 	@Override
-	public void restoreEvent(Date restoreDate, Date currentDate) {
-		// TODO Auto-generated method stub
-		
+	public void restoreEvent(Date restoreDate, Date currentDate) throws InvalidDateException {
+		Rehearsal oldGig = (Rehearsal) getEventHistory().get(restoreDate);
+		if(oldGig != null) {
+			updateEvent(oldGig, currentDate);
+		} else {
+			throw new InvalidDateException("no event found at the specified date");
+		}
 	}
+
+	/**
+	 * initializes the permissions for each method of the class; this method
+	 * should be called in the constructor
+	 */
+	@Override
+	public void initPermissions() {
+		permissions = new HashMap<Method, ArrayList<Permission>>();
+		roles = new HashMap<Authenticatable, Permission>();
+
+		// get all methods of the class; there is NO difference in the
+		// permissions of methods with the same name but different arguments
+		ArrayList<Method> methods = new ArrayList<Method>();
+		methods.addAll(Arrays.asList(this.getClass().getMethods()));
+
+		ArrayList<Permission> tPerm = new ArrayList<Permission>();
+		for (Method m : methods) {
+			if ("getFinances".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.MANAGEMENT);
+			} else if ("restoreEvent".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+			} else if ("updateEvent".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+			}
+
+			// save the permissions and reset the temporary list
+			permissions.put(m, new ArrayList<Permission>(tPerm));
+			tPerm.clear();
+		}
+
+		// set the owner to THIS
+		setRole(this, Permission.OWNER);
+	}
+
+	/**
+	 * gets the role of @auth in the context if this object
+	 * 
+	 * @param auth
+	 *            auth-object
+	 * @return the permissions of the object
+	 */
+	@Override
+	public Permission getRole(Authenticatable auth) {
+		if (roles.containsKey(auth)) {
+			return roles.get(auth);
+		} else {
+			return Permission.NONE;
+		}
+	}
+
+	/**
+	 * sets the role of @auth to @p for this object
+	 * 
+	 * @param auth
+	 *            auth-object
+	 * @param p
+	 *            target-permission
+	 * 
+	 */
+	@Override
+	public void setRole(Authenticatable auth, Permission p) {
+			roles.put(auth, p);
+	}
+
+	/**
+	 * @param m
+	 *            method that is checked
+	 * @param p
+	 *            permissions that the caller possesses
+	 * @return true if the method m can be invoked with the permissions p
+	 */
+	@Override
+	public boolean allowedMethod(Method m, Permission p) {
+		for (Permission allowed : permissions.get(m)) {
+			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 
 }

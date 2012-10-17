@@ -1,9 +1,14 @@
 package assignment1;
 
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+
+import auth.Authenticatable;
+import auth.Authenticatable.Permission;
 
 /**
  * Class that contains all the information belonging to the band. Members,
@@ -19,7 +24,7 @@ import java.util.HashMap;
  * @author OOP Gruppe 187
  * 
  */
-public class Band {
+public class Band implements Authenticatable {
 
 	// global band information
 	private String name;
@@ -31,8 +36,8 @@ public class Band {
 	private ArrayList<Track> tracks;
 
 	// History of deletedEvents
-	private HashMap<Event,ArrayList<Date>> previousEvents;
-	
+	private HashMap<Event, ArrayList<Date>> previousEvents;
+
 	// contain the "join dates"
 	private HashMap<Member, ArrayList<Date>> memberDates;
 	private HashMap<Track, ArrayList<Date>> trackDates;
@@ -40,7 +45,10 @@ public class Band {
 	// contain the "leave dates"
 	private HashMap<Member, ArrayList<Date>> previousMembers;
 	private HashMap<Track, ArrayList<Date>> previousTracks;
-	
+
+	// authentication stuff
+	HashMap<Method, ArrayList<Permission>> permissions;
+	HashMap<Authenticatable, Permission> roles;
 
 	/**
 	 * Constructor which requires two arguments
@@ -51,22 +59,24 @@ public class Band {
 	 *            the genre of the band
 	 */
 	public Band(String name, String genre) {
-		super();
 		this.name = name;
 		this.genre = genre;
 
-		events = new ArrayList<Event>();
-		members = new ArrayList<Member>();
-		tracks = new ArrayList<Track>();
+		this.events = new ArrayList<Event>();
+		this.members = new ArrayList<Member>();
+		this.tracks = new ArrayList<Track>();
 
-		memberDates = new HashMap<Member, ArrayList<Date>>();
-		trackDates = new HashMap<Track, ArrayList<Date>>();
+		this.memberDates = new HashMap<Member, ArrayList<Date>>();
+		this.trackDates = new HashMap<Track, ArrayList<Date>>();
 
-		previousEvents = new HashMap<Event, ArrayList<Date>>();
-
-		previousMembers = new HashMap<Member, ArrayList<Date>>();
-		previousTracks = new HashMap<Track, ArrayList<Date>>();
+		this.previousEvents = new HashMap<Event, ArrayList<Date>>();
+		this.previousMembers = new HashMap<Member, ArrayList<Date>>();
+		this.previousTracks = new HashMap<Track, ArrayList<Date>>();
 		
+		this.permissions = new HashMap<Method, ArrayList<Permission>>();
+		this.roles = new HashMap<Authenticatable, Permission>();
+		
+		initPermissions();
 	}
 
 	/**
@@ -187,6 +197,7 @@ public class Band {
 			throw new InvalidDateException("new date prior to last add date");
 		} else {
 			tracks.remove(t);
+
 			if (previousTracks.containsKey(t)) {
 				// we need to add a new date to the history
 				previousTracks.get(t).add(d);
@@ -209,6 +220,11 @@ public class Band {
 	public void addEvent(Event e) throws InvalidBandObjectException {
 		if (!events.contains(e)) {
 			events.add(e);
+
+			for (Member mem : members) {
+				mem.setRole(e, Permission.GROUP);
+			}
+
 		} else {
 			throw new InvalidBandObjectException("event already exists");
 		}
@@ -228,35 +244,38 @@ public class Band {
 			throw new InvalidBandObjectException("event doesnt exist");
 		} else {
 			events.remove(e);
+
+			for (Member mem : members) {
+				mem.setRole(e, Permission.NONE);
+			}
 		}
 	}
-	
+
 	/**
 	 * removes an event from the event-log and places it in a history
 	 * 
 	 * @param e
-	 * 				event to be removed
+	 *            event to be removed
 	 * @param d
-	 * 				date of removal
+	 *            date of removal
 	 * @throws InvalidBandObjectException
-	 * 				thrown if the event doesnt exist
+	 *             thrown if the event doesnt exist
 	 */
-	public void removeEvent(Event e , Date d) throws InvalidBandObjectException {
-		if(events.contains(e)) {
+	public void removeEvent(Event e, Date d) throws InvalidBandObjectException {
+		if (events.contains(e)) {
 			removeEvent(e);
-			if (previousEvents.containsKey(e)){
+			if (previousEvents.containsKey(e)) {
 				previousEvents.get(e).add(d);
-			}
-			else{
+			} else {
 				ArrayList<Date> a = new ArrayList<Date>();
 				a.add(d);
-				previousEvents.put(e,a);
+				previousEvents.put(e, a);
 			}
 		} else {
 			throw new InvalidBandObjectException("event doesnt exist");
-		}		
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param place
@@ -266,11 +285,12 @@ public class Band {
 	 * @throws InvalidDateException
 	 * @throws InvalidBandObjectException
 	 */
-	public void restoreEvent(String place, Integer duration, Date time) throws InvalidBandObjectException {
+	public void restoreEvent(String place, Integer duration, Date time)
+			throws InvalidBandObjectException {
 		ArrayList<Event> e;
-		e = searchEvent(place,duration,time);
-		if(!e.isEmpty()) {
-			for(Event rest : e){
+		e = searchEvent(place, duration, time);
+		if (!e.isEmpty()) {
+			for (Event rest : e) {
 				addEvent(rest);
 				previousEvents.remove(rest);
 			}
@@ -278,7 +298,7 @@ public class Band {
 			throw new InvalidBandObjectException("event doesnt exist");
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param place
@@ -286,18 +306,17 @@ public class Band {
 	 * @param time
 	 * @return
 	 */
-	private ArrayList<Event> searchEvent(String place, Integer duration, Date time) {
+	private ArrayList<Event> searchEvent(String place, Integer duration,
+			Date time) {
 		ArrayList<Event> ret = new ArrayList<Event>();
-		for ( Event e : previousEvents.keySet()) {
-			if (place.equals(e.getPlace())
-					&& time.equals(e.getTime())
+		for (Event e : previousEvents.keySet()) {
+			if (place.equals(e.getPlace()) && time.equals(e.getTime())
 					&& duration.equals(e.getDuration())) {
 				ret.add(e);
 			}
 		}
 		return ret;
 	}
-	
 
 	/**
 	 * Adds a member to the bands lineup
@@ -333,6 +352,17 @@ public class Band {
 				memberDates.put(m, newHistory);
 				members.add(m);
 			}
+
+			for (Event e : events) {
+				e.setRole(m, Permission.GROUP);
+			}
+
+			for (Member mem : members) {
+				mem.setRole(m, Permission.GROUP);
+			}
+
+			this.setRole(m, Permission.GROUP);
+
 		} else {
 			throw new InvalidBandObjectException("member already exists");
 		}
@@ -361,6 +391,17 @@ public class Band {
 			throw new InvalidDateException("new date prior to last add date");
 		} else {
 			members.remove(m);
+
+			for (Event e : events) {
+				e.setRole(m, Permission.NONE);
+			}
+
+			for (Member mem : members) {
+				mem.setRole(m, Permission.NONE);
+			}
+
+			this.setRole(m, Permission.NONE);
+
 			if (previousMembers.containsKey(m)) {
 				// the member has leave once before
 				previousMembers.get(m).add(d);
@@ -498,6 +539,127 @@ public class Band {
 		}
 
 		return ret;
+	}
+
+	/**
+	 * 
+	 * @param auth
+	 */
+	public void updateGroupPermissions(Authenticatable auth) {
+		for (Member m : members) {
+			auth.setRole(m, Permission.GROUP);
+		}
+	}
+
+	/**
+	 * initializes the permissions for each method of the class; this method
+	 * should be called in the constructor
+	 */
+	@Override
+	public void initPermissions() {
+		permissions = new HashMap<Method, ArrayList<Permission>>();
+		roles = new HashMap<Authenticatable, Permission>();
+
+		// get all methods of the class; there is NO difference in the
+		// permissions of methods with the same name but different arguments
+		ArrayList<Method> methods = new ArrayList<Method>();
+		methods.addAll(Arrays.asList(this.getClass().getMethods()));
+
+		ArrayList<Permission> tPerm = new ArrayList<Permission>();
+		for (Method m : methods) {
+			if ("addEvent".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.MANAGEMENT);
+				tPerm.add(Permission.GROUP);
+			} else if ("addMember".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.GROUP);
+			} else if ("addTrack".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.GROUP);
+			} else if ("getBilling".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.MANAGEMENT);
+			} else if ("getEvents".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.MANAGEMENT);
+				tPerm.add(Permission.GROUP);
+			} else if ("getMembers".equals(m.getName())) {
+				tPerm.add(Permission.WORLD);
+			} else if ("getTracks".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.MANAGEMENT);
+				tPerm.add(Permission.GROUP);
+			} else if ("removeEvent".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.MANAGEMENT);
+				tPerm.add(Permission.GROUP);
+			} else if ("removeMember".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.GROUP);
+			} else if ("removeTrack".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.GROUP);
+			} else if ("restoreEvent".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.MANAGEMENT);
+				tPerm.add(Permission.GROUP);
+			}
+
+			// save the permissions and reset the temporary list
+			permissions.put(m, new ArrayList<Permission>(tPerm));
+			tPerm.clear();
+		}
+
+		// set the owner to THIS
+		setRole(this, Permission.OWNER);
+	}
+
+	/**
+	 * gets the role of @auth in the context if this object
+	 * 
+	 * @param auth
+	 *            auth-object
+	 * @return the permissions of the object
+	 */
+	@Override
+	public Permission getRole(Authenticatable auth) {
+		if (roles.containsKey(auth)) {
+			return roles.get(auth);
+		} else {
+			return Permission.NONE;
+		}
+	}
+
+	/**
+	 * sets the role of @auth to @p for this object
+	 * 
+	 * @param auth
+	 *            auth-object
+	 * @param p
+	 *            target-permission
+	 * 
+	 */
+	@Override
+	public void setRole(Authenticatable auth, Permission p) {
+		roles.put(auth, p);
+	}
+
+	/**
+	 * @param m
+	 *            method that is checked
+	 * @param p
+	 *            permissions that the caller possesses
+	 * @return true if the method m can be invoked with the permissions p
+	 */
+	@Override
+	public boolean allowedMethod(Method m, Permission p) {
+		for (Permission allowed : permissions.get(m)) {
+			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

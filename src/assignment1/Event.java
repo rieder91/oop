@@ -1,8 +1,12 @@
 package assignment1;
 
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+
+import auth.Authenticatable;
 
 /**
  * used to store information about a event; Event is an abstract class which
@@ -10,12 +14,16 @@ import java.util.HashMap;
  * 
  * @author OOP Gruppe 187
  */
-public abstract class Event {
-
+public abstract class Event implements Authenticatable {
+	
+	private String name;
 	private String place;
 	private Date time;
 	private Integer duration;
 	private HashMap<Date, Event> eventHistory;
+
+	HashMap<Method, ArrayList<Permission>> permissions;
+	HashMap<Authenticatable, Permission> roles;
 
 	/**
 	 * @return a string representation of a Event
@@ -23,7 +31,7 @@ public abstract class Event {
 	@Override
 	public String toString() {
 
-		String ret = "Place: " + place + " Time: " + time + " Duration: "
+		String ret = "Name: " + name + " Place: " + place + " Time: " + time + " Duration: "
 				+ duration;
 		return ret;
 	}
@@ -38,15 +46,42 @@ public abstract class Event {
 	 * @param duration
 	 *            the duration of the event
 	 */
+	@Deprecated
 	public Event(Date time, String place, Integer duration) {
-
-		super();
 		this.place = place;
 		this.time = time;
 		this.duration = duration;
-		this.eventHistory = new HashMap<Date, Event>();
 		
+		this.eventHistory = new HashMap<Date, Event>();
+		this.permissions = new HashMap<Method, ArrayList<Permission>>();
+		this.roles = new HashMap<Authenticatable, Permission>();
+		
+		initPermissions();
 	}
+	
+	/**
+	 * three parameter constructor
+	 * 
+	 * @param time
+	 *            the time of the event
+	 * @param place
+	 *            the place of the event
+	 * @param duration
+	 *            the duration of the event
+	 */
+	public Event(String name, Date time, String place, Integer duration) {
+		this.name = name;
+		this.place = place;
+		this.time = time;
+		this.duration = duration;
+		
+		this.eventHistory = new HashMap<Date, Event>();
+		this.permissions = new HashMap<Method, ArrayList<Permission>>();
+		this.roles = new HashMap<Authenticatable, Permission>();
+		
+		initPermissions();
+	}
+	
 
 	/**
 	 * @return the place of the event
@@ -105,13 +140,10 @@ public abstract class Event {
 		}
 		return false;
 	}
-	
+
 	public void addToHistory(Event e, Date d) {
 		eventHistory.put(d, e);
 	}
-
-	public abstract void updateEvent(Event e, Date changeDate) throws InvalidDateException;
-	public abstract void restoreEvent(Date restoreDate, Date currentDate) throws InvalidDateException;
 
 	public void setPlace(String place) {
 		this.place = place;
@@ -128,4 +160,10 @@ public abstract class Event {
 	public HashMap<Date, Event> getEventHistory() {
 		return eventHistory;
 	}
+
+	public abstract void updateEvent(Event e, Date changeDate)
+			throws InvalidDateException;
+
+	public abstract void restoreEvent(Date restoreDate, Date currentDate)
+			throws InvalidDateException;
 }

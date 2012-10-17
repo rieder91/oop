@@ -302,13 +302,8 @@ public class Member implements Authenticatable {
 	 * 
 	 */
 	@Override
-	public void setRole(Authenticatable auth, Permission p)
-			throws RuntimeException {
-		if (!roles.containsKey(auth)) {
+	public void setRole(Authenticatable auth, Permission p) {
 			roles.put(auth, p);
-		} else {
-			throw new RuntimeException("duplictate permission role");
-		}
 	}
 
 	/**
@@ -321,7 +316,7 @@ public class Member implements Authenticatable {
 	@Override
 	public boolean allowedMethod(Method m, Permission p) {
 		for (Permission allowed : permissions.get(m)) {
-			if (allowed.equals(p)) {
+			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) {
 				return true;
 			}
 		}
