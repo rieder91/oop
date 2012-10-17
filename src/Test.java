@@ -14,7 +14,6 @@ import assignment1.Member;
 import assignment1.Rehearsal;
 import assignment1.Track;
 import assignment1.Validator;
-import auth.Authenticatable.Permission;
 import auth.Authenticator;
 import auth.InsufficientPermissionsException;
 
@@ -774,7 +773,7 @@ public class Test {
 				
 //				markus.setRole(markus, Permission.OWNER);
 				
-				Authenticator.checkPermissions(thomas, markus, memberAddTrack);
+				Authenticator.checkPermissions(markus, markus, memberAddTrack);
 				
 				Authenticator.checkPermissions(markus, ultraCoders, bandAddMember);
 				

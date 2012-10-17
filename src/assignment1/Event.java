@@ -48,15 +48,7 @@ public abstract class Event implements Authenticatable {
 	 */
 	@Deprecated
 	public Event(Date time, String place, Integer duration) {
-		this.place = place;
-		this.time = time;
-		this.duration = duration;
-		
-		this.eventHistory = new HashMap<Date, Event>();
-		this.permissions = new HashMap<Method, ArrayList<Permission>>();
-		this.roles = new HashMap<Authenticatable, Permission>();
-		
-		initPermissions();
+		this("", time, place, duration);
 	}
 	
 	/**
