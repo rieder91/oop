@@ -2,11 +2,11 @@ package assignment1;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 
 import auth.Authenticatable;
-import auth.Authenticatable.Permissions;
 
 /**
  * Class that contains all the information belonging to a member.
@@ -22,9 +22,10 @@ public class Member implements Authenticatable {
 	private ArrayList<ProposedDate> events;
 	private ArrayList<Track> repertoire;
 	private boolean substituteMember;
-	
-	HashMap<Object, Permissions> objectPermissions;
-	HashMap<Method, Permissions> methodPermissions;
+
+	// stuff needed for authentication
+	HashMap<Method, ArrayList<Permission>> permissions;
+	HashMap<Authenticatable, Permission> roles;
 
 	/**
 	 * Constructor which requires four arguments
@@ -46,8 +47,10 @@ public class Member implements Authenticatable {
 		this.lastName = lastName;
 		this.instrument = instrument;
 		this.substituteMember = substituteMember;
+
+		initPermissions();
 	}
-	
+
 	/**
 	 * Constructor which requires four arguments
 	 * 
@@ -68,6 +71,8 @@ public class Member implements Authenticatable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.instrument = instrument;
+
+		initPermissions();
 	}
 
 	/**
@@ -221,59 +226,106 @@ public class Member implements Authenticatable {
 		else
 			throw new InvalidBandObjectException("track already in repatoire");
 	}
-	
+
 	/**
-	 * @return
-	 * 		true if the member is a substitute member
-	 * 		false if the member isn't a substitute member
+	 * @return true if the member is a substitute member false if the member
+	 *         isn't a substitute member
 	 */
-	public boolean isSubstituteMember(){
+	public boolean isSubstituteMember() {
 		return this.substituteMember;
 	}
 
+	/**
+	 * initializes the permissions for each method of the class; this method
+	 * should be called in the constructor
+	 */
 	@Override
-	public boolean isAllowed(Authenticatable auth, Method m) {
-		// TODO Auto-generated method stub
+	public void initPermissions() {
+		permissions = new HashMap<Method, ArrayList<Permission>>();
+		roles = new HashMap<Authenticatable, Permission>();
+
+		// get all methods of the class; there is NO difference in the
+		// permissions of methods with the same name but different arguments
+		ArrayList<Method> methods = new ArrayList<Method>();
+		methods.addAll(Arrays.asList(this.getClass().getMethods()));
+
+		ArrayList<Permission> tPerm = new ArrayList<Permission>();
+		for (Method m : methods) {
+			if ("isSubstituteMember".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.GROUP);
+				tPerm.add(Permission.MANAGEMENT);
+			} else if ("agree".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+			} else if ("addProposedDate".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.GROUP);
+				tPerm.add(Permission.MANAGEMENT);
+			} else if ("addTrack".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+			} else if ("removeTrack".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+			}
+
+			// save the permissions and reset the temporary list
+			permissions.put(m, new ArrayList<Permission>(tPerm));
+			tPerm.clear();
+		}
+
+		// set the owner to THIS
+		setRole(this, Permission.OWNER);
+	}
+
+	/**
+	 * gets the role of @auth in the context if this object
+	 * 
+	 * @param auth
+	 *            auth-object
+	 * @return the permissions of the object
+	 */
+	@Override
+	public Permission getRole(Authenticatable auth) {
+		if (roles.containsKey(auth)) {
+			return roles.get(auth);
+		} else {
+			return Permission.NONE;
+		}
+	}
+
+	/**
+	 * sets the role of @auth to @p for this object
+	 * 
+	 * @param auth
+	 *            auth-object
+	 * @param p
+	 *            target-permission
+	 * 
+	 */
+	@Override
+	public void setRole(Authenticatable auth, Permission p)
+			throws RuntimeException {
+		if (!roles.containsKey(auth)) {
+			roles.put(auth, p);
+		} else {
+			throw new RuntimeException("duplictate permission role");
+		}
+	}
+
+	/**
+	 * @param m
+	 *            method that is checked
+	 * @param p
+	 *            permissions that the caller possesses
+	 * @return true if the method m can be invoked with the permissions p
+	 */
+	@Override
+	public boolean allowedMethod(Method m, Permission p) {
+		for (Permission allowed : permissions.get(m)) {
+			if (allowed.equals(p)) {
+				return true;
+			}
+		}
 		return false;
 	}
 
-	@Override
-	public ArrayList<Authenticatable> getAllowed(Object obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Authenticatable> getAllowed(Method obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Permissions getPermissions(Object obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Permissions getPermissions(Method m) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void initPermissions() {
-		try {
-//			methodPermissions.put( Permissions.OWNER);
-			Method[] m = this.getClass().getMethods();
-			Method m = this.getClass().getMethod("isSubstituteMember", null);
-			System.out.println(m);
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}
 }

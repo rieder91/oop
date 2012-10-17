@@ -1,3 +1,4 @@
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,6 +13,8 @@ import assignment1.Member;
 import assignment1.Rehearsal;
 import assignment1.Track;
 import assignment1.Validator;
+import auth.Authenticator;
+import auth.InsufficientPermissionsException;
 
 /**
  * Class which runs several test cases for the program's core and validates the
@@ -760,9 +763,22 @@ public class Test {
 			 *  
 			 */
 			
+			Method memberAddTrack;
+			try {
+				memberAddTrack = Member.class.getMethod("addTrack", new Class[]{ Track.class });
+				Authenticator.checkPermissions(markus, markus, memberAddTrack);
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InsufficientPermissionsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			
-			thomas.initPermissions();
 			
 			
 			
