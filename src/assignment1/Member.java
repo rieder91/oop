@@ -2,8 +2,6 @@ package assignment1;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Hashtable;
-import java.util.LinkedList;
 
 /**
  * Class that contains all the information belonging to a member.
@@ -16,8 +14,9 @@ public class Member {
 	private String lastName;
 	private String instrument;
 	private String telephoneNumber;
-	private LinkedList<ProposedDate> events;
-
+	private ArrayList<ProposedDate> events;
+	private ArrayList<Track> repertoire;
+	
 	/**
 	 * Constructor which requires four arguments
 	 * 
@@ -32,7 +31,7 @@ public class Member {
 	 */
 	public Member(String firstName, String lastName, String instrument,
 			String telephoneNumber) {
-
+		
 		this.telephoneNumber = telephoneNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -154,9 +153,39 @@ public class Member {
 	 * 
 	 * @param pd
 	 * 			a time proposal for an event
+	 * @throws InvalidBandObjectException 
+	 * 			if the date was already proposed to this member
 	 */
-	public void addProposedDate(ProposedDate pd) {
+	public void addProposedDate(ProposedDate pd) throws InvalidBandObjectException {
 		if (this.events.indexOf(pd) == -1)
 			this.events.add(pd);
+		else
+			throw new InvalidBandObjectException("proposed date aready exists");
+	}
+	
+	/**
+	 * adds a new track to the repertoire of the member
+	 * 
+	 * @param tr
+	 * 			track to be added
+	 */
+	public void addTrack(Track tr){
+		if(this.repertoire.indexOf(tr)==-1)
+			this.repertoire.add(tr);
+	}
+	
+	/**
+	 * removes a new track from the repertoire of the member
+	 * 
+	 * @param tr
+	 * 			track to be removed
+	 * @throws InvalidBandObjectException
+	 * 			
+	 */
+	public void removeTrack(Track tr) throws InvalidBandObjectException{
+		if(this.repertoire.indexOf(tr)==-1)
+			this.repertoire.add(tr);
+		else
+			throw new InvalidBandObjectException("track already in repatoire");
 	}
 }
