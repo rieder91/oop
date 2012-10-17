@@ -13,7 +13,7 @@ import auth.Authenticatable;
  * 
  * @author OOP Gruppe 187
  */
-public class Member implements Authenticatable {
+public class Member extends Person implements Authenticatable {
 
 	private String firstName;
 	private String lastName;
