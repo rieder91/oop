@@ -264,14 +264,16 @@ public class Member implements Authenticatable {
 	@Override
 	public void initPermissions() {
 		try {
-			methodPermissions.put(this.getClass().getMethod("isSubstistuteMember"), Permissions.OWNER);
+//			methodPermissions.put( Permissions.OWNER);
+			Method[] m = this.getClass().getMethods();
+			Method m = this.getClass().getMethod("isSubstituteMember", null);
+			System.out.println(m);
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		} 
 	}
 }

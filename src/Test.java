@@ -762,7 +762,7 @@ public class Test {
 			
 			
 			
-			
+			thomas.initPermissions();
 			
 			
 			
