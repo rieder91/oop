@@ -16,7 +16,7 @@ public class ProposedDate {
 	 */
 	public ProposedDate(Event e, Date date) {
 		this.e = e;
-		this.date=date;
+		this.date = date;
 	}
 
 	/**
@@ -58,22 +58,9 @@ public class ProposedDate {
 	}
 
 	/**
+	 * compares two proposed dates
 	 * 
-	 * 
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (agreed ? 1231 : 1237);
-		result = prime * result + ((e == null) ? 0 : e.hashCode());
-		result = prime * result + ((reason == null) ? 0 : reason.hashCode());
-		return result;
-	}
-
-	/** 
-	 * 
-	 * 
+	 * @return true if the proposed dates are equal false otherwise
 	 */
 	@Override
 	public boolean equals(Object obj) {
