@@ -66,6 +66,28 @@ public class Validator {
 		successfulCount++;
 		return true;
 	}
+	
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 * @param caseNum
+	 * @return
+	 */
+	public static <T> boolean check(T a, T b, Integer caseNum) {
+		boolean ret = a.equals(b);
+		if(ret) {
+			System.out.println("Test case #"
+					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " successful");
+			successfulCount++;
+		} else {
+			System.out.println("Test case #"
+					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
+					+ " failed");
+			failedCount++;
+		}
+		return ret;
+	}
 
 	/**
 	 * 

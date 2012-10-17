@@ -85,5 +85,30 @@ public class Rehearsal extends Event {
 			return false;
 		}
 	}
+	
+	
+	@Override
+	public void updateEvent(Event e, Date changeDate) {
+		if(e.getClass() == this.getClass()) {
+			Rehearsal newRehearsal = (Rehearsal) e;
+			Rehearsal history = new Rehearsal(this.getTime(), this.getPlace(), this.getDuration(), this.cost);
+			addToHistory(history, changeDate);
+			
+			this.setTime(newRehearsal.getTime());
+			this.setDuration(newRehearsal.getDuration());
+			this.setPlace(newRehearsal.getPlace());
+			this.cost = new BigDecimal(0);
+			this.cost.add(newRehearsal.cost);
+			
+		} else {
+			// type error
+		}
+	}
+
+	@Override
+	public void restoreEvent(Date restoreDate, Date currentDate) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
