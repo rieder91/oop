@@ -1,14 +1,19 @@
 package assignment1;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+
+import auth.Authenticatable;
+import auth.Authenticatable.Permissions;
 
 /**
  * Class that contains all the information belonging to a member.
  * 
  * @author OOP Gruppe 187
  */
-public class Member {
+public class Member implements Authenticatable {
 
 	private String firstName;
 	private String lastName;
@@ -17,6 +22,9 @@ public class Member {
 	private ArrayList<ProposedDate> events;
 	private ArrayList<Track> repertoire;
 	private boolean substituteMember;
+	
+	HashMap<Object, Permissions> objectPermissions;
+	HashMap<Method, Permissions> methodPermissions;
 
 	/**
 	 * Constructor which requires four arguments
@@ -221,5 +229,49 @@ public class Member {
 	 */
 	public boolean isSubstituteMember(){
 		return this.substituteMember;
+	}
+
+	@Override
+	public boolean isAllowed(Authenticatable auth, Method m) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ArrayList<Authenticatable> getAllowed(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Authenticatable> getAllowed(Method obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Permissions getPermissions(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Permissions getPermissions(Method m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void initPermissions() {
+		try {
+			methodPermissions.put(this.getClass().getMethod("isSubstistuteMember"), Permissions.OWNER);
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
