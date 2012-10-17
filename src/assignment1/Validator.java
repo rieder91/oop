@@ -1,6 +1,5 @@
 package assignment1;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
@@ -14,31 +13,6 @@ import java.util.ArrayList;
 public class Validator {
 	static Integer successfulCount = 0;
 	static Integer failedCount = 0;
-
-	/**
-	 * 
-	 * @param a
-	 *            first param to be compared
-	 * @param b
-	 *            second param to be compared
-	 * @param caseNum
-	 *            number of the test case
-	 * @return true of the params are equal
-	 */
-	public static boolean check(BigDecimal a, BigDecimal b, Integer caseNum) {
-		if (a.equals(b)) {
-			System.out.println("Test case #"
-					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
-					+ " successful");
-			successfulCount++;
-			return true;
-		} else {
-			System.out.println("Test case #"
-					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " failed");
-			failedCount++;
-			return false;
-		}
-	}
 
 	/**
 	 * 
@@ -70,23 +44,26 @@ public class Validator {
 	/**
 	 * 
 	 * @param a
+	 *            first param to be compared
 	 * @param b
+	 *            second param to be compared
 	 * @param caseNum
-	 * @return
+	 *            number of the test case
+	 * @return true of the params are equal
 	 */
 	public static <T> boolean check(T a, T b, Integer caseNum) {
-		boolean ret = a.equals(b);
-		if(ret) {
-			System.out.println("Test case #"
-					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " successful");
-			successfulCount++;
-		} else {
+		if (a.equals(b)) {
 			System.out.println("Test case #"
 					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
-					+ " failed");
+					+ " successful");
+			successfulCount++;
+			return true;
+		} else {
+			System.out.println("Test case #"
+					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " failed");
 			failedCount++;
+			return false;
 		}
-		return ret;
 	}
 
 	/**
