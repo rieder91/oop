@@ -266,16 +266,16 @@ public class Band {
 	 * @throws InvalidDateException
 	 * @throws InvalidBandObjectException
 	 */
-	public void restoreEvent(String place, Integer duration, Date time, Date restoreDate) throws InvalidDateException, InvalidBandObjectException {
-		ArrayList<Event> e = new ArrayList<Event>();
+	public void restoreEvent(String place, Integer duration, Date time) throws InvalidBandObjectException {
+		ArrayList<Event> e;
 		e = searchEvent(place,duration,time);
-		if(e != null) {
+		if(!e.isEmpty()) {
 			for(Event rest : e){
 				addEvent(rest);
 				previousEvents.remove(rest);
 			}
 		} else {
-			throw new InvalidDateException("no events found at the specified date");
+			throw new InvalidBandObjectException("event doesnt exist");
 		}
 	}
 	

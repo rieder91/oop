@@ -725,6 +725,26 @@ public class Test {
 			}
 			
 			
+			/*
+			 * Test case #41 remove Event and restore it
+			 */
+			
+			ultraCoders.removeEvent(novarock2010,formatDate.parse("17.10.2012"));
+			ultraCoders.restoreEvent("Pannonia Fields II",72,formatTime.parse("11.07.2010 12:00"));
+			Validator.check(ultraCoders.getEvents(), allEvents, 41);
+			
+			
+			/*
+			 * Test case #42 restore not existing Event
+			 */
+			
+			try{
+				ultraCoders.restoreEvent("Pannonia Fields II",72,formatTime.parse("11.07.2010 12:00"));
+				Validator.report(false, 42);
+			} catch (InvalidBandObjectException e) {
+				Validator.report(true, 42);
+			}
+			
 
 			Validator.report();
 		} catch (InvalidDateException e) {
