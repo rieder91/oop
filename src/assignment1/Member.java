@@ -1,6 +1,10 @@
 package assignment1;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
+import java.util.LinkedList;
+
 /**
  * Class that contains all the information belonging to a member.
  * 
@@ -12,7 +16,7 @@ public class Member {
 	private String lastName;
 	private String instrument;
 	private String telephoneNumber;
-	private Hashtable<Event,ProposedDate> events;
+	private LinkedList<ProposedDate> events;
 
 	/**
 	 * Constructor which requires four arguments
@@ -119,29 +123,29 @@ public class Member {
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
 	 * @param e
-	 * 			event you want to agree or disagree
+	 *            event you want to agree or disagree
 	 * @param agreed
-	 * 			agree or disagree to the proposed date
-	 * 			true - agree
-	 * 			false - disagree
+	 *            agree or disagree to the proposed date true - agree false -
+	 *            disagree
 	 */
-	public void agree(Event e, boolean agreed){
-		this.events.get(e).agree(agreed);
+	public void agree(Event e, Date date, boolean agreed) {
+		int idx=this.events.indexOf(new ProposedDate(e,date));
+		this.events.get(idx).agree(agreed);
 	}
 
 	/**
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
 	 * @param e
-	 * 			event you want to agree or disagree
+	 *            event you want to agree or disagree
 	 * @param reason
-	 * 			the reason you have agreed or disagreed
+	 *            the reason you have agreed or disagreed
 	 * @param agreed
-	 * 			agree or disagree to the proposed date
-	 * 			true - agree
-	 * 			false - disagree
+	 *            agree or disagree to the proposed date true - agree false -
+	 *            disagree
 	 */
-	public void agree(Event e, String reason, boolean agreed) {
-		this.events.get(e).agree(agreed,reason);
+	public void agree(Event e, Date date, String reason, boolean agreed) {
+		int idx=this.events.indexOf(new ProposedDate(e,date));
+		this.events.get(idx).agree(agreed,reason);
 	}
 }
