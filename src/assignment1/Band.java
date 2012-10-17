@@ -512,14 +512,6 @@ public class Band implements Authenticatable {
 		return ret;
 	}
 
-	/**
-	 * 
-	 * @param auth
-	 */
-	public void updateGroupPermissions(Authenticatable auth) {
-		for (Member m : this.members)
-			auth.setRole(m, Permission.GROUP);
-	}
 
 	/**
 	 * initializes the permissions for each method of the class; this method
