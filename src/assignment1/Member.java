@@ -13,7 +13,7 @@ import auth.Authenticatable;
  * 
  * @author OOP Gruppe 187
  */
-public class Member extends Person implements Authenticatable {
+public class Member extends Person {
 
 	private String firstName;
 	private String lastName;
@@ -23,10 +23,7 @@ public class Member extends Person implements Authenticatable {
 	private ArrayList<Track> repertoire;
 	private boolean substituteMember;
 
-	// stuff needed for authentication
-	HashMap<Method, ArrayList<Permission>> permissions;
-	HashMap<Authenticatable, Permission> roles;
-
+	
 	/**
 	 * Constructor which requires four arguments
 	 * 
@@ -41,14 +38,17 @@ public class Member extends Person implements Authenticatable {
 	 */
 	public Member(String firstName, String lastName, String instrument,
 			String telephoneNumber, boolean substituteMember) {
-
+		super();
+		
 		this.telephoneNumber = telephoneNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.instrument = instrument;
 		this.substituteMember = substituteMember;
+		
 
-		initPermissions();
+		// set the owner to THIS
+		setRole(this, Permission.OWNER);
 	}
 
 	/**
@@ -66,13 +66,7 @@ public class Member extends Person implements Authenticatable {
 	@Deprecated
 	public Member(String firstName, String lastName, String instrument,
 			String telephoneNumber) {
-
-		this.telephoneNumber = telephoneNumber;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.instrument = instrument;
-
-		initPermissions();
+		this(firstName, lastName, instrument, telephoneNumber, false);
 	}
 
 	/**
@@ -271,56 +265,5 @@ public class Member extends Person implements Authenticatable {
 			permissions.put(m, new ArrayList<Permission>(tPerm));
 			tPerm.clear();
 		}
-
-		// set the owner to THIS
-		setRole(this, Permission.OWNER);
 	}
-
-	/**
-	 * gets the role of @auth in the context if this object
-	 * 
-	 * @param auth
-	 *            auth-object
-	 * @return the permissions of the object
-	 */
-	@Override
-	public Permission getRole(Authenticatable auth) {
-		if (roles.containsKey(auth)) {
-			return roles.get(auth);
-		} else {
-			return Permission.NONE;
-		}
-	}
-
-	/**
-	 * sets the role of @auth to @p for this object
-	 * 
-	 * @param auth
-	 *            auth-object
-	 * @param p
-	 *            target-permission
-	 * 
-	 */
-	@Override
-	public void setRole(Authenticatable auth, Permission p) {
-			roles.put(auth, p);
-	}
-
-	/**
-	 * @param m
-	 *            method that is checked
-	 * @param p
-	 *            permissions that the caller possesses
-	 * @return true if the method m can be invoked with the permissions p
-	 */
-	@Override
-	public boolean allowedMethod(Method m, Permission p) {
-		for (Permission allowed : permissions.get(m)) {
-			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 }

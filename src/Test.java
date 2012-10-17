@@ -772,9 +772,9 @@ public class Test {
 				memberAddTrack = Member.class.getMethod("addTrack", new Class[]{ Track.class });
 				bandAddMember = Band.class.getMethod("addMember", new Class[] {Member.class, Date.class});
 				
-				thomas.setRole(markus, Permission.OWNER);
+//				markus.setRole(markus, Permission.OWNER);
 				
-				Authenticator.checkPermissions(markus, thomas, memberAddTrack);
+				Authenticator.checkPermissions(thomas, markus, memberAddTrack);
 				
 				Authenticator.checkPermissions(markus, ultraCoders, bandAddMember);
 				

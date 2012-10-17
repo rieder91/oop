@@ -221,7 +221,7 @@ public class Band implements Authenticatable {
 			events.add(e);
 
 			for (Member mem : members) {
-				mem.setRole(e, Permission.GROUP);
+				e.setRole(mem, Permission.GROUP);
 			}
 
 		} else {
@@ -245,7 +245,7 @@ public class Band implements Authenticatable {
 			events.remove(e);
 
 			for (Member mem : members) {
-				mem.setRole(e, Permission.NONE);
+				e.setRole(mem, Permission.NONE);
 			}
 		}
 	}
@@ -358,6 +358,7 @@ public class Band implements Authenticatable {
 
 			for (Member mem : members) {
 				mem.setRole(m, Permission.GROUP);
+				m.setRole(mem, Permission.GROUP);
 			}
 
 			this.setRole(m, Permission.GROUP);
@@ -397,6 +398,7 @@ public class Band implements Authenticatable {
 
 			for (Member mem : members) {
 				mem.setRole(m, Permission.NONE);
+				m.setRole(mem, Permission.NONE);
 			}
 
 			this.setRole(m, Permission.NONE);
