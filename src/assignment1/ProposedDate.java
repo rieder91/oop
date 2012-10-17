@@ -2,6 +2,12 @@ package assignment1;
 
 import java.util.Date;
 
+/**
+ * This class is used to save information about a proposed date.
+ * 
+ * @author OOP Gruppe 187
+ *
+ */
 public class ProposedDate {
 	private Event e;
 	private boolean agreed;
