@@ -220,4 +220,14 @@ public class Gig extends Event {
 				return true;
 		return false;
 	}
+	
+	@Override
+	public HashMap<Method, ArrayList<Permission>> getPermissions() {
+		return permissions;
+	}
+
+	@Override
+	public HashMap<Authenticatable, Permission> getRoles() {
+		return roles;
+	}
 }

@@ -628,5 +628,15 @@ public class Band implements Authenticatable {
 				return true;
 		return false;
 	}
+	
+	@Override
+	public HashMap<Method, ArrayList<Permission>> getPermissions() {
+		return permissions;
+	}
+
+	@Override
+	public HashMap<Authenticatable, Permission> getRoles() {
+		return roles;
+	}
 
 }

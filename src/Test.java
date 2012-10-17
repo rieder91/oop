@@ -775,6 +775,8 @@ public class Test {
 						Member.class, Date.class });
 
 				// markus.setRole(markus, Permission.OWNER);
+				
+				Authenticator.printPermissions(thomas);
 
 				Authenticator.checkPermissions(markus, markus, memberAddTrack);
 

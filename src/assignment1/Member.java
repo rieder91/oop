@@ -253,4 +253,14 @@ public class Member extends Person {
 			tPerm.clear();
 		}
 	}
+	
+	@Override
+	public HashMap<Method, ArrayList<Permission>> getPermissions() {
+		return permissions;
+	}
+
+	@Override
+	public HashMap<Authenticatable, Permission> getRoles() {
+		return roles;
+	}
 }
