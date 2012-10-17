@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 
 import auth.Authenticatable;
-import auth.Authenticatable.Permission;
 
 /**
  * Class that contains all the information belonging to the band. Members,
