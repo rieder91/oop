@@ -12,8 +12,11 @@ import assignment1.Member;
 import assignment1.Rehearsal;
 import assignment1.Track;
 import assignment1.Validator;
+
 /**
- * Class which runs several test cases for the program's core and validates the results
+ * Class which runs several test cases for the program's core and validates the
+ * results
+ * 
  * @author OOP Gruppe 187
  */
 
@@ -29,7 +32,7 @@ public class Test {
 		// Stuff needed for date parsing
 		SimpleDateFormat formatTime = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		SimpleDateFormat formatDate = new SimpleDateFormat("dd.MM.yyyy");
-		
+
 		// Create all the necessary members, tracks, events, ...
 		Band ultraCoders = new Band("Ultra Coders", "Rock");
 
@@ -680,8 +683,50 @@ public class Test {
 					formatDate.parse("01.01.2010"),
 					formatDate.parse("01.01.2013"), noTypes), case37, 37);
 
-			Validator.report();
+			/*
+			 * Test Case #38 Change the details of an event
+			 * 
+			 * should be:
+			 */
+			
+			// used in: 38
+			Gig case38 = new Gig(formatDate.parse("01.01.2013"), "Wien", 10,
+					new BigDecimal(10000));
 
+			novarock2010.updateEvent(new Gig(formatDate.parse("01.01.2013"),
+					"Wien", 10, new BigDecimal(10000)), formatDate
+					.parse("05.10.2012"));
+
+			Validator.check(novarock2010, case38, 38);
+
+			/*
+			 * Test case #39 Revert the changes made to an event
+			 */
+
+			novarock2010.restoreEvent(formatDate.parse("05.10.2012"),
+					formatDate.parse("06.10.2012"));
+			
+			// used in: 39, 40
+			Gig case39 = new Gig(formatTime.parse("11.07.2010 12:00"),
+					"Pannonia Fields II", 72, 2500.0);
+			
+			Validator.check(novarock2010, case39, 39);
+
+			
+			/*
+			 * Test case #40 Try to edit an event with a invalid changeDate
+			 */
+			
+			try {
+				novarock2010.updateEvent(case39, formatDate.parse("01.01.1990"));
+				Validator.report(false, 40);
+			} catch (InvalidDateException e) {
+				Validator.report(true, 40);
+			}
+			
+			
+
+			Validator.report();
 		} catch (InvalidDateException e) {
 			System.out.println(e.getMessage());
 		} catch (ParseException e) {
