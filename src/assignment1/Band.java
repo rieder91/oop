@@ -37,6 +37,7 @@ public class Band {
 	// contain the "leave dates"
 	private HashMap<Member, ArrayList<Date>> previousMembers;
 	private HashMap<Track, ArrayList<Date>> previousTracks;
+	
 
 	/**
 	 * Constructor which requires two arguments
@@ -60,6 +61,7 @@ public class Band {
 
 		previousMembers = new HashMap<Member, ArrayList<Date>>();
 		previousTracks = new HashMap<Track, ArrayList<Date>>();
+		
 	}
 
 	/**
@@ -223,6 +225,7 @@ public class Band {
 			events.remove(e);
 		}
 	}
+	
 
 	/**
 	 * Adds a member to the bands lineup
