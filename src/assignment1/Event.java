@@ -2,6 +2,7 @@ package assignment1;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * used to store information about a event; Event is an abstract class which
@@ -14,6 +15,7 @@ public abstract class Event {
 	private String place;
 	private Date time;
 	private Integer duration;
+	private HashMap<Date, Event> eventHistory;
 
 	/**
 	 * @return a string representation of a Event
@@ -42,6 +44,8 @@ public abstract class Event {
 		this.place = place;
 		this.time = time;
 		this.duration = duration;
+		this.eventHistory = new HashMap<Date, Event>();
+		
 	}
 
 	/**
@@ -100,5 +104,28 @@ public abstract class Event {
 
 		}
 		return false;
+	}
+	
+	public void addToHistory(Event e, Date d) {
+		eventHistory.put(d, e);
+	}
+
+	public abstract void updateEvent(Event e, Date changeDate) throws InvalidDateException;
+	public abstract void restoreEvent(Date restoreDate, Date currentDate) throws InvalidDateException;
+
+	public void setPlace(String place) {
+		this.place = place;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	public void setDuration(Integer duration) {
+		this.duration = duration;
+	}
+
+	public HashMap<Date, Event> getEventHistory() {
+		return eventHistory;
 	}
 }
