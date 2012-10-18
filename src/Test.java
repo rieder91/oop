@@ -27,16 +27,6 @@ public class Test {
 	 *            command line arguments
 	 */
 	public static void main(String[] args) {
-
-			/**
-			 * 
-			 * 
-			 * Testing Part
-			 * 
-			 * 
-			 * 
-			 */
-			
 			boolean verbose = false;
 			
 			ArrayList<Tester> testedModules= new ArrayList<Tester>();
