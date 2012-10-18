@@ -1,5 +1,7 @@
 package band;
 
+import finances.FinanceFilter;
+import finances.Finances;
 import helper.InvalidBandObjectException;
 import helper.InvalidDateException;
 
@@ -51,6 +53,9 @@ public class Band implements Authenticatable {
 	// authentication stuff
 	HashMap<Method, ArrayList<Permission>> permissions;
 	HashMap<Authenticatable, Permission> roles;
+	
+	// finance handling
+	private Finances finances;
 
 	/**
 	 * Constructor which requires two arguments
@@ -77,6 +82,8 @@ public class Band implements Authenticatable {
 
 		this.permissions = new HashMap<Method, ArrayList<Permission>>();
 		this.roles = new HashMap<Authenticatable, Permission>();
+		
+		finances = new Finances();
 
 		this.initPermissions();
 	}
@@ -632,6 +639,189 @@ public class Band implements Authenticatable {
 	@Override
 	public HashMap<Authenticatable, Permission> getRoles() {
 		return roles;
+	}
+	
+	
+	/**
+	 * the method adds positive @money to income and negative to expense.
+	 * if @money is zero, nothing will be done.
+	 * 
+	 * @param currentDate
+	 * 				date of entry
+	 * @param reason
+	 * 				short info why money was get or spent (i.e. "Merchandise" or "Advertisment")
+	 * @param money
+	 * 				income if positive, expense if negative
+	 */
+	public void addFinance(Date currentDate, String reason, BigDecimal money) {
+		if(money.signum() == 1) {
+			finances.add(currentDate, reason, money);
+		} else if(money.signum() == -1) {
+			finances.subtract(currentDate, reason, money);
+		}
+	}
+	
+	/**
+	 * total turnover of events and others since first entry of a band
+	 * 
+	 * @return
+	 * 			total turnover
+	 */
+	public BigDecimal totalTurnover() {
+		BigDecimal eventTurnover = new BigDecimal(0);
+		for (Event e : this.getEvents()) {
+			eventTurnover.add(e.getFinances());
+		}
+		return eventTurnover.add(finances.turnover());
+	}
+	
+	/**
+	 * total income of events since first entry of a band
+	 * 
+	 * @return
+	 * 			total income of events
+	 */
+	public BigDecimal totalEventIncome() {
+		BigDecimal ret = new BigDecimal(0);
+		for (Event e : this.getEvents()) {
+			if (e.getFinances().signum() == 1)
+				ret.add(e.getFinances());
+		}
+		return ret;
+	}
+	
+	/**
+	 * total expense of events since first entry of a band
+	 * 
+	 * @return
+	 * 			total expense of events
+	 */
+	public BigDecimal totalEventExpense() {
+		BigDecimal ret = new BigDecimal(0);
+		for (Event e : this.getEvents()) {
+			if (e.getFinances().signum() == -1)
+				ret.add(e.getFinances());
+		}
+		return ret;
+	}
+	
+	/**
+	 * the turnover of a specified reason in a period
+	 * 
+	 * @param startDate
+	 * 			first date of a period
+	 * @param endDate
+	 * 			end date of a period
+	 * @param reason
+	 * 			short info why money was get or spent (i.e. "Merchandise" or "Advertisment")
+	 * @return
+	 * 			total finances of @reason, 0 if no entries where found
+	 */
+	public BigDecimal getFinancesSinceUntilOf(Date startDate, Date endDate, String reason) {
+		BigDecimal ret = new BigDecimal(0);
+		for (Date d : finances.getIncome().keySet()) {
+			if(endDate.after(d)) {
+				break;
+			}
+			if (startDate.after(d) || startDate.equals(d)) {
+				if (finances.getIncome().get(d).containsKey(reason)) {
+					ret.add(finances.getIncome().get(d).get(reason));
+				}
+			}
+		}
+		for (Date d : finances.getExpense().keySet()) {
+			if(endDate.after(d)) {
+				break;
+			}
+			if (startDate.after(d) || startDate.equals(d)) {
+				if (finances.getExpense().get(d).containsKey(reason)) {
+					ret.add(finances.getExpense().get(d).get(reason));
+				}
+			}
+		}
+		return ret;
+	}
+	
+	/**
+	 * with the use of a filter it is possible to get income/expense/total
+	 * of various reasons in a specified period at once
+	 * 
+	 * @param f
+	 * 			a filter used for enhanced search
+	 * @return
+	 * 			a string with the specified filter information
+	 */
+	public String getFinancesFiltered(FinanceFilter f) {
+		BigDecimal tmp;
+		BigDecimal total = new BigDecimal(0);
+		String retS = new String();
+		String reasons = listReason(f.getReason());
+		Date startDate = f.getStartDate();
+		Date endDate = f.getEndDate();
+		
+		tmp = new BigDecimal(0);
+		for (Date d : finances.getIncome().keySet()) {
+			if(endDate.after(d)) {
+				break;
+			}
+			if (startDate.after(d) || startDate.equals(d)) {
+				for (String s : f.getReason()){
+					if (finances.getIncome().get(d).containsKey(s)) {
+						tmp.add(finances.getIncome().get(d).get(s));
+					}
+				}
+			}
+		}
+		if (f.isIncome()) {
+			retS += "Income of ";
+			retS += reasons;
+			retS += tmp.toString() + "\n";
+		}
+		total.add(tmp);
+		
+		tmp = new BigDecimal(0);
+		for (Date d : finances.getExpense().keySet()) {
+			if(endDate.after(d)) {
+				break;
+			}
+			if (startDate.after(d) || startDate.equals(d)) {
+				for (String s : f.getReason()){
+					if (finances.getExpense().get(d).containsKey(s)) {
+						tmp.add(finances.getExpense().get(d).get(s));
+					}
+				}
+			}
+		}
+		if (f.isExpense()) {
+			retS += "Expense of ";
+			retS += reasons;
+			retS += tmp.toString() + "\n";
+		}
+		total.add(tmp);
+		
+		if (f.isTotal()) {
+			retS += "Turnover of ";
+			retS += reasons;
+			retS += total.toString() + "\n";
+		}
+		return retS;
+	}
+	
+	/**
+	 * 
+	 * @param reason
+	 * 				an ArrayList with reasons
+	 * @return
+	 * 				a readable string with all reasons (i.e. "Merchandise, Advertisment, Others: ")
+	 */
+	private String listReason(ArrayList<String> reason) {
+		String retS = new String();
+		int i = 1;
+		int size = reason.size();
+		for (String s : reason) {
+			retS += (!((i++) == size)) ?  (s + ", ") : (s + ": ");
+		}
+		return retS;
 	}
 
 }
