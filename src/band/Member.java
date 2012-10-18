@@ -29,6 +29,14 @@ public class Member extends Person {
 	private ArrayList<Rehearsal> rehersals;
 
 	/**
+	 * @return
+	 * 		the repertoire of the member
+	 */
+	public ArrayList<Track> getTracks(){
+		return this.repertoire;
+		
+	}
+	/**
 	 * Adds a Rehearsal the Member attended;
 	 * 
 	 * @param re
@@ -209,7 +217,7 @@ public class Member extends Person {
 	}
 
 	/**
-	 * @return a hash value representing the track
+	 * @return a hash value representing the member
 	 */
 	@Override
 	public int hashCode() {
