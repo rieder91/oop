@@ -8,6 +8,11 @@ import java.util.HashMap;
 import band.Infrastructure;
 import band.Place;
 
+/**
+ * 
+ * @author Thomas
+ *
+ */
 public class PlaceTester implements Tester {
 	private static final String moduleName = "Place";
 
@@ -20,6 +25,9 @@ public class PlaceTester implements Tester {
 
 	private HashMap<Integer, String> testCases;
 
+	/**
+	 * 
+	 */
 	public PlaceTester() {
 		successfulTests = 0;
 		failedTests = 0;
@@ -63,11 +71,9 @@ public class PlaceTester implements Tester {
 	 * (non-Javadoc)
 	 * @see testing.Tester#runTests()
 	 */
-//	@SuppressWarnings("deprecation")
+	//@SuppressWarnings("deprecation")
 	@Override
 	public void runTests() {
-		// TODO Auto-generated method stub
-		
 		Place stadtHalle = new Place("Stadthalle");
 		stadtHalle.addInfrastructure(Infrastructure.Toilet);
 		stadtHalle.addInfrastructure(Infrastructure.PublicTransport);
@@ -103,7 +109,7 @@ public class PlaceTester implements Tester {
 			successfulTests++;
 		} else {
 			failedTests++;
-			failedTestNumbers.add(1);
+			failedTestNumbers.add(3);
 		}
 	}
 
