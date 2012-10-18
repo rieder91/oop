@@ -155,6 +155,7 @@ public class Band implements Authenticatable {
 				else {
 					this.members.add(m);
 					this.memberDates.get(m).add(d);
+					m.addBand(this);
 				}
 			}
 			else {
@@ -490,10 +491,15 @@ public class Band implements Authenticatable {
 	 */
 	public ArrayList<Track> getTracks() {
 
-		final ArrayList<Track> al = new ArrayList<Track>();
-		al.addAll(this.members.get(0).getTracks());
-		for (final Member m : this.members) {
-			al.retainAll(m.getTracks());
+		ArrayList<Track> al = new ArrayList<Track>();
+		if (this.members.size() > 0) {
+			al.addAll(this.members.get(0).getTracks());
+			if (this.members.size() > 1) {
+
+				for (final Member m : this.members) {
+					al.retainAll(m.getTracks());
+				}
+			}
 		}
 		return al;
 	}

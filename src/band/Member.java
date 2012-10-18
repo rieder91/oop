@@ -27,15 +27,25 @@ public class Member extends Person {
 	private final boolean substituteMember;
 	private ArrayList<EventNotification> eventNot;
 	private ArrayList<Rehearsal> rehersals;
+	private ArrayList<Band> bands;
 
 	/**
-	 * @return
-	 * 		the repertoire of the member
+	 * @return the repertoire of the member
 	 */
-	public ArrayList<Track> getTracks(){
+	public ArrayList<Track> getTracks() {
+
 		return this.repertoire;
-		
+
 	}
+
+	/**
+	 * @param bnd
+	 */
+	public void addBand(Band bnd) {
+
+		if (this.bands.indexOf(bnd) == -1) this.bands.add(bnd);
+	}
+
 	/**
 	 * Adds a Rehearsal the Member attended;
 	 * 
@@ -48,15 +58,14 @@ public class Member extends Person {
 	}
 
 	/**
-	 * 
-	 * @return
-	 * 			a list of rehearsals the Member attended
+	 * @return a list of rehearsals the Member attended
 	 */
-	public ArrayList<Rehearsal> getRehersal(){
+	public ArrayList<Rehearsal> getRehersal() {
+
 		return rehersals;
-		
+
 	}
-	
+
 	/**
 	 * Constructor which requires four arguments
 	 * 
@@ -199,9 +208,7 @@ public class Member extends Person {
 	 */
 	public ArrayList<EventNotification> getNotifications() {
 
-		final ArrayList<EventNotification> al = this.eventNot;
-		this.eventNot = new ArrayList<EventNotification>();
-		return al;
+		return this.eventNot;
 	}
 
 	@Override
