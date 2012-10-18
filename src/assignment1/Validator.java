@@ -11,8 +11,8 @@ import java.util.ArrayList;
  * 
  */
 public class Validator {
-	static Integer successfulCount = 0;
-	static Integer failedCount = 0;
+	private static Integer successfulCount = 0;
+	private static Integer failedCount = 0;
 
 	/**
 	 * 
