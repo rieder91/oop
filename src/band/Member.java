@@ -26,7 +26,29 @@ public class Member extends Person {
 	private ArrayList<Track> repertoire;
 	private final boolean substituteMember;
 	private ArrayList<EventNotification> eventNot;
+	private ArrayList<Rehearsal> rehersals;
 
+	/**
+	 * Adds a Rehearsal the Member attended;
+	 * 
+	 * @param re
+	 *            a Rehearsal
+	 */
+	public void addRehersal(Rehearsal re) {
+
+		this.rehersals.add(re);
+	}
+
+	/**
+	 * 
+	 * @return
+	 * 			a list of rehearsals the Member attended
+	 */
+	public ArrayList<Rehearsal> getRehersal(){
+		return rehersals;
+		
+	}
+	
 	/**
 	 * Constructor which requires four arguments
 	 * 
