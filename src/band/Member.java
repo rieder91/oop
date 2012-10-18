@@ -34,6 +34,7 @@ public class Member extends Person {
 	 */
 	public ArrayList<Track> getTracks() {
 
+		
 		return this.repertoire;
 
 	}
@@ -100,7 +101,11 @@ public class Member extends Person {
 			final boolean substituteMember) {
 
 		super();
-
+		this.events = new ArrayList<ProposedDate>() ;
+		this.repertoire = new ArrayList<Track>() ;
+		this.eventNot = new ArrayList<EventNotification>() ;
+		this.rehersals = new ArrayList<Rehearsal>() ;
+		this.bands = new ArrayList<Band>() ;
 		this.telephoneNumber = telephoneNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
