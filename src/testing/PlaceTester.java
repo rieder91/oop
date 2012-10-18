@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import band.Infrastructure;
 import band.Place;
+import band.PlaceManager;
 
 /**
  * 
@@ -38,6 +39,8 @@ public class PlaceTester implements Tester {
 		testCases.put(1, "Add an infrastructure to a place");
 		testCases.put(2, "Remove an existing infrastructure");
 		testCases.put(3, "Perform a require-infrastructure check");
+		testCases.put(4, "Get all places which have the required-infrastructure");
+		testCases.put(5, "Try to get a place with too much requirements");
 	}
 
 	@Override
@@ -78,6 +81,36 @@ public class PlaceTester implements Tester {
 		stadtHalle.addInfrastructure(Infrastructure.Toilet);
 		stadtHalle.addInfrastructure(Infrastructure.PublicTransport);
 		stadtHalle.addInfrastructure(Infrastructure.ParkingGarage);
+		stadtHalle.addInfrastructure(Infrastructure.Stage);
+		
+		Place oper = new Place("Staatsoper");
+		oper.addInfrastructure(Infrastructure.Toilet);
+		oper.addInfrastructure(Infrastructure.ParkingGarage);
+		oper.addInfrastructure(Infrastructure.PublicTransport);
+		oper.addInfrastructure(Infrastructure.Stage);
+		
+		Place soundStudio = new Place("Sound Studio");
+		soundStudio.addInfrastructure(Infrastructure.DemoRoom);
+		soundStudio.addInfrastructure(Infrastructure.Toilet);
+		
+		PlaceManager places = new PlaceManager();
+		places.addPlace(stadtHalle);
+		places.addPlace(oper);
+		places.addPlace(soundStudio);
+		
+		ArrayList<Place> testReq1Result = new ArrayList<Place>();
+		
+		testReq1Result.add(stadtHalle);
+		testReq1Result.add(oper);
+		
+		ArrayList<Infrastructure> testReq1 = new ArrayList<Infrastructure>();
+		ArrayList<Infrastructure> testReq2 = new ArrayList<Infrastructure>();
+		
+		testReq1.add(Infrastructure.Toilet);
+		testReq1.add(Infrastructure.PublicTransport);
+		
+		testReq2.add(Infrastructure.DemoRoom);
+		testReq2.add(Infrastructure.PublicTransport);
 		
 		ArrayList<Infrastructure> someInf = new ArrayList<Infrastructure>();
 		someInf.add(Infrastructure.PublicTransport);
@@ -110,6 +143,20 @@ public class PlaceTester implements Tester {
 		} else {
 			failedTests++;
 			failedTestNumbers.add(3);
+		}
+		
+		if(Validator.check(places.getPlacesByFilter(testReq1), testReq1Result, 4)) {
+			successfulTests++;
+		} else {
+			failedTests++;
+			failedTestNumbers.add(4);
+		}
+		
+		if(Validator.check(places.getPlacesByFilter(testReq2), new ArrayList<Place>(), 5)) {
+			successfulTests++;
+		} else {
+			failedTests++;
+			failedTestNumbers.add(5);
 		}
 	}
 

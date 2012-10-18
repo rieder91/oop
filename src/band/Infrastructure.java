@@ -14,5 +14,6 @@ public enum Infrastructure {
 	SuperMarket,
 	LuxuryHotel,
 	ParkingGarage,
-	Stage;
+	Stage,
+	DemoRoom;
 }
