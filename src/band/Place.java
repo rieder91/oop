@@ -102,8 +102,13 @@ public class Place {
 		if (infrastructure == null) {
 			if (other.infrastructure != null)
 				return false;
-		} else if (!infrastructure.equals(other.infrastructure))
-			return false;
+		} else {
+			for(Infrastructure i : this.infrastructure) {
+				if(!other.infrastructure.contains(i)) {
+					return false;
+				}
+			}
+		}
 		if (name == null) {
 			if (other.name != null)
 				return false;
