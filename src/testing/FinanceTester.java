@@ -15,7 +15,9 @@ import band.Gig;
 import band.Rehearsal;
 
 public class FinanceTester implements Tester {
+	
 	private static final String moduleName = "Finances";
+	
 	// number of successful/failed tests
 	private Integer successfulTests;
 	private Integer failedTests;
@@ -35,9 +37,9 @@ public class FinanceTester implements Tester {
 		testCases.put(1, "Total turnover and adding of finances");
 		testCases.put(2, "Income of Events");
 		testCases.put(3, "Expense of Events");
-		testCases.put(4, "Turnover of a Merchandise in a period");
-		testCases.put(5, "Turnover of a Merchandise in another period");
-		testCases.put(6, "Turnover of a Other in a period");
+		testCases.put(4, "Turnover of Merchandise in a period");
+		testCases.put(5, "Turnover of Merchandise in another period");
+		testCases.put(6, "Turnover of Other in a period");
 		testCases.put(7, "Filter with expense");
 		testCases.put(8, "Filter with income");
 		testCases.put(9, "Filter with expense and income");
@@ -68,6 +70,7 @@ public class FinanceTester implements Tester {
 		}
 		System.out.println();
 	}
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public void runTests() {
@@ -78,6 +81,12 @@ public class FinanceTester implements Tester {
 		
 		Gig novarock2010 = null, novarock2011 = null, novarock2012 = null;
 		Rehearsal postNova2010 = null, postNova2011 = null;
+		
+		ArrayList<String> reasons = new ArrayList<String>();
+		reasons.add("Other");
+		reasons.add("Advertisement");
+		
+		FinanceFilter f1 = null,f2 = null,f3 = null,f4 = null,f5 = null;
 		
 		try {
 			novarock2010 = new Gig(formatTime.parse("11.07.2010 12:00"),
@@ -91,10 +100,27 @@ public class FinanceTester implements Tester {
 					"Vienna Sound Studio", 5, 100.0);
 			postNova2011 = new Rehearsal(formatTime.parse("15.08.2011 20:00"),
 					"Vienna Sound Studio Mk II", 7, 1000.0);
-
+			
+			f1 = new FinanceFilter(formatTime.parse("01.02.2010 20:00"),formatTime.parse("01.01.2012 20:00"),
+					reasons,true,false,false);
+			f2 = new FinanceFilter(formatTime.parse("01.02.2010 20:00"),formatTime.parse("01.01.2012 20:00"),
+					reasons,false,true,false);
+			f3 = new FinanceFilter(formatTime.parse("01.02.2010 20:00"),formatTime.parse("01.01.2012 20:00"),
+					reasons,true,true,false);
+			f4 = new FinanceFilter(formatTime.parse("01.02.2010 20:00"),formatTime.parse("01.01.2012 20:00"),
+					reasons,true,true,true);
+			f5 = new FinanceFilter(formatTime.parse("01.02.2010 20:00"),formatTime.parse("01.01.2012 20:00"),
+					reasons,false,false,true);
+			
 		} catch (ParseException e) {
 			System.out.println("Date parsing failed");
 		}
+		
+		String s1 = "Expense of Other, Advertisement: -18000\n";
+		String s2 = "Income of Other, Advertisement: 30000\n";
+		String s3 = s2 + s1;
+		String s5 = "Turnover of Other, Advertisement: 12000\n";
+		String s4 = s2 + s1 + s5;
 		
 		try{
 			rofl.addEvent(novarock2010);
@@ -120,6 +146,15 @@ public class FinanceTester implements Tester {
 		}
 		
 		
+		
+		
+		
+		/*
+		 * Test Case #1 Total turnover and adding of finances
+		 * 
+		 * should be: 18900
+		 */
+		
 		if(Validator.check(rofl.totalTurnover(), new BigDecimal(18900), 1)){
 			successfulTests++;
 		} else {
@@ -127,12 +162,26 @@ public class FinanceTester implements Tester {
 			failedTestNumbers.add(1);
 		}
 		
+		
+		/*
+		 * Test Case #2 Income of Events
+		 * 
+		 * should be: 17500
+		 */
+		
 		if(Validator.check(rofl.totalEventIncome(), new BigDecimal(17500), 2)){
 			successfulTests++;
 		} else {
 			failedTests++;
 			failedTestNumbers.add(2);
 		}
+		
+		
+		/*
+		 * Test Case #3 Expense of Events
+		 * 
+		 * should be: -1100
+		 */
 		
 		if(Validator.check(rofl.totalEventExpense(), new BigDecimal(-1100), 3)){
 			successfulTests++;
@@ -142,14 +191,27 @@ public class FinanceTester implements Tester {
 		}
 		
 		try{
+			
+			/*
+			 * Test Case #4 Turnover of Merchandise in a period
+			 * 
+			 * should be: 10000
+			 */
+			
 			if(Validator.check(rofl.getFinancesSinceUntilOf(formatTime.parse("01.01.2010 20:00"), formatTime.parse("01.01.2011 20:00"), "Merchandise"),
 					new BigDecimal(10000), 4)){
 				successfulTests++;
 			} else {
 				failedTests++;
 				failedTestNumbers.add(4);
-				//System.out.println(rofl.getFinancesSinceUntilOf(formatTime.parse("01.01.2010 20:00"), formatTime.parse("01.01.2011 20:00"), "Merchandise").toString());
 			}
+			
+			
+			/*
+			 * Test Case #5 Turnover of Merchandise in another period
+			 * 
+			 * should be: 16000
+			 */
 			
 			if(Validator.check(rofl.getFinancesSinceUntilOf(formatTime.parse("01.01.2010 20:00"), formatTime.parse("01.01.2013 20:00"), "Merchandise"),
 					new BigDecimal(16000), 5)){
@@ -157,8 +219,14 @@ public class FinanceTester implements Tester {
 			} else {
 				failedTests++;
 				failedTestNumbers.add(5);
-				System.out.println(rofl.getFinancesSinceUntilOf(formatTime.parse("01.01.2010 20:00"), formatTime.parse("01.01.2013 20:00"), "Merchandise").toString());
 			}
+			
+			
+			/*
+			 * Test Case #6 Turnover of Other in a period
+			 * 
+			 * should be: -5000
+			 */
 			
 			if(Validator.check(rofl.getFinancesSinceUntilOf(formatTime.parse("01.01.2010 20:00"), formatTime.parse("18.05.2012 20:00"), "Other"),
 					new BigDecimal(-5000), 6)){
@@ -167,36 +235,17 @@ public class FinanceTester implements Tester {
 				failedTests++;
 				failedTestNumbers.add(6);
 			}
+			
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
 		
-		ArrayList<String> reasons = new ArrayList<String>();
-		reasons.add("Other");
-		reasons.add("Advertisement");
 		
-		FinanceFilter f1 = null,f2 = null,f3 = null,f4 = null,f5 = null;
-		
-		try{
-			f1 = new FinanceFilter(formatTime.parse("01.02.2010 20:00"),formatTime.parse("01.01.2012 20:00"),
-					reasons,true,false,false);
-			f2 = new FinanceFilter(formatTime.parse("01.02.2010 20:00"),formatTime.parse("01.01.2012 20:00"),
-					reasons,false,true,false);
-			f3 = new FinanceFilter(formatTime.parse("01.02.2010 20:00"),formatTime.parse("01.01.2012 20:00"),
-					reasons,true,true,false);
-			f4 = new FinanceFilter(formatTime.parse("01.02.2010 20:00"),formatTime.parse("01.01.2012 20:00"),
-					reasons,true,true,true);
-			f5 = new FinanceFilter(formatTime.parse("01.02.2010 20:00"),formatTime.parse("01.01.2012 20:00"),
-					reasons,false,false,true);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		String s1 = "Expense of Other, Advertisement: -18000\n";
-		String s2 = "Income of Other, Advertisement: 30000\n";
-		String s3 = s2 + s1;
-		String s5 = "Turnover of Other, Advertisement: 12000\n";
-		String s4 = s2 + s1 + s5;
+		/*
+		 * Test Case #7 Filter with expense
+		 * 
+		 * should be: "Expense of Other, Advertisement: -18000\n"
+		 */
 		
 		if(Validator.check(rofl.getFinancesFiltered(f1), s1, 7)) {
 			successfulTests++;
@@ -205,6 +254,13 @@ public class FinanceTester implements Tester {
 			failedTestNumbers.add(7);
 		}
 		
+		
+		/*
+		 * Test Case #8 Filter with income
+		 * 
+		 * should be: "Income of Other, Advertisement: 30000\n"
+		 */
+		
 		if(Validator.check(rofl.getFinancesFiltered(f2), s2, 8)) {
 			successfulTests++;
 		} else {
@@ -212,13 +268,27 @@ public class FinanceTester implements Tester {
 			failedTestNumbers.add(8);
 		}
 
+		
+		/*
+		 * Test Case #9 Filter with expense and income
+		 * 
+		 * should be: "Expense of Other, Advertisement: -18000\nIncome of Other, Advertisement: 30000\n"
+		 */
+		
 		if(Validator.check(rofl.getFinancesFiltered(f3), s3, 9)) {
 			successfulTests++;
 		} else {
 			failedTests++;
 			failedTestNumbers.add(9);
 		}
-
+		
+		
+		/*
+		 * Test Case #10 Filter with expense, income and turnover
+		 * 
+		 * should be: "Expense of Other, Advertisement: -18000\nIncome of Other, Advertisement: 30000\nTurnover of Other, Advertisement: 12000\n"
+		 */
+		
 		if(Validator.check(rofl.getFinancesFiltered(f4), s4, 10)) {
 			successfulTests++;
 		} else {
@@ -226,6 +296,13 @@ public class FinanceTester implements Tester {
 			failedTestNumbers.add(10);
 		}
 
+		
+		/*
+		 * Test Case #11 Filter with turnover
+		 * 
+		 * should be: "Turnover of Other, Advertisement: 12000\n"
+		 */
+		
 		if(Validator.check(rofl.getFinancesFiltered(f5), s5, 11)) {
 			successfulTests++;
 		} else {
