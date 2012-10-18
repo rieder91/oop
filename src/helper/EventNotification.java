@@ -9,13 +9,6 @@ import band.Event;
 public class EventNotification {
 
 	/**
-	 * @author OOP Gruppe 187
-	 */
-	public enum Status {
-		scheduled, deferred, canceled
-	}
-
-	/**
 	 * @param e
 	 * @param status
 	 */
