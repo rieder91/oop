@@ -152,8 +152,10 @@ public class AuthenticationTester implements Tester {
 			Authenticator.checkPermissions(markus, thomas, isSubstituteMemberMethod);
 			failedTests++;
 			failedTestNumbers.add(5);
+			Validator.report(false);
 		} catch (InsufficientPermissionsException e) {
 			successfulTests++;
+			Validator.report(true);
 		}
 		
 		thomas.setRole(markus, Permission.GROUP);
