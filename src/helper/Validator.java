@@ -72,7 +72,7 @@ public class Validator {
 	 * prints the test-case overview to stdout
 	 */
 	public static void report() {
-		System.out.println("\nNumber overall of successful tests: " + successfulCount);
-		System.out.println("Number overall of failed tests: " + failedCount);
+		System.out.println("\nOverall successful tests: " + successfulCount);
+		System.out.println("Overall failed tests: " + failedCount);
 	}
 }
