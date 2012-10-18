@@ -45,9 +45,7 @@ public class Rehearsal extends Event {
 	 */
 	@Deprecated
 	public Rehearsal(Date time, String place, Integer duration, BigDecimal cost) {
-
-		super(time, place, duration);
-		this.cost = cost;
+		this("", time, new Place(place), duration, cost);
 	}
 
 	/**
@@ -64,9 +62,7 @@ public class Rehearsal extends Event {
 	 */
 	@Deprecated
 	public Rehearsal(Date time, String place, Integer duration, Double cost) {
-
-		super(time, place, duration);
-		this.cost = new BigDecimal(cost);
+		this("", time, new Place(place), duration, new BigDecimal(cost));
 	}
 
 	/**
@@ -77,8 +73,21 @@ public class Rehearsal extends Event {
 	 * @param duration
 	 * @param cost
 	 */
+	@Deprecated
 	public Rehearsal(String name, Date time, String place, Integer duration,
 			BigDecimal cost) {
+		this(name, time, new Place(place), duration, cost);
+	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @param time
+	 * @param place
+	 * @param duration
+	 * @param cost
+	 */
+	public Rehearsal(String name, Date time, Place place, Integer duration, BigDecimal cost) {
 		super(name, time, place, duration);
 		this.cost = cost;
 	}
@@ -88,7 +97,6 @@ public class Rehearsal extends Event {
 	 */
 	@Override
 	public BigDecimal getFinances() {
-
 		return this.cost.multiply(new BigDecimal(-1.0));
 	}
 

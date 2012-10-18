@@ -45,9 +45,7 @@ public class Gig extends Event {
 	 */
 	@Deprecated
 	public Gig(Date time, String place, Integer duration, BigDecimal pay) {
-
-		super(time, place, duration);
-		this.pay = pay;
+		this("", time, new Place(place), duration, pay);
 	}
 
 	/**
@@ -64,9 +62,7 @@ public class Gig extends Event {
 	 */
 	@Deprecated
 	public Gig(Date time, String place, Integer duration, Double pay) {
-
-		super(time, place, duration);
-		this.pay = new BigDecimal(pay);
+		this("", time, new Place(place), duration, new BigDecimal(pay));
 	}
 
 	/**
@@ -77,11 +73,27 @@ public class Gig extends Event {
 	 * @param duration
 	 * @param pay
 	 */
+	@Deprecated
 	public Gig(String name, Date time, String place, Integer duration,
+			BigDecimal pay) {
+		this(name, time, new Place(place), duration, pay);
+	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @param time
+	 * @param place
+	 * @param duration
+	 * @param pay
+	 */
+	public Gig(String name, Date time, Place place, Integer duration,
 			BigDecimal pay) {
 		super(name, time, place, duration);
 		this.pay = pay;
 	}
+	
+	
 
 	/**
 	 * @return the pay you get for the gig

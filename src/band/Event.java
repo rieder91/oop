@@ -19,7 +19,7 @@ import auth.Authenticatable;
 public abstract class Event implements Authenticatable {
 
 	private String name;
-	private String place;
+	private Place place;
 	private Date time;
 	private Integer duration;
 	private HashMap<Date, Event> eventHistory;
@@ -33,7 +33,7 @@ public abstract class Event implements Authenticatable {
 	@Override
 	public String toString() {
 
-		String ret = "Name: " + this.name + " Place: " + this.place + " Time: "
+		String ret = "Name: " + this.name + " Place: " + this.place.getName() + " Time: "
 				+ this.time + " Duration: " + this.duration;
 		return ret;
 	}
@@ -63,24 +63,37 @@ public abstract class Event implements Authenticatable {
 	 * @param duration
 	 *            the duration of the event
 	 */
+	@Deprecated
 	public Event(String name, Date time, String place, Integer duration) {
+		this(name, time, new Place(place), duration);
+	}
+	
+	public Event(String name, Date time, Place place, Integer duration) {
 		this.name = name;
 		this.place = place;
 		this.time = time;
 		this.duration = duration;
-
+		
 		this.eventHistory = new HashMap<Date, Event>();
 		this.permissions = new HashMap<Method, ArrayList<Permission>>();
 		this.roles = new HashMap<Authenticatable, Permission>();
-
+		
 		this.initPermissions();
+		
 	}
 
 	/**
 	 * @return the place of the event
 	 */
 	public String getPlace() {
-
+		return this.place.getName();
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Place getPlaceObj() {
 		return this.place;
 	}
 
@@ -133,6 +146,10 @@ public abstract class Event implements Authenticatable {
 	}
 
 	public void setPlace(String place) {
+		this.place = new Place(place);
+	}
+	
+	public void setPlaceObj(Place place) {
 		this.place = place;
 	}
 
