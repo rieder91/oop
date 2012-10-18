@@ -162,9 +162,11 @@ public class AuthenticationTester implements Tester {
 		try {
 			Authenticator.checkPermissions(markus, thomas, isSubstituteMemberMethod);
 			successfulTests++;
+			Validator.report(true);
 		} catch (InsufficientPermissionsException e) {
 			failedTests++;
 			failedTestNumbers.add(6);
+			Validator.report(false);
 		}
 		
 		try {
@@ -216,17 +218,21 @@ public class AuthenticationTester implements Tester {
 			Authenticator.checkPermissions(thomas, anotherBand, bandAddMember);
 			failedTests++;
 			failedTestNumbers.add(11);
+			Validator.report(false);
 		} catch (InsufficientPermissionsException e) {
 			successfulTests++;
+			Validator.report(true);
 			
 		}
 		
 		try {
 			Authenticator.checkPermissions(dominic, tempBand, bandGetMembers);
 			successfulTests++;
+			Validator.report(true);
 		} catch (InsufficientPermissionsException e) {
 			failedTests++;
 			failedTestNumbers.add(12);
+			Validator.report(false);
 		}
 		
 	}
