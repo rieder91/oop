@@ -1,4 +1,6 @@
-package assignment1;
+package band;
+
+import helper.InvalidBandObjectException;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

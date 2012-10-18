@@ -1,4 +1,4 @@
-package auth;
+package helper;
 
 /**
  * This exception is thrown if someone tries to invoke a method with
