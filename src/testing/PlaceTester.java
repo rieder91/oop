@@ -1,7 +1,12 @@
 package testing;
 
+import helper.Validator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import band.Infrastructure;
+import band.Place;
 
 public class PlaceTester implements Tester {
 	private static final String moduleName = "Place";
@@ -21,6 +26,10 @@ public class PlaceTester implements Tester {
 
 		failedTestNumbers = new ArrayList<Integer>();
 		testCases = new HashMap<Integer, String>();
+		
+		testCases.put(1, "Add an infrastructure to a place");
+		testCases.put(2, "Remove an existing infrastructure");
+		testCases.put(3, "Perform a require-infrastructure check");
 	}
 
 	@Override
@@ -54,11 +63,48 @@ public class PlaceTester implements Tester {
 	 * (non-Javadoc)
 	 * @see testing.Tester#runTests()
 	 */
-	@SuppressWarnings("deprecation")
+//	@SuppressWarnings("deprecation")
 	@Override
 	public void runTests() {
 		// TODO Auto-generated method stub
-
+		
+		Place stadtHalle = new Place("Stadthalle");
+		stadtHalle.addInfrastructure(Infrastructure.Toilet);
+		stadtHalle.addInfrastructure(Infrastructure.PublicTransport);
+		stadtHalle.addInfrastructure(Infrastructure.ParkingGarage);
+		
+		ArrayList<Infrastructure> someInf = new ArrayList<Infrastructure>();
+		someInf.add(Infrastructure.PublicTransport);
+		someInf.add(Infrastructure.Toilet);
+		
+		if(stadtHalle.hasInfrastructure(Infrastructure.Toilet)) {
+			successfulTests++;
+			Validator.report(true);
+		} else {
+			failedTests++;
+			failedTestNumbers.add(1);
+			Validator.report(false);
+		}
+		
+		// parking garage caved in
+		stadtHalle.removeInfrastructure(Infrastructure.ParkingGarage);
+		
+		if(!stadtHalle.hasInfrastructure(Infrastructure.ParkingGarage)) {
+			successfulTests++;
+			Validator.report(true);
+		} else {
+			failedTests++;
+			failedTestNumbers.add(2);
+			Validator.report(false);
+		}
+		
+		
+		if(Validator.check(someInf, stadtHalle.getInfrastructure(), 3)) {
+			successfulTests++;
+		} else {
+			failedTests++;
+			failedTestNumbers.add(1);
+		}
 	}
 
 }

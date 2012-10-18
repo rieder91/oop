@@ -54,7 +54,7 @@ public class MemberTester implements Tester {
 	 * (non-Javadoc)
 	 * @see testing.Tester#runTests()
 	 */
-	@SuppressWarnings("deprecation")
+//	@SuppressWarnings("deprecation")
 	@Override
 	public void runTests() {
 		// TODO Implement tests for Ersatzmitglieder, Member-dependand repertoire
