@@ -3,13 +3,11 @@ package band;
 
 import helper.EventNotification;
 import helper.InvalidBandObjectException;
-import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Hashtable;
 import auth.Authenticatable;
 
 /**
@@ -34,14 +32,16 @@ public class Member extends Person {
 	 * @param e
 	 */
 	public void notifyEvent(Event e, EventNotification.Status stat) {
-		eventNot.add(new EventNotification(e,stat);
+		eventNot.add(new EventNotification(e,stat));
 	}
 
 	/**
 	 * 
 	 */
-	public void getNotifications() {
-		
+	public ArrayList<EventNotification> getNotifications() {
+		ArrayList<EventNotification> al= this.eventNot;
+		this.eventNot=new ArrayList<EventNotification>();
+		return al;
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class Member extends Person {
 		this.lastName = lastName;
 		this.instrument = instrument;
 		this.substituteMember = substituteMember;
-
+		this.eventNot=new ArrayList<EventNotification>();
 		// set the owner to THIS
 		this.setRole(this, Permission.OWNER);
 	}
