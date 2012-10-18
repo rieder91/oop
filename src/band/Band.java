@@ -193,7 +193,7 @@ public class Band implements Authenticatable {
 	 * @throws InvalidBandObjectException
 	 *             thrown if the track already exists
 	 */
-	@Deprecated
+	//@Deprecated
 	public void addTrack(final Track t, final Date d) throws InvalidDateException, InvalidBandObjectException {
 
 		if (!this.tracks.contains(t)) {

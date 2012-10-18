@@ -3,6 +3,7 @@ package band;
 
 import helper.EventNotification;
 import helper.InvalidBandObjectException;
+import helper.InvalidDateException;
 import helper.Status;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -137,11 +138,17 @@ public class Member extends Person {
 	 * 
 	 * @param tr
 	 *            track to be added
+	 * @param d
+	 * @throws InvalidBandObjectException 
+	 * @throws InvalidDateException 
 	 */
-	public void addTrack(final Track tr) {
+	public void addTrack(final Track tr,Date d) throws InvalidDateException, InvalidBandObjectException {
 
 		if (this.repertoire.indexOf(tr) == -1) {
 			this.repertoire.add(tr);
+			for(Band bnd:this.bands){
+				bnd.addTrack(tr, d);
+			}
 		}
 	}
 
