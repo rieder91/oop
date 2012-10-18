@@ -336,13 +336,17 @@ public class Member extends Person {
 	 * @param tr
 	 *            track to be removed
 	 * @throws InvalidBandObjectException
+	 * @throws InvalidDateException 
 	 */
-	public void removeTrack(final Track tr) throws InvalidBandObjectException {
+	public void removeTrack(final Track tr,Date d) throws InvalidBandObjectException, InvalidDateException {
 
 		if (this.repertoire.indexOf(tr) == -1) {
 			this.repertoire.add(tr);
+			for(Band bnd:this.bands){
+				bnd.removeTrack(tr,d);
+			}
 		}
-		else throw new InvalidBandObjectException("track already in repatoire");
+		else throw new InvalidBandObjectException("track does not exist");
 	}
 
 	/**

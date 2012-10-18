@@ -34,7 +34,7 @@ public class Band implements Authenticatable {
 	// contain the current information
 	private final ArrayList<Event> events;
 	private final ArrayList<Member> members;
-	private final ArrayList<Track> tracks;
+	private ArrayList<Track> tracks;
 
 	// History of deletedEvents
 	private final HashMap<Event, ArrayList<Date>> previousEvents;
@@ -181,7 +181,7 @@ public class Band implements Authenticatable {
 	}
 
 	/**
-	 * Adds a new Track to the bands repertoire
+	 * this method should only be used in Member
 	 * 
 	 * @param t
 	 *            the track itself
@@ -193,29 +193,23 @@ public class Band implements Authenticatable {
 	 * @throws InvalidBandObjectException
 	 *             thrown if the track already exists
 	 */
-	//@Deprecated
+	// @Deprecated
 	public void addTrack(final Track t, final Date d) throws InvalidDateException, InvalidBandObjectException {
 
 		if (!this.tracks.contains(t)) {
-			if (this.trackDates.containsKey(t)) {
-				// the track has already been added in the past - we need to add
-				// a new date
-				final ArrayList<Date> history = this.previousTracks.get(t);
-				final Date removeDate = history.get(history.size() - 1);
-				if (removeDate.after(d)) throw new InvalidDateException("new date prior to last remove date");
-				else {
-					this.trackDates.get(t).add(d);
-					this.tracks.add(t);
+			ArrayList<Track> al = new ArrayList<Track>();
+			if (this.members.size() > 0) {
+				al.addAll(this.members.get(0).getTracks());
+				if (this.members.size() > 1) {
+
+					for (final Member m : this.members) {
+						al.retainAll(m.getTracks());
+					}
 				}
 			}
-			else {
-				final ArrayList<Date> newHistory = new ArrayList<Date>();
-				newHistory.add(d);
-				this.trackDates.put(t, newHistory);
-				this.tracks.add(t);
-			}
+			this.tracks=al;
 		}
-		else throw new InvalidBandObjectException("track already exists");
+		// else throw new InvalidBandObjectException("track already exists");
 
 	}
 
@@ -490,7 +484,6 @@ public class Band implements Authenticatable {
 	 * @return ArrayList of the current tracks
 	 */
 	public ArrayList<Track> getTracks() {
-
 		ArrayList<Track> al = new ArrayList<Track>();
 		if (this.members.size() > 0) {
 			al.addAll(this.members.get(0).getTracks());
@@ -734,25 +727,27 @@ public class Band implements Authenticatable {
 	 * @throws InvalidBandObjectException
 	 *             thrown if the track doesnt exist
 	 */
-	@Deprecated
+	// @Deprecated
 	public void removeTrack(final Track t, final Date d) throws InvalidDateException, InvalidBandObjectException {
 
 		final ArrayList<Date> history = this.trackDates.get(t);
-		final Date joinDate = history.get(history.size() - 1);
+		if (history!=null && (history.size() - 1) >= 0) {
+			final Date joinDate = history.get(history.size() - 1);
 
-		if (!this.tracks.contains(t)) throw new InvalidBandObjectException("track doesnt exist");
-		else if (joinDate.after(d)) throw new InvalidDateException("new date prior to last add date");
-		else {
-			this.tracks.remove(t);
-
-			if (this.previousTracks.containsKey(t)) {
-				// we need to add a new date to the history
-				this.previousTracks.get(t).add(d);
-			}
+			if (this.tracks.contains(t) && joinDate.after(d)) throw new InvalidDateException(
+					"new date prior to last add date");
 			else {
-				final ArrayList<Date> newHistory = new ArrayList<Date>();
-				newHistory.add(d);
-				this.previousTracks.put(t, newHistory);
+				this.tracks.remove(t);
+
+				if (this.previousTracks.containsKey(t)) {
+					// we need to add a new date to the history
+					this.previousTracks.get(t).add(d);
+				}
+				else {
+					final ArrayList<Date> newHistory = new ArrayList<Date>();
+					newHistory.add(d);
+					this.previousTracks.put(t, newHistory);
+				}
 			}
 		}
 	}
