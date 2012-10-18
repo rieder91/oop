@@ -670,7 +670,7 @@ public class Band implements Authenticatable {
 	public BigDecimal totalTurnover() {
 		BigDecimal eventTurnover = new BigDecimal(0);
 		for (Event e : this.getEvents()) {
-			eventTurnover.add(e.getFinances());
+			eventTurnover = eventTurnover.add(e.getFinances());
 		}
 		return eventTurnover.add(finances.turnover());
 	}
@@ -685,7 +685,7 @@ public class Band implements Authenticatable {
 		BigDecimal ret = new BigDecimal(0);
 		for (Event e : this.getEvents()) {
 			if (e.getFinances().signum() == 1)
-				ret.add(e.getFinances());
+				ret = ret.add(e.getFinances());
 		}
 		return ret;
 	}
@@ -700,7 +700,7 @@ public class Band implements Authenticatable {
 		BigDecimal ret = new BigDecimal(0);
 		for (Event e : this.getEvents()) {
 			if (e.getFinances().signum() == -1)
-				ret.add(e.getFinances());
+				ret = ret.add(e.getFinances());
 		}
 		return ret;
 	}
@@ -713,29 +713,29 @@ public class Band implements Authenticatable {
 	 * @param endDate
 	 * 			end date of a period
 	 * @param reason
-	 * 			short info why money was get or spent (i.e. "Merchandise" or "Advertisment")
+	 * 			short info why money was get or spent (i.e. "Merchandise" or "Advertisement")
 	 * @return
 	 * 			total finances of @reason, 0 if no entries where found
 	 */
 	public BigDecimal getFinancesSinceUntilOf(Date startDate, Date endDate, String reason) {
 		BigDecimal ret = new BigDecimal(0);
 		for (Date d : finances.getIncome().keySet()) {
-			if(endDate.after(d)) {
+			if(endDate.before(d)) {
 				break;
 			}
-			if (startDate.after(d) || startDate.equals(d)) {
+			if (startDate.before(d) || startDate.equals(d)) {
 				if (finances.getIncome().get(d).containsKey(reason)) {
-					ret.add(finances.getIncome().get(d).get(reason));
+					ret = ret.add(finances.getIncome().get(d).get(reason));
 				}
 			}
 		}
 		for (Date d : finances.getExpense().keySet()) {
-			if(endDate.after(d)) {
+			if(endDate.before(d)) {
 				break;
 			}
-			if (startDate.after(d) || startDate.equals(d)) {
+			if (startDate.before(d) || startDate.equals(d)) {
 				if (finances.getExpense().get(d).containsKey(reason)) {
-					ret.add(finances.getExpense().get(d).get(reason));
+					ret = ret.add(finances.getExpense().get(d).get(reason));
 				}
 			}
 		}
@@ -761,13 +761,13 @@ public class Band implements Authenticatable {
 		
 		tmp = new BigDecimal(0);
 		for (Date d : finances.getIncome().keySet()) {
-			if(endDate.after(d)) {
+			if(endDate.before(d)) {
 				break;
 			}
-			if (startDate.after(d) || startDate.equals(d)) {
+			if (startDate.before(d) || startDate.equals(d)) {
 				for (String s : f.getReason()){
 					if (finances.getIncome().get(d).containsKey(s)) {
-						tmp.add(finances.getIncome().get(d).get(s));
+						tmp = tmp.add(finances.getIncome().get(d).get(s));
 					}
 				}
 			}
@@ -777,17 +777,17 @@ public class Band implements Authenticatable {
 			retS += reasons;
 			retS += tmp.toString() + "\n";
 		}
-		total.add(tmp);
+		total = total.add(tmp);
 		
 		tmp = new BigDecimal(0);
 		for (Date d : finances.getExpense().keySet()) {
-			if(endDate.after(d)) {
+			if(endDate.before(d)) {
 				break;
 			}
-			if (startDate.after(d) || startDate.equals(d)) {
+			if (startDate.before(d) || startDate.equals(d)) {
 				for (String s : f.getReason()){
 					if (finances.getExpense().get(d).containsKey(s)) {
-						tmp.add(finances.getExpense().get(d).get(s));
+						tmp = tmp.add(finances.getExpense().get(d).get(s));
 					}
 				}
 			}
@@ -797,7 +797,7 @@ public class Band implements Authenticatable {
 			retS += reasons;
 			retS += tmp.toString() + "\n";
 		}
-		total.add(tmp);
+		total = total.add(tmp);
 		
 		if (f.isTotal()) {
 			retS += "Turnover of ";

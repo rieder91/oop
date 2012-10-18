@@ -120,7 +120,7 @@ public class FinanceTester implements Tester {
 		}
 		
 		
-		if(Validator.check(rofl.totalTurnover(), new BigDecimal(13900), 1)){
+		if(Validator.check(rofl.totalTurnover(), new BigDecimal(18900), 1)){
 			successfulTests++;
 		} else {
 			failedTests++;
@@ -134,7 +134,7 @@ public class FinanceTester implements Tester {
 			failedTestNumbers.add(2);
 		}
 		
-		if(Validator.check(rofl.totalEventExpense(), new BigDecimal(1100), 3)){
+		if(Validator.check(rofl.totalEventExpense(), new BigDecimal(-1100), 3)){
 			successfulTests++;
 		} else {
 			failedTests++;
@@ -148,14 +148,16 @@ public class FinanceTester implements Tester {
 			} else {
 				failedTests++;
 				failedTestNumbers.add(4);
+				//System.out.println(rofl.getFinancesSinceUntilOf(formatTime.parse("01.01.2010 20:00"), formatTime.parse("01.01.2011 20:00"), "Merchandise").toString());
 			}
 			
 			if(Validator.check(rofl.getFinancesSinceUntilOf(formatTime.parse("01.01.2010 20:00"), formatTime.parse("01.01.2013 20:00"), "Merchandise"),
-					new BigDecimal(6000), 5)){
+					new BigDecimal(16000), 5)){
 				successfulTests++;
 			} else {
 				failedTests++;
 				failedTestNumbers.add(5);
+				System.out.println(rofl.getFinancesSinceUntilOf(formatTime.parse("01.01.2010 20:00"), formatTime.parse("01.01.2013 20:00"), "Merchandise").toString());
 			}
 			
 			if(Validator.check(rofl.getFinancesSinceUntilOf(formatTime.parse("01.01.2010 20:00"), formatTime.parse("18.05.2012 20:00"), "Other"),

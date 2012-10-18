@@ -51,7 +51,7 @@ public class Finances {
 			hM.put(reason, income);
 			this.income.put(currentDate, hM);
 		}
-		this.totalIncome.add(income);
+		this.totalIncome = this.totalIncome.add(income);
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public class Finances {
 			hM.put(reason, expense);
 			this.expense.put(currentDate, hM);
 		}
-		this.totalExpense.add(expense);
+		this.totalExpense = this.totalExpense.add(expense);
 	}
 	
 	/**
