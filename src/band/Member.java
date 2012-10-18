@@ -3,6 +3,7 @@ package band;
 
 import helper.EventNotification;
 import helper.InvalidBandObjectException;
+import helper.Status;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -257,7 +258,7 @@ public class Member extends Person {
 	 * 
 	 * @param e
 	 */
-	public void notifyEvent(final Event e, final EventNotification.Status stat) {
+	public void notifyEvent(final Event e, final Status stat) {
 
 		this.eventNot.add(new EventNotification(e, stat));
 	}
