@@ -28,14 +28,9 @@ public class Validator {
 			Integer caseNum) {
 		for (T object : a)
 			if (!b.contains(object)) {
-//				System.out.println("Test case #"
-//						+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
-//						+ " failed");
 				failedCount++;
 				return false;
 			}
-//		System.out.println("Test case #"
-//				+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " successful");
 		successfulCount++;
 		return true;
 	}
@@ -52,14 +47,9 @@ public class Validator {
 	 */
 	public static <T> boolean check(T a, T b, Integer caseNum) {
 		if (a.equals(b)) {
-//			System.out.println("Test case #"
-//					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
-//					+ " successful");
 			successfulCount++;
 			return true;
 		} else {
-//			System.out.println("Test case #"
-//					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " failed");
 			failedCount++;
 			return false;
 		}
@@ -69,18 +59,11 @@ public class Validator {
 	 * 
 	 * @param status
 	 *            true if successful test; false otherwise
-	 * @param caseNum
-	 *            the number of the test case for debugging purposes
 	 */
-	public static void report(boolean status, Integer caseNum) {
+	public static void report(boolean status) {
 		if (status) {
-//			System.out.println("Test case #"
-//					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
-//					+ " successful");
 			successfulCount++;
 		} else {
-//			System.out.println("Test case #"
-//					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " failed");
 			failedCount++;
 		}
 	}

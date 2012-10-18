@@ -77,8 +77,8 @@ public class AuthenticationTester implements Tester {
 	}
 	
 	/*
-	 * deprecation suppression is only used to ignore the warning of the methods we ourselves 
-	 * declared deprecated due to the enhancements made in assignment #2
+	 * deprecation suppression is only used to ignore the warning of the methods we declared 
+	 * deprecated ourselves due to the enhancements made in assignment #2
 	 * 
 	 * (non-Javadoc)
 	 * @see testing.Tester#runTests()
@@ -100,17 +100,11 @@ public class AuthenticationTester implements Tester {
 		Gig tempGig = null;
 		try {
 			tempGig = new Gig(formatDate.parse("10.10.2010"), "Wien", 10, new BigDecimal(500));
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		} catch (ParseException e1) { e1.printStackTrace(); }
 		
 		try {
 			tempBand.addEvent(tempGig);
-		} catch (InvalidBandObjectException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		} catch (InvalidBandObjectException e1) { e1.printStackTrace(); }
 		
 
 		Method isSubstituteMemberMethod = null, bandAddMember = null, bandGetMembers = null;
@@ -120,11 +114,8 @@ public class AuthenticationTester implements Tester {
 			bandAddMember = Band.class.getMethod("addMember", new Class[] {
 					Member.class, Date.class });
 			bandGetMembers = Band.class.getMethod("getMembers", new Class[] { });
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		}
+		} catch (SecurityException e) {	e.printStackTrace(); 
+		} catch (NoSuchMethodException e) {	e.printStackTrace(); }
 		
 
 		if (Validator.check(Permission.OWNER, thomas.getRole(thomas), 1)) {
@@ -161,8 +152,10 @@ public class AuthenticationTester implements Tester {
 			Authenticator.checkPermissions(markus, thomas, isSubstituteMemberMethod);
 			failedTests++;
 			failedTestNumbers.add(5);
+			Validator.report(false);
 		} catch (InsufficientPermissionsException e) {
 			successfulTests++;
+			Validator.report(true);
 		}
 		
 		thomas.setRole(markus, Permission.GROUP);
@@ -178,16 +171,9 @@ public class AuthenticationTester implements Tester {
 			tempBand.addMember(thomas, formatDate.parse("01.01.2010"));
 			tempBand.addMember(markus, formatDate.parse("01.01.2010"));
 			tempBand.addMember(dominic, formatDate.parse("01.01.2010"));
-		} catch (InvalidDateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidBandObjectException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (InvalidDateException e) { e.printStackTrace();
+		} catch (InvalidBandObjectException e) { e.printStackTrace();
+		} catch (ParseException e) { e.printStackTrace(); }
 		
 		if (Validator.check(Permission.GROUP, thomas.getRole(dominic), 7)) {
 			successfulTests++;
@@ -198,16 +184,9 @@ public class AuthenticationTester implements Tester {
 		
 		try {
 			tempBand.removeMember(dominic, formatDate.parse("01.01.2011"));
-		} catch (InvalidDateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidBandObjectException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (InvalidDateException e) { e.printStackTrace();
+		} catch (InvalidBandObjectException e) { e.printStackTrace();
+		} catch (ParseException e) { e.printStackTrace(); }
 		
 		if (Validator.check(Permission.NONE, thomas.getRole(dominic), 8)) {
 			successfulTests++;
@@ -248,8 +227,6 @@ public class AuthenticationTester implements Tester {
 		} catch (InsufficientPermissionsException e) {
 			failedTests++;
 			failedTestNumbers.add(12);
-			
-			
 		}
 		
 	}
