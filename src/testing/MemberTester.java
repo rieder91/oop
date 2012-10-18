@@ -57,7 +57,7 @@ public class MemberTester implements Tester {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void runTests() {
-		// TODO Auto-generated method stub
+		// TODO Implement tests for Ersatzmitglieder, Member-dependand repertoire
 
 	}
 

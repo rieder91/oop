@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import testing.AuthenticationTester;
 import testing.BandTester;
 import testing.EventTester;
+import testing.FinanceTester;
 import testing.MemberTester;
 import testing.PlaceTester;
 import testing.Tester;
@@ -44,6 +45,7 @@ public class Test {
 			testedModules.add(new MemberTester());
 			testedModules.add(new PlaceTester());
 			testedModules.add(new EventTester());
+			testedModules.add(new FinanceTester());
 			
 			for(Tester t : testedModules) {
 				if(verbose) { t.printTestDescription(); }
