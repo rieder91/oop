@@ -4,6 +4,14 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * A finance handler for any kind of income or expense.
+ * It uses the Finances class to store information for any kind of
+ * income and expense and provides methods to search for them.
+ * 
+ * @author OOP Gruppe 187
+ *
+ */
 public class FinanceHandler {
 	
 	private Finances fin;	
@@ -35,11 +43,12 @@ public class FinanceHandler {
 	}
 	
 	/**
+	 * total turnover of events and others since first entry of a band
 	 * 
 	 * @param b
 	 * 			band object where the handler is used to get finances of their events
 	 * @return
-	 * 			total turnover of events and others since first entry
+	 * 			total turnover
 	 */
 	public BigDecimal totalTurnover(Band b) {
 		BigDecimal eventTurnover = new BigDecimal(0);
@@ -50,6 +59,41 @@ public class FinanceHandler {
 	}
 	
 	/**
+	 * total income of events since first entry of a band
+	 * 
+	 * @param b
+	 * 			band object where the handler is used to get finances of their events
+	 * @return
+	 * 			total income of events
+	 */
+	public BigDecimal totalEventIncome(Band b) {
+		BigDecimal ret = new BigDecimal(0);
+		for (Event e : b.getEvents()) {
+			if (e.getFinances().signum() == 1)
+				ret.add(e.getFinances());
+		}
+		return ret;
+	}
+	
+	/**
+	 * total expense of events since first entry of a band
+	 * 
+	 * @param b
+	 * 			band object where the handler is used to get finances of their events
+	 * @return
+	 * 			total expense of events
+	 */
+	public BigDecimal totalEventExpense(Band b) {
+		BigDecimal ret = new BigDecimal(0);
+		for (Event e : b.getEvents()) {
+			if (e.getFinances().signum() == -1)
+				ret.add(e.getFinances());
+		}
+		return ret;
+	}
+	
+	/**
+	 * the turnover of a specified reason in a period
 	 * 
 	 * @param startDate
 	 * 			first date of a period
@@ -86,22 +130,22 @@ public class FinanceHandler {
 	}
 	
 	/**
+	 * with the use of a filter it is possible to get income/expense/total
+	 * of various reasons in a specified period at once
 	 * 
-	 * @param startDate
-	 * 			first date of a period
-	 * @param endDate
-	 * 			end date of a period
 	 * @param f
-	 * 			a filter used for enhanced search of income/expense/total
+	 * 			a filter used for enhanced search
 	 * @return
 	 * 			a string with the specified filter information
 	 */
-	public String getFinancesSinceTo(Date startDate, Date endDate, FinanceFilter f) {
+	public String getFinancesSinceTo(FinanceFilter f) {
 		BigDecimal tmp;
 		BigDecimal total = new BigDecimal(0);
 		String retS = new String();
 		String reasons = listReason(f.getReason());
-
+		Date startDate = f.getStartDate();
+		Date endDate = f.getEndDate();
+		
 		tmp = new BigDecimal(0);
 		for (Date d : fin.getIncome().keySet()) {
 			if(endDate.after(d)) {

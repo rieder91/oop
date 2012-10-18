@@ -5,6 +5,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.TreeMap;
 
+/**
+ * This class stores information for any kind of income and expense.
+ * It is used in the FinanceHandler class.
+ * 
+ * @author OOP Gruppe 187
+ *
+ */
 public class Finances {
 	
 	// income

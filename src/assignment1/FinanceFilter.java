@@ -1,10 +1,19 @@
 package assignment1;
 
 import java.util.ArrayList;
+import java.util.Date;
 
+/**
+ * This class implements a filter for enhanced search in finances.
+ * 
+ * @author OOP Gruppe 187
+ *
+ */
 public class FinanceFilter {
 	
 	private ArrayList<String> reason;
+	private Date startDate;
+	private Date endDate;
 	private boolean expense;
 	private boolean income;
 	private boolean total;
@@ -19,7 +28,9 @@ public class FinanceFilter {
 	 * @param total
 	 * 				true if turnover should be used
 	 */
-	public FinanceFilter(boolean expense, boolean income, boolean total) {
+	public FinanceFilter(Date startDate, Date endDate, boolean expense, boolean income, boolean total) {
+		this.startDate = startDate;
+		this.endDate = endDate;
 		this.reason = new ArrayList<String>();
 		this.expense = expense;
 		this.income = income;
@@ -38,7 +49,9 @@ public class FinanceFilter {
 	 * @param total
 	 * 				true if turnover should be used
 	 */
-	public FinanceFilter(ArrayList<String> reason, boolean expense, boolean income, boolean total) {
+	public FinanceFilter(Date startDate, Date endDate, ArrayList<String> reason, boolean expense, boolean income, boolean total) {
+		this.startDate = startDate;
+		this.endDate = endDate;
 		this.reason = reason;
 		this.expense = expense;
 		this.income = income;
@@ -90,6 +103,14 @@ public class FinanceFilter {
 	 */
 	public boolean isTotal() {
 		return total;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
 	}
 	
 }
