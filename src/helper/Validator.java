@@ -1,4 +1,4 @@
-package assignment1;
+package helper;
 
 import java.util.ArrayList;
 
@@ -28,14 +28,14 @@ public class Validator {
 			Integer caseNum) {
 		for (T object : a)
 			if (!b.contains(object)) {
-				System.out.println("Test case #"
-						+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
-						+ " failed");
+//				System.out.println("Test case #"
+//						+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
+//						+ " failed");
 				failedCount++;
 				return false;
 			}
-		System.out.println("Test case #"
-				+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " successful");
+//		System.out.println("Test case #"
+//				+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " successful");
 		successfulCount++;
 		return true;
 	}
@@ -52,14 +52,14 @@ public class Validator {
 	 */
 	public static <T> boolean check(T a, T b, Integer caseNum) {
 		if (a.equals(b)) {
-			System.out.println("Test case #"
-					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
-					+ " successful");
+//			System.out.println("Test case #"
+//					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
+//					+ " successful");
 			successfulCount++;
 			return true;
 		} else {
-			System.out.println("Test case #"
-					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " failed");
+//			System.out.println("Test case #"
+//					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " failed");
 			failedCount++;
 			return false;
 		}
@@ -74,13 +74,13 @@ public class Validator {
 	 */
 	public static void report(boolean status, Integer caseNum) {
 		if (status) {
-			System.out.println("Test case #"
-					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
-					+ " successful");
+//			System.out.println("Test case #"
+//					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum)
+//					+ " successful");
 			successfulCount++;
 		} else {
-			System.out.println("Test case #"
-					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " failed");
+//			System.out.println("Test case #"
+//					+ ((caseNum <= 9) ? ("0" + caseNum) : caseNum) + " failed");
 			failedCount++;
 		}
 	}
@@ -89,7 +89,7 @@ public class Validator {
 	 * prints the test-case overview to stdout
 	 */
 	public static void report() {
-		System.out.println("\nNumber of successful tests: " + successfulCount);
-		System.out.println("Number of failed tests: " + failedCount);
+		System.out.println("\nNumber overall of successful tests: " + successfulCount);
+		System.out.println("Number overall of failed tests: " + failedCount);
 	}
 }

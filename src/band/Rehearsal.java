@@ -1,4 +1,6 @@
-package assignment1;
+package band;
+
+import helper.InvalidDateException;
 
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -10,61 +12,61 @@ import java.util.HashMap;
 import auth.Authenticatable;
 
 /**
- * Class that contains the pay of a gig.
+ * Class that contains the cost of a rehearsal.
  * 
- * A gig is an event, the event information is stored in event.
+ * A rehearsal is an event, the event information is stored in event.
  * 
  * @author OOP Gruppe 187
  */
-public class Gig extends Event {
+public class Rehearsal extends Event {
 
-	private BigDecimal pay;
+	private BigDecimal cost;
 
 	/**
-	 * @return a string representation of a Gig
+	 * @return a string representation of a rehearsal
 	 */
 	@Override
 	public String toString() {
 
-		return super.toString() + " Pay: " + this.pay;
+		return super.toString() + " Costs: " + this.cost;
 	}
 
 	/**
 	 * Constructor which requires four arguments
 	 * 
 	 * @param time
-	 *            the time of the gig
+	 *            the time of the rehearsal
 	 * @param place
-	 *            the place of the gig
+	 *            the place of the rehearsal
 	 * @param duration
-	 *            the duration of the gig
-	 * @param pay
-	 *            the pay of the gig
+	 *            the duration of the rehearsal
+	 * @param cost
+	 *            the costs of the rehearsal
 	 */
 	@Deprecated
-	public Gig(Date time, String place, Integer duration, BigDecimal pay) {
+	public Rehearsal(Date time, String place, Integer duration, BigDecimal cost) {
 
 		super(time, place, duration);
-		this.pay = pay;
+		this.cost = cost;
 	}
 
 	/**
 	 * Constructor which requires four arguments
 	 * 
 	 * @param time
-	 *            the time of the gig
+	 *            the time of the rehearsal
 	 * @param place
-	 *            the place of the gig
+	 *            the place of the rehearsal
 	 * @param duration
-	 *            the duration of the gig
-	 * @param pay
-	 *            the pay of the gig
+	 *            the duration of the rehearsal
+	 * @param cost
+	 *            the costs of the rehearsal
 	 */
 	@Deprecated
-	public Gig(Date time, String place, Integer duration, Double pay) {
+	public Rehearsal(Date time, String place, Integer duration, Double cost) {
 
 		super(time, place, duration);
-		this.pay = new BigDecimal(pay);
+		this.cost = new BigDecimal(cost);
 	}
 
 	/**
@@ -73,34 +75,34 @@ public class Gig extends Event {
 	 * @param time
 	 * @param place
 	 * @param duration
-	 * @param pay
+	 * @param cost
 	 */
-	public Gig(String name, Date time, String place, Integer duration,
-			BigDecimal pay) {
+	public Rehearsal(String name, Date time, String place, Integer duration,
+			BigDecimal cost) {
 		super(name, time, place, duration);
-		this.pay = pay;
+		this.cost = cost;
 	}
 
 	/**
-	 * @return the pay you get for the gig
+	 * @return the cost of the rehearsal
 	 */
 	@Override
 	public BigDecimal getFinances() {
 
-		return this.pay;
+		return this.cost.multiply(new BigDecimal(-1.0));
 	}
 
 	/**
-	 * compares two gigs
+	 * compares two rehearsals
 	 * 
-	 * @return true if the gigs are equal false otherwise
+	 * @return true if the rehearsals are equal false otherwise
 	 */
 	@Override
 	public boolean equals(Object o) {
 
 		boolean ret = super.equals(o);
 
-		if (ret && this.pay.equals(((Gig) o).pay))
+		if (ret && this.cost.equals(((Rehearsal) o).cost))
 			return true;
 		else
 			return false;
@@ -115,28 +117,24 @@ public class Gig extends Event {
 						"change date is before last edit");
 
 		if (e.getClass() == this.getClass()) {
-			Gig newGig = (Gig) e;
-			Gig history = new Gig(this.getTime(), this.getPlace(),
-					this.getDuration(), this.pay);
+			Rehearsal newRehearsal = (Rehearsal) e;
+			Rehearsal history = new Rehearsal(this.getTime(), this.getPlace(),
+					this.getDuration(), this.cost);
 			this.addToHistory(history, changeDate);
 
-			this.setTime(newGig.getTime());
-			this.setDuration(newGig.getDuration());
-			this.setPlace(newGig.getPlace());
-			this.pay = newGig.pay;
+			this.setTime(newRehearsal.getTime());
+			this.setDuration(newRehearsal.getDuration());
+			this.setPlace(newRehearsal.getPlace());
+			this.cost = newRehearsal.cost;
 		} else {
 			// type error
 		}
 	}
 
 	@Override
-	/**
-	 * Reverts the Event to the state at @restoreDate and saves the current state with the date @currentDate
-	 * 
-	 */
 	public void restoreEvent(Date restoreDate, Date currentDate)
 			throws InvalidDateException {
-		Gig oldGig = (Gig) this.getEventHistory().get(restoreDate);
+		Rehearsal oldGig = (Rehearsal) this.getEventHistory().get(restoreDate);
 		if (oldGig != null)
 			this.updateEvent(oldGig, currentDate);
 		else
@@ -220,7 +218,7 @@ public class Gig extends Event {
 				return true;
 		return false;
 	}
-	
+
 	@Override
 	public HashMap<Method, ArrayList<Permission>> getPermissions() {
 		return permissions;
@@ -230,4 +228,5 @@ public class Gig extends Event {
 	public HashMap<Authenticatable, Permission> getRoles() {
 		return roles;
 	}
+
 }

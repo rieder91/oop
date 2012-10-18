@@ -1,4 +1,4 @@
-package assignment1;
+package band;
 
 /**
  * Class that contains all the information belonging to a track.

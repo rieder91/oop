@@ -1,4 +1,4 @@
-package assignment1;
+package helper;
 
 /**
  * an InvalidBandObjectException is thrown when an illegal object is being added

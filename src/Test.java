@@ -1,3 +1,8 @@
+import helper.InsufficientPermissionsException;
+import helper.InvalidBandObjectException;
+import helper.InvalidDateException;
+import helper.Validator;
+
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -5,23 +10,25 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import assignment1.Band;
-import assignment1.Event;
-import assignment1.Gig;
-import assignment1.InvalidBandObjectException;
-import assignment1.InvalidDateException;
-import assignment1.Member;
-import assignment1.Rehearsal;
-import assignment1.Track;
-import assignment1.Validator;
+import band.Band;
+import band.Event;
+import band.Gig;
+import band.Member;
+import band.Rehearsal;
+import band.Track;
+
 import auth.Authenticator;
-import auth.InsufficientPermissionsException;
 
 /**
  * Class which runs several test cases for the program's core and validates the
  * results
  * 
  * @author OOP Gruppe 187
+ */
+
+
+/*
+ * TODO refactor test cases to methods
  */
 
 public class Test {
@@ -33,7 +40,7 @@ public class Test {
 	 *            command line arguments
 	 */
 	// the deprecation suppression is only used for our own classes and not for
-	// any anything in the jdk
+	// anything in the jdk
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		// Stuff needed for date parsing
