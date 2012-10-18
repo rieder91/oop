@@ -167,6 +167,24 @@ public class Member extends Person {
 		this.events.get(idx).agree(agreed);
 	}
 
+	
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+	
+		return firstName;
+	}
+
+	
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+	
+		return lastName;
+	}
+
 	/**
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
