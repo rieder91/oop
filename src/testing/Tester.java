@@ -20,4 +20,5 @@ public interface Tester {
 	 * runs all test cases that were specified
 	 */
 	public void runTests();
+	
 }
