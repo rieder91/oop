@@ -10,14 +10,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import testing.AuthenticationTester;
+import testing.Tester;
+import auth.Authenticator;
 import band.Band;
 import band.Event;
 import band.Gig;
 import band.Member;
 import band.Rehearsal;
 import band.Track;
-
-import auth.Authenticator;
 
 /**
  * Class which runs several test cases for the program's core and validates the
@@ -784,32 +785,20 @@ public class Test {
 			 * 
 			 */
 
-			Method memberAddTrack, bandAddMember;
-			try {
-				memberAddTrack = Member.class.getMethod("addTrack",
-						new Class[] { Track.class });
-				bandAddMember = Band.class.getMethod("addMember", new Class[] {
-						Member.class, Date.class });
-
-				// markus.setRole(markus, Permission.OWNER);
-
-				Authenticator.printPermissions(thomas);
-
-				Authenticator.checkPermissions(markus, markus, memberAddTrack);
-
-				Authenticator.checkPermissions(markus, ultraCoders,
-						bandAddMember);
-
-			} catch (InsufficientPermissionsException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			
+			
+			
+			ArrayList<Tester> testedModules= new ArrayList<Tester>();
+			testedModules.add(new AuthenticationTester());
+			
+			
+			for(Tester t : testedModules) {
+				t.printTestDescription();
+				t.runTests();
+				t.printTestResults();
 			}
+			
+			
 
 		} catch (InvalidDateException e) {
 			System.out.println(e.getMessage());
