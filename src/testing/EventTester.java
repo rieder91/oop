@@ -36,8 +36,8 @@ public class EventTester implements Tester {
 
 		testCases.put(1, "Change the details of an event");
 		testCases.put(2, "Revert the changes made to an event");
-		testCases.put(3, "Try to edit an event with a invalid changeDate");
-		testCases.put(4, "restore non existant Event");
+		testCases.put(3, "Try to edit an event with an invalid changeDate");
+		testCases.put(4, "restore a non existant Event");
 		testCases.put(5, "remove and restore an event");
 	}
 
@@ -219,7 +219,6 @@ public class EventTester implements Tester {
 		} catch(InvalidDateException e) {
 			System.out.println(e.getMessage());
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvalidBandObjectException e) {
 			System.out.println(e.getMessage());
