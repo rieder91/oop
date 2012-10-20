@@ -1,8 +1,10 @@
 
 package testing;
 
+import helper.EventNotification;
 import helper.InvalidBandObjectException;
 import helper.InvalidDateException;
+import helper.Status;
 import helper.Validator;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -115,6 +117,10 @@ public class MemberTester implements Tester {
 		Rehearsal postNova2010 = null, postNova2011 = null;
 
 		try {
+			novarock2010 = new Gig(formatTime.parse("11.07.2010 12:00"), "Pannonia Fields II", 72, 2500.0);
+			novarock2011 = new Gig(formatTime.parse("11.07.2011 13:00"), "Pannonia Fields II", 72, 5000.0);
+			novarock2012 = new Gig(formatTime.parse("08.07.2012 14:00"), "Pannonia Fields II", 72, 10000.0);
+
 			postNova2010 = new Rehearsal("test1", formatTime.parse("15.08.2010 20:00"),
 					new Place("Vienna Sound Studio"), 5, new BigDecimal(100.0));
 			postNova2011 = new Rehearsal("test2", formatTime.parse("15.08.2011 20:00"), new Place(
@@ -347,16 +353,18 @@ public class MemberTester implements Tester {
 			 * 
 			 * Test Case #10 Add a valid track for the second time
 			 * 
-			 * should be: thunderstruck, stairway, prayer, bloodbrothers, byob, mycurse
+			 * should: throw exception
 			 */
 
-			markus.addTrack(byob, formatDate.parse("05.05.2012"));
-			if (Validator.check(ultraCoders.getTracks(), allTracks, 10)) {
-				successfulTests++;
-			}
-			else {
+			try {
+				markus.addTrack(byob, formatDate.parse("05.05.2012"));
 				failedTests++;
-				failedTestNumbers.add(10);
+				failedTestNumbers.add(9);
+				Validator.report(false);
+			}
+			catch (InvalidBandObjectException e) {
+				successfulTests++;
+				Validator.report(true);
 			}
 
 			/*
@@ -371,7 +379,7 @@ public class MemberTester implements Tester {
 			}
 			else {
 				failedTests++;
-				failedTestNumbers.add(12);
+				failedTestNumbers.add(11);
 			}
 
 			/*
@@ -415,6 +423,36 @@ public class MemberTester implements Tester {
 			else {
 				failedTests++;
 				failedTestNumbers.add(14);
+			}
+
+			/*
+			 * 
+			 * Test Case #15
+			 * 
+			 * should be:
+			 */
+
+			ArrayList<EventNotification> case15 = new ArrayList<EventNotification>();
+			case15.add(new EventNotification(postNova2011, Status.scheduled));
+			case15.add(new EventNotification(novarock2010, Status.scheduled));
+			case15.add(new EventNotification(postNova2010, Status.scheduled));
+			case15.add(new EventNotification(novarock2010, Status.canceled));
+			case15.add(new EventNotification(novarock2012, Status.scheduled));
+			case15.add(new EventNotification(postNova2011, Status.deferred));
+
+			ultraCoders.addEvent(postNova2011);
+			ultraCoders.addEvent(novarock2010);
+			ultraCoders.addEvent(postNova2010);
+			ultraCoders.removeEvent(novarock2010);
+			ultraCoders.addEvent(novarock2012);
+			ultraCoders.deferreEvent(postNova2011, formatDate.parse("05.10.2012"));
+
+			if (Validator.check(thomas.getNotifications(), case15, 15)) {
+				successfulTests++;
+			}
+			else {
+				failedTests++;
+				failedTestNumbers.add(15);
 			}
 
 		}
