@@ -268,6 +268,96 @@ public class Band implements Authenticatable {
 	}
 
 	/**
+	 * @return
+	 */
+	@Override
+	public int hashCode() {
+
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((events == null) ? 0 : events.hashCode());
+		result = prime * result + ((finances == null) ? 0 : finances.hashCode());
+		result = prime * result + ((genre == null) ? 0 : genre.hashCode());
+		result = prime * result + ((memberDates == null) ? 0 : memberDates.hashCode());
+		result = prime * result + ((members == null) ? 0 : members.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((permissions == null) ? 0 : permissions.hashCode());
+		result = prime * result + ((previousEvents == null) ? 0 : previousEvents.hashCode());
+		result = prime * result + ((previousMembers == null) ? 0 : previousMembers.hashCode());
+		result = prime * result + ((previousTracks == null) ? 0 : previousTracks.hashCode());
+		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
+		result = prime * result + ((trackDates == null) ? 0 : trackDates.hashCode());
+		result = prime * result + ((tracks == null) ? 0 : tracks.hashCode());
+		return result;
+	}
+
+	/**
+	 * @param obj
+	 * @return
+	 */
+	@Override
+	public boolean equals(Object obj) {
+
+		if (this == obj) { return true; }
+		if (obj == null) { return false; }
+		if (!(obj instanceof Band)) { return false; }
+		Band other = (Band) obj;
+		if (events == null) {
+			if (other.events != null) { return false; }
+		}
+		else if (!events.equals(other.events)) { return false; }
+		if (finances == null) {
+			if (other.finances != null) { return false; }
+		}
+		else if (!finances.equals(other.finances)) { return false; }
+		if (genre == null) {
+			if (other.genre != null) { return false; }
+		}
+		else if (!genre.equals(other.genre)) { return false; }
+		if (memberDates == null) {
+			if (other.memberDates != null) { return false; }
+		}
+		else if (!memberDates.equals(other.memberDates)) { return false; }
+		if (members == null) {
+			if (other.members != null) { return false; }
+		}
+		else if (!members.equals(other.members)) { return false; }
+		if (name == null) {
+			if (other.name != null) { return false; }
+		}
+		else if (!name.equals(other.name)) { return false; }
+		if (permissions == null) {
+			if (other.permissions != null) { return false; }
+		}
+		else if (!permissions.equals(other.permissions)) { return false; }
+		if (previousEvents == null) {
+			if (other.previousEvents != null) { return false; }
+		}
+		else if (!previousEvents.equals(other.previousEvents)) { return false; }
+		if (previousMembers == null) {
+			if (other.previousMembers != null) { return false; }
+		}
+		else if (!previousMembers.equals(other.previousMembers)) { return false; }
+		if (previousTracks == null) {
+			if (other.previousTracks != null) { return false; }
+		}
+		else if (!previousTracks.equals(other.previousTracks)) { return false; }
+		if (roles == null) {
+			if (other.roles != null) { return false; }
+		}
+		else if (!roles.equals(other.roles)) { return false; }
+		if (trackDates == null) {
+			if (other.trackDates != null) { return false; }
+		}
+		else if (!trackDates.equals(other.trackDates)) { return false; }
+		if (tracks == null) {
+			if (other.tracks != null) { return false; }
+		}
+		else if (!tracks.equals(other.tracks)) { return false; }
+		return true;
+	}
+
+	/**
 	 * return the revenue of the band within a given time period
 	 * 
 	 * @param d1
@@ -459,6 +549,7 @@ public class Band implements Authenticatable {
 				for (final Date leaveDate : this.previousMembers.get(m))
 					if (leaveDate.before(d) && leaveDate.after(lastValidDate)) {
 						lastValidDate = null;
+						break;
 					}
 			}
 
