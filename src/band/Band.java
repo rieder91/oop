@@ -15,13 +15,11 @@ import finances.FinanceFilter;
 import finances.Finances;
 
 /**
- * Class that contains all the information belonging to the band. Members,
- * tracks and events can be added and removed. There are validity checks for the
- * dates and to avoid duplicate elements. A history is saved in order to enable
- * queries about the bands' past. There are Getters for Events, Tracks and
- * Members which return all Objects at either a given key date or within a
- * range. A Billing-Method has also been implemented which calculates the bands
- * revenue within a given time frame.
+ * Class that contains all the information belonging to the band. Members, tracks and events can be added and removed.
+ * There are validity checks for the dates and to avoid duplicate elements. A history is saved in order to enable
+ * queries about the bands' past. There are Getters for Events, Tracks and Members which return all Objects at either a
+ * given key date or within a range. A Billing-Method has also been implemented which calculates the bands revenue
+ * within a given time frame.
  * 
  * @author OOP Gruppe 187
  */
@@ -109,14 +107,12 @@ public class Band implements Authenticatable {
 	}
 
 	/**
-	 * the method adds positive @money to income and negative to expense. if @money
-	 * is zero, nothing will be done.
+	 * the method adds positive @money to income and negative to expense. if @money is zero, nothing will be done.
 	 * 
 	 * @param currentDate
 	 *            date of entry
 	 * @param reason
-	 *            short info why money was get or spent (i.e. "Merchandise" or
-	 *            "Advertisment")
+	 *            short info why money was get or spent (i.e. "Merchandise" or "Advertisment")
 	 * @param money
 	 *            income if positive, expense if negative
 	 */
@@ -138,8 +134,8 @@ public class Band implements Authenticatable {
 	 * @param d
 	 *            date the member (re)-joined the band
 	 * @throws InvalidDateException
-	 *             thrown if the member has already joined AND left the band
-	 *             once AND the "leave-date" is after the new join-date
+	 *             thrown if the member has already joined AND left the band once AND the "leave-date" is after the new
+	 *             join-date
 	 * @throws InvalidBandObjectException
 	 *             thrown if the member already exists
 	 */
@@ -189,8 +185,8 @@ public class Band implements Authenticatable {
 	 * @param d
 	 *            the date the track was added
 	 * @throws InvalidDateException
-	 *             thrown if the track has already been added AND removed before
-	 *             AND the removal date is PRIOR to the new add date
+	 *             thrown if the track has already been added AND removed before AND the removal date is PRIOR to the
+	 *             new add date
 	 * @throws InvalidBandObjectException
 	 *             thrown if the track already exists
 	 */
@@ -275,19 +271,19 @@ public class Band implements Authenticatable {
 
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((events == null) ? 0 : events.hashCode());
-		result = prime * result + ((finances == null) ? 0 : finances.hashCode());
-		result = prime * result + ((genre == null) ? 0 : genre.hashCode());
-		result = prime * result + ((memberDates == null) ? 0 : memberDates.hashCode());
-		result = prime * result + ((members == null) ? 0 : members.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((permissions == null) ? 0 : permissions.hashCode());
-		result = prime * result + ((previousEvents == null) ? 0 : previousEvents.hashCode());
-		result = prime * result + ((previousMembers == null) ? 0 : previousMembers.hashCode());
-		result = prime * result + ((previousTracks == null) ? 0 : previousTracks.hashCode());
-		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
-		result = prime * result + ((trackDates == null) ? 0 : trackDates.hashCode());
-		result = prime * result + ((tracks == null) ? 0 : tracks.hashCode());
+		result = prime * result + ((this.events == null) ? 0 : this.events.hashCode());
+		result = prime * result + ((this.finances == null) ? 0 : this.finances.hashCode());
+		result = prime * result + ((this.genre == null) ? 0 : this.genre.hashCode());
+		result = prime * result + ((this.memberDates == null) ? 0 : this.memberDates.hashCode());
+		result = prime * result + ((this.members == null) ? 0 : this.members.hashCode());
+		result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
+		result = prime * result + ((this.permissions == null) ? 0 : this.permissions.hashCode());
+		result = prime * result + ((this.previousEvents == null) ? 0 : this.previousEvents.hashCode());
+		result = prime * result + ((this.previousMembers == null) ? 0 : this.previousMembers.hashCode());
+		result = prime * result + ((this.previousTracks == null) ? 0 : this.previousTracks.hashCode());
+		result = prime * result + ((this.roles == null) ? 0 : this.roles.hashCode());
+		result = prime * result + ((this.trackDates == null) ? 0 : this.trackDates.hashCode());
+		result = prime * result + ((this.tracks == null) ? 0 : this.tracks.hashCode());
 		return result;
 	}
 
@@ -298,62 +294,62 @@ public class Band implements Authenticatable {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (this == obj) { return true; }
-		if (obj == null) { return false; }
-		if (!(obj instanceof Band)) { return false; }
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (!(obj instanceof Band)) return false;
 		Band other = (Band) obj;
-		if (events == null) {
-			if (other.events != null) { return false; }
+		if (this.events == null) {
+			if (other.events != null) return false;
 		}
-		else if (!events.equals(other.events)) { return false; }
-		if (finances == null) {
-			if (other.finances != null) { return false; }
+		else if (!this.events.equals(other.events)) return false;
+		if (this.finances == null) {
+			if (other.finances != null) return false;
 		}
-		else if (!finances.equals(other.finances)) { return false; }
-		if (genre == null) {
-			if (other.genre != null) { return false; }
+		else if (!this.finances.equals(other.finances)) return false;
+		if (this.genre == null) {
+			if (other.genre != null) return false;
 		}
-		else if (!genre.equals(other.genre)) { return false; }
-		if (memberDates == null) {
-			if (other.memberDates != null) { return false; }
+		else if (!this.genre.equals(other.genre)) return false;
+		if (this.memberDates == null) {
+			if (other.memberDates != null) return false;
 		}
-		else if (!memberDates.equals(other.memberDates)) { return false; }
-		if (members == null) {
-			if (other.members != null) { return false; }
+		else if (!this.memberDates.equals(other.memberDates)) return false;
+		if (this.members == null) {
+			if (other.members != null) return false;
 		}
-		else if (!members.equals(other.members)) { return false; }
-		if (name == null) {
-			if (other.name != null) { return false; }
+		else if (!this.members.equals(other.members)) return false;
+		if (this.name == null) {
+			if (other.name != null) return false;
 		}
-		else if (!name.equals(other.name)) { return false; }
-		if (permissions == null) {
-			if (other.permissions != null) { return false; }
+		else if (!this.name.equals(other.name)) return false;
+		if (this.permissions == null) {
+			if (other.permissions != null) return false;
 		}
-		else if (!permissions.equals(other.permissions)) { return false; }
-		if (previousEvents == null) {
-			if (other.previousEvents != null) { return false; }
+		else if (!this.permissions.equals(other.permissions)) return false;
+		if (this.previousEvents == null) {
+			if (other.previousEvents != null) return false;
 		}
-		else if (!previousEvents.equals(other.previousEvents)) { return false; }
-		if (previousMembers == null) {
-			if (other.previousMembers != null) { return false; }
+		else if (!this.previousEvents.equals(other.previousEvents)) return false;
+		if (this.previousMembers == null) {
+			if (other.previousMembers != null) return false;
 		}
-		else if (!previousMembers.equals(other.previousMembers)) { return false; }
-		if (previousTracks == null) {
-			if (other.previousTracks != null) { return false; }
+		else if (!this.previousMembers.equals(other.previousMembers)) return false;
+		if (this.previousTracks == null) {
+			if (other.previousTracks != null) return false;
 		}
-		else if (!previousTracks.equals(other.previousTracks)) { return false; }
-		if (roles == null) {
-			if (other.roles != null) { return false; }
+		else if (!this.previousTracks.equals(other.previousTracks)) return false;
+		if (this.roles == null) {
+			if (other.roles != null) return false;
 		}
-		else if (!roles.equals(other.roles)) { return false; }
-		if (trackDates == null) {
-			if (other.trackDates != null) { return false; }
+		else if (!this.roles.equals(other.roles)) return false;
+		if (this.trackDates == null) {
+			if (other.trackDates != null) return false;
 		}
-		else if (!trackDates.equals(other.trackDates)) { return false; }
-		if (tracks == null) {
-			if (other.tracks != null) { return false; }
+		else if (!this.trackDates.equals(other.trackDates)) return false;
+		if (this.tracks == null) {
+			if (other.tracks != null) return false;
 		}
-		else if (!tracks.equals(other.tracks)) { return false; }
+		else if (!this.tracks.equals(other.tracks)) return false;
 		return true;
 	}
 
@@ -414,8 +410,8 @@ public class Band implements Authenticatable {
 	}
 
 	/**
-	 * with the use of a filter it is possible to get income/expense/total of
-	 * various reasons in a specified period at once
+	 * with the use of a filter it is possible to get income/expense/total of various reasons in a specified period at
+	 * once
 	 * 
 	 * @param f
 	 *            a filter used for enhanced search
@@ -486,8 +482,7 @@ public class Band implements Authenticatable {
 	 * @param endDate
 	 *            end date of a period
 	 * @param reason
-	 *            short info why money was get or spent (i.e. "Merchandise" or
-	 *            "Advertisement")
+	 *            short info why money was get or spent (i.e. "Merchandise" or "Advertisement")
 	 * @return total finances of @reason, 0 if no entries where found
 	 */
 	public BigDecimal getFinancesSinceUntilOf(final Date startDate, final Date endDate, final String reason) {
@@ -529,8 +524,7 @@ public class Band implements Authenticatable {
 	 * 
 	 * @param d
 	 *            key date
-	 * @return an ArrayList of all members that were part of the band on the
-	 *         given day
+	 * @return an ArrayList of all members that were part of the band on the given day
 	 */
 	public ArrayList<Member> getMembers(final Date d) {
 
@@ -600,8 +594,7 @@ public class Band implements Authenticatable {
 	 * 
 	 * @param d
 	 *            key date
-	 * @return an ArrayList of all the tracks that the band was performing at
-	 *         the given date
+	 * @return an ArrayList of all the tracks that the band was performing at the given date
 	 */
 	public ArrayList<Track> getTracks(Date d) {
 
@@ -631,8 +624,7 @@ public class Band implements Authenticatable {
 	}
 
 	/**
-	 * initializes the permissions for each method of the class; this method
-	 * should be called in the constructor
+	 * initializes the permissions for each method of the class; this method should be called in the constructor
 	 */
 	@Override
 	public void initPermissions() {
@@ -708,8 +700,7 @@ public class Band implements Authenticatable {
 	/**
 	 * @param reason
 	 *            an ArrayList with reasons
-	 * @return a readable string with all reasons (i.e.
-	 *         "Merchandise, Advertisment, Others: ")
+	 * @return a readable string with all reasons (i.e. "Merchandise, Advertisment, Others: ")
 	 */
 	private String listReason(final ArrayList<String> reason) {
 
@@ -777,8 +768,7 @@ public class Band implements Authenticatable {
 	 * @param d
 	 *            the date the member left the band
 	 * @throws InvalidDateException
-	 *             thrown if the "leave-date" of the member is prior to the last
-	 *             join date
+	 *             thrown if the "leave-date" of the member is prior to the last join date
 	 * @throws InvalidBandObjectException
 	 *             thrown if the member doesnt exist
 	 */

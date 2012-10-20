@@ -41,10 +41,12 @@ public class Member extends Person {
 
 	/**
 	 * @param bnd
+	 * @throws InvalidBandObjectException
 	 */
-	public void addBand(Band bnd) {
+	public void addBand(Band bnd) throws InvalidBandObjectException {
 
-		System.out.println(this.bands.add(bnd));
+		if (this.bands.contains(bnd)) throw new InvalidBandObjectException("Member is already in this band");
+		this.bands.add(bnd);
 	}
 
 	/**
@@ -63,7 +65,7 @@ public class Member extends Person {
 	 */
 	public ArrayList<Rehearsal> getRehersal() {
 
-		return rehersals;
+		return this.rehersals;
 
 	}
 
@@ -146,6 +148,7 @@ public class Member extends Person {
 		if (!this.repertoire.contains(tr)) {
 			this.repertoire.add(tr);
 		}
+		else throw new InvalidBandObjectException("Track already exists!");
 		for (Band bnd : this.bands) {
 			bnd.addTrack(tr, d);
 		}
@@ -157,12 +160,14 @@ public class Member extends Person {
 	 * @param e
 	 *            event you want to agree or disagree
 	 * @param agreed
-	 *            agree or disagree to the proposed date true - agree false -
-	 *            disagree
+	 *            agree or disagree to the proposed date true - agree false - disagree
+	 * @throws InvalidBandObjectException
 	 */
-	public void agree(final Event e, final Date date, final boolean agreed) {
+	public void agree(final Event e, final Date date, final boolean agreed) throws InvalidBandObjectException {
 
-		final int idx = this.events.indexOf(new ProposedDate(e, date));
+		ProposedDate propd = new ProposedDate(e, date);
+		if (!this.events.contains(propd)) throw new InvalidBandObjectException("There is no such event!");
+		final int idx = this.events.indexOf(propd);
 		this.events.get(idx).agree(agreed);
 	}
 
@@ -171,7 +176,7 @@ public class Member extends Person {
 	 */
 	public String getFirstName() {
 
-		return firstName;
+		return this.firstName;
 	}
 
 	/**
@@ -179,7 +184,7 @@ public class Member extends Person {
 	 */
 	public String getLastName() {
 
-		return lastName;
+		return this.lastName;
 	}
 
 	/**
@@ -190,12 +195,15 @@ public class Member extends Person {
 	 * @param reason
 	 *            the reason you have agreed or disagreed
 	 * @param agreed
-	 *            agree or disagree to the proposed date true - agree false -
-	 *            disagree
+	 *            agree or disagree to the proposed date true - agree false - disagree
+	 * @throws InvalidBandObjectException
 	 */
-	public void agree(final Event e, final Date date, final String reason, final boolean agreed) {
+	public void agree(final Event e, final Date date, final String reason, final boolean agreed)
+			throws InvalidBandObjectException {
 
-		final int idx = this.events.indexOf(new ProposedDate(e, date));
+		ProposedDate propd = new ProposedDate(e, date);
+		if (!this.events.contains(propd)) throw new InvalidBandObjectException("There is no such event!");
+		final int idx = this.events.indexOf(propd);
 		this.events.get(idx).agree(agreed, reason);
 	}
 
@@ -235,6 +243,7 @@ public class Member extends Person {
 	 */
 	public ArrayList<EventNotification> getNotifications() {
 
+		// TODO
 		return this.eventNot;
 	}
 
@@ -266,8 +275,7 @@ public class Member extends Person {
 	}
 
 	/**
-	 * initializes the permissions for each method of the class; this method
-	 * should be called in the constructor
+	 * initializes the permissions for each method of the class; this method should be called in the constructor
 	 */
 	@Override
 	public void initPermissions() {
@@ -309,8 +317,7 @@ public class Member extends Person {
 	}
 
 	/**
-	 * @return true if the member is a substitute member false if the member
-	 *         isn't a substitute member
+	 * @return true if the member is a substitute member false if the member isn't a substitute member
 	 */
 	public boolean isSubstituteMember() {
 
@@ -321,9 +328,12 @@ public class Member extends Person {
 	 * Notify a member about the event @e.
 	 * 
 	 * @param e
+	 * @throws InvalidBandObjectException
 	 */
-	public void notifyEvent(final Event e, final Status stat) {
+	public void notifyEvent(final Event e, final Status stat) throws InvalidBandObjectException {
 
+		if (this.eventNot.contains(new EventNotification(e, stat)))
+			throw new InvalidBandObjectException("Already notified!");
 		this.eventNot.add(new EventNotification(e, stat));
 	}
 
@@ -336,14 +346,15 @@ public class Member extends Person {
 	 * @throws InvalidDateException
 	 */
 	public void removeTrack(final Track tr, Date d) throws InvalidBandObjectException, InvalidDateException {
+
 		int idx;
-		if ((idx=this.repertoire.indexOf(tr)) != -1) {
+		if ((idx = this.repertoire.indexOf(tr)) != -1) {
 			this.repertoire.remove(idx);
 			for (Band bnd : this.bands) {
 				bnd.removeTrack(tr, d);
 			}
 		}
-		else throw new InvalidBandObjectException("track does not exist");
+		else throw new InvalidBandObjectException("Track does not exist!");
 	}
 
 	/**
