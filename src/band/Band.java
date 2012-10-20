@@ -28,31 +28,31 @@ import finances.Finances;
 public class Band implements Authenticatable {
 
 	// global band information
-	private  String name;
-	private  String genre;
+	private String name;
+	private String genre;
 
 	// contain the current information
-	private  ArrayList<Event> events;
-	private  ArrayList<Member> members;
+	private ArrayList<Event> events;
+	private ArrayList<Member> members;
 	private ArrayList<Track> tracks;
 
 	// History of deletedEvents
-	private  HashMap<Event, ArrayList<Date>> previousEvents;
+	private HashMap<Event, ArrayList<Date>> previousEvents;
 
 	// contain the "join dates"
-	private  HashMap<Member, ArrayList<Date>> memberDates;
-	private  HashMap<Track, ArrayList<Date>> trackDates;
+	private HashMap<Member, ArrayList<Date>> memberDates;
+	private HashMap<Track, ArrayList<Date>> trackDates;
 
 	// contain the "leave dates"
-	private  HashMap<Member, ArrayList<Date>> previousMembers;
-	private  HashMap<Track, ArrayList<Date>> previousTracks;
+	private HashMap<Member, ArrayList<Date>> previousMembers;
+	private HashMap<Track, ArrayList<Date>> previousTracks;
 
 	// authentication stuff
 	HashMap<Method, ArrayList<Permission>> permissions;
 	HashMap<Authenticatable, Permission> roles;
 
 	// finance handling
-	private  Finances finances;
+	private Finances finances;
 
 	/**
 	 * Constructor which requires two arguments
@@ -224,7 +224,7 @@ public class Band implements Authenticatable {
 			}
 		}
 
-		this.tracks = new ArrayList<Track>(al);
+		this.tracks = al;
 		// else throw new InvalidBandObjectException("track already exists");
 
 	}
@@ -527,6 +527,7 @@ public class Band implements Authenticatable {
 				for (Date removeDate : this.previousTracks.get(t))
 					if (removeDate.before(d) && removeDate.after(lastValidDate)) {
 						lastValidDate = null;
+						break;
 					}
 			}
 
