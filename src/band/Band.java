@@ -520,6 +520,25 @@ public class Band implements Authenticatable {
 	}
 
 	/**
+	 * @param d
+	 * @param min
+	 * @return
+	 */
+	public ArrayList<Member> getValidMember(Date d, int min) {
+
+		ArrayList<Member> val = new ArrayList<Member>();
+		int anz = 0;
+		for (Member mem : this.members) {
+			for (Rehearsal re : mem.getRehersal()) {
+				if (re.getTime().after(d)) anz++;
+			}
+			if (anz >= min) val.add(mem);
+			anz = 0;
+		}
+		return val;
+	}
+
+	/**
 	 * @param substitute
 	 * @return ArrayList of the current members
 	 */
