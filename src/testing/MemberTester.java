@@ -229,9 +229,9 @@ public class MemberTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #3
+			 * Test Case #3 get all substitute member
 			 * 
-			 * should be:
+			 * should be: jens, jane
 			 */
 			if (Validator.check(ultraCoders.getMembers(true), allSubstitute, 3)) {
 				successfulTests++;
@@ -243,9 +243,9 @@ public class MemberTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #4
+			 * Test Case #4 get all permanent member
 			 * 
-			 * should be:
+			 * should be: markus, thomas, dominik
 			 */
 			if (Validator.check(ultraCoders.getMembers(false), allNonSubstitute, 4)) {
 				successfulTests++;
@@ -257,7 +257,7 @@ public class MemberTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #5
+			 * Test Case #5 Add a track which already exists
 			 * 
 			 * should: throw exception
 			 */
@@ -275,7 +275,7 @@ public class MemberTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #6
+			 * Test Case #6 Try to remove a track before it was added
 			 * 
 			 * should: throw exception
 			 */
@@ -293,14 +293,12 @@ public class MemberTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #7
+			 * Test Case #7 Remove a valid track
 			 * 
-			 * should be:
+			 * should be: thunderstruck, stairway, prayer, bloodbrothers, byob
 			 */
-			thomas.addTrack(myCurse, formatDate.parse("05.03.2012"));
-			for (Member m : ultraCoders.getMembers()) {
-				m.removeTrack(byob, formatDate.parse("05.04.2012"));
-			}
+			thomas.removeTrack(byob, formatDate.parse("05.04.2012"));
+
 			if (Validator.check(ultraCoders.getTracks(), tracksNobyob, 7)) {
 				successfulTests++;
 			}
