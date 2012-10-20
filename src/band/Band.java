@@ -519,6 +519,7 @@ public class Band implements Authenticatable {
 		return this.members;
 	}
 
+	
 	/**
 	 * return the lineup of the band at a given date
 	 * 

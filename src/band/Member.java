@@ -19,13 +19,13 @@ import auth.Authenticatable;
  */
 public class Member extends Person {
 
-	private final String firstName;
-	private final String lastName;
-	private final String instrument;
-	private final String telephoneNumber;
+	private String firstName;
+	private String lastName;
+	private String instrument;
+	private String telephoneNumber;
 	private ArrayList<ProposedDate> events;
 	private ArrayList<Track> repertoire;
-	private final boolean substituteMember;
+	private boolean substituteMember;
 	private ArrayList<EventNotification> eventNot;
 	private ArrayList<Rehearsal> rehersals;
 	private ArrayList<Band> bands;
@@ -322,6 +322,14 @@ public class Member extends Person {
 	public boolean isSubstituteMember() {
 
 		return this.substituteMember;
+	}
+
+	/**
+	 * inverts the substitute status of a member.
+	 */
+	public void changeSubstituteStatus() {
+
+		this.substituteMember = !this.substituteMember;
 	}
 
 	/**
