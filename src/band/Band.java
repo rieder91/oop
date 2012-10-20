@@ -519,7 +519,23 @@ public class Band implements Authenticatable {
 		return this.members;
 	}
 
-	
+	/**
+	 * @param substitute
+	 * @return ArrayList of the current members
+	 */
+	public ArrayList<Member> getMembers(boolean substitute) {
+
+		ArrayList<Member> memlist = new ArrayList<Member>();
+
+		for (Member mem : this.members) {
+			if (!mem.isSubstituteMember() ^ substitute) {
+				memlist.add(mem);
+			}
+		}
+
+		return memlist;
+	}
+
 	/**
 	 * return the lineup of the band at a given date
 	 * 
