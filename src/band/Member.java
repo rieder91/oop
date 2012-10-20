@@ -35,7 +35,6 @@ public class Member extends Person {
 	 */
 	public ArrayList<Track> getTracks() {
 
-		
 		return this.repertoire;
 
 	}
@@ -102,11 +101,11 @@ public class Member extends Person {
 			final boolean substituteMember) {
 
 		super();
-		this.events = new ArrayList<ProposedDate>() ;
-		this.repertoire = new ArrayList<Track>() ;
-		this.eventNot = new ArrayList<EventNotification>() ;
-		this.rehersals = new ArrayList<Rehearsal>() ;
-		this.bands = new ArrayList<Band>() ;
+		this.events = new ArrayList<ProposedDate>();
+		this.repertoire = new ArrayList<Track>();
+		this.eventNot = new ArrayList<EventNotification>();
+		this.rehersals = new ArrayList<Rehearsal>();
+		this.bands = new ArrayList<Band>();
 		this.telephoneNumber = telephoneNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -139,14 +138,14 @@ public class Member extends Person {
 	 * @param tr
 	 *            track to be added
 	 * @param d
-	 * @throws InvalidBandObjectException 
-	 * @throws InvalidDateException 
+	 * @throws InvalidBandObjectException
+	 * @throws InvalidDateException
 	 */
-	public void addTrack(final Track tr,Date d) throws InvalidDateException, InvalidBandObjectException {
+	public void addTrack(final Track tr, Date d) throws InvalidDateException, InvalidBandObjectException {
 
-		if (this.repertoire.indexOf(tr) == -1) {
+		if (!this.repertoire.contains(tr)) {
 			this.repertoire.add(tr);
-			for(Band bnd:this.bands){
+			for (Band bnd : this.bands) {
 				bnd.addTrack(tr, d);
 			}
 		}
@@ -167,21 +166,19 @@ public class Member extends Person {
 		this.events.get(idx).agree(agreed);
 	}
 
-	
 	/**
 	 * @return the firstName
 	 */
 	public String getFirstName() {
-	
+
 		return firstName;
 	}
 
-	
 	/**
 	 * @return the lastName
 	 */
 	public String getLastName() {
-	
+
 		return lastName;
 	}
 
@@ -336,14 +333,14 @@ public class Member extends Person {
 	 * @param tr
 	 *            track to be removed
 	 * @throws InvalidBandObjectException
-	 * @throws InvalidDateException 
+	 * @throws InvalidDateException
 	 */
-	public void removeTrack(final Track tr,Date d) throws InvalidBandObjectException, InvalidDateException {
-
-		if (this.repertoire.indexOf(tr) == -1) {
-			this.repertoire.add(tr);
-			for(Band bnd:this.bands){
-				bnd.removeTrack(tr,d);
+	public void removeTrack(final Track tr, Date d) throws InvalidBandObjectException, InvalidDateException {
+		int idx;
+		if ((idx=this.repertoire.indexOf(tr)) != -1) {
+			this.repertoire.remove(idx);
+			for (Band bnd : this.bands) {
+				bnd.removeTrack(tr, d);
 			}
 		}
 		else throw new InvalidBandObjectException("track does not exist");

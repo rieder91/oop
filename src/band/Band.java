@@ -196,18 +196,26 @@ public class Band implements Authenticatable {
 	// @Deprecated
 	public void addTrack(final Track t, final Date d) throws InvalidDateException, InvalidBandObjectException {
 
-		if (!this.tracks.contains(t)) {
-			ArrayList<Track> al = new ArrayList<Track>();
-			if (this.members.size() > 0) {
-				al.addAll(this.members.get(0).getTracks());
-				if (this.members.size() > 1) {
-
-					for (final Member m : this.members) {
-						al.retainAll(m.getTracks());
-					}
+		boolean knows = true;
+		for (Member mem : this.members) {
+			if (!mem.getTracks().contains(t)) knows = false;
+		}
+		if (knows && !this.tracks.contains(t)) {
+			if (this.trackDates.containsKey(t)) {
+				ArrayList<Date> history = this.previousTracks.get(t);
+				Date leaveDate = history.get(history.size() - 1);
+				if (leaveDate.after(d)) throw new InvalidDateException("new date prior to last remove date");
+				else {
+					this.tracks.add(t);
+					this.trackDates.get(t).add(d);
 				}
 			}
-			this.tracks=al;
+			else {
+				final ArrayList<Date> newHistory = new ArrayList<Date>();
+				newHistory.add(d);
+				this.trackDates.put(t, newHistory);
+				this.tracks.add(t);
+			}
 		}
 		// else throw new InvalidBandObjectException("track already exists");
 
@@ -484,6 +492,7 @@ public class Band implements Authenticatable {
 	 * @return ArrayList of the current tracks
 	 */
 	public ArrayList<Track> getTracks() {
+
 		ArrayList<Track> al = new ArrayList<Track>();
 		if (this.members.size() > 0) {
 			al.addAll(this.members.get(0).getTracks());
@@ -505,19 +514,19 @@ public class Band implements Authenticatable {
 	 * @return an ArrayList of all the tracks that the band was performing at
 	 *         the given date
 	 */
-	public ArrayList<Track> getTracks(final Date d) {
+	public ArrayList<Track> getTracks(Date d) {
 
-		final ArrayList<Track> ret = new ArrayList<Track>();
+		ArrayList<Track> ret = new ArrayList<Track>();
 
 		for (final Track t : this.trackDates.keySet()) {
 			Date lastValidDate = null;
-			for (final Date addDate : this.trackDates.get(t))
+			for (Date addDate : this.trackDates.get(t))
 				if (addDate.before(d)) {
 					lastValidDate = addDate;
 				}
 
 			if (lastValidDate != null && this.previousTracks.containsKey(t)) {
-				for (final Date removeDate : this.previousTracks.get(t))
+				for (Date removeDate : this.previousTracks.get(t))
 					if (removeDate.before(d) && removeDate.after(lastValidDate)) {
 						lastValidDate = null;
 					}
@@ -731,7 +740,7 @@ public class Band implements Authenticatable {
 	public void removeTrack(final Track t, final Date d) throws InvalidDateException, InvalidBandObjectException {
 
 		final ArrayList<Date> history = this.trackDates.get(t);
-		if (history!=null && (history.size() - 1) >= 0) {
+		if (history != null && (history.size() - 1) >= 0) {
 			final Date joinDate = history.get(history.size() - 1);
 
 			if (this.tracks.contains(t) && joinDate.after(d)) throw new InvalidDateException(
