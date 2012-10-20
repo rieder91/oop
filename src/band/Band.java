@@ -28,31 +28,31 @@ import finances.Finances;
 public class Band implements Authenticatable {
 
 	// global band information
-	private final String name;
-	private final String genre;
+	private  String name;
+	private  String genre;
 
 	// contain the current information
-	private final ArrayList<Event> events;
-	private final ArrayList<Member> members;
+	private  ArrayList<Event> events;
+	private  ArrayList<Member> members;
 	private ArrayList<Track> tracks;
 
 	// History of deletedEvents
-	private final HashMap<Event, ArrayList<Date>> previousEvents;
+	private  HashMap<Event, ArrayList<Date>> previousEvents;
 
 	// contain the "join dates"
-	private final HashMap<Member, ArrayList<Date>> memberDates;
-	private final HashMap<Track, ArrayList<Date>> trackDates;
+	private  HashMap<Member, ArrayList<Date>> memberDates;
+	private  HashMap<Track, ArrayList<Date>> trackDates;
 
 	// contain the "leave dates"
-	private final HashMap<Member, ArrayList<Date>> previousMembers;
-	private final HashMap<Track, ArrayList<Date>> previousTracks;
+	private  HashMap<Member, ArrayList<Date>> previousMembers;
+	private  HashMap<Track, ArrayList<Date>> previousTracks;
 
 	// authentication stuff
 	HashMap<Method, ArrayList<Permission>> permissions;
 	HashMap<Authenticatable, Permission> roles;
 
 	// finance handling
-	private final Finances finances;
+	private  Finances finances;
 
 	/**
 	 * Constructor which requires two arguments
@@ -159,10 +159,11 @@ public class Band implements Authenticatable {
 				}
 			}
 			else {
-				final ArrayList<Date> newHistory = new ArrayList<Date>();
+				ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
 				this.memberDates.put(m, newHistory);
 				this.members.add(m);
+				m.addBand(this);
 			}
 
 			for (final Event e : this.events) {
@@ -196,17 +197,23 @@ public class Band implements Authenticatable {
 	// @Deprecated
 	public void addTrack(final Track t, final Date d) throws InvalidDateException, InvalidBandObjectException {
 
-		boolean knows = true;
-		for (Member mem : this.members) {
-			if (!mem.getTracks().contains(t)) knows = false;
+		ArrayList<Track> al = new ArrayList<Track>();
+		if (this.members.size() > 0) {
+			al.addAll(this.members.get(0).getTracks());
+			if (this.members.size() > 1) {
+
+				for (final Member m : this.members) {
+					al.retainAll(m.getTracks());
+				}
+			}
 		}
-		if (knows && !this.tracks.contains(t)) {
+
+		if (al.contains(t) && !this.tracks.contains(t)) {
 			if (this.trackDates.containsKey(t)) {
 				ArrayList<Date> history = this.previousTracks.get(t);
 				Date leaveDate = history.get(history.size() - 1);
 				if (leaveDate.after(d)) throw new InvalidDateException("new date prior to last remove date");
 				else {
-					this.tracks.add(t);
 					this.trackDates.get(t).add(d);
 				}
 			}
@@ -214,9 +221,10 @@ public class Band implements Authenticatable {
 				final ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
 				this.trackDates.put(t, newHistory);
-				this.tracks.add(t);
 			}
 		}
+
+		this.tracks = new ArrayList<Track>(al);
 		// else throw new InvalidBandObjectException("track already exists");
 
 	}
@@ -493,17 +501,7 @@ public class Band implements Authenticatable {
 	 */
 	public ArrayList<Track> getTracks() {
 
-		ArrayList<Track> al = new ArrayList<Track>();
-		if (this.members.size() > 0) {
-			al.addAll(this.members.get(0).getTracks());
-			if (this.members.size() > 1) {
-
-				for (final Member m : this.members) {
-					al.retainAll(m.getTracks());
-				}
-			}
-		}
-		return al;
+		return this.tracks;
 	}
 
 	/**
@@ -737,16 +735,26 @@ public class Band implements Authenticatable {
 	 *             thrown if the track doesnt exist
 	 */
 	// @Deprecated
-	public void removeTrack(final Track t, final Date d) throws InvalidDateException, InvalidBandObjectException {
+	public void removeTrack(Track t, Date d) throws InvalidDateException, InvalidBandObjectException {
 
-		final ArrayList<Date> history = this.trackDates.get(t);
+		ArrayList<Track> al = new ArrayList<Track>();
+		if (this.members.size() > 0) {
+			al.addAll(this.members.get(0).getTracks());
+			if (this.members.size() > 1) {
+
+				for (final Member m : this.members) {
+					al.retainAll(m.getTracks());
+				}
+			}
+		}
+
+		ArrayList<Date> history = this.trackDates.get(t);
 		if (history != null && (history.size() - 1) >= 0) {
 			final Date joinDate = history.get(history.size() - 1);
 
 			if (this.tracks.contains(t) && joinDate.after(d)) throw new InvalidDateException(
 					"new date prior to last add date");
 			else {
-				this.tracks.remove(t);
 
 				if (this.previousTracks.containsKey(t)) {
 					// we need to add a new date to the history
@@ -759,6 +767,8 @@ public class Band implements Authenticatable {
 				}
 			}
 		}
+
+		this.tracks = al;
 	}
 
 	/**

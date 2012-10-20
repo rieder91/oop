@@ -44,7 +44,7 @@ public class Member extends Person {
 	 */
 	public void addBand(Band bnd) {
 
-		if (this.bands.indexOf(bnd) == -1) this.bands.add(bnd);
+		System.out.println(this.bands.add(bnd));
 	}
 
 	/**
@@ -145,9 +145,9 @@ public class Member extends Person {
 
 		if (!this.repertoire.contains(tr)) {
 			this.repertoire.add(tr);
-			for (Band bnd : this.bands) {
-				bnd.addTrack(tr, d);
-			}
+		}
+		for (Band bnd : this.bands) {
+			bnd.addTrack(tr, d);
 		}
 	}
 
