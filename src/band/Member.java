@@ -42,6 +42,7 @@ public class Member extends Person {
 	/**
 	 * @param bnd
 	 * @throws InvalidBandObjectException
+	 *             if the member is already in this band
 	 */
 	public void addBand(Band bnd) throws InvalidBandObjectException {
 

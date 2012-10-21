@@ -10,6 +10,7 @@ public class EventNotification {
 
 	private final Event e;
 	private final Status status;
+	private boolean notified;
 
 	/**
 	 * @param e
@@ -19,6 +20,7 @@ public class EventNotification {
 
 		this.e = e;
 		this.status = status;
+		this.notified = false;
 	}
 
 	/**
@@ -67,6 +69,23 @@ public class EventNotification {
 	public Status getStatus() {
 
 		return this.status;
+	}
+
+	/**
+	 * @return the notification status
+	 */
+	public boolean getNotified() {
+
+		return this.notified;
+	}
+
+	/**
+	 * @param not
+	 *            the new notification status
+	 */
+	public void setNotified(boolean not) {
+
+		this.notified = not;
 	}
 
 }

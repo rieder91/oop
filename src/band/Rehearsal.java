@@ -65,6 +65,7 @@ public class Rehearsal extends Event {
 		this("", time, new Place(place), duration, new BigDecimal(cost));
 	}
 
+	//TODO javadoc comment
 	/**
 	 * 
 	 * @param name
@@ -79,6 +80,7 @@ public class Rehearsal extends Event {
 		this(name, time, new Place(place), duration, cost);
 	}
 	
+	//TODO javadoc comment	
 	/**
 	 * 
 	 * @param name

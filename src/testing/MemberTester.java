@@ -117,9 +117,12 @@ public class MemberTester implements Tester {
 		Rehearsal postNova2010 = null, postNova2011 = null;
 
 		try {
-			novarock2010 = new Gig(formatTime.parse("11.07.2010 12:00"), "Pannonia Fields II", 72, 2500.0);
-			novarock2011 = new Gig(formatTime.parse("11.07.2011 13:00"), "Pannonia Fields II", 72, 5000.0);
-			novarock2012 = new Gig(formatTime.parse("08.07.2012 14:00"), "Pannonia Fields II", 72, 10000.0);
+			novarock2010 = new Gig("test1", formatTime.parse("11.07.2010 12:00"), new Place("Pannonia Fields II"), 72,
+					new BigDecimal(2500.0));
+			novarock2011 = new Gig("test2", formatTime.parse("11.07.2011 13:00"), new Place("Pannonia Fields II"), 72,
+					new BigDecimal(5000.0));
+			novarock2012 = new Gig("test3", formatTime.parse("08.07.2012 14:00"), new Place("Pannonia Fields II"), 72,
+					new BigDecimal(10000.0));
 
 			postNova2010 = new Rehearsal("test1", formatTime.parse("15.08.2010 20:00"),
 					new Place("Vienna Sound Studio"), 5, new BigDecimal(100.0));
@@ -427,9 +430,7 @@ public class MemberTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #15
-			 * 
-			 * should be:
+			 * Test Case #15 Gets the event notifications from one member.
 			 */
 
 			ArrayList<EventNotification> case15 = new ArrayList<EventNotification>();
@@ -447,7 +448,7 @@ public class MemberTester implements Tester {
 			ultraCoders.addEvent(novarock2012);
 			ultraCoders.deferreEvent(postNova2011, formatDate.parse("05.10.2012"));
 
-			if (Validator.check(thomas.getNotifications(), case15, 15)) {
+			if (Validator.check(thomas.getNotifications(true), case15, 15)) {
 				successfulTests++;
 			}
 			else {
