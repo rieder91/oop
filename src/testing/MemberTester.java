@@ -59,6 +59,10 @@ public class MemberTester implements Tester {
 		testCases.put(15, "Gets the event notifications from one member");
 		testCases.put(16, "make some date proposals to a member");
 		testCases.put(17, "accept/decline some date proposals");
+		testCases.put(18, "get member from event");
+		testCases.put(19, "change member to substitute");
+		testCases.put(20, "get all substitute member");
+		testCases.put(21, "get all non substitute member");
 
 		overallTests = testCases.size();
 	}
@@ -514,7 +518,62 @@ public class MemberTester implements Tester {
 			}
 			else {
 				failedTests++;
-				failedTestNumbers.add(15);
+				failedTestNumbers.add(17);
+			}
+
+			/*
+			 * 
+			 * Test Case #18 get members from event
+			 */
+
+			if (Validator.check(novarock2012.getMember(), allNonSubstitute, 18)) {
+				successfulTests++;
+			}
+			else {
+				failedTests++;
+				failedTestNumbers.add(18);
+			}
+
+			/*
+			 * 
+			 * Test Case #19 change member to substitute
+			 */
+
+			thomas.changeSubstituteStatus();
+			if (Validator.check(thomas.isSubstituteMember(), true, 19)) {
+				successfulTests++;
+			}
+			else {
+				failedTests++;
+				failedTestNumbers.add(19);
+			}
+			
+			/*
+			 * 
+			 * Test Case #20 get all substitute member
+			 */
+			allSubstitute.add(thomas);
+			if (Validator.check(ultraCoders.getMembers(true), allSubstitute, 19)) {
+				successfulTests++;
+			}
+			else {
+				failedTests++;
+				failedTestNumbers.add(19);
+			}
+
+			/*
+			 * 
+			 * Test Case #21 get all non substitute member
+			 */
+
+			allNonSubstitute.remove(thomas);
+
+			if (Validator.check(ultraCoders.getMembers(false), allNonSubstitute, 20)) {
+				successfulTests++;
+			}
+			else {
+				failedTests++;
+				failedTestNumbers.add(20);
 			}
 
 		}
