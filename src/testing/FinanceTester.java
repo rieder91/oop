@@ -1,6 +1,7 @@
 package testing;
 
 import finances.FinanceFilter;
+import finances.Finances.FinanceTypes;
 import helper.InvalidBandObjectException;
 import helper.Validator;
 
@@ -118,11 +119,20 @@ public class FinanceTester implements Tester {
 			System.out.println("Date parsing failed");
 		}
 		
-		String s1 = "Expense of Other, Advertisement: -18000\n";
-		String s2 = "Income of Other, Advertisement: 30000\n";
-		String s3 = s2 + s1;
-		String s5 = "Turnover of Other, Advertisement: 12000\n";
-		String s4 = s2 + s1 + s5;
+		HashMap<FinanceTypes, BigDecimal> s1 = new HashMap<FinanceTypes, BigDecimal>();
+		HashMap<FinanceTypes, BigDecimal> s2 = new HashMap<FinanceTypes, BigDecimal>();
+		HashMap<FinanceTypes, BigDecimal> s3 = new HashMap<FinanceTypes, BigDecimal>();
+		HashMap<FinanceTypes, BigDecimal> s4 = new HashMap<FinanceTypes, BigDecimal>();
+		HashMap<FinanceTypes, BigDecimal> s5 = new HashMap<FinanceTypes, BigDecimal>();
+		
+		s1.put(FinanceTypes.Expense, new BigDecimal(-18000));
+		s2.put(FinanceTypes.Income, new BigDecimal(30000));
+		s3.put(FinanceTypes.Expense, new BigDecimal(-18000));
+		s3.put(FinanceTypes.Income, new BigDecimal(30000));
+		s4.put(FinanceTypes.Turnover, new BigDecimal(12000));
+		s5.put(FinanceTypes.Expense, new BigDecimal(-18000));
+		s5.put(FinanceTypes.Income, new BigDecimal(30000));
+		s5.put(FinanceTypes.Turnover, new BigDecimal(12000));
 		
 		try{
 			rofl.addEvent(novarock2010);
@@ -291,7 +301,7 @@ public class FinanceTester implements Tester {
 		 * should be: "Expense of Other, Advertisement: -18000\nIncome of Other, Advertisement: 30000\nTurnover of Other, Advertisement: 12000\n"
 		 */
 		
-		if(Validator.check(rofl.getFinancesFiltered(f4), s4, 10)) {
+		if(Validator.check(rofl.getFinancesFiltered(f4), s5, 10)) {
 			successfulTests++;
 		} else {
 			
@@ -305,7 +315,7 @@ public class FinanceTester implements Tester {
 		 * should be: "Turnover of Other, Advertisement: 12000\n"
 		 */
 		
-		if(Validator.check(rofl.getFinancesFiltered(f5), s5, 11)) {
+		if(Validator.check(rofl.getFinancesFiltered(f5), s4, 11)) {
 			successfulTests++;
 		} else {
 			

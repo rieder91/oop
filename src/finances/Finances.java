@@ -23,6 +23,17 @@ public class Finances {
 	private BigDecimal totalExpense;
 	
 	/**
+	 * all possible types of costs
+	 * @author OOP Gruppe 187
+	 *
+	 */
+	public enum FinanceTypes {
+		Income,
+		Expense,
+		Turnover
+	}
+	
+	/**
 	 * Constructor without parameters
 	 */
 	public Finances() {

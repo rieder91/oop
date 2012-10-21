@@ -13,6 +13,7 @@ import java.util.HashMap;
 import auth.Authenticatable;
 import finances.FinanceFilter;
 import finances.Finances;
+import finances.Finances.FinanceTypes;
 
 /**
  * Class that contains all the information belonging to the band. Members, tracks and events can be added and removed.
@@ -424,12 +425,11 @@ public class Band implements Authenticatable {
 	 *            a filter used for enhanced search
 	 * @return a string with the specified filter information
 	 */
-	public String getFinancesFiltered(final FinanceFilter f) {
-
+	public HashMap<FinanceTypes, BigDecimal> getFinancesFiltered(final FinanceFilter f) {
+		HashMap<FinanceTypes, BigDecimal> ret = new HashMap<FinanceTypes, BigDecimal>();
 		BigDecimal tmp;
 		BigDecimal total = new BigDecimal(0);
-		String retS = new String();
-		final String reasons = this.listReason(f.getReason());
+		
 		final Date startDate = f.getStartDate();
 		final Date endDate = f.getEndDate();
 
@@ -447,9 +447,7 @@ public class Band implements Authenticatable {
 			}
 		}
 		if (f.isIncome()) {
-			retS += "Income of ";
-			retS += reasons;
-			retS += tmp.toString() + "\n";
+			ret.put(FinanceTypes.Income, tmp);
 		}
 		total = total.add(tmp);
 
@@ -467,18 +465,14 @@ public class Band implements Authenticatable {
 			}
 		}
 		if (f.isExpense()) {
-			retS += "Expense of ";
-			retS += reasons;
-			retS += tmp.toString() + "\n";
+			ret.put(FinanceTypes.Expense, tmp);
 		}
 		total = total.add(tmp);
 
 		if (f.isTotal()) {
-			retS += "Turnover of ";
-			retS += reasons;
-			retS += total.toString() + "\n";
+			ret.put(FinanceTypes.Turnover, total);
 		}
-		return retS;
+		return ret;
 	}
 
 	/**
@@ -737,22 +731,6 @@ public class Band implements Authenticatable {
 
 		// set the owner to THIS
 		this.setRole(this, Permission.OWNER);
-	}
-
-	/**
-	 * @param reason
-	 *            an ArrayList with reasons
-	 * @return a readable string with all reasons (i.e. "Merchandise, Advertisment, Others: ")
-	 */
-	private String listReason(final ArrayList<String> reason) {
-
-		String retS = new String();
-		int i = 1;
-		final int size = reason.size();
-		for (final String s : reason) {
-			retS += (!((i++) == size)) ? (s + ", ") : (s + ": ");
-		}
-		return retS;
 	}
 
 	/**
