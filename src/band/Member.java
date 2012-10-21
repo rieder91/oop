@@ -238,12 +238,20 @@ public class Member extends Person {
 	}
 
 	/**
+	 * @param all
+	 *            true - all notifications false - only unread notifications
 	 * @return the notifications of the member
 	 */
-	public ArrayList<EventNotification> getNotifications() {
+	public ArrayList<EventNotification> getNotifications(boolean all) {
 
-		// TODO
-		return this.eventNot;
+		ArrayList<EventNotification> alen = new ArrayList<EventNotification>();
+		for (EventNotification en : this.eventNot) {
+			if (all || !en.getNotified()) {
+				alen.add(en);
+				en.setNotified(true);
+			}
+		}
+		return alen;
 	}
 
 	@Override
