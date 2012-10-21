@@ -244,7 +244,7 @@ public class Member extends Person {
 		final int idx = this.events.indexOf(propd);
 		this.events.get(idx).agree(agreed, reason);
 	}
-
+	
 	/**
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
@@ -461,5 +461,9 @@ public class Member extends Person {
 				+ this.lastName + " Instrument: " + this.instrument
 				+ " Telephone number: " + this.telephoneNumber;
 		return ret;
+	}
+	
+	public ArrayList<Rehearsal> getRehearsals(){
+		return this.rehersals;
 	}
 }

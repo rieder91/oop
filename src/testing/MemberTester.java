@@ -155,7 +155,7 @@ public class MemberTester implements Tester {
 			System.out.println("Date parsing failed");
 		}
 
-		// used in cases: 13, 19, 20, 23
+		// used in cases: 2, 11, 14
 		ArrayList<Track> allTracks = new ArrayList<Track>();
 		allTracks.add(thunderstruck);
 		allTracks.add(stairway);
@@ -164,7 +164,7 @@ public class MemberTester implements Tester {
 		allTracks.add(byob);
 		allTracks.add(myCurse);
 
-		// used in cases: 1, 5, 6, 8
+		// used in cases: 1, 18
 		ArrayList<Member> allMembers = new ArrayList<Member>();
 		allMembers.add(markus);
 		allMembers.add(thomas);
@@ -172,45 +172,51 @@ public class MemberTester implements Tester {
 		allMembers.add(dominic);
 		allMembers.add(jane);
 
-		//
+		// used in cases: 3
 		ArrayList<Member> allSubstitute = new ArrayList<Member>();
 		allSubstitute.add(jens);
 		allSubstitute.add(jane);
 
+		// used in cases: 4, 21
 		ArrayList<Member> allNonSubstitute = new ArrayList<Member>();
 		allNonSubstitute.add(markus);
 		allNonSubstitute.add(thomas);
 		allNonSubstitute.add(dominic);
 
-		// used in cases: 24, 28, 29
-		ArrayList<Event> allEvents = new ArrayList<Event>();
-		allEvents.add(novarock2010);
-		allEvents.add(novarock2011);
-		allEvents.add(novarock2012);
-		allEvents.add(postNova2010);
-		allEvents.add(postNova2011);
-
-		// used in cases: 31
-		ArrayList<Event> gigEventsOnly = new ArrayList<Event>();
-		gigEventsOnly.add(novarock2010);
-		gigEventsOnly.add(novarock2011);
-		gigEventsOnly.add(novarock2012);
-
-		// used in cases: 32
-		ArrayList<Event> rehearsalEventsOnly = new ArrayList<Event>();
-		rehearsalEventsOnly.add(postNova2010);
-		rehearsalEventsOnly.add(postNova2011);
-
-		//
+		// used in cases: 7, 13
 		ArrayList<Track> tracksNobyob = new ArrayList<Track>();
 		tracksNobyob.addAll(allTracks);
 		tracksNobyob.remove(byob);
 
-		//
+		// used in cases: 12
 		ArrayList<Track> someTracks = new ArrayList<Track>();
 		someTracks.add(thunderstruck);
 		someTracks.add(stairway);
 		someTracks.add(prayer);
+
+		ArrayList<EventNotification> case15 = new ArrayList<EventNotification>();
+		case15.add(new EventNotification(postNova2011, Status.scheduled));
+		case15.add(new EventNotification(novarock2010, Status.scheduled));
+		case15.add(new EventNotification(postNova2010, Status.scheduled));
+		case15.add(new EventNotification(novarock2010, Status.canceled));
+		case15.add(new EventNotification(novarock2012, Status.scheduled));
+		case15.add(new EventNotification(postNova2011, Status.deferred));
+
+		// used in case: 16
+		ArrayList<ProposedDate> propd = new ArrayList<ProposedDate>();
+		try {
+			propd.add(new ProposedDate(novarock2010, formatTime.parse("15.08.2010 20:00")));
+			propd.add(new ProposedDate(novarock2011, formatTime.parse("15.08.2010 20:00")));
+			propd.add(new ProposedDate(postNova2010, formatTime.parse("15.08.2010 20:00")));
+		}
+		catch (ParseException e1) {
+			System.out.println(e1);
+		}
+
+		ArrayList<ProposedDate> case17 = new ArrayList<ProposedDate>(propd);
+		case17.get(0).agree(true);
+		case17.get(1).agree(false);
+		case17.get(2).agree(true, "good date");
 
 		try {
 
@@ -441,14 +447,6 @@ public class MemberTester implements Tester {
 			 * Test Case #15 Gets the event notifications from one member.
 			 */
 
-			ArrayList<EventNotification> case15 = new ArrayList<EventNotification>();
-			case15.add(new EventNotification(postNova2011, Status.scheduled));
-			case15.add(new EventNotification(novarock2010, Status.scheduled));
-			case15.add(new EventNotification(postNova2010, Status.scheduled));
-			case15.add(new EventNotification(novarock2010, Status.canceled));
-			case15.add(new EventNotification(novarock2012, Status.scheduled));
-			case15.add(new EventNotification(postNova2011, Status.deferred));
-
 			ultraCoders.addEvent(postNova2011);
 			ultraCoders.addEvent(novarock2010);
 			ultraCoders.addEvent(postNova2010);
@@ -467,11 +465,7 @@ public class MemberTester implements Tester {
 			 * 
 			 * Test Case #16 make some date proposals to a member
 			 */
-			ArrayList<ProposedDate> propd = new ArrayList<ProposedDate>();
 
-			propd.add(new ProposedDate(novarock2010, formatTime.parse("15.08.2010 20:00")));
-			propd.add(new ProposedDate(novarock2011, formatTime.parse("15.08.2010 20:00")));
-			propd.add(new ProposedDate(postNova2010, formatTime.parse("15.08.2010 20:00")));
 			dominic.addProposedDate(new ProposedDate(novarock2010, formatTime.parse("15.08.2010 20:00")));
 			dominic.addProposedDate(new ProposedDate(novarock2011, formatTime.parse("15.08.2010 20:00")));
 			dominic.addProposedDate(new ProposedDate(postNova2010, formatTime.parse("15.08.2010 20:00")));
@@ -487,11 +481,7 @@ public class MemberTester implements Tester {
 			 * 
 			 * Test Case #17 accept/decline some date proposals
 			 */
-			ArrayList<ProposedDate> case17 = new ArrayList<ProposedDate>(propd);
 
-			case17.get(0).agree(true);
-			case17.get(1).agree(false);
-			case17.get(2).agree(true, "good date");
 			dominic.agree(new ProposedDate(novarock2010, formatTime.parse("15.08.2010 20:00")), true);
 			dominic.agree(new ProposedDate(novarock2011, formatTime.parse("15.08.2010 20:00")), false);
 			dominic.agree(new ProposedDate(postNova2010, formatTime.parse("15.08.2010 20:00")), "good date", true);
@@ -508,7 +498,7 @@ public class MemberTester implements Tester {
 			 * Test Case #18 get members from event
 			 */
 
-			if (Validator.check(novarock2012.getMember(), allNonSubstitute, 18)) {
+			if (Validator.check(novarock2012.getMember(), allMembers, 18)) {
 				successfulTests++;
 			}
 			else {
@@ -527,7 +517,7 @@ public class MemberTester implements Tester {
 			else {
 				failedTestNumbers.add(19);
 			}
-			
+
 			/*
 			 * 
 			 * Test Case #20 get all substitute member
