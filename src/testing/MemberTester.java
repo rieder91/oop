@@ -219,11 +219,6 @@ public class MemberTester implements Tester {
 			System.out.println(e1);
 		}
 
-		ArrayList<ProposedDate> case17 = new ArrayList<ProposedDate>(propd);
-		case17.get(0).agree(true);
-		case17.get(1).agree(false);
-		case17.get(2).agree(true, "good date");
-
 		try {
 
 			/*
@@ -488,6 +483,11 @@ public class MemberTester implements Tester {
 			 * Test Case #17 accept/decline some date proposals
 			 */
 
+			ArrayList<ProposedDate> case17 = new ArrayList<ProposedDate>(propd);
+			case17.get(0).agree(true);
+			case17.get(1).agree(false);
+			case17.get(2).agree(true, "good date");
+
 			dominic.agree(new ProposedDate(novarock2010, formatTime.parse("15.08.2010 20:00")), true);
 			dominic.agree(new ProposedDate(novarock2011, formatTime.parse("15.08.2010 20:00")), false);
 			dominic.agree(new ProposedDate(postNova2010, formatTime.parse("15.08.2010 20:00")), "good date", true);
@@ -560,7 +560,8 @@ public class MemberTester implements Tester {
 			ArrayList<Member> case22 = new ArrayList<Member>();
 			case22.add(markus);
 			case22.add(dominic);
-			case22.add(thomas);;
+			case22.add(thomas);
+			;
 			if (Validator.check(
 					ultraCoders.getMemberWithRehearsals(2, formatTime.parse("10.08.2010 20:00"),
 							formatTime.parse("20.08.2010 20:00")), case22, 22)) {

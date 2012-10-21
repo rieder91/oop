@@ -9,6 +9,15 @@ import java.util.Date;
  */
 public class ProposedDate {
 
+	/**
+	 * @return
+	 */
+	@Override
+	public String toString() {
+
+		return "Event: " + e + ", agreed: " + agreed + ", reason: " + reason + ", date: " + date;
+	}
+
 	private Event e;
 	private boolean agreed;
 	private String reason;
