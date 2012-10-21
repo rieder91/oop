@@ -31,6 +31,14 @@ public class Member extends Person {
 	private ArrayList<Band> bands;
 
 	/**
+	 * @return the date proposals of the member
+	 */
+	public ArrayList<ProposedDate> getProposedDates() {
+
+		return this.events;
+	}
+
+	/**
 	 * @return the repertoire of the member
 	 */
 	public ArrayList<Track> getTracks() {
@@ -163,6 +171,22 @@ public class Member extends Person {
 	 *            agree or disagree to the proposed date true - agree false - disagree
 	 * @throws InvalidBandObjectException
 	 */
+	public void agree(ProposedDate e, boolean agreed) throws InvalidBandObjectException {
+
+		if (!this.events.contains(e)) throw new InvalidBandObjectException("There is no such event!");
+		final int idx = this.events.indexOf(e);
+		this.events.get(idx).agree(agreed);
+	}
+
+	/**
+	 * This method is used to agree/disagree to a proposed Date.
+	 * 
+	 * @param e
+	 *            event you want to agree or disagree
+	 * @param agreed
+	 *            agree or disagree to the proposed date true - agree false - disagree
+	 * @throws InvalidBandObjectException
+	 */
 	public void agree(final Event e, final Date date, final boolean agreed) throws InvalidBandObjectException {
 
 		ProposedDate propd = new ProposedDate(e, date);
@@ -204,6 +228,24 @@ public class Member extends Person {
 		ProposedDate propd = new ProposedDate(e, date);
 		if (!this.events.contains(propd)) throw new InvalidBandObjectException("There is no such event!");
 		final int idx = this.events.indexOf(propd);
+		this.events.get(idx).agree(agreed, reason);
+	}
+
+	/**
+	 * This method is used to agree/disagree to a proposed Date.
+	 * 
+	 * @param e
+	 *            event you want to agree or disagree
+	 * @param reason
+	 *            the reason you have agreed or disagreed
+	 * @param agreed
+	 *            agree or disagree to the proposed date true - agree false - disagree
+	 * @throws InvalidBandObjectException
+	 */
+	public void agree(ProposedDate e, final String reason, final boolean agreed) throws InvalidBandObjectException {
+
+		if (!this.events.contains(e)) throw new InvalidBandObjectException("There is no such event!");
+		final int idx = this.events.indexOf(e);
 		this.events.get(idx).agree(agreed, reason);
 	}
 
@@ -349,9 +391,7 @@ public class Member extends Person {
 	 */
 	public void notifyEvent(final Event e, final Status stat) throws InvalidBandObjectException {
 
-		if (this.eventNot.contains(new EventNotification(e, stat)))
-			//throw new InvalidBandObjectException("Already notified!");
-		this.eventNot.add(new EventNotification(e, stat));
+		if (!this.eventNot.contains(new EventNotification(e, stat))) this.eventNot.add(new EventNotification(e, stat));
 	}
 
 	/**

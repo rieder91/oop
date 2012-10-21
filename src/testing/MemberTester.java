@@ -16,6 +16,7 @@ import band.Event;
 import band.Gig;
 import band.Member;
 import band.Place;
+import band.ProposedDate;
 import band.Rehearsal;
 import band.Track;
 
@@ -42,7 +43,7 @@ public class MemberTester implements Tester {
 		testCases = new HashMap<Integer, String>();
 
 		testCases.put(1, "Add some valid Tracks to Member");
-		
+
 		overallTests = testCases.size();
 	}
 
@@ -459,6 +460,48 @@ public class MemberTester implements Tester {
 				failedTestNumbers.add(15);
 			}
 
+			/*
+			 * 
+			 * Test Case #16 make some date proposals to a member
+			 */
+			ArrayList<ProposedDate> propd = new ArrayList<ProposedDate>();
+
+			propd.add(new ProposedDate(novarock2010, formatTime.parse("15.08.2010 20:00")));
+			propd.add(new ProposedDate(novarock2011, formatTime.parse("15.08.2010 20:00")));
+			propd.add(new ProposedDate(postNova2010, formatTime.parse("15.08.2010 20:00")));
+			dominic.addProposedDate(new ProposedDate(novarock2010, formatTime.parse("15.08.2010 20:00")));
+			dominic.addProposedDate(new ProposedDate(novarock2011, formatTime.parse("15.08.2010 20:00")));
+			dominic.addProposedDate(new ProposedDate(postNova2010, formatTime.parse("15.08.2010 20:00")));
+
+			if (Validator.check(dominic.getProposedDates(), propd, 16)) {
+				successfulTests++;
+			}
+			else {
+				failedTests++;
+				failedTestNumbers.add(15);
+			}
+
+			/*
+			 * 
+			 * Test Case #17 accept/decline some date proposals
+			 */
+			ArrayList<ProposedDate> case17 = new ArrayList<ProposedDate>(propd);
+
+			case17.get(0).agree(true);
+			case17.get(1).agree(false);
+			case17.get(2).agree(true, "good date");
+			dominic.agree(new ProposedDate(novarock2010, formatTime.parse("15.08.2010 20:00")), true);
+			dominic.agree(new ProposedDate(novarock2011, formatTime.parse("15.08.2010 20:00")), false);
+			dominic.agree(new ProposedDate(postNova2010, formatTime.parse("15.08.2010 20:00")), "good date", true);
+
+			if (Validator.check(dominic.getProposedDates(), case17, 17)) {
+				successfulTests++;
+			}
+			else {
+				failedTests++;
+				failedTestNumbers.add(15);
+			}
+
 		}
 		catch (InvalidDateException e) {
 			System.out.println(e.getMessage());
@@ -470,5 +513,4 @@ public class MemberTester implements Tester {
 			System.out.println(e.getMessage());
 		}
 	}
-
 }
