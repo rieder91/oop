@@ -264,7 +264,7 @@ public class Band implements Authenticatable {
 	}
 
 	/**
-	 * @return
+	 * @return a hash code representation of the band
 	 */
 	@Override
 	public int hashCode() {
@@ -288,8 +288,9 @@ public class Band implements Authenticatable {
 	}
 
 	/**
-	 * @param obj
-	 * @return
+	 * compares two bands
+	 * 
+	 * @return true if the bands are equal false otherwise
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -522,7 +523,8 @@ public class Band implements Authenticatable {
 	/**
 	 * @param d
 	 * @param min
-	 * @return
+	 *            number of rehersals the member should have attendet since @d
+	 * @return all valid members
 	 */
 	public ArrayList<Member> getValidMember(Date d, int min) {
 
@@ -539,8 +541,11 @@ public class Band implements Authenticatable {
 	}
 
 	/**
+	 * used to get all substitute or non substitute member
+	 * 
 	 * @param substitute
-	 * @return ArrayList of the current members
+	 *            true - substitute member false - non substitute member
+	 * @return ArrayList of the current member
 	 */
 	public ArrayList<Member> getMembers(boolean substitute) {
 
@@ -889,6 +894,7 @@ public class Band implements Authenticatable {
 		this.tracks = al;
 	}
 
+	// TODO javadoc comments
 	/**
 	 * @param place
 	 * @param duration
@@ -911,6 +917,7 @@ public class Band implements Authenticatable {
 		else throw new InvalidBandObjectException("event doesnt exist");
 	}
 
+	// TODO javadoc comments
 	/**
 	 * @param place
 	 * @param duration

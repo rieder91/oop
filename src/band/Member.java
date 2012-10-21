@@ -238,7 +238,7 @@ public class Member extends Person {
 	}
 
 	/**
-	 * 
+	 * @return the notifications of the member
 	 */
 	public ArrayList<EventNotification> getNotifications() {
 
@@ -336,6 +336,7 @@ public class Member extends Person {
 	 * 
 	 * @param e
 	 * @throws InvalidBandObjectException
+	 *             if the member was already notified about the event
 	 */
 	public void notifyEvent(final Event e, final Status stat) throws InvalidBandObjectException {
 
@@ -350,6 +351,7 @@ public class Member extends Person {
 	 * @param tr
 	 *            track to be removed
 	 * @throws InvalidBandObjectException
+	 *             if the track does not exist
 	 * @throws InvalidDateException
 	 */
 	public void removeTrack(final Track tr, Date d) throws InvalidBandObjectException, InvalidDateException {
