@@ -20,6 +20,11 @@ import band.ProposedDate;
 import band.Rehearsal;
 import band.Track;
 
+/**
+ * test-class for member requirements
+ * @author OOP Gruppe 187
+ *
+ */
 public class MemberTester implements Tester {
 
 	private static final String moduleName = "Member";

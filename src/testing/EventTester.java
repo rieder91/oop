@@ -15,6 +15,11 @@ import band.Event;
 import band.Gig;
 import band.Rehearsal;
 
+/**
+ * test class for event requirements
+ * @author OOP Gruppe 187
+ *
+ */
 public class EventTester implements Tester {
 	private static final String moduleName = "EventHistory";
 

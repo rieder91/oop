@@ -64,9 +64,12 @@ public class Validator {
 		}
 	}
 	
-
+	/**
+	 * adds a number of test cases
+	 * @param n count of test cases
+	 */
 	public static void addTests(Integer n) {
-		if(n >= 0) {
+		if (n >= 0) {
 			overallCount += n;
 		}
 	}
@@ -76,6 +79,7 @@ public class Validator {
 	 */
 	public static void report() {
 		System.out.println("\nOverall successful tests: " + successfulCount);
-		System.out.println("Overall failed tests: " + (overallCount - successfulCount));
+		System.out.println("Overall failed tests: "
+				+ (overallCount - successfulCount));
 	}
 }

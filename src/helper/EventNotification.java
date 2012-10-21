@@ -1,9 +1,10 @@
-
 package helper;
 
 import band.Event;
 
 /**
+ * contains all the information for a single event notification
+ * 
  * @author OOP Gruppe 187
  */
 public class EventNotification {
@@ -43,15 +44,26 @@ public class EventNotification {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (this == obj) { return true; }
-		if (obj == null) { return false; }
-		if (!(obj instanceof EventNotification)) { return false; }
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof EventNotification)) {
+			return false;
+		}
 		EventNotification other = (EventNotification) obj;
 		if (e == null) {
-			if (other.e != null) { return false; }
+			if (other.e != null) {
+				return false;
+			}
+		} else if (!e.equals(other.e)) {
+			return false;
 		}
-		else if (!e.equals(other.e)) { return false; }
-		if (status != other.status) { return false; }
+		if (status != other.status) {
+			return false;
+		}
 		return true;
 	}
 

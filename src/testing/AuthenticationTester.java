@@ -19,6 +19,11 @@ import band.Band;
 import band.Gig;
 import band.Member;
 
+/**
+ * testing class for the authentication requirements
+ * @author OOP Gruppe 187
+ *
+ */
 public class AuthenticationTester implements Tester {
 	private static final String moduleName = "Authentication";
 
