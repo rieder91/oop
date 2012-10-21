@@ -17,7 +17,6 @@ import testing.Tester;
  * @author OOP Gruppe 187
  */
 
-
 public class Test {
 
 	/**
@@ -27,23 +26,25 @@ public class Test {
 	 *            command line arguments
 	 */
 	public static void main(String[] args) {
-			boolean verbose = false;
-			
-			ArrayList<Tester> testedModules= new ArrayList<Tester>();
-			testedModules.add(new AuthenticationTester());
-			testedModules.add(new BandTester());
-			testedModules.add(new MemberTester());
-			testedModules.add(new PlaceTester());
-			testedModules.add(new EventTester());
-			testedModules.add(new FinanceTester());
-			
-			for(Tester t : testedModules) {
-				if(verbose) { t.printTestDescription(); }
-				t.runTests();
-				t.printTestResults();
+		boolean verbose = false;
+
+		ArrayList<Tester> testedModules = new ArrayList<Tester>();
+		testedModules.add(new AuthenticationTester());
+		testedModules.add(new BandTester());
+		testedModules.add(new MemberTester());
+		testedModules.add(new PlaceTester());
+		testedModules.add(new EventTester());
+		testedModules.add(new FinanceTester());
+
+		for (Tester t : testedModules) {
+			if (verbose) {
+				t.printTestDescription();
 			}
-			
-			// Get Overview
-			Validator.report();
+			t.runTests();
+			t.printTestResults();
+		}
+
+		// Get Overview
+		Validator.report();
 	}
 }

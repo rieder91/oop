@@ -1,4 +1,3 @@
-
 package band;
 
 import helper.InvalidBandObjectException;
@@ -16,11 +15,13 @@ import finances.Finances;
 import finances.Finances.FinanceTypes;
 
 /**
- * Class that contains all the information belonging to the band. Members, tracks and events can be added and removed.
- * There are validity checks for the dates and to avoid duplicate elements. A history is saved in order to enable
- * queries about the bands' past. There are Getters for Events, Tracks and Members which return all Objects at either a
- * given key date or within a range. A Billing-Method has also been implemented which calculates the bands revenue
- * within a given time frame.
+ * Class that contains all the information belonging to the band. Members,
+ * tracks and events can be added and removed. There are validity checks for the
+ * dates and to avoid duplicate elements. A history is saved in order to enable
+ * queries about the bands' past. There are Getters for Events, Tracks and
+ * Members which return all Objects at either a given key date or within a
+ * range. A Billing-Method has also been implemented which calculates the bands
+ * revenue within a given time frame.
  * 
  * @author OOP Gruppe 187
  */
@@ -100,7 +101,8 @@ public class Band implements Authenticatable {
 
 			ArrayList<Member> alm = new ArrayList<Member>();
 			for (Member m : this.members) {
-				if (!m.isSubstituteMember()) alm.add(m);
+				if (!m.isSubstituteMember())
+					alm.add(m);
 			}
 			e.setMember(alm);
 
@@ -108,27 +110,29 @@ public class Band implements Authenticatable {
 				e.setRole(mem, Permission.GROUP);
 				mem.notifyEvent(e, Status.scheduled);
 			}
-		}
-		else throw new InvalidBandObjectException("event already exists");
+		} else
+			throw new InvalidBandObjectException("event already exists");
 
 	}
 
 	/**
-	 * the method adds positive @money to income and negative to expense. if @money is zero, nothing will be done.
+	 * the method adds positive @money to income and negative to expense. if @money
+	 * is zero, nothing will be done.
 	 * 
 	 * @param currentDate
 	 *            date of entry
 	 * @param reason
-	 *            short info why money was get or spent (i.e. "Merchandise" or "Advertisment")
+	 *            short info why money was get or spent (i.e. "Merchandise" or
+	 *            "Advertisment")
 	 * @param money
 	 *            income if positive, expense if negative
 	 */
-	public void addFinance(final Date currentDate, final String reason, final BigDecimal money) {
+	public void addFinance(final Date currentDate, final String reason,
+			final BigDecimal money) {
 
 		if (money.signum() == 1) {
 			this.finances.add(currentDate, reason, money);
-		}
-		else if (money.signum() == -1) {
+		} else if (money.signum() == -1) {
 			this.finances.subtract(currentDate, reason, money);
 		}
 	}
@@ -141,12 +145,13 @@ public class Band implements Authenticatable {
 	 * @param d
 	 *            date the member (re)-joined the band
 	 * @throws InvalidDateException
-	 *             thrown if the member has already joined AND left the band once AND the "leave-date" is after the new
-	 *             join-date
+	 *             thrown if the member has already joined AND left the band
+	 *             once AND the "leave-date" is after the new join-date
 	 * @throws InvalidBandObjectException
 	 *             thrown if the member already exists
 	 */
-	public void addMember(final Member m, final Date d) throws InvalidDateException, InvalidBandObjectException {
+	public void addMember(final Member m, final Date d)
+			throws InvalidDateException, InvalidBandObjectException {
 
 		if (!this.members.contains(m)) {
 			if (this.memberDates.containsKey(m)) {
@@ -154,14 +159,15 @@ public class Band implements Authenticatable {
 				// date
 				final ArrayList<Date> history = this.previousMembers.get(m);
 				final Date leaveDate = history.get(history.size() - 1);
-				if (leaveDate.after(d)) throw new InvalidDateException("new date prior to last remove date");
+				if (leaveDate.after(d))
+					throw new InvalidDateException(
+							"new date prior to last remove date");
 				else {
 					this.members.add(m);
 					this.memberDates.get(m).add(d);
 					m.addBand(this);
 				}
-			}
-			else {
+			} else {
 				ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
 				this.memberDates.put(m, newHistory);
@@ -180,8 +186,8 @@ public class Band implements Authenticatable {
 
 			this.setRole(m, Permission.GROUP);
 
-		}
-		else throw new InvalidBandObjectException("member already exists");
+		} else
+			throw new InvalidBandObjectException("member already exists");
 	}
 
 	/**
@@ -192,13 +198,14 @@ public class Band implements Authenticatable {
 	 * @param d
 	 *            the date the track was added
 	 * @throws InvalidDateException
-	 *             thrown if the track has already been added AND removed before AND the removal date is PRIOR to the
-	 *             new add date
+	 *             thrown if the track has already been added AND removed before
+	 *             AND the removal date is PRIOR to the new add date
 	 * @throws InvalidBandObjectException
 	 *             thrown if the track already exists
 	 */
 	// @Deprecated
-	public void addTrack(final Track t, final Date d) throws InvalidDateException, InvalidBandObjectException {
+	public void addTrack(final Track t, final Date d)
+			throws InvalidDateException, InvalidBandObjectException {
 
 		ArrayList<Track> al = new ArrayList<Track>();
 		if (this.members.size() > 0) {
@@ -215,12 +222,13 @@ public class Band implements Authenticatable {
 			if (this.trackDates.containsKey(t)) {
 				ArrayList<Date> history = this.previousTracks.get(t);
 				Date leaveDate = history.get(history.size() - 1);
-				if (leaveDate.after(d)) throw new InvalidDateException("new date prior to last remove date");
+				if (leaveDate.after(d))
+					throw new InvalidDateException(
+							"new date prior to last remove date");
 				else {
 					this.trackDates.get(t).add(d);
 				}
-			}
-			else {
+			} else {
 				final ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
 				this.trackDates.put(t, newHistory);
@@ -243,7 +251,8 @@ public class Band implements Authenticatable {
 	public boolean allowedMethod(final Method m, final Permission p) {
 
 		for (final Permission allowed : this.permissions.get(m))
-			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) return true;
+			if (allowed.equals(p) || allowed.equals(Permission.WORLD))
+				return true;
 		return false;
 	}
 
@@ -257,9 +266,11 @@ public class Band implements Authenticatable {
 	 * @throws InvalidBandObjectException
 	 *             thrown if the event doesnt exist
 	 */
-	public void deferreEvent(final Event e, final Date d) throws InvalidBandObjectException {
+	public void deferreEvent(final Event e, final Date d)
+			throws InvalidBandObjectException {
 
-		if (!this.events.contains(e)) throw new InvalidBandObjectException("event doesnt exist");
+		if (!this.events.contains(e))
+			throw new InvalidBandObjectException("event doesnt exist");
 		else {
 			this.events.get(this.events.indexOf(e)).setTime(d);
 
@@ -278,19 +289,40 @@ public class Band implements Authenticatable {
 
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((this.events == null) ? 0 : this.events.hashCode());
-		result = prime * result + ((this.finances == null) ? 0 : this.finances.hashCode());
-		result = prime * result + ((this.genre == null) ? 0 : this.genre.hashCode());
-		result = prime * result + ((this.memberDates == null) ? 0 : this.memberDates.hashCode());
-		result = prime * result + ((this.members == null) ? 0 : this.members.hashCode());
-		result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
-		result = prime * result + ((this.permissions == null) ? 0 : this.permissions.hashCode());
-		result = prime * result + ((this.previousEvents == null) ? 0 : this.previousEvents.hashCode());
-		result = prime * result + ((this.previousMembers == null) ? 0 : this.previousMembers.hashCode());
-		result = prime * result + ((this.previousTracks == null) ? 0 : this.previousTracks.hashCode());
-		result = prime * result + ((this.roles == null) ? 0 : this.roles.hashCode());
-		result = prime * result + ((this.trackDates == null) ? 0 : this.trackDates.hashCode());
-		result = prime * result + ((this.tracks == null) ? 0 : this.tracks.hashCode());
+		result = prime * result
+				+ ((this.events == null) ? 0 : this.events.hashCode());
+		result = prime * result
+				+ ((this.finances == null) ? 0 : this.finances.hashCode());
+		result = prime * result
+				+ ((this.genre == null) ? 0 : this.genre.hashCode());
+		result = prime
+				* result
+				+ ((this.memberDates == null) ? 0 : this.memberDates.hashCode());
+		result = prime * result
+				+ ((this.members == null) ? 0 : this.members.hashCode());
+		result = prime * result
+				+ ((this.name == null) ? 0 : this.name.hashCode());
+		result = prime
+				* result
+				+ ((this.permissions == null) ? 0 : this.permissions.hashCode());
+		result = prime
+				* result
+				+ ((this.previousEvents == null) ? 0 : this.previousEvents
+						.hashCode());
+		result = prime
+				* result
+				+ ((this.previousMembers == null) ? 0 : this.previousMembers
+						.hashCode());
+		result = prime
+				* result
+				+ ((this.previousTracks == null) ? 0 : this.previousTracks
+						.hashCode());
+		result = prime * result
+				+ ((this.roles == null) ? 0 : this.roles.hashCode());
+		result = prime * result
+				+ ((this.trackDates == null) ? 0 : this.trackDates.hashCode());
+		result = prime * result
+				+ ((this.tracks == null) ? 0 : this.tracks.hashCode());
 		return result;
 	}
 
@@ -302,62 +334,78 @@ public class Band implements Authenticatable {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (!(obj instanceof Band)) return false;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Band))
+			return false;
 		Band other = (Band) obj;
 		if (this.events == null) {
-			if (other.events != null) return false;
-		}
-		else if (!this.events.equals(other.events)) return false;
+			if (other.events != null)
+				return false;
+		} else if (!this.events.equals(other.events))
+			return false;
 		if (this.finances == null) {
-			if (other.finances != null) return false;
-		}
-		else if (!this.finances.equals(other.finances)) return false;
+			if (other.finances != null)
+				return false;
+		} else if (!this.finances.equals(other.finances))
+			return false;
 		if (this.genre == null) {
-			if (other.genre != null) return false;
-		}
-		else if (!this.genre.equals(other.genre)) return false;
+			if (other.genre != null)
+				return false;
+		} else if (!this.genre.equals(other.genre))
+			return false;
 		if (this.memberDates == null) {
-			if (other.memberDates != null) return false;
-		}
-		else if (!this.memberDates.equals(other.memberDates)) return false;
+			if (other.memberDates != null)
+				return false;
+		} else if (!this.memberDates.equals(other.memberDates))
+			return false;
 		if (this.members == null) {
-			if (other.members != null) return false;
-		}
-		else if (!this.members.equals(other.members)) return false;
+			if (other.members != null)
+				return false;
+		} else if (!this.members.equals(other.members))
+			return false;
 		if (this.name == null) {
-			if (other.name != null) return false;
-		}
-		else if (!this.name.equals(other.name)) return false;
+			if (other.name != null)
+				return false;
+		} else if (!this.name.equals(other.name))
+			return false;
 		if (this.permissions == null) {
-			if (other.permissions != null) return false;
-		}
-		else if (!this.permissions.equals(other.permissions)) return false;
+			if (other.permissions != null)
+				return false;
+		} else if (!this.permissions.equals(other.permissions))
+			return false;
 		if (this.previousEvents == null) {
-			if (other.previousEvents != null) return false;
-		}
-		else if (!this.previousEvents.equals(other.previousEvents)) return false;
+			if (other.previousEvents != null)
+				return false;
+		} else if (!this.previousEvents.equals(other.previousEvents))
+			return false;
 		if (this.previousMembers == null) {
-			if (other.previousMembers != null) return false;
-		}
-		else if (!this.previousMembers.equals(other.previousMembers)) return false;
+			if (other.previousMembers != null)
+				return false;
+		} else if (!this.previousMembers.equals(other.previousMembers))
+			return false;
 		if (this.previousTracks == null) {
-			if (other.previousTracks != null) return false;
-		}
-		else if (!this.previousTracks.equals(other.previousTracks)) return false;
+			if (other.previousTracks != null)
+				return false;
+		} else if (!this.previousTracks.equals(other.previousTracks))
+			return false;
 		if (this.roles == null) {
-			if (other.roles != null) return false;
-		}
-		else if (!this.roles.equals(other.roles)) return false;
+			if (other.roles != null)
+				return false;
+		} else if (!this.roles.equals(other.roles))
+			return false;
 		if (this.trackDates == null) {
-			if (other.trackDates != null) return false;
-		}
-		else if (!this.trackDates.equals(other.trackDates)) return false;
+			if (other.trackDates != null)
+				return false;
+		} else if (!this.trackDates.equals(other.trackDates))
+			return false;
 		if (this.tracks == null) {
-			if (other.tracks != null) return false;
-		}
-		else if (!this.tracks.equals(other.tracks)) return false;
+			if (other.tracks != null)
+				return false;
+		} else if (!this.tracks.equals(other.tracks))
+			return false;
 		return true;
 	}
 
@@ -370,16 +418,19 @@ public class Band implements Authenticatable {
 	 *            to-date
 	 * @return the sum of the costs of all events within the given time period
 	 */
-	public BigDecimal getBilling(final Date d1, final Date d2, final ArrayList<Class<? extends Event>> types)
+	public BigDecimal getBilling(final Date d1, final Date d2,
+			final ArrayList<Class<? extends Event>> types)
 			throws InvalidDateException {
 
 		BigDecimal ret = new BigDecimal(0.0);
-		if (d1.after(d2)) throw new InvalidDateException("from-date AFTER to-date");
+		if (d1.after(d2))
+			throw new InvalidDateException("from-date AFTER to-date");
 		else {
 			for (final Event e : this.events)
-				if (types.contains(e.getClass())) if (e.getTime().after(d1) && e.getTime().before(d2)) {
-					ret = ret.add(e.getFinances());
-				}
+				if (types.contains(e.getClass()))
+					if (e.getTime().after(d1) && e.getTime().before(d2)) {
+						ret = ret.add(e.getFinances());
+					}
 		}
 		return ret;
 	}
@@ -403,33 +454,37 @@ public class Band implements Authenticatable {
 	 *            the types of events that should be returned
 	 * @return an ArrayList of all events within the given time period
 	 */
-	public ArrayList<Event> getEvents(final Date d1, final Date d2, final ArrayList<Class<? extends Event>> types)
+	public ArrayList<Event> getEvents(final Date d1, final Date d2,
+			final ArrayList<Class<? extends Event>> types)
 			throws InvalidDateException {
 
 		final ArrayList<Event> ret = new ArrayList<Event>();
-		if (d1.after(d2)) throw new InvalidDateException("from-date AFTER to-date");
+		if (d1.after(d2))
+			throw new InvalidDateException("from-date AFTER to-date");
 		else {
 			for (final Event e : this.events)
-				if (types.contains(e.getClass())) if (e.getTime().after(d1) && e.getTime().before(d2)) {
-					ret.add(e);
-				}
+				if (types.contains(e.getClass()))
+					if (e.getTime().after(d1) && e.getTime().before(d2)) {
+						ret.add(e);
+					}
 		}
 		return ret;
 	}
 
 	/**
-	 * with the use of a filter it is possible to get income/expense/total of various reasons in a specified period at
-	 * once
+	 * with the use of a filter it is possible to get income/expense/total of
+	 * various reasons in a specified period at once
 	 * 
 	 * @param f
 	 *            a filter used for enhanced search
 	 * @return a string with the specified filter information
 	 */
-	public HashMap<FinanceTypes, BigDecimal> getFinancesFiltered(final FinanceFilter f) {
+	public HashMap<FinanceTypes, BigDecimal> getFinancesFiltered(
+			final FinanceFilter f) {
 		HashMap<FinanceTypes, BigDecimal> ret = new HashMap<FinanceTypes, BigDecimal>();
 		BigDecimal tmp;
 		BigDecimal total = new BigDecimal(0);
-		
+
 		final Date startDate = f.getStartDate();
 		final Date endDate = f.getEndDate();
 
@@ -483,10 +538,12 @@ public class Band implements Authenticatable {
 	 * @param endDate
 	 *            end date of a period
 	 * @param reason
-	 *            short info why money was get or spent (i.e. "Merchandise" or "Advertisement")
+	 *            short info why money was get or spent (i.e. "Merchandise" or
+	 *            "Advertisement")
 	 * @return total finances of @reason, 0 if no entries where found
 	 */
-	public BigDecimal getFinancesSinceUntilOf(final Date startDate, final Date endDate, final String reason) {
+	public BigDecimal getFinancesSinceUntilOf(final Date startDate,
+			final Date endDate, final String reason) {
 
 		BigDecimal ret = new BigDecimal(0);
 		for (final Date d : this.finances.getIncome().keySet()) {
@@ -505,7 +562,8 @@ public class Band implements Authenticatable {
 			}
 			if (startDate.before(d) || startDate.equals(d)) {
 				if (this.finances.getExpense().get(d).containsKey(reason)) {
-					ret = ret.add(this.finances.getExpense().get(d).get(reason));
+					ret = ret
+							.add(this.finances.getExpense().get(d).get(reason));
 				}
 			}
 		}
@@ -532,9 +590,11 @@ public class Band implements Authenticatable {
 		int anz = 0;
 		for (Member mem : this.members) {
 			for (Rehearsal re : mem.getRehersal()) {
-				if (re.getTime().after(d)) anz++;
+				if (re.getTime().after(d))
+					anz++;
 			}
-			if (anz >= min) val.add(mem);
+			if (anz >= min)
+				val.add(mem);
 			anz = 0;
 		}
 		return val;
@@ -565,7 +625,8 @@ public class Band implements Authenticatable {
 	 * 
 	 * @param d
 	 *            key date
-	 * @return an ArrayList of all members that were part of the band on the given day
+	 * @return an ArrayList of all members that were part of the band on the
+	 *         given day
 	 */
 	public ArrayList<Member> getMembers(final Date d) {
 
@@ -612,8 +673,10 @@ public class Band implements Authenticatable {
 	@Override
 	public Permission getRole(final Authenticatable auth) {
 
-		if (this.roles.containsKey(auth)) return this.roles.get(auth);
-		else return Permission.NONE;
+		if (this.roles.containsKey(auth))
+			return this.roles.get(auth);
+		else
+			return Permission.NONE;
 	}
 
 	@Override
@@ -635,7 +698,8 @@ public class Band implements Authenticatable {
 	 * 
 	 * @param d
 	 *            key date
-	 * @return an ArrayList of all the tracks that the band was performing at the given date
+	 * @return an ArrayList of all the tracks that the band was performing at
+	 *         the given date
 	 */
 	public ArrayList<Track> getTracks(Date d) {
 
@@ -665,7 +729,8 @@ public class Band implements Authenticatable {
 	}
 
 	/**
-	 * initializes the permissions for each method of the class; this method should be called in the constructor
+	 * initializes the permissions for each method of the class; this method
+	 * should be called in the constructor
 	 */
 	@Override
 	public void initPermissions() {
@@ -684,43 +749,34 @@ public class Band implements Authenticatable {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.MANAGEMENT);
 				tPerm.add(Permission.GROUP);
-			}
-			else if ("addMember".equals(m.getName())) {
+			} else if ("addMember".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.GROUP);
-			}
-			else if ("getBilling".equals(m.getName())) {
+			} else if ("getBilling".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.MANAGEMENT);
-			}
-			else if ("getEvents".equals(m.getName())) {
+			} else if ("getEvents".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.MANAGEMENT);
 				tPerm.add(Permission.GROUP);
-			}
-			else if ("getMembers".equals(m.getName())) {
+			} else if ("getMembers".equals(m.getName())) {
 				tPerm.add(Permission.WORLD);
-			}
-			else if ("getTracks".equals(m.getName())) {
+			} else if ("getTracks".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.MANAGEMENT);
 				tPerm.add(Permission.GROUP);
-			}
-			else if ("removeEvent".equals(m.getName())) {
+			} else if ("removeEvent".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.MANAGEMENT);
 				tPerm.add(Permission.GROUP);
-			}
-			else if ("removeMember".equals(m.getName())) {
+			} else if ("removeMember".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.GROUP);
-			}
-			else if ("restoreEvent".equals(m.getName())) {
+			} else if ("restoreEvent".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.MANAGEMENT);
 				tPerm.add(Permission.GROUP);
-			}
-			else if ("getValidMember".equals(m.getName())) {
+			} else if ("getValidMember".equals(m.getName())) {
 				tPerm.add(Permission.WORLD);
 			}
 
@@ -743,7 +799,8 @@ public class Band implements Authenticatable {
 	 */
 	public void removeEvent(final Event e) throws InvalidBandObjectException {
 
-		if (!this.events.contains(e)) throw new InvalidBandObjectException("event doesnt exist");
+		if (!this.events.contains(e))
+			throw new InvalidBandObjectException("event doesnt exist");
 		else {
 			this.events.remove(e);
 
@@ -764,20 +821,20 @@ public class Band implements Authenticatable {
 	 * @throws InvalidBandObjectException
 	 *             thrown if the event doesnt exist
 	 */
-	public void removeEvent(final Event e, final Date d) throws InvalidBandObjectException {
+	public void removeEvent(final Event e, final Date d)
+			throws InvalidBandObjectException {
 
 		if (this.events.contains(e)) {
 			this.removeEvent(e);
 			if (this.previousEvents.containsKey(e)) {
 				this.previousEvents.get(e).add(d);
-			}
-			else {
+			} else {
 				final ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
 				this.previousEvents.put(e, newHistory);
 			}
-		}
-		else throw new InvalidBandObjectException("event doesnt exist");
+		} else
+			throw new InvalidBandObjectException("event doesnt exist");
 	}
 
 	/**
@@ -788,16 +845,20 @@ public class Band implements Authenticatable {
 	 * @param d
 	 *            the date the member left the band
 	 * @throws InvalidDateException
-	 *             thrown if the "leave-date" of the member is prior to the last join date
+	 *             thrown if the "leave-date" of the member is prior to the last
+	 *             join date
 	 * @throws InvalidBandObjectException
 	 *             thrown if the member doesnt exist
 	 */
-	public void removeMember(final Member m, final Date d) throws InvalidDateException, InvalidBandObjectException {
+	public void removeMember(final Member m, final Date d)
+			throws InvalidDateException, InvalidBandObjectException {
 
 		final ArrayList<Date> history = this.memberDates.get(m);
 		final Date joinDate = history.get(history.size() - 1);
-		if (!this.members.contains(m)) throw new InvalidBandObjectException("member doesnt exist");
-		else if (joinDate.after(d)) throw new InvalidDateException("new date prior to last add date");
+		if (!this.members.contains(m))
+			throw new InvalidBandObjectException("member doesnt exist");
+		else if (joinDate.after(d))
+			throw new InvalidDateException("new date prior to last add date");
 		else {
 			this.members.remove(m);
 
@@ -815,8 +876,7 @@ public class Band implements Authenticatable {
 			if (this.previousMembers.containsKey(m)) {
 				// the member has leave once before
 				this.previousMembers.get(m).add(d);
-			}
-			else {
+			} else {
 				final ArrayList<Date> newHistory = new ArrayList<Date>();
 				newHistory.add(d);
 				this.previousMembers.put(m, newHistory);
@@ -837,7 +897,8 @@ public class Band implements Authenticatable {
 	 *             thrown if the track doesnt exist
 	 */
 	// @Deprecated
-	public void removeTrack(Track t, Date d) throws InvalidDateException, InvalidBandObjectException {
+	public void removeTrack(Track t, Date d) throws InvalidDateException,
+			InvalidBandObjectException {
 
 		ArrayList<Track> al = new ArrayList<Track>();
 		if (this.members.size() > 0) {
@@ -854,15 +915,15 @@ public class Band implements Authenticatable {
 		if (history != null && (history.size() - 1) >= 0) {
 			final Date joinDate = history.get(history.size() - 1);
 
-			if (this.tracks.contains(t) && joinDate.after(d)) throw new InvalidDateException(
-					"new date prior to last add date");
+			if (this.tracks.contains(t) && joinDate.after(d))
+				throw new InvalidDateException(
+						"new date prior to last add date");
 			else {
 
 				if (this.previousTracks.containsKey(t)) {
 					// we need to add a new date to the history
 					this.previousTracks.get(t).add(d);
-				}
-				else {
+				} else {
 					final ArrayList<Date> newHistory = new ArrayList<Date>();
 					newHistory.add(d);
 					this.previousTracks.put(t, newHistory);
@@ -873,17 +934,22 @@ public class Band implements Authenticatable {
 		this.tracks = al;
 	}
 
-	// TODO javadoc comments
 	/**
+	 * 
+	 * searches and restores an event; if more than one event matches the
+	 * criterea, all events are restored
+	 * 
 	 * @param place
+	 *            place the event took place
 	 * @param duration
+	 *            duration of the event
 	 * @param time
-	 * @param restoreDate
-	 * @throws InvalidDateException
+	 *            the time the even took place
 	 * @throws InvalidBandObjectException
+	 *             thrown if no event is found
 	 */
-	public void restoreEvent(final String place, final Integer duration, final Date time)
-			throws InvalidBandObjectException {
+	public void restoreEvent(final String place, final Integer duration,
+			final Date time) throws InvalidBandObjectException {
 
 		ArrayList<Event> e;
 		e = this.searchEvent(place, duration, time);
@@ -892,22 +958,28 @@ public class Band implements Authenticatable {
 				this.addEvent(rest);
 				this.previousEvents.remove(rest);
 			}
-		}
-		else throw new InvalidBandObjectException("event doesnt exist");
+		} else
+			throw new InvalidBandObjectException("event doesnt exist");
 	}
 
-	// TODO javadoc comments
 	/**
+	 * searches for events using different params
+	 * 
 	 * @param place
+	 *            place the event took place
 	 * @param duration
+	 *            duration of the event
 	 * @param time
-	 * @return
+	 *            the time the even took place
+	 * @return arraylist of all events that match the criterea
 	 */
-	private ArrayList<Event> searchEvent(final String place, final Integer duration, final Date time) {
+	private ArrayList<Event> searchEvent(final String place,
+			final Integer duration, final Date time) {
 
 		final ArrayList<Event> ret = new ArrayList<Event>();
 		for (final Event e : this.previousEvents.keySet())
-			if (place.equals(e.getPlace()) && time.equals(e.getTime()) && duration.equals(e.getDuration())) {
+			if (place.equals(e.getPlace()) && time.equals(e.getTime())
+					&& duration.equals(e.getDuration())) {
 				ret.add(e);
 			}
 		return ret;

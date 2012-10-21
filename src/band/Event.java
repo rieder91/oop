@@ -1,4 +1,3 @@
-
 package band;
 
 import helper.InvalidDateException;
@@ -10,8 +9,8 @@ import java.util.HashMap;
 import auth.Authenticatable;
 
 /**
- * used to store information about a event; Event is an abstract class which implements all methods common to both Gig
- * and Rehearsal
+ * used to store information about a event; Event is an abstract class which
+ * implements all methods common to both Gig and Rehearsal
  * 
  * @author OOP Gruppe 187
  */
@@ -24,16 +23,24 @@ public abstract class Event implements Authenticatable {
 	private HashMap<Date, Event> eventHistory;
 	private ArrayList<Member> attended;
 
+	// Authentication stuff
 	HashMap<Method, ArrayList<Permission>> permissions;
 	HashMap<Authenticatable, Permission> roles;
 
+	/**
+	 * @return member list
+	 */
 	public ArrayList<Member> getMember() {
-
 		return this.attended;
 	}
 
+	/**
+	 * sets the member list
+	 * 
+	 * @param alm
+	 *            member list
+	 */
 	public void setMember(ArrayList<Member> alm) {
-
 		this.attended = alm;
 	}
 
@@ -43,8 +50,8 @@ public abstract class Event implements Authenticatable {
 	@Override
 	public String toString() {
 
-		String ret = "Name: " + this.name + " Place: " + this.place.getName() + " Time: " + this.time + " Duration: "
-				+ this.duration;
+		String ret = "Name: " + this.name + " Place: " + this.place.getName()
+				+ " Time: " + this.time + " Duration: " + this.duration;
 		return ret;
 	}
 
@@ -60,7 +67,6 @@ public abstract class Event implements Authenticatable {
 	 */
 	@Deprecated
 	public Event(Date time, String place, Integer duration) {
-
 		this("", time, place, duration);
 	}
 
@@ -76,12 +82,21 @@ public abstract class Event implements Authenticatable {
 	 */
 	@Deprecated
 	public Event(String name, Date time, String place, Integer duration) {
-
 		this(name, time, new Place(place), duration);
 	}
 
+	/**
+	 * 
+	 * @param name
+	 *            name of the event
+	 * @param time
+	 *            time of the event
+	 * @param place
+	 *            place of the event
+	 * @param duration
+	 *            duration of the event
+	 */
 	public Event(String name, Date time, Place place, Integer duration) {
-
 		this.name = name;
 		this.place = place;
 		this.time = time;
@@ -92,11 +107,10 @@ public abstract class Event implements Authenticatable {
 		this.roles = new HashMap<Authenticatable, Permission>();
 
 		this.initPermissions();
-
 	}
 
 	/**
-	 * @return the place of the event
+	 * @return the name of the place of the event
 	 */
 	public String getPlace() {
 
@@ -104,7 +118,7 @@ public abstract class Event implements Authenticatable {
 	}
 
 	/**
-	 * @return
+	 * @return place of the event
 	 */
 	public Place getPlaceObj() {
 
@@ -132,82 +146,127 @@ public abstract class Event implements Authenticatable {
 	 */
 	public abstract BigDecimal getFinances();
 
-	/**
-	 * @return
-	 */
 	@Override
 	public int hashCode() {
 
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((duration == null) ? 0 : duration.hashCode());
+		result = prime * result
+				+ ((duration == null) ? 0 : duration.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((place == null) ? 0 : place.hashCode());
 		result = prime * result + ((time == null) ? 0 : time.hashCode());
 		return result;
 	}
 
-	/**
-	 * @param obj
-	 * @return
-	 */
 	@Override
 	public boolean equals(Object obj) {
 
-		if (this == obj) { return true; }
-		if (obj == null) { return false; }
-		if (!(obj instanceof Event)) { return false; }
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Event)) {
+			return false;
+		}
 		Event other = (Event) obj;
 		if (duration == null) {
-			if (other.duration != null) { return false; }
+			if (other.duration != null) {
+				return false;
+			}
+		} else if (!duration.equals(other.duration)) {
+			return false;
 		}
-		else if (!duration.equals(other.duration)) { return false; }
 		if (name == null) {
-			if (other.name != null) { return false; }
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
 		}
-		else if (!name.equals(other.name)) { return false; }
 		if (place == null) {
-			if (other.place != null) { return false; }
+			if (other.place != null) {
+				return false;
+			}
+		} else if (!place.equals(other.place)) {
+			return false;
 		}
-		else if (!place.equals(other.place)) { return false; }
 		if (time == null) {
-			if (other.time != null) { return false; }
+			if (other.time != null) {
+				return false;
+			}
+		} else if (!time.equals(other.time)) {
+			return false;
 		}
-		else if (!time.equals(other.time)) { return false; }
 		return true;
 	}
-
+	
+	/**
+	 * adds a new event to the history
+	 * @param e new event
+	 * @param d date the event was added
+	 */
 	public void addToHistory(Event e, Date d) {
-
 		this.eventHistory.put(d, e);
 	}
-
+	
+	/**
+	 * setter for the place
+	 * @param place new place-name
+	 */
 	public void setPlace(String place) {
-
 		this.place = new Place(place);
 	}
-
+	
+	/**
+	 * setter for the place
+	 * @param place new place-object
+	 */
 	public void setPlaceObj(Place place) {
-
 		this.place = place;
 	}
-
+	
+	/**
+	 * setter for the time
+	 * @param time new time
+	 */
 	public void setTime(Date time) {
-
 		this.time = time;
 	}
-
+	
+	/**
+	 * setter for the duration
+	 * @param duration new duration
+	 */
 	public void setDuration(Integer duration) {
-
 		this.duration = duration;
 	}
-
+	
+	/**
+	 * getter for the event-history
+	 * @return event-history as a hashmap
+	 */
 	public HashMap<Date, Event> getEventHistory() {
-
 		return this.eventHistory;
 	}
-
-	public abstract void updateEvent(Event e, Date changeDate) throws InvalidDateException;
-
-	public abstract void restoreEvent(Date restoreDate, Date currentDate) throws InvalidDateException;
+	
+	/**
+	 * updates and event and saves the changes to the history
+	 * @param e new event
+	 * @param changeDate date the change occured
+	 * @throws InvalidDateException thrown if the changeDate is before the last edit-date
+	 */
+	public abstract void updateEvent(Event e, Date changeDate)
+			throws InvalidDateException;
+	
+	/**
+	 * restores an event
+	 * @param restoreDate the date of which the state of the event is restored
+	 * @param currentDate the date the event is being restored
+	 * @throws InvalidDateException thrown if restoreDate is after currentdate
+	 */
+	public abstract void restoreEvent(Date restoreDate, Date currentDate)
+			throws InvalidDateException;
 }
