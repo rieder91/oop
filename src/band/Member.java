@@ -1,3 +1,4 @@
+
 package band;
 
 import helper.EventNotification;
@@ -36,6 +37,7 @@ public class Member extends Person {
 	 * @return the date proposals of the member
 	 */
 	public ArrayList<ProposedDate> getProposedDates() {
+
 		return this.events;
 	}
 
@@ -43,6 +45,7 @@ public class Member extends Person {
 	 * @return the repertoire of the member
 	 */
 	public ArrayList<Track> getTracks() {
+
 		return this.repertoire;
 
 	}
@@ -54,9 +57,7 @@ public class Member extends Person {
 	 */
 	public void addBand(Band bnd) throws InvalidBandObjectException {
 
-		if (this.bands.contains(bnd))
-			throw new InvalidBandObjectException(
-					"Member is already in this band");
+		if (this.bands.contains(bnd)) throw new InvalidBandObjectException("Member is already in this band");
 		this.bands.add(bnd);
 	}
 
@@ -93,8 +94,7 @@ public class Member extends Person {
 	 *            the telephone number of the member
 	 */
 	@Deprecated
-	public Member(final String firstName, final String lastName,
-			final String instrument, final String telephoneNumber) {
+	public Member(final String firstName, final String lastName, final String instrument, final String telephoneNumber) {
 
 		this(firstName, lastName, instrument, telephoneNumber, false);
 	}
@@ -111,8 +111,7 @@ public class Member extends Person {
 	 * @param telephoneNumber
 	 *            the telephone number of the member
 	 */
-	public Member(final String firstName, final String lastName,
-			final String instrument, final String telephoneNumber,
+	public Member(final String firstName, final String lastName, final String instrument, final String telephoneNumber,
 			final boolean substituteMember) {
 
 		super();
@@ -138,13 +137,12 @@ public class Member extends Person {
 	 * @throws InvalidBandObjectException
 	 *             if the date was already proposed to this member
 	 */
-	public void addProposedDate(final ProposedDate pd)
-			throws InvalidBandObjectException {
+	public void addProposedDate(final ProposedDate pd) throws InvalidBandObjectException {
 
 		if (this.events.indexOf(pd) == -1) {
 			this.events.add(pd);
-		} else
-			throw new InvalidBandObjectException("proposed date aready exists");
+		}
+		else throw new InvalidBandObjectException("proposed date aready exists");
 	}
 
 	/**
@@ -156,13 +154,12 @@ public class Member extends Person {
 	 * @throws InvalidBandObjectException
 	 * @throws InvalidDateException
 	 */
-	public void addTrack(final Track tr, Date d) throws InvalidDateException,
-			InvalidBandObjectException {
+	public void addTrack(final Track tr, Date d) throws InvalidDateException, InvalidBandObjectException {
 
 		if (!this.repertoire.contains(tr)) {
 			this.repertoire.add(tr);
-		} else
-			throw new InvalidBandObjectException("Track already exists!");
+		}
+		else throw new InvalidBandObjectException("Track already exists!");
 		for (Band bnd : this.bands) {
 			bnd.addTrack(tr, d);
 		}
@@ -174,15 +171,12 @@ public class Member extends Person {
 	 * @param e
 	 *            event you want to agree or disagree
 	 * @param agreed
-	 *            agree or disagree to the proposed date true - agree false -
-	 *            disagree
+	 *            agree or disagree to the proposed date true - agree false - disagree
 	 * @throws InvalidBandObjectException
 	 */
-	public void agree(ProposedDate e, boolean agreed)
-			throws InvalidBandObjectException {
+	public void agree(ProposedDate e, boolean agreed) throws InvalidBandObjectException {
 
-		if (!this.events.contains(e))
-			throw new InvalidBandObjectException("There is no such event!");
+		if (!this.events.contains(e)) throw new InvalidBandObjectException("There is no such event!");
 		final int idx = this.events.indexOf(e);
 		this.events.get(idx).agree(agreed);
 	}
@@ -193,16 +187,13 @@ public class Member extends Person {
 	 * @param e
 	 *            event you want to agree or disagree
 	 * @param agreed
-	 *            agree or disagree to the proposed date true - agree false -
-	 *            disagree
+	 *            agree or disagree to the proposed date true - agree false - disagree
 	 * @throws InvalidBandObjectException
 	 */
-	public void agree(final Event e, final Date date, final boolean agreed)
-			throws InvalidBandObjectException {
+	public void agree(final Event e, final Date date, final boolean agreed) throws InvalidBandObjectException {
 
 		ProposedDate propd = new ProposedDate(e, date);
-		if (!this.events.contains(propd))
-			throw new InvalidBandObjectException("There is no such event!");
+		if (!this.events.contains(propd)) throw new InvalidBandObjectException("There is no such event!");
 		final int idx = this.events.indexOf(propd);
 		this.events.get(idx).agree(agreed);
 	}
@@ -231,20 +222,18 @@ public class Member extends Person {
 	 * @param reason
 	 *            the reason you have agreed or disagreed
 	 * @param agreed
-	 *            agree or disagree to the proposed date true - agree false -
-	 *            disagree
+	 *            agree or disagree to the proposed date true - agree false - disagree
 	 * @throws InvalidBandObjectException
 	 */
-	public void agree(final Event e, final Date date, final String reason,
-			final boolean agreed) throws InvalidBandObjectException {
+	public void agree(final Event e, final Date date, final String reason, final boolean agreed)
+			throws InvalidBandObjectException {
 
 		ProposedDate propd = new ProposedDate(e, date);
-		if (!this.events.contains(propd))
-			throw new InvalidBandObjectException("There is no such event!");
+		if (!this.events.contains(propd)) throw new InvalidBandObjectException("There is no such event!");
 		final int idx = this.events.indexOf(propd);
 		this.events.get(idx).agree(agreed, reason);
 	}
-	
+
 	/**
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
@@ -253,15 +242,12 @@ public class Member extends Person {
 	 * @param reason
 	 *            the reason you have agreed or disagreed
 	 * @param agreed
-	 *            agree or disagree to the proposed date true - agree false -
-	 *            disagree
+	 *            agree or disagree to the proposed date true - agree false - disagree
 	 * @throws InvalidBandObjectException
 	 */
-	public void agree(ProposedDate e, final String reason, final boolean agreed)
-			throws InvalidBandObjectException {
+	public void agree(ProposedDate e, final String reason, final boolean agreed) throws InvalidBandObjectException {
 
-		if (!this.events.contains(e))
-			throw new InvalidBandObjectException("There is no such event!");
+		if (!this.events.contains(e)) throw new InvalidBandObjectException("There is no such event!");
 		final int idx = this.events.indexOf(e);
 		this.events.get(idx).agree(agreed, reason);
 	}
@@ -273,33 +259,27 @@ public class Member extends Person {
 	 */
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Member))
-			return false;
+
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (!(obj instanceof Member)) return false;
 		final Member other = (Member) obj;
 		if (this.firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!this.firstName.equals(other.firstName))
-			return false;
+			if (other.firstName != null) return false;
+		}
+		else if (!this.firstName.equals(other.firstName)) return false;
 		if (this.instrument == null) {
-			if (other.instrument != null)
-				return false;
-		} else if (!this.instrument.equals(other.instrument))
-			return false;
+			if (other.instrument != null) return false;
+		}
+		else if (!this.instrument.equals(other.instrument)) return false;
 		if (this.lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!this.lastName.equals(other.lastName))
-			return false;
+			if (other.lastName != null) return false;
+		}
+		else if (!this.lastName.equals(other.lastName)) return false;
 		if (this.telephoneNumber == null) {
-			if (other.telephoneNumber != null)
-				return false;
-		} else if (!this.telephoneNumber.equals(other.telephoneNumber))
-			return false;
+			if (other.telephoneNumber != null) return false;
+		}
+		else if (!this.telephoneNumber.equals(other.telephoneNumber)) return false;
 		return true;
 	}
 
@@ -309,6 +289,7 @@ public class Member extends Person {
 	 * @return the notifications of the member
 	 */
 	public ArrayList<EventNotification> getNotifications(boolean all) {
+
 		ArrayList<EventNotification> alen = new ArrayList<EventNotification>();
 		for (EventNotification en : this.eventNot) {
 			if (all || !en.getNotified()) {
@@ -321,11 +302,13 @@ public class Member extends Person {
 
 	@Override
 	public HashMap<Method, ArrayList<Permission>> getPermissions() {
+
 		return this.permissions;
 	}
 
 	@Override
 	public HashMap<Authenticatable, Permission> getRoles() {
+
 		return this.roles;
 	}
 
@@ -334,23 +317,18 @@ public class Member extends Person {
 	 */
 	@Override
 	public int hashCode() {
+
 		final int prime = 31;
 		int result = 1;
-		result = (prime * result)
-				+ ((this.firstName == null) ? 0 : this.firstName.hashCode());
-		result = (prime * result)
-				+ ((this.instrument == null) ? 0 : this.instrument.hashCode());
-		result = (prime * result)
-				+ ((this.lastName == null) ? 0 : this.lastName.hashCode());
-		result = (prime * result)
-				+ ((this.telephoneNumber == null) ? 0 : this.telephoneNumber
-						.hashCode());
+		result = (prime * result) + ((this.firstName == null) ? 0 : this.firstName.hashCode());
+		result = (prime * result) + ((this.instrument == null) ? 0 : this.instrument.hashCode());
+		result = (prime * result) + ((this.lastName == null) ? 0 : this.lastName.hashCode());
+		result = (prime * result) + ((this.telephoneNumber == null) ? 0 : this.telephoneNumber.hashCode());
 		return result;
 	}
 
 	/**
-	 * initializes the permissions for each method of the class; this method
-	 * should be called in the constructor
+	 * initializes the permissions for each method of the class; this method should be called in the constructor
 	 */
 	@Override
 	public void initPermissions() {
@@ -369,29 +347,38 @@ public class Member extends Person {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.GROUP);
 				tPerm.add(Permission.MANAGEMENT);
-			} else if ("agree".equals(m.getName())) {
+			}
+			else if ("agree".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
-			} else if ("addProposedDate".equals(m.getName())) {
-				tPerm.add(Permission.OWNER);
-				tPerm.add(Permission.GROUP);
-				tPerm.add(Permission.MANAGEMENT);
-			} else if ("addTrack".equals(m.getName())) {
-				tPerm.add(Permission.OWNER);
-			} else if ("removeTrack".equals(m.getName())) {
-				tPerm.add(Permission.OWNER);
-			} else if ("notifyEvent".equals(m.getName())) {
+			}
+			else if ("addProposedDate".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.GROUP);
 				tPerm.add(Permission.MANAGEMENT);
-			} else if ("changeSubstituteStatus".equals(m.getName())) {
+			}
+			else if ("addTrack".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+			}
+			else if ("removeTrack".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+			}
+			else if ("notifyEvent".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.GROUP);
 				tPerm.add(Permission.MANAGEMENT);
-			} else if ("getNotifications".equals(m.getName())) {
+			}
+			else if ("changeSubstituteStatus".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
-			} else if ("agree".equals(m.getName())) {
+				tPerm.add(Permission.GROUP);
+				tPerm.add(Permission.MANAGEMENT);
+			}
+			else if ("getNotifications".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
-			} else if ("addBand".equals(m.getName())) {
+			}
+			else if ("agree".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+			}
+			else if ("addBand".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.GROUP);
 				tPerm.add(Permission.MANAGEMENT);
@@ -404,10 +391,10 @@ public class Member extends Person {
 	}
 
 	/**
-	 * @return true if the member is a substitute member false if the member
-	 *         isn't a substitute member
+	 * @return true if the member is a substitute member false if the member isn't a substitute member
 	 */
 	public boolean isSubstituteMember() {
+
 		return this.substituteMember;
 	}
 
@@ -415,6 +402,7 @@ public class Member extends Person {
 	 * inverts the substitute status of a member.
 	 */
 	public void changeSubstituteStatus() {
+
 		this.substituteMember = !this.substituteMember;
 	}
 
@@ -425,10 +413,9 @@ public class Member extends Person {
 	 * @throws InvalidBandObjectException
 	 *             if the member was already notified about the event
 	 */
-	public void notifyEvent(final Event e, final Status stat)
-			throws InvalidBandObjectException {
-		if (!this.eventNot.contains(new EventNotification(e, stat)))
-			this.eventNot.add(new EventNotification(e, stat));
+	public void notifyEvent(final Event e, final Status stat) throws InvalidBandObjectException {
+
+		if (!this.eventNot.contains(new EventNotification(e, stat))) this.eventNot.add(new EventNotification(e, stat));
 	}
 
 	/**
@@ -440,16 +427,16 @@ public class Member extends Person {
 	 *             if the track does not exist
 	 * @throws InvalidDateException
 	 */
-	public void removeTrack(final Track tr, Date d)
-			throws InvalidBandObjectException, InvalidDateException {
+	public void removeTrack(final Track tr, Date d) throws InvalidBandObjectException, InvalidDateException {
+
 		int idx;
 		if ((idx = this.repertoire.indexOf(tr)) != -1) {
 			this.repertoire.remove(idx);
 			for (Band bnd : this.bands) {
 				bnd.removeTrack(tr, d);
 			}
-		} else
-			throw new InvalidBandObjectException("Track does not exist!");
+		}
+		else throw new InvalidBandObjectException("Track does not exist!");
 	}
 
 	/**
@@ -457,13 +444,17 @@ public class Member extends Person {
 	 */
 	@Override
 	public String toString() {
-		final String ret = "First name: " + this.firstName + " Last name: "
-				+ this.lastName + " Instrument: " + this.instrument
-				+ " Telephone number: " + this.telephoneNumber;
+
+		final String ret = "First name: " + this.firstName + " Last name: " + this.lastName + " Instrument: "
+				+ this.instrument + " Telephone number: " + this.telephoneNumber;
 		return ret;
 	}
-	
-	public ArrayList<Rehearsal> getRehearsals(){
+
+	/**
+	 * @return
+	 */
+	public ArrayList<Rehearsal> getRehearsals() {
+
 		return this.rehersals;
 	}
 }

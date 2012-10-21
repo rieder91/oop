@@ -1032,7 +1032,7 @@ public class Band implements Authenticatable {
 		for (Member mem : this.members) {
 			anz = 0;
 			for (Rehearsal r : mem.getRehearsals()) {
-				if (r.getTime().before(to) && r.getTime().after(to)) anz++;
+				if (r.getTime().before(to) && r.getTime().after(from)) anz++;
 
 			}
 			if (!mem.isSubstituteMember() || anz >= numberOfRehearsals) memlist.add(mem);

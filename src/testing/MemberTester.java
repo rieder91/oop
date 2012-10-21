@@ -22,8 +22,8 @@ import band.Track;
 
 /**
  * test-class for member requirements
+ * 
  * @author OOP Gruppe 187
- *
  */
 public class MemberTester implements Tester {
 
@@ -66,6 +66,7 @@ public class MemberTester implements Tester {
 		testCases.put(19, "change member to substitute");
 		testCases.put(20, "get all substitute member");
 		testCases.put(21, "get all non substitute member");
+		testCases.put(22, "get all not blocked member");
 
 		overallTests = testCases.size();
 		Validator.addTests(overallTests);
@@ -479,7 +480,7 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(15);
+				failedTestNumbers.add(16);
 			}
 
 			/*
@@ -528,11 +529,11 @@ public class MemberTester implements Tester {
 			 * Test Case #20 get all substitute member
 			 */
 			allSubstitute.add(thomas);
-			if (Validator.check(ultraCoders.getMembers(true), allSubstitute, 19)) {
+			if (Validator.check(ultraCoders.getMembers(true), allSubstitute, 20)) {
 				successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(19);
+				failedTestNumbers.add(20);
 			}
 
 			/*
@@ -542,11 +543,31 @@ public class MemberTester implements Tester {
 
 			allNonSubstitute.remove(thomas);
 
-			if (Validator.check(ultraCoders.getMembers(false), allNonSubstitute, 20)) {
+			if (Validator.check(ultraCoders.getMembers(false), allNonSubstitute, 21)) {
 				successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(20);
+				failedTestNumbers.add(21);
+			}
+
+			/*
+			 * Test Case #22 get all not blocked member
+			 */
+
+			thomas.addRehersal(postNova2010);
+			thomas.addRehersal(postNova2011);
+
+			ArrayList<Member> case22 = new ArrayList<Member>();
+			case22.add(markus);
+			case22.add(dominic);
+			case22.add(thomas);;
+			if (Validator.check(
+					ultraCoders.getMemberWithRehearsals(2, formatTime.parse("10.08.2010 20:00"),
+							formatTime.parse("20.08.2010 20:00")), case22, 22)) {
+				successfulTests++;
+			}
+			else {
+				failedTestNumbers.add(22);
 			}
 
 		}
