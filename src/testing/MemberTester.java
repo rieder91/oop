@@ -43,6 +43,22 @@ public class MemberTester implements Tester {
 		testCases = new HashMap<Integer, String>();
 
 		testCases.put(1, "Add some valid Tracks to Member");
+		testCases.put(2, "Gets the tracklist to a time at which all tracks were present");
+		testCases.put(3, "get all substitute member");
+		testCases.put(4, "get all permanent member");
+		testCases.put(5, "Add a track which already exists");
+		testCases.put(6, "Try to remove a track before it was added");
+		testCases.put(7, "Remove a valid track");
+		testCases.put(8, "Remove a track which doesn't exist");
+		testCases.put(9, "Add a track before its last removal date");
+		testCases.put(10, "Add a valid track for the second time");
+		testCases.put(11, "Gets the tracklist to a time at which all tracks were present");
+		testCases.put(12, "Gets the tracklist to a time at which some tracks were present");
+		testCases.put(13, "Gets the tracklist to a time at which one track was removed");
+		testCases.put(14, "Gets the tracklist to a time at which the removed track was added again");
+		testCases.put(15, "Gets the event notifications from one member");
+		testCases.put(16, "make some date proposals to a member");
+		testCases.put(17, "accept/decline some date proposals");
 
 		overallTests = testCases.size();
 	}
@@ -85,7 +101,6 @@ public class MemberTester implements Tester {
 	@Override
 	public void runTests() {
 
-		// TODO Implement tests for Ersatzmitglieder, Member-dependand repertoire
 		// Stuff needed for date parsing
 		SimpleDateFormat formatTime = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		SimpleDateFormat formatDate = new SimpleDateFormat("dd.MM.yyyy");
@@ -322,7 +337,7 @@ public class MemberTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #8 Remove a track which doesnt exist
+			 * Test Case #8 Remove a track which doesn't exist
 			 * 
 			 * should: throw exception
 			 */

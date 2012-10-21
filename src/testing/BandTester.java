@@ -55,32 +55,21 @@ public class BandTester implements Tester {
 		testCases.put(10, "Try to remove a member before it joined the band");
 		testCases.put(11, "Remove a valid member for the second time");
 		testCases.put(12, "Try to remove a member which doesnt exist");
-		testCases.put(13, "Add several valid tracks");
-		testCases.put(14, "TODO Add a track which already exists");
-		testCases.put(15, "TODO Try to remove a track before it was added");
-		testCases.put(16, "TODO Remove a valid track");
-		testCases.put(17, "TODO Remove a track which doesnt exist");
-		testCases.put(18, "TODO Add a track before its last removal date");
-		testCases.put(19, "TODO Add a valid track for the second time");
-		testCases.put(20, "Get the tracklist at a time at which all tracks were present");
-		testCases.put(21, "Get the tracklist at a time at which some tracks were present");
-		testCases.put(22, "Get the tracklist at a time at which one track was removed");
-		testCases.put(23, "Get the tracklist at a time at which the removed track was added again");
-		testCases.put(24, "Add several valid events ");
-		testCases.put(25, "Try to add an event which already exists");
-		testCases.put(26, "Try to remove a valid event");
-		testCases.put(27, "Try to remove an event which doesnt exist");
-		testCases.put(28, "Try to add an event which was removed before");
-		testCases.put(29, "Get ALL events");
-		testCases.put(30, "Get a subset of all events ");
-		testCases.put(31, "Get the gigs only");
-		testCases.put(32, "Get the rehearsals only");
-		testCases.put(33, "Get no events at all; check for handling of empty ArrayList-param");
-		testCases.put(34, "Get the billing over the entire time period");
-		testCases.put(35, "Get the billing over the entire time period of gigs only");
-		testCases.put(36, "Get the billing over the entire time period of rehearsals only");
-		testCases.put(37, "Get the billing over no events; check for handling of empty ArrayList-param");
-		
+		testCases.put(13, "Add several valid events ");
+		testCases.put(14, "Try to add an event which already exists");
+		testCases.put(15, "Try to remove a valid event");
+		testCases.put(16, "Try to remove an event which doesnt exist");
+		testCases.put(17, "Try to add an event which was removed before");
+		testCases.put(18, "Get ALL events");
+		testCases.put(19, "Get a subset of all events ");
+		testCases.put(20, "Get the gigs only");
+		testCases.put(21, "Get the rehearsals only");
+		testCases.put(22, "Get no events at all; check for handling of empty ArrayList-param");
+		testCases.put(23, "Get the billing over the entire time period");
+		testCases.put(24, "Get the billing over the entire time period of gigs only");
+		testCases.put(25, "Get the billing over the entire time period of rehearsals only");
+		testCases.put(26, "Get the billing over no events; check for handling of empty ArrayList-param");
+
 		overallTests = testCases.size();
 	}
 
@@ -454,199 +443,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #13 Add several valid tracks
-			 * 
-			 * should be: thunderstruck, stairway, prayer, bloodbrothers, byob, mycurse
-			 */
-
-			// ultraCoders.addTrack(thunderstruck, formatDate.parse("30.3.2010"));
-			// ultraCoders.addTrack(stairway, formatDate.parse("16.06.2011"));
-			// ultraCoders.addTrack(prayer, formatDate.parse("10.09.2011"));
-			// ultraCoders.addTrack(bloodBrothers, formatDate.parse("15.09.2011"));
-			// ultraCoders.addTrack(byob, formatDate.parse("30.11.2011"));
-			// ultraCoders.addTrack(myCurse, formatDate.parse("05.03.2012"));
-
-			// for (Member m : ultraCoders.getMembers()) {
-			// m.addTrack(thunderstruck, formatDate.parse("30.3.2010"));
-			// m.addTrack(stairway, formatDate.parse("16.06.2011"));
-			// m.addTrack(prayer, formatDate.parse("10.09.2011"));
-			// m.addTrack(bloodBrothers, formatDate.parse("15.09.2011"));
-			// m.addTrack(byob, formatDate.parse("30.11.2011"));
-			// m.addTrack(myCurse, formatDate.parse("05.03.2012"));
-			// }
-			//
-			// if (Validator.check(allTracks, ultraCoders.getTracks(), 13)) {
-			// successfulTests++;
-			// }
-			// else {
-			// failedTests++;
-			// failedTestNumbers.add(13);
-			// }
-
-			/*
-			 * 
-			 * Test Case #14 Add a track which already exists
-			 * 
-			 * should: throw exception
-			 */
-
-			// try {
-			// ultraCoders.addTrack(myCurse, formatDate.parse("05.03.2012"));
-			// failedTests++;
-			// failedTestNumbers.add(14);
-			// Validator.report(false);
-			// } catch (InvalidBandObjectException e) {
-			// successfulTests++;
-			// Validator.report(true);
-			// }
-
-			/*
-			 * 
-			 * Test Case #15 Try to remove a track before it was added
-			 * 
-			 * should: throw exception
-			 */
-
-			// try {
-			// ultraCoders
-			// .removeTrack(myCurse, formatDate.parse("05.02.2012"));
-			// failedTests++;
-			// failedTestNumbers.add(15);
-			// Validator.report(false);
-			// } catch (InvalidDateException e) {
-			// successfulTests++;
-			// Validator.report(true);
-			// }
-
-			/*
-			 * 
-			 * Test Case #16 Remove a valid track
-			 * 
-			 * should be: thunderstruck, stairway, prayer, bloodbrothers, byob
-			 */
-
-			// for(Member m : ultraCoders.getMembers()) {
-			// m.removeTrack(myCurse);
-			// // m.removeTrack(myCurse, formatDate.parse("05.04.2012"));
-			// }
-			// if(Validator.check(ultraCoders.getTracks(), tracksNoCurse, 16)) {
-			// successfulTests++;
-			// } else {
-			// failedTests++;
-			// failedTestNumbers.add(16);
-			// }
-
-			/*
-			 * 
-			 * Test Case #17 Remove a track which doesnt exist
-			 * 
-			 * should: throw exception
-			 */
-
-			// try {
-			// ultraCoders
-			// .removeTrack(myCurse, formatDate.parse("05.05.2012"));
-			// failedTests++;
-			// failedTestNumbers.add(17);
-			// Validator.report(false);
-			// } catch (InvalidBandObjectException e) {
-			// successfulTests++;
-			// Validator.report(true);
-			// }
-
-			/*
-			 * 
-			 * Test Case #18 Add a track before its last removal date
-			 * 
-			 * should: throw exception
-			 */
-
-			// try {
-			// ultraCoders.addTrack(myCurse, formatDate.parse("05.05.2011"));
-			// failedTests++;
-			// failedTestNumbers.add(18);
-			// Validator.report(false);
-			// } catch (InvalidDateException e) {
-			// successfulTests++;
-			// Validator.report(true);
-			// }
-
-			/*
-			 * 
-			 * Test Case #19 Add a valid track for the second time
-			 * 
-			 * should be: thunderstruck, stairway, prayer, bloodbrothers, byob, mycurse
-			 */
-
-			// ultraCoders.addTrack(myCurse, formatDate.parse("05.05.2012"));
-			// if(Validator.check(ultraCoders.getTracks(), allTracks, 19)) {
-			// successfulTests++;
-			// } else {
-			// failedTests++;
-			// failedTestNumbers.add(19);
-			// }
-
-			/*
-			 * 
-			 * Test Case #20 Gets the tracklist to a time at which all tracks were present
-			 * 
-			 * should be: thunderstruck, stairway, prayer, bloodbrothers, byob, mycurse
-			 */
-
-			// if (Validator.check(ultraCoders.getTracks(formatDate.parse("05.03.2012")), allTracks, 20)) {
-			// successfulTests++;
-			// }
-			// else {
-			// failedTests++;
-			// failedTestNumbers.add(20);
-			// }
-
-			/*
-			 * 
-			 * Test Case #21 Gets the tracklist to a time at which some tracks were present
-			 * 
-			 * should be: thunderstruck, stairway, prayer
-			 */
-
-			// if (Validator.check(ultraCoders.getTracks(formatDate.parse("15.09.2011")), someTracks, 21)) {
-			// successfulTests++;
-			// }
-			// else {
-			// failedTests++;
-			// failedTestNumbers.add(21);
-			// }
-
-			/*
-			 * 
-			 * Test Case #22 Gets the tracklist to a time at which one track was removed
-			 * 
-			 * should be: thunderstruck, stairway, prayer, bloodbrothers, byob
-			 */
-
-			// if (Validator.check(ultraCoders.getTracks(formatDate.parse("10.04.2012")), tracksNoCurse, 22)) {
-			// successfulTests++;
-			// }
-			// else {
-			// failedTests++;
-			// failedTestNumbers.add(22);
-			// }
-
-			/*
-			 * 
-			 * Test Case #23 Gets the tracklist to a time at which the removed track was added again
-			 */
-			//
-			// if (Validator.check(ultraCoders.getTracks(formatDate.parse("05.10.2012")), allTracks, 23)) {
-			// successfulTests++;
-			// }
-			// else {
-			// failedTests++;
-			// failedTestNumbers.add(23);
-			// }
-
-			/*
-			 * 
-			 * Test Case #24 Adds several valid events
+			 * Test Case #13 Adds several valid events
 			 * 
 			 * should be: novarock2010, novarock2011, novarock2012, postnova2010, postnova2011
 			 */
@@ -667,7 +464,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #25 Try to add an event which already exists
+			 * Test Case #14 Try to add an event which already exists
 			 * 
 			 * should: throw exception
 			 */
@@ -685,7 +482,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #26 Try to remove a valid event
+			 * Test Case #15 Try to remove a valid event
 			 * 
 			 * should be: novarock2011, novarock2012, postnova2010, postnova2011
 			 */
@@ -701,7 +498,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #27 Try to remove an event which doesnt exist
+			 * Test Case #16 Try to remove an event which doesnt exist
 			 * 
 			 * should: throw exception
 			 */
@@ -719,7 +516,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #28 Try to add an event which was removed before
+			 * Test Case #17 Try to add an event which was removed before
 			 * 
 			 * should be: novarock2010, novarock2011, novarock2012, postnova2010, postnova2011
 			 */
@@ -737,7 +534,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #29 Get ALL events
+			 * Test Case #18 Get ALL events
 			 * 
 			 * should be: novarock2010, novarock2011, novarock2012, postnovarock2010, postnovarock2011
 			 */
@@ -754,7 +551,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #30 Get a subset of all events
+			 * Test Case #19 Get a subset of all events
 			 * 
 			 * should be: novarock2010, novarock2011, postnovarock2010
 			 */
@@ -771,7 +568,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #31 Get the gigs only
+			 * Test Case #20 Get the gigs only
 			 * 
 			 * should be: novarock2010, novarock2011, novarock2012
 			 */
@@ -788,7 +585,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #32 Get the rehearsals only
+			 * Test Case #21 Get the rehearsals only
 			 * 
 			 * should be: postnovarock2010, postnovarock2011
 			 */
@@ -804,7 +601,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #33 Get no events at all; check for handling of empty ArrayList-param
+			 * Test Case #22 Get no events at all; check for handling of empty ArrayList-param
 			 * 
 			 * should be: empty
 			 */
@@ -821,7 +618,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #34 Get the billing over the entire time period
+			 * Test Case #23 Get the billing over the entire time period
 			 * 
 			 * should be: 16400
 			 */
@@ -838,7 +635,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #35 Get the billing over the entire time period of gigs only
+			 * Test Case #24 Get the billing over the entire time period of gigs only
 			 * 
 			 * should be: 17500
 			 */
@@ -854,7 +651,7 @@ public class BandTester implements Tester {
 			}
 			/*
 			 * 
-			 * Test Case #36 Get the billing over the entire time period of rehearsals only
+			 * Test Case #25 Get the billing over the entire time period of rehearsals only
 			 * 
 			 * should be: -1100
 			 */
@@ -870,7 +667,7 @@ public class BandTester implements Tester {
 
 			/*
 			 * 
-			 * Test Case #37 Get the billing over no events; check for handling of empty ArrayList-param
+			 * Test Case #26 Get the billing over no events; check for handling of empty ArrayList-param
 			 * 
 			 * should be: 0
 			 */
