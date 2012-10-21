@@ -1,19 +1,11 @@
 package band;
 
 /**
+ * lists all possible types of infrastructur that a place can have
  * 
- * @author Thomas
- *
+ * @author OOP Gruppe 187
+ * 
  */
 public enum Infrastructure {
-	// feel free to add stuff as you see fit :)
-	Hospital,
-	PoliceStation,
-	Toilet,
-	PublicTransport,
-	SuperMarket,
-	LuxuryHotel,
-	ParkingGarage,
-	Stage,
-	DemoRoom;
+	Hospital, PoliceStation, Toilet, PublicTransport, SuperMarket, LuxuryHotel, ParkingGarage, Stage, DemoRoom;
 }

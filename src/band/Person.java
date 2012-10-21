@@ -12,7 +12,6 @@ public abstract class Person implements Authenticatable {
 	HashMap<Authenticatable, Permission> roles;
 
 	public Person() {
-		// TODO Auto-generated constructor stub
 		this.initPermissions();
 	}
 

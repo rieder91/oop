@@ -27,7 +27,6 @@ public class Gig extends Event {
 	 */
 	@Override
 	public String toString() {
-
 		return super.toString() + " Pay: " + this.pay;
 	}
 
@@ -66,41 +65,50 @@ public class Gig extends Event {
 	}
 
 	/**
+	 * five param-constructor with place-name
 	 * 
 	 * @param name
+	 *            name of the event
 	 * @param time
+	 *            the time of the gig
 	 * @param place
+	 *            the place of the gig
 	 * @param duration
+	 *            the duration of the gig
 	 * @param pay
+	 *            the pay of the gig
 	 */
 	@Deprecated
 	public Gig(String name, Date time, String place, Integer duration,
 			BigDecimal pay) {
 		this(name, time, new Place(place), duration, pay);
 	}
-	
+
 	/**
+	 * five param-constructor with place object
 	 * 
 	 * @param name
+	 *            name of the event
 	 * @param time
+	 *            the time of the gig
 	 * @param place
+	 *            the place of the gig
 	 * @param duration
+	 *            the duration of the gig
 	 * @param pay
+	 *            the pay of the gig
 	 */
 	public Gig(String name, Date time, Place place, Integer duration,
 			BigDecimal pay) {
 		super(name, time, place, duration);
 		this.pay = pay;
 	}
-	
-	
 
 	/**
 	 * @return the pay you get for the gig
 	 */
 	@Override
 	public BigDecimal getFinances() {
-
 		return this.pay;
 	}
 
@@ -111,7 +119,6 @@ public class Gig extends Event {
 	 */
 	@Override
 	public boolean equals(Object o) {
-
 		boolean ret = super.equals(o);
 
 		if (ret && this.pay.equals(((Gig) o).pay))
@@ -234,7 +241,7 @@ public class Gig extends Event {
 				return true;
 		return false;
 	}
-	
+
 	@Override
 	public HashMap<Method, ArrayList<Permission>> getPermissions() {
 		return permissions;
