@@ -27,7 +27,6 @@ public class Rehearsal extends Event {
 	 */
 	@Override
 	public String toString() {
-
 		return super.toString() + " Costs: " + this.cost;
 	}
 
@@ -65,14 +64,19 @@ public class Rehearsal extends Event {
 		this("", time, new Place(place), duration, new BigDecimal(cost));
 	}
 
-	//TODO javadoc comment
 	/**
+	 * five param-constructor with place name
 	 * 
 	 * @param name
+	 *            name of the event
 	 * @param time
+	 *            the time of the rehearsal
 	 * @param place
+	 *            the place of the rehearsal
 	 * @param duration
+	 *            the duration of the rehearsal
 	 * @param cost
+	 *            the pay of the rehearsal
 	 */
 	@Deprecated
 	public Rehearsal(String name, Date time, String place, Integer duration,
@@ -80,14 +84,19 @@ public class Rehearsal extends Event {
 		this(name, time, new Place(place), duration, cost);
 	}
 	
-	//TODO javadoc comment	
 	/**
+	 * five param-constructor with place object
 	 * 
 	 * @param name
+	 *            name of the event
 	 * @param time
+	 *            the time of the rehearsal
 	 * @param place
+	 *            the place of the rehearsal
 	 * @param duration
+	 *            the duration of the rehearsal
 	 * @param cost
+	 *            the cost of the rehearsal
 	 */
 	public Rehearsal(String name, Date time, Place place, Integer duration, BigDecimal cost) {
 		super(name, time, place, duration);

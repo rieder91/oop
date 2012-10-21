@@ -3,18 +3,20 @@ package band;
 import java.util.ArrayList;
 
 /**
+ * contains all informations concerining one place
  * 
- * @author Thomas
- *
+ * @author OOP Gruppe 187
+ * 
  */
 public class Place {
 	private String name;
 	private ArrayList<Infrastructure> infrastructure;
-	
 
 	/**
+	 * constructor
 	 * 
 	 * @param name
+	 *            name of the place
 	 */
 	public Place(String name) {
 		this.name = name;
@@ -22,46 +24,52 @@ public class Place {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * @return name of the place
 	 */
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
+	 * true if the infrastructure is available
 	 * 
 	 * @param inf
-	 * @return
+	 *            infrastructure that the place is searched for
+	 * @return true if available; false otherwise
 	 */
 	public boolean hasInfrastructure(ArrayList<Infrastructure> inf) {
-		for(Infrastructure i : inf) {
-			if(!hasInfrastructure(i)) {
+		for (Infrastructure i : inf) {
+			if (!hasInfrastructure(i)) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	/**
+	 * checks the place if one infrastructure-element is available
 	 * 
 	 * @param inf
-	 * @return
+	 *            one infrastructure object
+	 * @return true if the place has the required infrastrucutre; false
+	 *         otherwise
 	 */
 	public boolean hasInfrastructure(Infrastructure inf) {
 		return infrastructure.contains(inf);
 	}
-	
+
 	/**
+	 * adds an infrastructure to the place
 	 * 
 	 * @param i
+	 *            infrastructure that is being added
 	 */
 	public void addInfrastructure(Infrastructure i) {
-		if(!infrastructure.contains(i)) {
+		if (!infrastructure.contains(i)) {
 			infrastructure.add(i);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -69,13 +77,13 @@ public class Place {
 	public ArrayList<Infrastructure> getInfrastructure() {
 		return infrastructure;
 	}
-	
+
 	/**
 	 * 
 	 * @param i
 	 */
 	public void removeInfrastructure(Infrastructure i) {
-		if(infrastructure.contains(i)) {
+		if (infrastructure.contains(i)) {
 			infrastructure.remove(i);
 		}
 	}
@@ -103,8 +111,8 @@ public class Place {
 			if (other.infrastructure != null)
 				return false;
 		} else {
-			for(Infrastructure i : this.infrastructure) {
-				if(!other.infrastructure.contains(i)) {
+			for (Infrastructure i : this.infrastructure) {
+				if (!other.infrastructure.contains(i)) {
 					return false;
 				}
 			}
@@ -116,6 +124,5 @@ public class Place {
 			return false;
 		return true;
 	}
-	
 
 }

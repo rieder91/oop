@@ -1,4 +1,3 @@
-
 package band;
 
 import java.util.Date;
@@ -92,23 +91,40 @@ public class ProposedDate {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (this == obj) { return true; }
-		if (obj == null) { return false; }
-		if (!(obj instanceof ProposedDate)) { return false; }
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof ProposedDate)) {
+			return false;
+		}
 		ProposedDate other = (ProposedDate) obj;
-		if (agreed != other.agreed) { return false; }
+		if (agreed != other.agreed) {
+			return false;
+		}
 		if (date == null) {
-			if (other.date != null) { return false; }
+			if (other.date != null) {
+				return false;
+			}
+		} else if (!date.equals(other.date)) {
+			return false;
 		}
-		else if (!date.equals(other.date)) { return false; }
 		if (e == null) {
-			if (other.e != null) { return false; }
+			if (other.e != null) {
+				return false;
+			}
+		} else if (!e.equals(other.e)) {
+			return false;
 		}
-		else if (!e.equals(other.e)) { return false; }
 		if (reason == null) {
-			if (other.reason != null) { return false; }
+			if (other.reason != null) {
+				return false;
+			}
+		} else if (!reason.equals(other.reason)) {
+			return false;
 		}
-		else if (!reason.equals(other.reason)) { return false; }
 		return true;
 	}
 

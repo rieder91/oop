@@ -6,6 +6,12 @@ import java.util.HashMap;
 
 import auth.Authenticatable;
 
+/**
+ * class which all human beings share; used to simplify permission management
+ * 
+ * @author OOP Gruppe 187
+ * 
+ */
 public abstract class Person implements Authenticatable {
 	// stuff needed for authentication
 	HashMap<Method, ArrayList<Permission>> permissions;
