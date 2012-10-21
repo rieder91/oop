@@ -97,6 +97,12 @@ public class Band implements Authenticatable {
 		if (!this.events.contains(e)) {
 			this.events.add(e);
 
+			ArrayList<Member> alm = new ArrayList<Member>();
+			for (Member m : this.members) {
+				if (!m.isSubstituteMember()) alm.add(m);
+			}
+			e.setMember(alm);
+
 			for (final Member mem : this.members) {
 				e.setRole(mem, Permission.GROUP);
 				mem.notifyEvent(e, Status.scheduled);

@@ -22,9 +22,20 @@ public abstract class Event implements Authenticatable {
 	private Date time;
 	private Integer duration;
 	private HashMap<Date, Event> eventHistory;
+	private ArrayList<Member> attended;
 
 	HashMap<Method, ArrayList<Permission>> permissions;
 	HashMap<Authenticatable, Permission> roles;
+
+	public ArrayList<Member> getMember() {
+
+		return this.attended;
+	}
+
+	public void setMember(ArrayList<Member> alm) {
+
+		this.attended = alm;
+	}
 
 	/**
 	 * @return a string representation of a Event
