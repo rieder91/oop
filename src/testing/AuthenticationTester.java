@@ -24,7 +24,6 @@ public class AuthenticationTester implements Tester {
 
 	// number of successful/failed tests
 	private Integer successfulTests;
-	private Integer failedTests;
 	private Integer overallTests;
 
 	// the test case numbers of all failed tests
@@ -34,7 +33,6 @@ public class AuthenticationTester implements Tester {
 
 	public AuthenticationTester() {
 		successfulTests = 0;
-		failedTests = 0;
 
 		failedTestNumbers = new ArrayList<Integer>();
 		testCases = new HashMap<Integer, String>();
@@ -53,6 +51,7 @@ public class AuthenticationTester implements Tester {
 		testCases.put(12, "Everyone has the permission to get the band's members");
 		
 		overallTests = testCases.size();
+		Validator.addTests(overallTests);
 	}
 
 	@Override
@@ -124,7 +123,6 @@ public class AuthenticationTester implements Tester {
 		if (Validator.check(Permission.OWNER, thomas.getRole(thomas), 1)) {
 			successfulTests++;
 		} else {
-			failedTests++;
 			failedTestNumbers.add(1);
 		}
 
@@ -132,7 +130,6 @@ public class AuthenticationTester implements Tester {
 		if (Validator.check(Permission.GROUP, thomas.getRole(markus), 2)) {
 			successfulTests++;
 		} else {
-			failedTests++;
 			failedTestNumbers.add(2);
 		}
 
@@ -140,22 +137,18 @@ public class AuthenticationTester implements Tester {
 		if (Validator.check(Permission.NONE, thomas.getRole(markus), 3)) {
 			successfulTests++;
 		} else {
-			failedTests++;
 			failedTestNumbers.add(3);
 		}
 
 		if (Validator.check(Permission.NONE, thomas.getRole(dominic), 4)) {
 			successfulTests++;
 		} else {
-			failedTests++;
 			failedTestNumbers.add(4);
 		}
 		
 		try {
 			Authenticator.checkPermissions(markus, thomas, isSubstituteMemberMethod);
-			failedTests++;
 			failedTestNumbers.add(5);
-			Validator.report(false);
 		} catch (InsufficientPermissionsException e) {
 			successfulTests++;
 			Validator.report(true);
@@ -167,9 +160,7 @@ public class AuthenticationTester implements Tester {
 			successfulTests++;
 			Validator.report(true);
 		} catch (InsufficientPermissionsException e) {
-			failedTests++;
 			failedTestNumbers.add(6);
-			Validator.report(false);
 		}
 		
 		try {
@@ -183,7 +174,6 @@ public class AuthenticationTester implements Tester {
 		if (Validator.check(Permission.GROUP, thomas.getRole(dominic), 7)) {
 			successfulTests++;
 		} else {
-			failedTests++;
 			failedTestNumbers.add(7);
 		}
 		
@@ -196,7 +186,6 @@ public class AuthenticationTester implements Tester {
 		if (Validator.check(Permission.NONE, thomas.getRole(dominic), 8)) {
 			successfulTests++;
 		} else {
-			failedTests++;
 			failedTestNumbers.add(8);
 		}
 		
@@ -206,22 +195,18 @@ public class AuthenticationTester implements Tester {
 		if (Validator.check(Permission.GROUP, t.getRole(thomas), 9)) {
 			successfulTests++;
 		} else {
-			failedTests++;
 			failedTestNumbers.add(9);
 		}
 		
 		if (Validator.check(Permission.NONE, t.getRole(dominic), 10)) {
 			successfulTests++;
 		} else {
-			failedTests++;
 			failedTestNumbers.add(10);
 		}
 		
 		try {
 			Authenticator.checkPermissions(thomas, anotherBand, bandAddMember);
-			failedTests++;
 			failedTestNumbers.add(11);
-			Validator.report(false);
 		} catch (InsufficientPermissionsException e) {
 			successfulTests++;
 			Validator.report(true);
@@ -233,9 +218,7 @@ public class AuthenticationTester implements Tester {
 			successfulTests++;
 			Validator.report(true);
 		} catch (InsufficientPermissionsException e) {
-			failedTests++;
 			failedTestNumbers.add(12);
-			Validator.report(false);
 		}
 		
 	}

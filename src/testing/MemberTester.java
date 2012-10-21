@@ -26,7 +26,6 @@ public class MemberTester implements Tester {
 
 	// number of successful/failed tests
 	private Integer successfulTests;
-	private Integer failedTests;
 	private Integer overallTests;
 
 	// the test case numbers of all failed tests
@@ -37,7 +36,6 @@ public class MemberTester implements Tester {
 	public MemberTester() {
 
 		successfulTests = 0;
-		failedTests = 0;
 
 		failedTestNumbers = new ArrayList<Integer>();
 		testCases = new HashMap<Integer, String>();
@@ -65,6 +63,7 @@ public class MemberTester implements Tester {
 		testCases.put(21, "get all non substitute member");
 
 		overallTests = testCases.size();
+		Validator.addTests(overallTests);
 	}
 
 	@Override
@@ -232,7 +231,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(1);
 			}
 
@@ -255,7 +253,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(2);
 			}
 
@@ -269,7 +266,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(3);
 			}
 
@@ -283,7 +279,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(4);
 			}
 
@@ -296,7 +291,6 @@ public class MemberTester implements Tester {
 
 			try {
 				thomas.addTrack(myCurse, formatDate.parse("05.03.2012"));
-				failedTests++;
 				failedTestNumbers.add(5);
 				Validator.report(false);
 			}
@@ -314,7 +308,6 @@ public class MemberTester implements Tester {
 
 			try {
 				thomas.removeTrack(myCurse, formatDate.parse("05.02.2012"));
-				failedTests++;
 				failedTestNumbers.add(6);
 				Validator.report(false);
 			}
@@ -335,7 +328,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(7);
 			}
 
@@ -348,7 +340,6 @@ public class MemberTester implements Tester {
 
 			try {
 				thomas.removeTrack(byob, formatDate.parse("05.05.2012"));
-				failedTests++;
 				failedTestNumbers.add(8);
 				Validator.report(false);
 			}
@@ -366,7 +357,6 @@ public class MemberTester implements Tester {
 
 			try {
 				thomas.addTrack(byob, formatDate.parse("05.05.2011"));
-				failedTests++;
 				failedTestNumbers.add(9);
 				Validator.report(false);
 			}
@@ -384,7 +374,6 @@ public class MemberTester implements Tester {
 
 			try {
 				markus.addTrack(byob, formatDate.parse("05.05.2012"));
-				failedTests++;
 				failedTestNumbers.add(9);
 				Validator.report(false);
 			}
@@ -404,7 +393,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(11);
 			}
 
@@ -419,7 +407,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(12);
 			}
 
@@ -434,7 +421,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(13);
 			}
 
@@ -447,7 +433,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(14);
 			}
 
@@ -475,7 +460,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(15);
 			}
 
@@ -496,7 +480,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(15);
 			}
 
@@ -517,7 +500,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(17);
 			}
 
@@ -530,7 +512,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(18);
 			}
 
@@ -544,7 +525,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(19);
 			}
 			
@@ -557,7 +537,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(19);
 			}
 
@@ -572,7 +551,6 @@ public class MemberTester implements Tester {
 				successfulTests++;
 			}
 			else {
-				failedTests++;
 				failedTestNumbers.add(20);
 			}
 

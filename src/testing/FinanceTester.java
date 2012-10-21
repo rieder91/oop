@@ -20,7 +20,6 @@ public class FinanceTester implements Tester {
 	
 	// number of successful/failed tests
 	private Integer successfulTests;
-	private Integer failedTests;
 	private Integer overallTests;
 
 	// the test case numbers of all failed tests
@@ -30,7 +29,6 @@ public class FinanceTester implements Tester {
 	
 	public FinanceTester() {
 		successfulTests = 0;
-		failedTests = 0;
 		
 		failedTestNumbers = new ArrayList<Integer>();
 		testCases = new HashMap<Integer, String>();
@@ -48,6 +46,7 @@ public class FinanceTester implements Tester {
 		testCases.put(11, "Filter with turnover");
 		
 		overallTests = testCases.size();
+		Validator.addTests(overallTests);
 	}
 	
 	@Override
@@ -161,7 +160,7 @@ public class FinanceTester implements Tester {
 		if(Validator.check(rofl.totalTurnover(), new BigDecimal(18900), 1)){
 			successfulTests++;
 		} else {
-			failedTests++;
+			
 			failedTestNumbers.add(1);
 		}
 		
@@ -175,7 +174,7 @@ public class FinanceTester implements Tester {
 		if(Validator.check(rofl.totalEventIncome(), new BigDecimal(17500), 2)){
 			successfulTests++;
 		} else {
-			failedTests++;
+			
 			failedTestNumbers.add(2);
 		}
 		
@@ -189,7 +188,7 @@ public class FinanceTester implements Tester {
 		if(Validator.check(rofl.totalEventExpense(), new BigDecimal(-1100), 3)){
 			successfulTests++;
 		} else {
-			failedTests++;
+			
 			failedTestNumbers.add(3);
 		}
 		
@@ -205,7 +204,7 @@ public class FinanceTester implements Tester {
 					new BigDecimal(10000), 4)){
 				successfulTests++;
 			} else {
-				failedTests++;
+				
 				failedTestNumbers.add(4);
 			}
 			
@@ -220,7 +219,7 @@ public class FinanceTester implements Tester {
 					new BigDecimal(16000), 5)){
 				successfulTests++;
 			} else {
-				failedTests++;
+				
 				failedTestNumbers.add(5);
 			}
 			
@@ -235,7 +234,7 @@ public class FinanceTester implements Tester {
 					new BigDecimal(-5000), 6)){
 				successfulTests++;
 			} else {
-				failedTests++;
+				
 				failedTestNumbers.add(6);
 			}
 			
@@ -253,7 +252,7 @@ public class FinanceTester implements Tester {
 		if(Validator.check(rofl.getFinancesFiltered(f1), s1, 7)) {
 			successfulTests++;
 		} else {
-			failedTests++;
+			
 			failedTestNumbers.add(7);
 		}
 		
@@ -267,7 +266,7 @@ public class FinanceTester implements Tester {
 		if(Validator.check(rofl.getFinancesFiltered(f2), s2, 8)) {
 			successfulTests++;
 		} else {
-			failedTests++;
+			
 			failedTestNumbers.add(8);
 		}
 
@@ -281,7 +280,7 @@ public class FinanceTester implements Tester {
 		if(Validator.check(rofl.getFinancesFiltered(f3), s3, 9)) {
 			successfulTests++;
 		} else {
-			failedTests++;
+			
 			failedTestNumbers.add(9);
 		}
 		
@@ -295,7 +294,7 @@ public class FinanceTester implements Tester {
 		if(Validator.check(rofl.getFinancesFiltered(f4), s4, 10)) {
 			successfulTests++;
 		} else {
-			failedTests++;
+			
 			failedTestNumbers.add(10);
 		}
 
@@ -309,7 +308,7 @@ public class FinanceTester implements Tester {
 		if(Validator.check(rofl.getFinancesFiltered(f5), s5, 11)) {
 			successfulTests++;
 		} else {
-			failedTests++;
+			
 			failedTestNumbers.add(11);
 		}
 	}

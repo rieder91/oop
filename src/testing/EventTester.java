@@ -20,7 +20,6 @@ public class EventTester implements Tester {
 
 	// number of successful/failed tests
 	private Integer successfulTests;
-	private Integer failedTests;
 	private Integer overallTests;
 
 	// the test case numbers of all failed tests
@@ -30,7 +29,6 @@ public class EventTester implements Tester {
 
 	public EventTester() {
 		successfulTests = 0;
-		failedTests = 0;
 
 		failedTestNumbers = new ArrayList<Integer>();
 		testCases = new HashMap<Integer, String>();
@@ -42,6 +40,7 @@ public class EventTester implements Tester {
 		testCases.put(5, "remove and restore an event");
 		
 		overallTests = testCases.size();
+		Validator.addTests(overallTests);
 	}
 
 	@Override
@@ -147,7 +146,6 @@ public class EventTester implements Tester {
 			if(Validator.check(novarock2010, case01, 1)) {
 				successfulTests++;
 			} else {
-				failedTests++;
 				failedTestNumbers.add(1);
 			}
 
@@ -164,7 +162,6 @@ public class EventTester implements Tester {
 			if(Validator.check(novarock2010, case02, 2)) {
 				successfulTests++;
 			} else {
-				failedTests++;
 				failedTestNumbers.add(2);
 			}
 
@@ -176,9 +173,7 @@ public class EventTester implements Tester {
 
 			try {
 				novarock2010.updateEvent(case02, formatDate.parse("01.01.1990"));
-				failedTests++;
 				failedTestNumbers.add(3);
-				Validator.report(false);
 			} catch (InvalidDateException e) {
 				successfulTests++;
 				Validator.report(true);
@@ -195,9 +190,7 @@ public class EventTester implements Tester {
 			try {
 				ultraCoders.restoreEvent("Pannonia Fields II", 72,
 						formatTime.parse("11.07.2010 12:00"));
-				failedTests++;
 				failedTestNumbers.add(4);
-				Validator.report(false);
 			} catch (InvalidBandObjectException e) {
 				successfulTests++;
 				Validator.report(true);
@@ -215,7 +208,6 @@ public class EventTester implements Tester {
 			if(Validator.check(ultraCoders.getEvents(), allEvents, 5)) {
 				successfulTests++;
 			} else {
-				failedTests++;
 				failedTestNumbers.add(5);
 			}
 

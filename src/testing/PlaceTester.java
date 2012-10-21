@@ -19,7 +19,6 @@ public class PlaceTester implements Tester {
 
 	// number of successful/failed tests
 	private Integer successfulTests;
-	private Integer failedTests;
 	private Integer overallTests;
 
 	// the test case numbers of all failed tests
@@ -32,7 +31,6 @@ public class PlaceTester implements Tester {
 	 */
 	public PlaceTester() {
 		successfulTests = 0;
-		failedTests = 0;
 
 		failedTestNumbers = new ArrayList<Integer>();
 		testCases = new HashMap<Integer, String>();
@@ -44,6 +42,7 @@ public class PlaceTester implements Tester {
 		testCases.put(5, "Try to get a place with too much requirements");
 		
 		overallTests = testCases.size();
+		Validator.addTests(overallTests);
 	}
 
 	@Override
@@ -123,7 +122,6 @@ public class PlaceTester implements Tester {
 			successfulTests++;
 			Validator.report(true);
 		} else {
-			failedTests++;
 			failedTestNumbers.add(1);
 			Validator.report(false);
 		}
@@ -135,7 +133,6 @@ public class PlaceTester implements Tester {
 			successfulTests++;
 			Validator.report(true);
 		} else {
-			failedTests++;
 			failedTestNumbers.add(2);
 			Validator.report(false);
 		}
@@ -144,21 +141,18 @@ public class PlaceTester implements Tester {
 		if(Validator.check(someInf, stadtHalle.getInfrastructure(), 3)) {
 			successfulTests++;
 		} else {
-			failedTests++;
 			failedTestNumbers.add(3);
 		}
 		
 		if(Validator.check(places.getPlacesByFilter(testReq1), testReq1Result, 4)) {
 			successfulTests++;
 		} else {
-			failedTests++;
 			failedTestNumbers.add(4);
 		}
 		
 		if(Validator.check(places.getPlacesByFilter(testReq2), new ArrayList<Place>(), 5)) {
 			successfulTests++;
 		} else {
-			failedTests++;
 			failedTestNumbers.add(5);
 		}
 	}

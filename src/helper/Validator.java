@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Validator {
 	private static Integer successfulCount = 0;
-	private static Integer failedCount = 0;
+	private static Integer overallCount = 0;
 
 	/**
 	 * 
@@ -28,7 +28,6 @@ public class Validator {
 			Integer caseNum) {
 		for (T object : a)
 			if (!b.contains(object)) {
-				failedCount++;
 				return false;
 			}
 		successfulCount++;
@@ -50,7 +49,6 @@ public class Validator {
 			successfulCount++;
 			return true;
 		} else {
-			failedCount++;
 			return false;
 		}
 	}
@@ -63,8 +61,13 @@ public class Validator {
 	public static void report(boolean status) {
 		if (status) {
 			successfulCount++;
-		} else {
-			failedCount++;
+		}
+	}
+	
+
+	public static void addTests(Integer n) {
+		if(n >= 0) {
+			overallCount += n;
 		}
 	}
 
@@ -73,6 +76,6 @@ public class Validator {
 	 */
 	public static void report() {
 		System.out.println("\nOverall successful tests: " + successfulCount);
-		System.out.println("Overall failed tests: " + failedCount);
+		System.out.println("Overall failed tests: " + (overallCount - successfulCount));
 	}
 }
