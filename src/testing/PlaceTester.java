@@ -10,8 +10,8 @@ import band.Place;
 import band.PlaceManager;
 
 /**
- * 
- * @author Thomas
+ * test-class for place-requirements
+ * @author OOP Gruppe 187
  *
  */
 public class PlaceTester implements Tester {

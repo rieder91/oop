@@ -15,6 +15,11 @@ import band.Band;
 import band.Gig;
 import band.Rehearsal;
 
+/**
+ * test-class for finance-requirements
+ * @author OOP Gruppe 187
+ *
+ */
 public class FinanceTester implements Tester {
 	
 	private static final String moduleName = "Finances";

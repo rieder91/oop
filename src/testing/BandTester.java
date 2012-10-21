@@ -19,7 +19,9 @@ import band.Track;
 /**
  * This class was refactored from the previous Main()
  * 
- * @author Thomas
+ * test class for band requirements
+ * 
+ * @author OOP Gruppe 187
  */
 public class BandTester implements Tester {
 

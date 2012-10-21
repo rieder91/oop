@@ -1,7 +1,10 @@
 package testing;
 
 /**
- * @author Thomas
+ * testing-interfaces which all tester-classes implement; each tester-class runs
+ * the testcases to verify the use-cases of another class
+ * 
+ * @author OOP Gruppe 187
  * 
  */
 public interface Tester {
@@ -15,10 +18,10 @@ public interface Tester {
 	 * it prints the description of these test cases
 	 */
 	public void printTestResults();
-	
+
 	/**
 	 * runs all test cases that were specified
 	 */
 	public void runTests();
-	
+
 }
