@@ -22,6 +22,38 @@ public class EventNotification {
 	}
 
 	/**
+	 * @return
+	 */
+	@Override
+	public int hashCode() {
+
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((e == null) ? 0 : e.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		return result;
+	}
+
+	/**
+	 * @param obj
+	 * @return
+	 */
+	@Override
+	public boolean equals(Object obj) {
+
+		if (this == obj) { return true; }
+		if (obj == null) { return false; }
+		if (!(obj instanceof EventNotification)) { return false; }
+		EventNotification other = (EventNotification) obj;
+		if (e == null) {
+			if (other.e != null) { return false; }
+		}
+		else if (!e.equals(other.e)) { return false; }
+		if (status != other.status) { return false; }
+		return true;
+	}
+
+	/**
 	 * @return the event
 	 */
 	public Event getE() {
