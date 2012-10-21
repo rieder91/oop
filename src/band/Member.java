@@ -350,7 +350,7 @@ public class Member extends Person {
 	public void notifyEvent(final Event e, final Status stat) throws InvalidBandObjectException {
 
 		if (this.eventNot.contains(new EventNotification(e, stat)))
-			throw new InvalidBandObjectException("Already notified!");
+			//throw new InvalidBandObjectException("Already notified!");
 		this.eventNot.add(new EventNotification(e, stat));
 	}
 
