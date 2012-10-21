@@ -695,10 +695,6 @@ public class Band implements Authenticatable {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.GROUP);
 			}
-			else if ("addTrack".equals(m.getName())) {
-				tPerm.add(Permission.OWNER);
-				tPerm.add(Permission.GROUP);
-			}
 			else if ("getBilling".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.MANAGEMENT);
@@ -725,14 +721,13 @@ public class Band implements Authenticatable {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.GROUP);
 			}
-			else if ("removeTrack".equals(m.getName())) {
-				tPerm.add(Permission.OWNER);
-				tPerm.add(Permission.GROUP);
-			}
 			else if ("restoreEvent".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.MANAGEMENT);
 				tPerm.add(Permission.GROUP);
+			}
+			else if ("getValidMember".equals(m.getName())) {
+				tPerm.add(Permission.WORLD);
 			}
 
 			// save the permissions and reset the temporary list

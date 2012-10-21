@@ -359,6 +359,27 @@ public class Member extends Person {
 			else if ("removeTrack".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 			}
+			else if ("notifyEvent".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.GROUP);
+				tPerm.add(Permission.MANAGEMENT);
+			}
+			else if ("changeSubstituteStatus".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.GROUP);
+				tPerm.add(Permission.MANAGEMENT);
+			}
+			else if ("getNotifications".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+			}
+			else if ("agree".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+			}
+			else if ("addBand".equals(m.getName())) {
+				tPerm.add(Permission.OWNER);
+				tPerm.add(Permission.GROUP);
+				tPerm.add(Permission.MANAGEMENT);
+			}
 
 			// save the permissions and reset the temporary list
 			this.permissions.put(m, new ArrayList<Permission>(tPerm));
