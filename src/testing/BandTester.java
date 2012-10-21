@@ -28,6 +28,7 @@ public class BandTester implements Tester {
 	// number of successful/failed tests
 	private Integer successfulTests;
 	private Integer failedTests;
+	private Integer overallTests;
 
 	// the test case numbers of all failed tests
 	private ArrayList<Integer> failedTestNumbers;
@@ -79,6 +80,8 @@ public class BandTester implements Tester {
 		testCases.put(35, "Get the billing over the entire time period of gigs only");
 		testCases.put(36, "Get the billing over the entire time period of rehearsals only");
 		testCases.put(37, "Get the billing over no events; check for handling of empty ArrayList-param");
+		
+		overallTests = testCases.size();
 	}
 
 	@Override
@@ -96,7 +99,7 @@ public class BandTester implements Tester {
 
 		System.out.println("Test results for the " + moduleName + " module: ");
 		System.out.println("Successful tests: " + successfulTests);
-		System.out.println("Failed tests: " + failedTests);
+		System.out.println("Failed tests: " + (overallTests - successfulTests));
 
 		if (!failedTestNumbers.isEmpty()) {
 			System.out.println("The following test cases have failed: ");

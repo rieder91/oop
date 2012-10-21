@@ -21,7 +21,8 @@ public class FinanceTester implements Tester {
 	// number of successful/failed tests
 	private Integer successfulTests;
 	private Integer failedTests;
-	
+	private Integer overallTests;
+
 	// the test case numbers of all failed tests
 	private ArrayList<Integer> failedTestNumbers;
 	
@@ -45,6 +46,8 @@ public class FinanceTester implements Tester {
 		testCases.put(9, "Filter with expense and income");
 		testCases.put(10, "Filter with expense, income and turnover");
 		testCases.put(11, "Filter with turnover");
+		
+		overallTests = testCases.size();
 	}
 	
 	@Override
@@ -60,7 +63,7 @@ public class FinanceTester implements Tester {
 	public void printTestResults() {
 		System.out.println("Test results for the " + moduleName + " module: ");
 		System.out.println("Successful tests: " + successfulTests);
-		System.out.println("Failed tests: " + failedTests);
+		System.out.println("Failed tests: " + (overallTests - successfulTests));
 
 		if (!failedTestNumbers.isEmpty()) {
 			System.out.println("The following test cases have failed: ");

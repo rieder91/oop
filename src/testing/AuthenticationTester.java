@@ -25,6 +25,7 @@ public class AuthenticationTester implements Tester {
 	// number of successful/failed tests
 	private Integer successfulTests;
 	private Integer failedTests;
+	private Integer overallTests;
 
 	// the test case numbers of all failed tests
 	private ArrayList<Integer> failedTestNumbers;
@@ -50,6 +51,8 @@ public class AuthenticationTester implements Tester {
 		testCases.put(10, "Once the members leave a band their permission to all of the band's events are set to NONE");
 		testCases.put(11, "A band member can only invoke a method of it's own band");
 		testCases.put(12, "Everyone has the permission to get the band's members");
+		
+		overallTests = testCases.size();
 	}
 
 	@Override
@@ -65,7 +68,7 @@ public class AuthenticationTester implements Tester {
 	public void printTestResults() {
 		System.out.println("Test results for the " + moduleName + " module: ");
 		System.out.println("Successful tests: " + successfulTests);
-		System.out.println("Failed tests: " + failedTests);
+		System.out.println("Failed tests: " + (overallTests - successfulTests));
 
 		if (!failedTestNumbers.isEmpty()) {
 			System.out.println("The following test cases have failed: ");

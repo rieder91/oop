@@ -26,6 +26,7 @@ public class MemberTester implements Tester {
 	// number of successful/failed tests
 	private Integer successfulTests;
 	private Integer failedTests;
+	private Integer overallTests;
 
 	// the test case numbers of all failed tests
 	private ArrayList<Integer> failedTestNumbers;
@@ -41,6 +42,8 @@ public class MemberTester implements Tester {
 		testCases = new HashMap<Integer, String>();
 
 		testCases.put(1, "Add some valid Tracks to Member");
+		
+		overallTests = testCases.size();
 	}
 
 	@Override
@@ -58,7 +61,7 @@ public class MemberTester implements Tester {
 
 		System.out.println("Test results for the " + moduleName + " module: ");
 		System.out.println("Successful tests: " + successfulTests);
-		System.out.println("Failed tests: " + failedTests);
+		System.out.println("Failed tests: " + (overallTests - successfulTests));
 
 		if (!failedTestNumbers.isEmpty()) {
 			System.out.println("The following test cases have failed: ");

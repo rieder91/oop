@@ -20,6 +20,7 @@ public class PlaceTester implements Tester {
 	// number of successful/failed tests
 	private Integer successfulTests;
 	private Integer failedTests;
+	private Integer overallTests;
 
 	// the test case numbers of all failed tests
 	private ArrayList<Integer> failedTestNumbers;
@@ -41,6 +42,8 @@ public class PlaceTester implements Tester {
 		testCases.put(3, "Perform a require-infrastructure check");
 		testCases.put(4, "Get all places which have the required-infrastructure");
 		testCases.put(5, "Try to get a place with too much requirements");
+		
+		overallTests = testCases.size();
 	}
 
 	@Override
@@ -56,7 +59,7 @@ public class PlaceTester implements Tester {
 	public void printTestResults() {
 		System.out.println("Test results for the " + moduleName + " module: ");
 		System.out.println("Successful tests: " + successfulTests);
-		System.out.println("Failed tests: " + failedTests);
+		System.out.println("Failed tests: " + (overallTests - successfulTests));
 
 		if (!failedTestNumbers.isEmpty()) {
 			System.out.println("The following test cases have failed: ");

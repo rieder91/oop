@@ -21,6 +21,7 @@ public class EventTester implements Tester {
 	// number of successful/failed tests
 	private Integer successfulTests;
 	private Integer failedTests;
+	private Integer overallTests;
 
 	// the test case numbers of all failed tests
 	private ArrayList<Integer> failedTestNumbers;
@@ -39,6 +40,8 @@ public class EventTester implements Tester {
 		testCases.put(3, "Try to edit an event with an invalid changeDate");
 		testCases.put(4, "restore a non existant Event");
 		testCases.put(5, "remove and restore an event");
+		
+		overallTests = testCases.size();
 	}
 
 	@Override
@@ -54,7 +57,7 @@ public class EventTester implements Tester {
 	public void printTestResults() {
 		System.out.println("Test results for the " + moduleName + " module: ");
 		System.out.println("Successful tests: " + successfulTests);
-		System.out.println("Failed tests: " + failedTests);
+		System.out.println("Failed tests: " + (overallTests - successfulTests));
 
 		if (!failedTestNumbers.isEmpty()) {
 			System.out.println("The following test cases have failed: ");
