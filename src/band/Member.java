@@ -113,7 +113,6 @@ public class Member extends Person {
 		this.lastName = lastName;
 		this.instrument = instrument;
 		this.substituteMember = substituteMember;
-		this.eventNot = new ArrayList<EventNotification>();
 		// set the owner to THIS
 		this.setRole(this, Permission.OWNER);
 	}
