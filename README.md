@@ -10,10 +10,11 @@ _WS2012, Vienna University of Technology_
 ## Done
  - Assignment 1
    - Band Management
+ - Assignment 2
+   - Improve of the band management core
    
 ## WIP
- - Assignment 2
-   - Pimpin' Assignment 1
+ - Waiting for assignment
 
 ## TODO
  - Assignment 3 - 9

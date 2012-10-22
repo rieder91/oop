@@ -989,7 +989,7 @@ public class Band implements Authenticatable {
 	 * 
 	 * @return total income of events
 	 */
-	public BigDecimal totalEventIncome() {
+	public BigDecimalx	 {
 
 		BigDecimal ret = new BigDecimal(0);
 		for (final Event e : this.getEvents()) {
