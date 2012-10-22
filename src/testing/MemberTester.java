@@ -40,44 +40,44 @@ public class MemberTester implements Tester {
 
 	public MemberTester() {
 
-		successfulTests = 0;
+		this.successfulTests = 0;
 
-		failedTestNumbers = new ArrayList<Integer>();
-		testCases = new HashMap<Integer, String>();
+		this.failedTestNumbers = new ArrayList<Integer>();
+		this.testCases = new HashMap<Integer, String>();
 
-		testCases.put(1, "Add some valid Tracks to Member");
-		testCases.put(2, "Gets the tracklist to a time at which all tracks were present");
-		testCases.put(3, "get all substitute member");
-		testCases.put(4, "get all permanent member");
-		testCases.put(5, "Add a track which already exists");
-		testCases.put(6, "Try to remove a track before it was added");
-		testCases.put(7, "Remove a valid track");
-		testCases.put(8, "Remove a track which doesn't exist");
-		testCases.put(9, "Add a track before its last removal date");
-		testCases.put(10, "Add a valid track for the second time");
-		testCases.put(11, "Gets the tracklist to a time at which all tracks were present");
-		testCases.put(12, "Gets the tracklist to a time at which some tracks were present");
-		testCases.put(13, "Gets the tracklist to a time at which one track was removed");
-		testCases.put(14, "Gets the tracklist to a time at which the removed track was added again");
-		testCases.put(15, "Gets the event notifications from one member");
-		testCases.put(16, "make some date proposals to a member");
-		testCases.put(17, "accept/decline some date proposals");
-		testCases.put(18, "get member from event");
-		testCases.put(19, "change member to substitute");
-		testCases.put(20, "get all substitute member");
-		testCases.put(21, "get all non substitute member");
-		testCases.put(22, "get all not blocked member");
+		this.testCases.put(1, "Add some valid Tracks to Member");
+		this.testCases.put(2, "Gets the tracklist to a time at which all tracks were present");
+		this.testCases.put(3, "get all substitute member");
+		this.testCases.put(4, "get all permanent member");
+		this.testCases.put(5, "Add a track which already exists");
+		this.testCases.put(6, "Try to remove a track before it was added");
+		this.testCases.put(7, "Remove a valid track");
+		this.testCases.put(8, "Remove a track which doesn't exist");
+		this.testCases.put(9, "Add a track before its last removal date");
+		this.testCases.put(10, "Add a valid track for the second time");
+		this.testCases.put(11, "Gets the tracklist to a time at which all tracks were present");
+		this.testCases.put(12, "Gets the tracklist to a time at which some tracks were present");
+		this.testCases.put(13, "Gets the tracklist to a time at which one track was removed");
+		this.testCases.put(14, "Gets the tracklist to a time at which the removed track was added again");
+		this.testCases.put(15, "Gets the event notifications from one member");
+		this.testCases.put(16, "make some date proposals to a member");
+		this.testCases.put(17, "accept/decline some date proposals");
+		this.testCases.put(18, "get member from event");
+		this.testCases.put(19, "change member to substitute");
+		this.testCases.put(20, "get all substitute member");
+		this.testCases.put(21, "get all non substitute member");
+		this.testCases.put(22, "get all not blocked member");
 
-		overallTests = testCases.size();
-		Validator.addTests(overallTests);
+		this.overallTests = this.testCases.size();
+		Validator.addTests(this.overallTests);
 	}
 
 	@Override
 	public void printTestDescription() {
 
 		System.out.println("Test cases for the " + moduleName + " module: ");
-		for (Integer i : testCases.keySet()) {
-			System.out.println("#" + ((i < 10) ? "0" + i : i) + ": " + testCases.get(i));
+		for (Integer i : this.testCases.keySet()) {
+			System.out.println("#" + (i < 10 ? "0" + i : i) + ": " + this.testCases.get(i));
 		}
 		System.out.println();
 	}
@@ -86,13 +86,13 @@ public class MemberTester implements Tester {
 	public void printTestResults() {
 
 		System.out.println("Test results for the " + moduleName + " module: ");
-		System.out.println("Successful tests: " + successfulTests);
-		System.out.println("Failed tests: " + (overallTests - successfulTests));
+		System.out.println("Successful tests: " + this.successfulTests);
+		System.out.println("Failed tests: " + (this.overallTests - this.successfulTests));
 
-		if (!failedTestNumbers.isEmpty()) {
+		if (!this.failedTestNumbers.isEmpty()) {
 			System.out.println("The following test cases have failed: ");
-			for (Integer i : failedTestNumbers) {
-				System.out.println("#" + i + " " + testCases.get(i));
+			for (Integer i : this.failedTestNumbers) {
+				System.out.println("#" + i + " " + this.testCases.get(i));
 			}
 		}
 		System.out.println();
@@ -235,10 +235,10 @@ public class MemberTester implements Tester {
 			ultraCoders.addMember(jane, formatDate.parse("06.06.2004"));
 
 			if (Validator.check(ultraCoders.getMembers(), allMembers, 1)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(1);
+				this.failedTestNumbers.add(1);
 			}
 
 			/*
@@ -257,10 +257,10 @@ public class MemberTester implements Tester {
 			}
 
 			if (Validator.check(ultraCoders.getTracks(formatDate.parse("05.03.2012")), allTracks, 2)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(2);
+				this.failedTestNumbers.add(2);
 			}
 
 			/*
@@ -270,10 +270,10 @@ public class MemberTester implements Tester {
 			 * should be: jens, jane
 			 */
 			if (Validator.check(ultraCoders.getMembers(true), allSubstitute, 3)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(3);
+				this.failedTestNumbers.add(3);
 			}
 
 			/*
@@ -283,10 +283,10 @@ public class MemberTester implements Tester {
 			 * should be: markus, thomas, dominik
 			 */
 			if (Validator.check(ultraCoders.getMembers(false), allNonSubstitute, 4)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(4);
+				this.failedTestNumbers.add(4);
 			}
 
 			/*
@@ -298,11 +298,11 @@ public class MemberTester implements Tester {
 
 			try {
 				thomas.addTrack(myCurse, formatDate.parse("05.03.2012"));
-				failedTestNumbers.add(5);
+				this.failedTestNumbers.add(5);
 				Validator.report(false);
 			}
 			catch (InvalidBandObjectException e) {
-				successfulTests++;
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
@@ -315,11 +315,11 @@ public class MemberTester implements Tester {
 
 			try {
 				thomas.removeTrack(myCurse, formatDate.parse("05.02.2012"));
-				failedTestNumbers.add(6);
+				this.failedTestNumbers.add(6);
 				Validator.report(false);
 			}
 			catch (InvalidDateException e) {
-				successfulTests++;
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
@@ -332,10 +332,10 @@ public class MemberTester implements Tester {
 			thomas.removeTrack(byob, formatDate.parse("05.04.2012"));
 
 			if (Validator.check(ultraCoders.getTracks(), tracksNobyob, 7)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(7);
+				this.failedTestNumbers.add(7);
 			}
 
 			/*
@@ -347,11 +347,11 @@ public class MemberTester implements Tester {
 
 			try {
 				thomas.removeTrack(byob, formatDate.parse("05.05.2012"));
-				failedTestNumbers.add(8);
+				this.failedTestNumbers.add(8);
 				Validator.report(false);
 			}
 			catch (InvalidBandObjectException e) {
-				successfulTests++;
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
@@ -364,11 +364,11 @@ public class MemberTester implements Tester {
 
 			try {
 				thomas.addTrack(byob, formatDate.parse("05.05.2011"));
-				failedTestNumbers.add(9);
+				this.failedTestNumbers.add(9);
 				Validator.report(false);
 			}
 			catch (InvalidDateException e) {
-				successfulTests++;
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
@@ -381,11 +381,11 @@ public class MemberTester implements Tester {
 
 			try {
 				markus.addTrack(byob, formatDate.parse("05.05.2012"));
-				failedTestNumbers.add(9);
+				this.failedTestNumbers.add(9);
 				Validator.report(false);
 			}
 			catch (InvalidBandObjectException e) {
-				successfulTests++;
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
@@ -397,10 +397,10 @@ public class MemberTester implements Tester {
 			 */
 
 			if (Validator.check(ultraCoders.getTracks(formatDate.parse("05.03.2012")), allTracks, 11)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(11);
+				this.failedTestNumbers.add(11);
 			}
 
 			/*
@@ -411,10 +411,10 @@ public class MemberTester implements Tester {
 			 */
 
 			if (Validator.check(ultraCoders.getTracks(formatDate.parse("15.09.2011")), someTracks, 12)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(12);
+				this.failedTestNumbers.add(12);
 			}
 
 			/*
@@ -425,10 +425,10 @@ public class MemberTester implements Tester {
 			 */
 
 			if (Validator.check(ultraCoders.getTracks(formatDate.parse("10.04.2012")), tracksNobyob, 13)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(13);
+				this.failedTestNumbers.add(13);
 			}
 
 			/*
@@ -437,10 +437,10 @@ public class MemberTester implements Tester {
 			 */
 
 			if (Validator.check(ultraCoders.getTracks(formatDate.parse("05.10.2012")), allTracks, 14)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(14);
+				this.failedTestNumbers.add(14);
 			}
 
 			/*
@@ -456,10 +456,10 @@ public class MemberTester implements Tester {
 			ultraCoders.deferreEvent(postNova2011, formatDate.parse("05.10.2012"));
 
 			if (Validator.check(thomas.getNotifications(true), case15, 15)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(15);
+				this.failedTestNumbers.add(15);
 			}
 
 			/*
@@ -472,10 +472,10 @@ public class MemberTester implements Tester {
 			dominic.addProposedDate(new ProposedDate(postNova2010, formatTime.parse("15.08.2010 20:00")));
 
 			if (Validator.check(dominic.getProposedDates(), propd, 16)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(16);
+				this.failedTestNumbers.add(16);
 			}
 
 			/*
@@ -493,10 +493,10 @@ public class MemberTester implements Tester {
 			dominic.agree(new ProposedDate(postNova2010, formatTime.parse("15.08.2010 20:00")), "good date", true);
 
 			if (Validator.check(dominic.getProposedDates(), case17, 17)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(17);
+				this.failedTestNumbers.add(17);
 			}
 
 			/*
@@ -505,10 +505,10 @@ public class MemberTester implements Tester {
 			 */
 
 			if (Validator.check(novarock2012.getMember(), allMembers, 18)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(18);
+				this.failedTestNumbers.add(18);
 			}
 
 			/*
@@ -518,10 +518,10 @@ public class MemberTester implements Tester {
 
 			thomas.changeSubstituteStatus();
 			if (Validator.check(thomas.isSubstituteMember(), true, 19)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(19);
+				this.failedTestNumbers.add(19);
 			}
 
 			/*
@@ -530,10 +530,10 @@ public class MemberTester implements Tester {
 			 */
 			allSubstitute.add(thomas);
 			if (Validator.check(ultraCoders.getMembers(true), allSubstitute, 20)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(20);
+				this.failedTestNumbers.add(20);
 			}
 
 			/*
@@ -544,10 +544,10 @@ public class MemberTester implements Tester {
 			allNonSubstitute.remove(thomas);
 
 			if (Validator.check(ultraCoders.getMembers(false), allNonSubstitute, 21)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(21);
+				this.failedTestNumbers.add(21);
 			}
 
 			/*
@@ -564,10 +564,10 @@ public class MemberTester implements Tester {
 			if (Validator.check(
 					ultraCoders.getMemberWithRehearsals(2, formatTime.parse("10.08.2010 20:00"),
 							formatTime.parse("20.08.2010 20:00")), case22, 22)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				failedTestNumbers.add(22);
+				this.failedTestNumbers.add(22);
 			}
 
 		}

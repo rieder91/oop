@@ -1,3 +1,4 @@
+
 package band;
 
 import java.util.Date;
@@ -9,16 +10,8 @@ import java.util.Date;
  */
 public class ProposedDate {
 
-	/**
-	 * @return
-	 */
-	@Override
-	public String toString() {
-
-		return "Event: " + e + ", agreed: " + agreed + ", reason: " + reason + ", date: " + date;
-	}
-
 	private Event e;
+
 	private boolean agreed;
 	private String reason;
 	private Date date;
@@ -33,14 +26,6 @@ public class ProposedDate {
 
 		this.e = e;
 		this.date = date;
-	}
-
-	/**
-	 * @return true if the member agreed false if the member declined
-	 */
-	public boolean isAgreed() {
-
-		return this.agreed;
 	}
 
 	/**
@@ -63,11 +48,38 @@ public class ProposedDate {
 	}
 
 	/**
-	 * @return the reason why the member accepted oder declined the date
+	 * @param obj
+	 * @return
 	 */
-	public String getReason() {
+	@Override
+	public boolean equals(Object obj) {
 
-		return this.reason;
+		if (this == obj) { return true; }
+		if (obj == null) { return false; }
+		if (!(obj instanceof ProposedDate)) { return false; }
+		ProposedDate other = (ProposedDate) obj;
+		if (this.agreed != other.agreed) { return false; }
+		if (this.date == null) {
+			if (other.date != null) { return false; }
+		}
+		else if (!this.date.equals(other.date)) { return false; }
+		if (this.e == null) {
+			if (other.e != null) { return false; }
+		}
+		else if (!this.e.equals(other.e)) { return false; }
+		if (this.reason == null) {
+			if (other.reason != null) { return false; }
+		}
+		else if (!this.reason.equals(other.reason)) { return false; }
+		return true;
+	}
+
+	/**
+	 * @return the date
+	 */
+	public Date getDate() {
+
+		return this.date;
 	}
 
 	/**
@@ -79,6 +91,14 @@ public class ProposedDate {
 	}
 
 	/**
+	 * @return the reason why the member accepted oder declined the date
+	 */
+	public String getReason() {
+
+		return this.reason;
+	}
+
+	/**
 	 * @return
 	 */
 	@Override
@@ -86,63 +106,28 @@ public class ProposedDate {
 
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (agreed ? 1231 : 1237);
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + ((e == null) ? 0 : e.hashCode());
-		result = prime * result + ((reason == null) ? 0 : reason.hashCode());
+		result = prime * result + (this.agreed ? 1231 : 1237);
+		result = prime * result + (this.date == null ? 0 : this.date.hashCode());
+		result = prime * result + (this.e == null ? 0 : this.e.hashCode());
+		result = prime * result + (this.reason == null ? 0 : this.reason.hashCode());
 		return result;
 	}
 
 	/**
-	 * @param obj
-	 * @return
+	 * @return true if the member agreed false if the member declined
 	 */
-	@Override
-	public boolean equals(Object obj) {
+	public boolean isAgreed() {
 
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof ProposedDate)) {
-			return false;
-		}
-		ProposedDate other = (ProposedDate) obj;
-		if (agreed != other.agreed) {
-			return false;
-		}
-		if (date == null) {
-			if (other.date != null) {
-				return false;
-			}
-		} else if (!date.equals(other.date)) {
-			return false;
-		}
-		if (e == null) {
-			if (other.e != null) {
-				return false;
-			}
-		} else if (!e.equals(other.e)) {
-			return false;
-		}
-		if (reason == null) {
-			if (other.reason != null) {
-				return false;
-			}
-		} else if (!reason.equals(other.reason)) {
-			return false;
-		}
-		return true;
+		return this.agreed;
 	}
 
 	/**
-	 * @return the date
+	 * @return
 	 */
-	public Date getDate() {
+	@Override
+	public String toString() {
 
-		return this.date;
+		return "Event: " + this.e + ", agreed: " + this.agreed + ", reason: " + this.reason + ", date: " + this.date;
 	}
 
 }

@@ -110,7 +110,9 @@ public class Band implements Authenticatable {
 				mem.notifyEvent(e, Status.scheduled);
 			}
 		}
-		else throw new InvalidBandObjectException("event already exists");
+		else {
+			throw new InvalidBandObjectException("event already exists");
+		}
 
 	}
 
@@ -155,7 +157,9 @@ public class Band implements Authenticatable {
 				// date
 				final ArrayList<Date> history = this.previousMembers.get(m);
 				final Date leaveDate = history.get(history.size() - 1);
-				if (leaveDate.after(d)) throw new InvalidDateException("new date prior to last remove date");
+				if (leaveDate.after(d)) {
+					throw new InvalidDateException("new date prior to last remove date");
+				}
 				else {
 					this.members.add(m);
 					this.memberDates.get(m).add(d);
@@ -182,7 +186,9 @@ public class Band implements Authenticatable {
 			this.setRole(m, Permission.GROUP);
 
 		}
-		else throw new InvalidBandObjectException("member already exists");
+		else {
+			throw new InvalidBandObjectException("member already exists");
+		}
 	}
 
 	/**
@@ -216,7 +222,9 @@ public class Band implements Authenticatable {
 			if (this.trackDates.containsKey(t)) {
 				ArrayList<Date> history = this.previousTracks.get(t);
 				Date leaveDate = history.get(history.size() - 1);
-				if (leaveDate.after(d)) throw new InvalidDateException("new date prior to last remove date");
+				if (leaveDate.after(d)) {
+					throw new InvalidDateException("new date prior to last remove date");
+				}
 				else {
 					this.trackDates.get(t).add(d);
 				}
@@ -243,8 +251,9 @@ public class Band implements Authenticatable {
 	@Override
 	public boolean allowedMethod(final Method m, final Permission p) {
 
-		for (final Permission allowed : this.permissions.get(m))
-			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) return true;
+		for (final Permission allowed : this.permissions.get(m)) {
+			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) { return true; }
+		}
 		return false;
 	}
 
@@ -260,7 +269,9 @@ public class Band implements Authenticatable {
 	 */
 	public void deferreEvent(final Event e, final Date d) throws InvalidBandObjectException {
 
-		if (!this.events.contains(e)) throw new InvalidBandObjectException("event doesnt exist");
+		if (!this.events.contains(e)) {
+			throw new InvalidBandObjectException("event doesnt exist");
+		}
 		else {
 			this.events.get(this.events.indexOf(e)).setTime(d);
 
@@ -272,30 +283,6 @@ public class Band implements Authenticatable {
 	}
 
 	/**
-	 * @return a hash code representation of the band
-	 */
-	@Override
-	public int hashCode() {
-
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((this.events == null) ? 0 : this.events.hashCode());
-		result = prime * result + ((this.finances == null) ? 0 : this.finances.hashCode());
-		result = prime * result + ((this.genre == null) ? 0 : this.genre.hashCode());
-		result = prime * result + ((this.memberDates == null) ? 0 : this.memberDates.hashCode());
-		result = prime * result + ((this.members == null) ? 0 : this.members.hashCode());
-		result = prime * result + ((this.name == null) ? 0 : this.name.hashCode());
-		result = prime * result + ((this.permissions == null) ? 0 : this.permissions.hashCode());
-		result = prime * result + ((this.previousEvents == null) ? 0 : this.previousEvents.hashCode());
-		result = prime * result + ((this.previousMembers == null) ? 0 : this.previousMembers.hashCode());
-		result = prime * result + ((this.previousTracks == null) ? 0 : this.previousTracks.hashCode());
-		result = prime * result + ((this.roles == null) ? 0 : this.roles.hashCode());
-		result = prime * result + ((this.trackDates == null) ? 0 : this.trackDates.hashCode());
-		result = prime * result + ((this.tracks == null) ? 0 : this.tracks.hashCode());
-		return result;
-	}
-
-	/**
 	 * compares two bands
 	 * 
 	 * @return true if the bands are equal false otherwise
@@ -303,62 +290,62 @@ public class Band implements Authenticatable {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (!(obj instanceof Band)) return false;
+		if (this == obj) { return true; }
+		if (obj == null) { return false; }
+		if (!(obj instanceof Band)) { return false; }
 		Band other = (Band) obj;
 		if (this.events == null) {
-			if (other.events != null) return false;
+			if (other.events != null) { return false; }
 		}
-		else if (!this.events.equals(other.events)) return false;
+		else if (!this.events.equals(other.events)) { return false; }
 		if (this.finances == null) {
-			if (other.finances != null) return false;
+			if (other.finances != null) { return false; }
 		}
-		else if (!this.finances.equals(other.finances)) return false;
+		else if (!this.finances.equals(other.finances)) { return false; }
 		if (this.genre == null) {
-			if (other.genre != null) return false;
+			if (other.genre != null) { return false; }
 		}
-		else if (!this.genre.equals(other.genre)) return false;
+		else if (!this.genre.equals(other.genre)) { return false; }
 		if (this.memberDates == null) {
-			if (other.memberDates != null) return false;
+			if (other.memberDates != null) { return false; }
 		}
-		else if (!this.memberDates.equals(other.memberDates)) return false;
+		else if (!this.memberDates.equals(other.memberDates)) { return false; }
 		if (this.members == null) {
-			if (other.members != null) return false;
+			if (other.members != null) { return false; }
 		}
-		else if (!this.members.equals(other.members)) return false;
+		else if (!this.members.equals(other.members)) { return false; }
 		if (this.name == null) {
-			if (other.name != null) return false;
+			if (other.name != null) { return false; }
 		}
-		else if (!this.name.equals(other.name)) return false;
+		else if (!this.name.equals(other.name)) { return false; }
 		if (this.permissions == null) {
-			if (other.permissions != null) return false;
+			if (other.permissions != null) { return false; }
 		}
-		else if (!this.permissions.equals(other.permissions)) return false;
+		else if (!this.permissions.equals(other.permissions)) { return false; }
 		if (this.previousEvents == null) {
-			if (other.previousEvents != null) return false;
+			if (other.previousEvents != null) { return false; }
 		}
-		else if (!this.previousEvents.equals(other.previousEvents)) return false;
+		else if (!this.previousEvents.equals(other.previousEvents)) { return false; }
 		if (this.previousMembers == null) {
-			if (other.previousMembers != null) return false;
+			if (other.previousMembers != null) { return false; }
 		}
-		else if (!this.previousMembers.equals(other.previousMembers)) return false;
+		else if (!this.previousMembers.equals(other.previousMembers)) { return false; }
 		if (this.previousTracks == null) {
-			if (other.previousTracks != null) return false;
+			if (other.previousTracks != null) { return false; }
 		}
-		else if (!this.previousTracks.equals(other.previousTracks)) return false;
+		else if (!this.previousTracks.equals(other.previousTracks)) { return false; }
 		if (this.roles == null) {
-			if (other.roles != null) return false;
+			if (other.roles != null) { return false; }
 		}
-		else if (!this.roles.equals(other.roles)) return false;
+		else if (!this.roles.equals(other.roles)) { return false; }
 		if (this.trackDates == null) {
-			if (other.trackDates != null) return false;
+			if (other.trackDates != null) { return false; }
 		}
-		else if (!this.trackDates.equals(other.trackDates)) return false;
+		else if (!this.trackDates.equals(other.trackDates)) { return false; }
 		if (this.tracks == null) {
-			if (other.tracks != null) return false;
+			if (other.tracks != null) { return false; }
 		}
-		else if (!this.tracks.equals(other.tracks)) return false;
+		else if (!this.tracks.equals(other.tracks)) { return false; }
 		return true;
 	}
 
@@ -375,12 +362,17 @@ public class Band implements Authenticatable {
 			throws InvalidDateException {
 
 		BigDecimal ret = new BigDecimal(0.0);
-		if (d1.after(d2)) throw new InvalidDateException("from-date AFTER to-date");
+		if (d1.after(d2)) {
+			throw new InvalidDateException("from-date AFTER to-date");
+		}
 		else {
-			for (final Event e : this.events)
-				if (types.contains(e.getClass())) if (e.getTime().after(d1) && e.getTime().before(d2)) {
-					ret = ret.add(e.getFinances());
+			for (final Event e : this.events) {
+				if (types.contains(e.getClass())) {
+					if (e.getTime().after(d1) && e.getTime().before(d2)) {
+						ret = ret.add(e.getFinances());
+					}
 				}
+			}
 		}
 		return ret;
 	}
@@ -408,12 +400,17 @@ public class Band implements Authenticatable {
 			throws InvalidDateException {
 
 		final ArrayList<Event> ret = new ArrayList<Event>();
-		if (d1.after(d2)) throw new InvalidDateException("from-date AFTER to-date");
+		if (d1.after(d2)) {
+			throw new InvalidDateException("from-date AFTER to-date");
+		}
 		else {
-			for (final Event e : this.events)
-				if (types.contains(e.getClass())) if (e.getTime().after(d1) && e.getTime().before(d2)) {
-					ret.add(e);
+			for (final Event e : this.events) {
+				if (types.contains(e.getClass())) {
+					if (e.getTime().after(d1) && e.getTime().before(d2)) {
+						ret.add(e);
+					}
 				}
+			}
 		}
 		return ret;
 	}
@@ -523,26 +520,6 @@ public class Band implements Authenticatable {
 	}
 
 	/**
-	 * @param d
-	 * @param min
-	 *            number of rehersals the member should have attendet since @d
-	 * @return all valid members
-	 */
-	public ArrayList<Member> getValidMember(Date d, int min) {
-
-		ArrayList<Member> val = new ArrayList<Member>();
-		int anz = 0;
-		for (Member mem : this.members) {
-			for (Rehearsal re : mem.getRehersal()) {
-				if (re.getTime().after(d)) anz++;
-			}
-			if (anz >= min) val.add(mem);
-			anz = 0;
-		}
-		return val;
-	}
-
-	/**
 	 * used to get all substitute or non substitute member
 	 * 
 	 * @param substitute
@@ -575,19 +552,21 @@ public class Band implements Authenticatable {
 
 		for (final Member m : this.memberDates.keySet()) {
 			Date lastValidDate = null;
-			for (final Date joinDate : this.memberDates.get(m))
+			for (final Date joinDate : this.memberDates.get(m)) {
 				if (joinDate.before(d)) {
 					lastValidDate = joinDate;
 				}
+			}
 
 			// if he left the group, get the "leave-date" after the
 			// lastValidDate
 			if (lastValidDate != null && this.previousMembers.containsKey(m)) {
-				for (final Date leaveDate : this.previousMembers.get(m))
+				for (final Date leaveDate : this.previousMembers.get(m)) {
 					if (leaveDate.before(d) && leaveDate.after(lastValidDate)) {
 						lastValidDate = null;
 						break;
 					}
+				}
 			}
 
 			if (lastValidDate != null) {
@@ -596,6 +575,36 @@ public class Band implements Authenticatable {
 
 		}
 		return ret;
+	}
+
+	/**
+	 * used to get all valid member in the specified interval
+	 * 
+	 * @param numberOfRehearsals
+	 *            number of rehearsals the member has to attend minimal
+	 * @param from
+	 *            start of the time interval
+	 * @param to
+	 *            end of the time interval
+	 * @return all valid member
+	 */
+	public ArrayList<Member> getMemberWithRehearsals(Integer numberOfRehearsals, Date from, Date to) {
+
+		ArrayList<Member> memlist = new ArrayList<Member>();
+		int anz = 0;
+		for (Member mem : this.members) {
+			anz = 0;
+			for (Rehearsal r : mem.getRehearsals()) {
+				if (r.getTime().before(to) && r.getTime().after(from)) {
+					anz++;
+				}
+
+			}
+			if (!mem.isSubstituteMember() || anz >= numberOfRehearsals) {
+				memlist.add(mem);
+			}
+		}
+		return memlist;
 	}
 
 	@Override
@@ -614,8 +623,12 @@ public class Band implements Authenticatable {
 	@Override
 	public Permission getRole(final Authenticatable auth) {
 
-		if (this.roles.containsKey(auth)) return this.roles.get(auth);
-		else return Permission.NONE;
+		if (this.roles.containsKey(auth)) {
+			return this.roles.get(auth);
+		}
+		else {
+			return Permission.NONE;
+		}
 	}
 
 	@Override
@@ -645,17 +658,19 @@ public class Band implements Authenticatable {
 
 		for (final Track t : this.trackDates.keySet()) {
 			Date lastValidDate = null;
-			for (Date addDate : this.trackDates.get(t))
+			for (Date addDate : this.trackDates.get(t)) {
 				if (addDate.before(d)) {
 					lastValidDate = addDate;
 				}
+			}
 
 			if (lastValidDate != null && this.previousTracks.containsKey(t)) {
-				for (Date removeDate : this.previousTracks.get(t))
+				for (Date removeDate : this.previousTracks.get(t)) {
 					if (removeDate.before(d) && removeDate.after(lastValidDate)) {
 						lastValidDate = null;
 						break;
 					}
+				}
 			}
 
 			if (lastValidDate != null) {
@@ -664,6 +679,54 @@ public class Band implements Authenticatable {
 		}
 
 		return ret;
+	}
+
+	/**
+	 * @param d
+	 * @param min
+	 *            number of rehersals the member should have attendet since @d
+	 * @return all valid members
+	 */
+	public ArrayList<Member> getValidMember(Date d, int min) {
+
+		ArrayList<Member> val = new ArrayList<Member>();
+		int anz = 0;
+		for (Member mem : this.members) {
+			for (Rehearsal re : mem.getRehersal()) {
+				if (re.getTime().after(d)) {
+					anz++;
+				}
+			}
+			if (anz >= min) {
+				val.add(mem);
+			}
+			anz = 0;
+		}
+		return val;
+	}
+
+	/**
+	 * @return a hash code representation of the band
+	 */
+	@Override
+	public int hashCode() {
+
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (this.events == null ? 0 : this.events.hashCode());
+		result = prime * result + (this.finances == null ? 0 : this.finances.hashCode());
+		result = prime * result + (this.genre == null ? 0 : this.genre.hashCode());
+		result = prime * result + (this.memberDates == null ? 0 : this.memberDates.hashCode());
+		result = prime * result + (this.members == null ? 0 : this.members.hashCode());
+		result = prime * result + (this.name == null ? 0 : this.name.hashCode());
+		result = prime * result + (this.permissions == null ? 0 : this.permissions.hashCode());
+		result = prime * result + (this.previousEvents == null ? 0 : this.previousEvents.hashCode());
+		result = prime * result + (this.previousMembers == null ? 0 : this.previousMembers.hashCode());
+		result = prime * result + (this.previousTracks == null ? 0 : this.previousTracks.hashCode());
+		result = prime * result + (this.roles == null ? 0 : this.roles.hashCode());
+		result = prime * result + (this.trackDates == null ? 0 : this.trackDates.hashCode());
+		result = prime * result + (this.tracks == null ? 0 : this.tracks.hashCode());
+		return result;
 	}
 
 	/**
@@ -745,7 +808,9 @@ public class Band implements Authenticatable {
 	 */
 	public void removeEvent(final Event e) throws InvalidBandObjectException {
 
-		if (!this.events.contains(e)) throw new InvalidBandObjectException("event doesnt exist");
+		if (!this.events.contains(e)) {
+			throw new InvalidBandObjectException("event doesnt exist");
+		}
 		else {
 			this.events.remove(e);
 
@@ -779,7 +844,9 @@ public class Band implements Authenticatable {
 				this.previousEvents.put(e, newHistory);
 			}
 		}
-		else throw new InvalidBandObjectException("event doesnt exist");
+		else {
+			throw new InvalidBandObjectException("event doesnt exist");
+		}
 	}
 
 	/**
@@ -798,8 +865,12 @@ public class Band implements Authenticatable {
 
 		final ArrayList<Date> history = this.memberDates.get(m);
 		final Date joinDate = history.get(history.size() - 1);
-		if (!this.members.contains(m)) throw new InvalidBandObjectException("member doesnt exist");
-		else if (joinDate.after(d)) throw new InvalidDateException("new date prior to last add date");
+		if (!this.members.contains(m)) {
+			throw new InvalidBandObjectException("member doesnt exist");
+		}
+		else if (joinDate.after(d)) {
+			throw new InvalidDateException("new date prior to last add date");
+		}
 		else {
 			this.members.remove(m);
 
@@ -853,11 +924,12 @@ public class Band implements Authenticatable {
 		}
 
 		ArrayList<Date> history = this.trackDates.get(t);
-		if (history != null && (history.size() - 1) >= 0) {
+		if (history != null && history.size() - 1 >= 0) {
 			final Date joinDate = history.get(history.size() - 1);
 
-			if (this.tracks.contains(t) && joinDate.after(d)) throw new InvalidDateException(
-					"new date prior to last add date");
+			if (this.tracks.contains(t) && joinDate.after(d)) {
+				throw new InvalidDateException("new date prior to last add date");
+			}
 			else {
 
 				if (this.previousTracks.containsKey(t)) {
@@ -898,7 +970,9 @@ public class Band implements Authenticatable {
 				this.previousEvents.remove(rest);
 			}
 		}
-		else throw new InvalidBandObjectException("event doesnt exist");
+		else {
+			throw new InvalidBandObjectException("event doesnt exist");
+		}
 	}
 
 	/**
@@ -915,10 +989,11 @@ public class Band implements Authenticatable {
 	private ArrayList<Event> searchEvent(final String place, final Integer duration, final Date time) {
 
 		final ArrayList<Event> ret = new ArrayList<Event>();
-		for (final Event e : this.previousEvents.keySet())
+		for (final Event e : this.previousEvents.keySet()) {
 			if (place.equals(e.getPlace()) && time.equals(e.getTime()) && duration.equals(e.getDuration())) {
 				ret.add(e);
 			}
+		}
 		return ret;
 	}
 
@@ -989,7 +1064,7 @@ public class Band implements Authenticatable {
 	 * 
 	 * @return total income of events
 	 */
-	public BigDecimalx	 {
+	public BigDecimal totalEventIncome() {
 
 		BigDecimal ret = new BigDecimal(0);
 		for (final Event e : this.getEvents()) {
@@ -1012,31 +1087,5 @@ public class Band implements Authenticatable {
 			eventTurnover = eventTurnover.add(e.getFinances());
 		}
 		return eventTurnover.add(this.finances.turnover());
-	}
-
-	/**
-	 * used to get all valid member in the specified interval
-	 * 
-	 * @param numberOfRehearsals
-	 *            number of rehearsals the member has to attend minimal
-	 * @param from
-	 *            start of the time interval
-	 * @param to
-	 *            end of the time interval
-	 * @return all valid member
-	 */
-	public ArrayList<Member> getMemberWithRehearsals(Integer numberOfRehearsals, Date from, Date to) {
-
-		ArrayList<Member> memlist = new ArrayList<Member>();
-		int anz = 0;
-		for (Member mem : this.members) {
-			anz = 0;
-			for (Rehearsal r : mem.getRehearsals()) {
-				if (r.getTime().before(to) && r.getTime().after(from)) anz++;
-
-			}
-			if (!mem.isSubstituteMember() || anz >= numberOfRehearsals) memlist.add(mem);
-		}
-		return memlist;
 	}
 }

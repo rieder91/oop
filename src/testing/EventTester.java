@@ -1,15 +1,14 @@
+
 package testing;
 
 import helper.InvalidBandObjectException;
 import helper.InvalidDateException;
 import helper.Validator;
-
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import band.Band;
 import band.Event;
 import band.Gig;
@@ -17,10 +16,11 @@ import band.Rehearsal;
 
 /**
  * test class for event requirements
+ * 
  * @author OOP Gruppe 187
- *
  */
 public class EventTester implements Tester {
+
 	private static final String moduleName = "EventHistory";
 
 	// number of successful/failed tests
@@ -33,56 +33,60 @@ public class EventTester implements Tester {
 	private HashMap<Integer, String> testCases;
 
 	public EventTester() {
-		successfulTests = 0;
 
-		failedTestNumbers = new ArrayList<Integer>();
-		testCases = new HashMap<Integer, String>();
+		this.successfulTests = 0;
 
-		testCases.put(1, "Change the details of an event");
-		testCases.put(2, "Revert the changes made to an event");
-		testCases.put(3, "Try to edit an event with an invalid changeDate");
-		testCases.put(4, "restore a non existant Event");
-		testCases.put(5, "remove and restore an event");
-		
-		overallTests = testCases.size();
-		Validator.addTests(overallTests);
+		this.failedTestNumbers = new ArrayList<Integer>();
+		this.testCases = new HashMap<Integer, String>();
+
+		this.testCases.put(1, "Change the details of an event");
+		this.testCases.put(2, "Revert the changes made to an event");
+		this.testCases.put(3, "Try to edit an event with an invalid changeDate");
+		this.testCases.put(4, "restore a non existant Event");
+		this.testCases.put(5, "remove and restore an event");
+
+		this.overallTests = this.testCases.size();
+		Validator.addTests(this.overallTests);
 	}
 
 	@Override
 	public void printTestDescription() {
+
 		System.out.println("Test cases for the " + moduleName + " module: ");
-		for (Integer i : testCases.keySet()) {
-			System.out.println("#" + ((i < 10) ? "0" + i : i) + ": " + testCases.get(i));
+		for (Integer i : this.testCases.keySet()) {
+			System.out.println("#" + (i < 10 ? "0" + i : i) + ": " + this.testCases.get(i));
 		}
 		System.out.println();
 	}
 
 	@Override
 	public void printTestResults() {
-		System.out.println("Test results for the " + moduleName + " module: ");
-		System.out.println("Successful tests: " + successfulTests);
-		System.out.println("Failed tests: " + (overallTests - successfulTests));
 
-		if (!failedTestNumbers.isEmpty()) {
+		System.out.println("Test results for the " + moduleName + " module: ");
+		System.out.println("Successful tests: " + this.successfulTests);
+		System.out.println("Failed tests: " + (this.overallTests - this.successfulTests));
+
+		if (!this.failedTestNumbers.isEmpty()) {
 			System.out.println("The following test cases have failed: ");
-			for (Integer i : failedTestNumbers) {
-				System.out.println("#" + i + " " + testCases.get(i));
+			for (Integer i : this.failedTestNumbers) {
+				System.out.println("#" + i + " " + this.testCases.get(i));
 			}
 		}
 		System.out.println();
 	}
 
-
 	/*
-	 * deprecation suppression is only used to ignore the warning of the methods we declared 
-	 * deprecated ourselves due to the enhancements made in assignment #2
+	 * deprecation suppression is only used to ignore the warning of the methods we declared deprecated ourselves due to
+	 * the enhancements made in assignment #2
 	 * 
 	 * (non-Javadoc)
+	 * 
 	 * @see testing.Tester#runTests()
 	 */
 	@SuppressWarnings("deprecation")
 	@Override
 	public void runTests() {
+
 		SimpleDateFormat formatTime = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		SimpleDateFormat formatDate = new SimpleDateFormat("dd.MM.yyyy");
 
@@ -94,31 +98,23 @@ public class EventTester implements Tester {
 		Rehearsal postNova2010 = null, postNova2011 = null;
 
 		try {
-			novarock2010 = new Gig(formatTime.parse("11.07.2010 12:00"),
-					"Pannonia Fields II", 72, 2500.0);
-			novarock2011 = new Gig(formatTime.parse("11.07.2011 13:00"),
-					"Pannonia Fields II", 72, 5000.0);
-			novarock2012 = new Gig(formatTime.parse("08.07.2012 14:00"),
-					"Pannonia Fields II", 72, 10000.0);
+			novarock2010 = new Gig(formatTime.parse("11.07.2010 12:00"), "Pannonia Fields II", 72, 2500.0);
+			novarock2011 = new Gig(formatTime.parse("11.07.2011 13:00"), "Pannonia Fields II", 72, 5000.0);
+			novarock2012 = new Gig(formatTime.parse("08.07.2012 14:00"), "Pannonia Fields II", 72, 10000.0);
 
-			postNova2010 = new Rehearsal(formatTime.parse("15.08.2010 20:00"),
-					"Vienna Sound Studio", 5, 100.0);
-			postNova2011 = new Rehearsal(formatTime.parse("15.08.2011 20:00"),
-					"Vienna Sound Studio Mk II", 7, 1000.0);
+			postNova2010 = new Rehearsal(formatTime.parse("15.08.2010 20:00"), "Vienna Sound Studio", 5, 100.0);
+			postNova2011 = new Rehearsal(formatTime.parse("15.08.2011 20:00"), "Vienna Sound Studio Mk II", 7, 1000.0);
 
-			case02 = new Gig(formatTime.parse("11.07.2010 12:00"),
-					"Pannonia Fields II", 72, 2500.0);
-			case01 = new Gig(formatDate.parse("01.01.2013"), "Wien", 10,
-					new BigDecimal(10000));
-		} catch (ParseException e) {
+			case02 = new Gig(formatTime.parse("11.07.2010 12:00"), "Pannonia Fields II", 72, 2500.0);
+			case01 = new Gig(formatDate.parse("01.01.2013"), "Wien", 10, new BigDecimal(10000));
+		}
+		catch (ParseException e) {
 			System.out.println("Date parsing failed");
 		}
 
 		/*
 		 * All variables needed for validation of test cases
 		 */
-
-
 
 		// used in cases: 24, 28, 29
 		ArrayList<Event> allEvents = new ArrayList<Event>();
@@ -127,8 +123,6 @@ public class EventTester implements Tester {
 		allEvents.add(novarock2012);
 		allEvents.add(postNova2010);
 		allEvents.add(postNova2011);
-		
-		
 
 		try {
 			ultraCoders.addEvent(novarock2010);
@@ -143,15 +137,14 @@ public class EventTester implements Tester {
 			 * should be: case01
 			 */
 
+			novarock2010.updateEvent(new Gig(formatDate.parse("01.01.2013"), "Wien", 10, new BigDecimal(10000)),
+					formatDate.parse("05.10.2012"));
 
-			novarock2010.updateEvent(new Gig(formatDate.parse("01.01.2013"),
-					"Wien", 10, new BigDecimal(10000)), formatDate
-					.parse("05.10.2012"));
-
-			if(Validator.check(novarock2010, case01, 1)) {
-				successfulTests++;
-			} else {
-				failedTestNumbers.add(1);
+			if (Validator.check(novarock2010, case01, 1)) {
+				this.successfulTests++;
+			}
+			else {
+				this.failedTestNumbers.add(1);
 			}
 
 			/*
@@ -160,14 +153,13 @@ public class EventTester implements Tester {
 			 * should be: case02
 			 */
 
-			novarock2010.restoreEvent(formatDate.parse("05.10.2012"),
-					formatDate.parse("06.10.2012"));
+			novarock2010.restoreEvent(formatDate.parse("05.10.2012"), formatDate.parse("06.10.2012"));
 
-
-			if(Validator.check(novarock2010, case02, 2)) {
-				successfulTests++;
-			} else {
-				failedTestNumbers.add(2);
+			if (Validator.check(novarock2010, case02, 2)) {
+				this.successfulTests++;
+			}
+			else {
+				this.failedTestNumbers.add(2);
 			}
 
 			/*
@@ -178,14 +170,13 @@ public class EventTester implements Tester {
 
 			try {
 				novarock2010.updateEvent(case02, formatDate.parse("01.01.1990"));
-				failedTestNumbers.add(3);
-			} catch (InvalidDateException e) {
-				successfulTests++;
+				this.failedTestNumbers.add(3);
+			}
+			catch (InvalidDateException e) {
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
-			
-			
 			/*
 			 * Test case #4 restore non existant Event
 			 * 
@@ -193,34 +184,36 @@ public class EventTester implements Tester {
 			 */
 
 			try {
-				ultraCoders.restoreEvent("Pannonia Fields II", 72,
-						formatTime.parse("11.07.2010 12:00"));
-				failedTestNumbers.add(4);
-			} catch (InvalidBandObjectException e) {
-				successfulTests++;
+				ultraCoders.restoreEvent("Pannonia Fields II", 72, formatTime.parse("11.07.2010 12:00"));
+				this.failedTestNumbers.add(4);
+			}
+			catch (InvalidBandObjectException e) {
+				this.successfulTests++;
 				Validator.report(true);
-			} 
-			
+			}
+
 			/*
 			 * Test case #5 remove and restore an event
 			 * 
 			 * should: restore the event
 			 */
-			ultraCoders.removeEvent(novarock2010,
-					formatDate.parse("17.10.2012"));
-			ultraCoders.restoreEvent("Pannonia Fields II", 72,
-					formatTime.parse("11.07.2010 12:00"));
-			if(Validator.check(ultraCoders.getEvents(), allEvents, 5)) {
-				successfulTests++;
-			} else {
-				failedTestNumbers.add(5);
+			ultraCoders.removeEvent(novarock2010, formatDate.parse("17.10.2012"));
+			ultraCoders.restoreEvent("Pannonia Fields II", 72, formatTime.parse("11.07.2010 12:00"));
+			if (Validator.check(ultraCoders.getEvents(), allEvents, 5)) {
+				this.successfulTests++;
+			}
+			else {
+				this.failedTestNumbers.add(5);
 			}
 
-		} catch(InvalidDateException e) {
+		}
+		catch (InvalidDateException e) {
 			System.out.println(e.getMessage());
-		} catch (ParseException e) {
+		}
+		catch (ParseException e) {
 			e.printStackTrace();
-		} catch (InvalidBandObjectException e) {
+		}
+		catch (InvalidBandObjectException e) {
 			System.out.println(e.getMessage());
 		}
 

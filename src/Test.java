@@ -1,7 +1,5 @@
 import helper.Validator;
-
 import java.util.ArrayList;
-
 import testing.AuthenticationTester;
 import testing.BandTester;
 import testing.EventTester;
@@ -11,8 +9,7 @@ import testing.PlaceTester;
 import testing.Tester;
 
 /**
- * Class which runs several test cases for the program's core and validates the
- * results
+ * Class which runs several test cases for the program's core and validates the results
  * 
  * @author OOP Gruppe 187
  */
@@ -26,6 +23,7 @@ public class Test {
 	 *            command line arguments
 	 */
 	public static void main(String[] args) {
+
 		boolean verbose = false;
 
 		ArrayList<Tester> testedModules = new ArrayList<Tester>();

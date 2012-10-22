@@ -17,9 +17,7 @@ import band.Rehearsal;
 import band.Track;
 
 /**
- * This class was refactored from the previous Main()
- * 
- * test class for band requirements
+ * This class was refactored from the previous Main() test class for band requirements
  * 
  * @author OOP Gruppe 187
  */
@@ -38,48 +36,48 @@ public class BandTester implements Tester {
 
 	public BandTester() {
 
-		successfulTests = 0;
+		this.successfulTests = 0;
 
-		failedTestNumbers = new ArrayList<Integer>();
-		testCases = new HashMap<Integer, String>();
+		this.failedTestNumbers = new ArrayList<Integer>();
+		this.testCases = new HashMap<Integer, String>();
 
-		testCases.put(1, "Add several valid members");
-		testCases.put(2, "Try to remove a member with an invalid date ");
-		testCases.put(3, "Remove a member with a valid date");
-		testCases.put(4, "Try to add a member with an invalid date ");
-		testCases.put(5, "Try to add the same member for the second time");
-		testCases.put(6, "Get all members before one was removed");
-		testCases.put(7, "Get all members after one was removed");
-		testCases.put(8, "Get all members after one was removed and added again");
-		testCases.put(9, "Try to add a member which already exists ");
-		testCases.put(10, "Try to remove a member before it joined the band");
-		testCases.put(11, "Remove a valid member for the second time");
-		testCases.put(12, "Try to remove a member which doesnt exist");
-		testCases.put(13, "Add several valid events ");
-		testCases.put(14, "Try to add an event which already exists");
-		testCases.put(15, "Try to remove a valid event");
-		testCases.put(16, "Try to remove an event which doesnt exist");
-		testCases.put(17, "Try to add an event which was removed before");
-		testCases.put(18, "Get ALL events");
-		testCases.put(19, "Get a subset of all events ");
-		testCases.put(20, "Get the gigs only");
-		testCases.put(21, "Get the rehearsals only");
-		testCases.put(22, "Get no events at all; check for handling of empty ArrayList-param");
-		testCases.put(23, "Get the billing over the entire time period");
-		testCases.put(24, "Get the billing over the entire time period of gigs only");
-		testCases.put(25, "Get the billing over the entire time period of rehearsals only");
-		testCases.put(26, "Get the billing over no events; check for handling of empty ArrayList-param");
+		this.testCases.put(1, "Add several valid members");
+		this.testCases.put(2, "Try to remove a member with an invalid date ");
+		this.testCases.put(3, "Remove a member with a valid date");
+		this.testCases.put(4, "Try to add a member with an invalid date ");
+		this.testCases.put(5, "Try to add the same member for the second time");
+		this.testCases.put(6, "Get all members before one was removed");
+		this.testCases.put(7, "Get all members after one was removed");
+		this.testCases.put(8, "Get all members after one was removed and added again");
+		this.testCases.put(9, "Try to add a member which already exists ");
+		this.testCases.put(10, "Try to remove a member before it joined the band");
+		this.testCases.put(11, "Remove a valid member for the second time");
+		this.testCases.put(12, "Try to remove a member which doesnt exist");
+		this.testCases.put(13, "Add several valid events ");
+		this.testCases.put(14, "Try to add an event which already exists");
+		this.testCases.put(15, "Try to remove a valid event");
+		this.testCases.put(16, "Try to remove an event which doesnt exist");
+		this.testCases.put(17, "Try to add an event which was removed before");
+		this.testCases.put(18, "Get ALL events");
+		this.testCases.put(19, "Get a subset of all events ");
+		this.testCases.put(20, "Get the gigs only");
+		this.testCases.put(21, "Get the rehearsals only");
+		this.testCases.put(22, "Get no events at all; check for handling of empty ArrayList-param");
+		this.testCases.put(23, "Get the billing over the entire time period");
+		this.testCases.put(24, "Get the billing over the entire time period of gigs only");
+		this.testCases.put(25, "Get the billing over the entire time period of rehearsals only");
+		this.testCases.put(26, "Get the billing over no events; check for handling of empty ArrayList-param");
 
-		overallTests = testCases.size();
-		Validator.addTests(overallTests);
+		this.overallTests = this.testCases.size();
+		Validator.addTests(this.overallTests);
 	}
 
 	@Override
 	public void printTestDescription() {
 
 		System.out.println("Test cases for the " + moduleName + " module: ");
-		for (Integer i : testCases.keySet()) {
-			System.out.println("#" + ((i < 10) ? "0" + i : i) + ": " + testCases.get(i));
+		for (Integer i : this.testCases.keySet()) {
+			System.out.println("#" + (i < 10 ? "0" + i : i) + ": " + this.testCases.get(i));
 		}
 		System.out.println();
 	}
@@ -88,13 +86,13 @@ public class BandTester implements Tester {
 	public void printTestResults() {
 
 		System.out.println("Test results for the " + moduleName + " module: ");
-		System.out.println("Successful tests: " + successfulTests);
-		System.out.println("Failed tests: " + (overallTests - successfulTests));
+		System.out.println("Successful tests: " + this.successfulTests);
+		System.out.println("Failed tests: " + (this.overallTests - this.successfulTests));
 
-		if (!failedTestNumbers.isEmpty()) {
+		if (!this.failedTestNumbers.isEmpty()) {
 			System.out.println("The following test cases have failed: ");
-			for (Integer i : failedTestNumbers) {
-				System.out.println("#" + i + " " + testCases.get(i));
+			for (Integer i : this.failedTestNumbers) {
+				System.out.println("#" + i + " " + this.testCases.get(i));
 			}
 		}
 		System.out.println();
@@ -244,11 +242,11 @@ public class BandTester implements Tester {
 			ultraCoders.addMember(jane, formatDate.parse("06.06.2004"));
 
 			if (Validator.check(ultraCoders.getMembers(), allMembers, 1)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(1);
+
+				this.failedTestNumbers.add(1);
 			}
 
 			/*
@@ -260,12 +258,12 @@ public class BandTester implements Tester {
 
 			try {
 				ultraCoders.removeMember(thomas, formatDate.parse("25.05.2010"));
-				
-				failedTestNumbers.add(2);
-				
+
+				this.failedTestNumbers.add(2);
+
 			}
 			catch (InvalidDateException e) {
-				successfulTests++;
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
@@ -278,11 +276,11 @@ public class BandTester implements Tester {
 
 			ultraCoders.removeMember(thomas, formatDate.parse("25.05.2011"));
 			if (Validator.check(ultraCoders.getMembers(), membersNoTom, 3)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(3);
+
+				this.failedTestNumbers.add(3);
 			}
 
 			/*
@@ -294,12 +292,12 @@ public class BandTester implements Tester {
 
 			try {
 				ultraCoders.addMember(thomas, formatDate.parse("25.04.2011"));
-				
-				failedTestNumbers.add(4);
-				
+
+				this.failedTestNumbers.add(4);
+
 			}
 			catch (InvalidDateException e) {
-				successfulTests++;
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
@@ -312,17 +310,17 @@ public class BandTester implements Tester {
 
 			try {
 				ultraCoders.addMember(thomas, formatDate.parse("19.07.2011"));
-				
-				failedTestNumbers.add(5);
-				
+
+				this.failedTestNumbers.add(5);
+
 			}
 			catch (InvalidBandObjectException e) {
 				if (Validator.check(ultraCoders.getMembers(), allMembers, 5)) {
-					successfulTests++;
+					this.successfulTests++;
 				}
 				else {
-					
-					failedTestNumbers.add(5);
+
+					this.failedTestNumbers.add(5);
 				}
 			}
 			/*
@@ -333,11 +331,11 @@ public class BandTester implements Tester {
 			 */
 
 			if (Validator.check(ultraCoders.getMembers(formatDate.parse("25.04.2011")), allMembers, 6)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(6);
+
+				this.failedTestNumbers.add(6);
 			}
 
 			// Should be:
@@ -350,11 +348,11 @@ public class BandTester implements Tester {
 			 */
 
 			if (Validator.check(ultraCoders.getMembers(formatDate.parse("25.06.2011")), membersNoTom, 7)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(7);
+
+				this.failedTestNumbers.add(7);
 			}
 
 			/*
@@ -365,11 +363,11 @@ public class BandTester implements Tester {
 			 */
 
 			if (Validator.check(ultraCoders.getMembers(formatDate.parse("25.04.2012")), allMembers, 8)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(8);
+
+				this.failedTestNumbers.add(8);
 			}
 
 			/*
@@ -381,12 +379,12 @@ public class BandTester implements Tester {
 
 			try {
 				ultraCoders.addMember(thomas, formatDate.parse("10.04.2012"));
-				
-				failedTestNumbers.add(9);
-				
+
+				this.failedTestNumbers.add(9);
+
 			}
 			catch (InvalidBandObjectException e) {
-				successfulTests++;
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
@@ -399,12 +397,12 @@ public class BandTester implements Tester {
 
 			try {
 				ultraCoders.removeMember(thomas, formatDate.parse("11.04.2001"));
-				
-				failedTestNumbers.add(10);
-				
+
+				this.failedTestNumbers.add(10);
+
 			}
 			catch (InvalidDateException e) {
-				successfulTests++;
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
@@ -417,11 +415,11 @@ public class BandTester implements Tester {
 
 			ultraCoders.removeMember(thomas, formatDate.parse("11.04.2012"));
 			if (Validator.check(ultraCoders.getMembers(), membersNoTom, 11)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(11);
+
+				this.failedTestNumbers.add(11);
 			}
 
 			/*
@@ -433,12 +431,12 @@ public class BandTester implements Tester {
 
 			try {
 				ultraCoders.removeMember(thomas, formatDate.parse("10.04.2012"));
-				
-				failedTestNumbers.add(12);
-				
+
+				this.failedTestNumbers.add(12);
+
 			}
 			catch (InvalidBandObjectException e) {
-				successfulTests++;
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
@@ -456,11 +454,11 @@ public class BandTester implements Tester {
 			ultraCoders.addEvent(postNova2011);
 
 			if (Validator.check(ultraCoders.getEvents(), allEvents, 13)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(13);
+
+				this.failedTestNumbers.add(13);
 			}
 
 			/*
@@ -472,12 +470,12 @@ public class BandTester implements Tester {
 
 			try {
 				ultraCoders.addEvent(novarock2010);
-				
-				failedTestNumbers.add(14);
-				
+
+				this.failedTestNumbers.add(14);
+
 			}
 			catch (InvalidBandObjectException e) {
-				successfulTests++;
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
@@ -490,11 +488,11 @@ public class BandTester implements Tester {
 
 			ultraCoders.removeEvent(novarock2010);
 			if (Validator.check(ultraCoders.getEvents(), eventsNo2010, 15)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(15);
+
+				this.failedTestNumbers.add(15);
 			}
 
 			/*
@@ -506,12 +504,11 @@ public class BandTester implements Tester {
 
 			try {
 				ultraCoders.removeEvent(novarock2010);
-				
-				
-				failedTestNumbers.add(16);
+
+				this.failedTestNumbers.add(16);
 			}
 			catch (InvalidBandObjectException e) {
-				successfulTests++;
+				this.successfulTests++;
 				Validator.report(true);
 			}
 
@@ -524,11 +521,11 @@ public class BandTester implements Tester {
 
 			ultraCoders.addEvent(novarock2010);
 			if (Validator.check(ultraCoders.getEvents(), allEvents, 17)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(17);
+
+				this.failedTestNumbers.add(17);
 			}
 
 			// Check if add was successful
@@ -543,11 +540,11 @@ public class BandTester implements Tester {
 			if (Validator.check(
 					ultraCoders.getEvents(formatDate.parse("01.01.2010"), formatDate.parse("01.01.2013"), allTypes),
 					allEvents, 18)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(18);
+
+				this.failedTestNumbers.add(18);
 			}
 
 			/*
@@ -560,11 +557,11 @@ public class BandTester implements Tester {
 			if (Validator.check(
 					ultraCoders.getEvents(formatDate.parse("01.01.2010"), formatDate.parse("01.08.2011"), allTypes),
 					someEvents, 19)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(19);
+
+				this.failedTestNumbers.add(19);
 			}
 
 			/*
@@ -577,11 +574,11 @@ public class BandTester implements Tester {
 			if (Validator.check(
 					ultraCoders.getEvents(formatDate.parse("01.01.2010"), formatDate.parse("01.01.2013"), gigsOnly),
 					gigEventsOnly, 20)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(20);
+
+				this.failedTestNumbers.add(20);
 			}
 
 			/*
@@ -593,11 +590,11 @@ public class BandTester implements Tester {
 
 			if (Validator.check(ultraCoders.getEvents(formatDate.parse("01.01.2010"), formatDate.parse("01.01.2013"),
 					rehearsalOnly), rehearsalEventsOnly, 21)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(21);
+
+				this.failedTestNumbers.add(21);
 			}
 
 			/*
@@ -610,11 +607,11 @@ public class BandTester implements Tester {
 			if (Validator.check(
 					ultraCoders.getEvents(formatDate.parse("01.01.2010"), formatDate.parse("01.01.2013"), noTypes),
 					new ArrayList<Event>(), 22)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(22);
+
+				this.failedTestNumbers.add(22);
 			}
 
 			/*
@@ -627,11 +624,11 @@ public class BandTester implements Tester {
 			if (Validator.check(
 					ultraCoders.getBilling(formatDate.parse("01.01.2010"), formatDate.parse("01.01.2013"), allTypes),
 					case34, 23)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(23);
+
+				this.failedTestNumbers.add(23);
 			}
 
 			/*
@@ -644,11 +641,11 @@ public class BandTester implements Tester {
 			if (Validator.check(
 					ultraCoders.getBilling(formatDate.parse("01.01.2010"), formatDate.parse("01.01.2013"), gigsOnly),
 					case35, 24)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(24);
+
+				this.failedTestNumbers.add(24);
 			}
 			/*
 			 * 
@@ -659,11 +656,11 @@ public class BandTester implements Tester {
 
 			if (Validator.check(ultraCoders.getBilling(formatDate.parse("01.01.2010"), formatDate.parse("01.01.2013"),
 					rehearsalOnly), case36, 25)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(25);
+
+				this.failedTestNumbers.add(25);
 			}
 
 			/*
@@ -676,11 +673,11 @@ public class BandTester implements Tester {
 			if (Validator.check(
 					ultraCoders.getBilling(formatDate.parse("01.01.2010"), formatDate.parse("01.01.2013"), noTypes),
 					case37, 26)) {
-				successfulTests++;
+				this.successfulTests++;
 			}
 			else {
-				
-				failedTestNumbers.add(26);
+
+				this.failedTestNumbers.add(26);
 			}
 
 		}

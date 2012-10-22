@@ -34,54 +34,6 @@ public class Member extends Person {
 	private ArrayList<EventNotification> eventNot;
 
 	/**
-	 * @return the date proposals of the member
-	 */
-	public ArrayList<ProposedDate> getProposedDates() {
-
-		return this.events;
-	}
-
-	/**
-	 * @return the repertoire of the member
-	 */
-	public ArrayList<Track> getTracks() {
-
-		return this.repertoire;
-
-	}
-
-	/**
-	 * @param bnd
-	 * @throws InvalidBandObjectException
-	 *             if the member is already in this band
-	 */
-	public void addBand(Band bnd) throws InvalidBandObjectException {
-
-		if (this.bands.contains(bnd)) throw new InvalidBandObjectException("Member is already in this band");
-		this.bands.add(bnd);
-	}
-
-	/**
-	 * Adds a Rehearsal the Member attended;
-	 * 
-	 * @param re
-	 *            a Rehearsal
-	 */
-	public void addRehersal(Rehearsal re) {
-
-		this.rehersals.add(re);
-	}
-
-	/**
-	 * @return a list of rehearsals the Member attended
-	 */
-	public ArrayList<Rehearsal> getRehersal() {
-
-		return this.rehersals;
-
-	}
-
-	/**
 	 * Constructor which requires four arguments
 	 * 
 	 * @param firstName
@@ -130,6 +82,17 @@ public class Member extends Person {
 	}
 
 	/**
+	 * @param bnd
+	 * @throws InvalidBandObjectException
+	 *             if the member is already in this band
+	 */
+	public void addBand(Band bnd) throws InvalidBandObjectException {
+
+		if (this.bands.contains(bnd)) { throw new InvalidBandObjectException("Member is already in this band"); }
+		this.bands.add(bnd);
+	}
+
+	/**
 	 * Adds a new proposed date for an event.
 	 * 
 	 * @param pd
@@ -142,7 +105,20 @@ public class Member extends Person {
 		if (this.events.indexOf(pd) == -1) {
 			this.events.add(pd);
 		}
-		else throw new InvalidBandObjectException("proposed date aready exists");
+		else {
+			throw new InvalidBandObjectException("proposed date aready exists");
+		}
+	}
+
+	/**
+	 * Adds a Rehearsal the Member attended;
+	 * 
+	 * @param re
+	 *            a Rehearsal
+	 */
+	public void addRehersal(Rehearsal re) {
+
+		this.rehersals.add(re);
 	}
 
 	/**
@@ -159,7 +135,9 @@ public class Member extends Person {
 		if (!this.repertoire.contains(tr)) {
 			this.repertoire.add(tr);
 		}
-		else throw new InvalidBandObjectException("Track already exists!");
+		else {
+			throw new InvalidBandObjectException("Track already exists!");
+		}
 		for (Band bnd : this.bands) {
 			bnd.addTrack(tr, d);
 		}
@@ -174,44 +152,12 @@ public class Member extends Person {
 	 *            agree or disagree to the proposed date true - agree false - disagree
 	 * @throws InvalidBandObjectException
 	 */
-	public void agree(ProposedDate e, boolean agreed) throws InvalidBandObjectException {
-
-		if (!this.events.contains(e)) throw new InvalidBandObjectException("There is no such event!");
-		final int idx = this.events.indexOf(e);
-		this.events.get(idx).agree(agreed);
-	}
-
-	/**
-	 * This method is used to agree/disagree to a proposed Date.
-	 * 
-	 * @param e
-	 *            event you want to agree or disagree
-	 * @param agreed
-	 *            agree or disagree to the proposed date true - agree false - disagree
-	 * @throws InvalidBandObjectException
-	 */
 	public void agree(final Event e, final Date date, final boolean agreed) throws InvalidBandObjectException {
 
 		ProposedDate propd = new ProposedDate(e, date);
-		if (!this.events.contains(propd)) throw new InvalidBandObjectException("There is no such event!");
+		if (!this.events.contains(propd)) { throw new InvalidBandObjectException("There is no such event!"); }
 		final int idx = this.events.indexOf(propd);
 		this.events.get(idx).agree(agreed);
-	}
-
-	/**
-	 * @return the firstName
-	 */
-	public String getFirstName() {
-
-		return this.firstName;
-	}
-
-	/**
-	 * @return the lastName
-	 */
-	public String getLastName() {
-
-		return this.lastName;
 	}
 
 	/**
@@ -229,9 +175,25 @@ public class Member extends Person {
 			throws InvalidBandObjectException {
 
 		ProposedDate propd = new ProposedDate(e, date);
-		if (!this.events.contains(propd)) throw new InvalidBandObjectException("There is no such event!");
+		if (!this.events.contains(propd)) { throw new InvalidBandObjectException("There is no such event!"); }
 		final int idx = this.events.indexOf(propd);
 		this.events.get(idx).agree(agreed, reason);
+	}
+
+	/**
+	 * This method is used to agree/disagree to a proposed Date.
+	 * 
+	 * @param e
+	 *            event you want to agree or disagree
+	 * @param agreed
+	 *            agree or disagree to the proposed date true - agree false - disagree
+	 * @throws InvalidBandObjectException
+	 */
+	public void agree(ProposedDate e, boolean agreed) throws InvalidBandObjectException {
+
+		if (!this.events.contains(e)) { throw new InvalidBandObjectException("There is no such event!"); }
+		final int idx = this.events.indexOf(e);
+		this.events.get(idx).agree(agreed);
 	}
 
 	/**
@@ -247,9 +209,17 @@ public class Member extends Person {
 	 */
 	public void agree(ProposedDate e, final String reason, final boolean agreed) throws InvalidBandObjectException {
 
-		if (!this.events.contains(e)) throw new InvalidBandObjectException("There is no such event!");
+		if (!this.events.contains(e)) { throw new InvalidBandObjectException("There is no such event!"); }
 		final int idx = this.events.indexOf(e);
 		this.events.get(idx).agree(agreed, reason);
+	}
+
+	/**
+	 * inverts the substitute status of a member.
+	 */
+	public void changeSubstituteStatus() {
+
+		this.substituteMember = !this.substituteMember;
 	}
 
 	/**
@@ -260,27 +230,43 @@ public class Member extends Person {
 	@Override
 	public boolean equals(final Object obj) {
 
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (!(obj instanceof Member)) return false;
+		if (this == obj) { return true; }
+		if (obj == null) { return false; }
+		if (!(obj instanceof Member)) { return false; }
 		final Member other = (Member) obj;
 		if (this.firstName == null) {
-			if (other.firstName != null) return false;
+			if (other.firstName != null) { return false; }
 		}
-		else if (!this.firstName.equals(other.firstName)) return false;
+		else if (!this.firstName.equals(other.firstName)) { return false; }
 		if (this.instrument == null) {
-			if (other.instrument != null) return false;
+			if (other.instrument != null) { return false; }
 		}
-		else if (!this.instrument.equals(other.instrument)) return false;
+		else if (!this.instrument.equals(other.instrument)) { return false; }
 		if (this.lastName == null) {
-			if (other.lastName != null) return false;
+			if (other.lastName != null) { return false; }
 		}
-		else if (!this.lastName.equals(other.lastName)) return false;
+		else if (!this.lastName.equals(other.lastName)) { return false; }
 		if (this.telephoneNumber == null) {
-			if (other.telephoneNumber != null) return false;
+			if (other.telephoneNumber != null) { return false; }
 		}
-		else if (!this.telephoneNumber.equals(other.telephoneNumber)) return false;
+		else if (!this.telephoneNumber.equals(other.telephoneNumber)) { return false; }
 		return true;
+	}
+
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+
+		return this.firstName;
+	}
+
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+
+		return this.lastName;
 	}
 
 	/**
@@ -306,10 +292,44 @@ public class Member extends Person {
 		return this.permissions;
 	}
 
+	/**
+	 * @return the date proposals of the member
+	 */
+	public ArrayList<ProposedDate> getProposedDates() {
+
+		return this.events;
+	}
+
+	/**
+	 * @return
+	 */
+	public ArrayList<Rehearsal> getRehearsals() {
+
+		return this.rehersals;
+	}
+
+	/**
+	 * @return a list of rehearsals the Member attended
+	 */
+	public ArrayList<Rehearsal> getRehersal() {
+
+		return this.rehersals;
+
+	}
+
 	@Override
 	public HashMap<Authenticatable, Permission> getRoles() {
 
 		return this.roles;
+	}
+
+	/**
+	 * @return the repertoire of the member
+	 */
+	public ArrayList<Track> getTracks() {
+
+		return this.repertoire;
+
 	}
 
 	/**
@@ -320,10 +340,10 @@ public class Member extends Person {
 
 		final int prime = 31;
 		int result = 1;
-		result = (prime * result) + ((this.firstName == null) ? 0 : this.firstName.hashCode());
-		result = (prime * result) + ((this.instrument == null) ? 0 : this.instrument.hashCode());
-		result = (prime * result) + ((this.lastName == null) ? 0 : this.lastName.hashCode());
-		result = (prime * result) + ((this.telephoneNumber == null) ? 0 : this.telephoneNumber.hashCode());
+		result = prime * result + (this.firstName == null ? 0 : this.firstName.hashCode());
+		result = prime * result + (this.instrument == null ? 0 : this.instrument.hashCode());
+		result = prime * result + (this.lastName == null ? 0 : this.lastName.hashCode());
+		result = prime * result + (this.telephoneNumber == null ? 0 : this.telephoneNumber.hashCode());
 		return result;
 	}
 
@@ -399,14 +419,6 @@ public class Member extends Person {
 	}
 
 	/**
-	 * inverts the substitute status of a member.
-	 */
-	public void changeSubstituteStatus() {
-
-		this.substituteMember = !this.substituteMember;
-	}
-
-	/**
 	 * Notify a member about the event @e.
 	 * 
 	 * @param e
@@ -415,7 +427,9 @@ public class Member extends Person {
 	 */
 	public void notifyEvent(final Event e, final Status stat) throws InvalidBandObjectException {
 
-		if (!this.eventNot.contains(new EventNotification(e, stat))) this.eventNot.add(new EventNotification(e, stat));
+		if (!this.eventNot.contains(new EventNotification(e, stat))) {
+			this.eventNot.add(new EventNotification(e, stat));
+		}
 	}
 
 	/**
@@ -436,7 +450,9 @@ public class Member extends Person {
 				bnd.removeTrack(tr, d);
 			}
 		}
-		else throw new InvalidBandObjectException("Track does not exist!");
+		else {
+			throw new InvalidBandObjectException("Track does not exist!");
+		}
 	}
 
 	/**
@@ -448,13 +464,5 @@ public class Member extends Person {
 		final String ret = "First name: " + this.firstName + " Last name: " + this.lastName + " Instrument: "
 				+ this.instrument + " Telephone number: " + this.telephoneNumber;
 		return ret;
-	}
-
-	/**
-	 * @return
-	 */
-	public ArrayList<Rehearsal> getRehearsals() {
-
-		return this.rehersals;
 	}
 }

@@ -1,3 +1,4 @@
+
 package finances;
 
 import java.util.ArrayList;
@@ -7,7 +8,6 @@ import java.util.Date;
  * This class implements a filter for enhanced search in finances.
  * 
  * @author OOP Gruppe 187
- * 
  */
 public class FinanceFilter {
 
@@ -17,26 +17,6 @@ public class FinanceFilter {
 	private boolean expense;
 	private boolean income;
 	private boolean total;
-
-	/**
-	 * Constructor with three parameters (reason is empty by default)
-	 * 
-	 * @param expense
-	 *            true if expense should be used
-	 * @param income
-	 *            true if income should be used
-	 * @param total
-	 *            true if turnover should be used
-	 */
-	public FinanceFilter(Date startDate, Date endDate, boolean expense,
-			boolean income, boolean total) {
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.reason = new ArrayList<String>();
-		this.expense = expense;
-		this.income = income;
-		this.total = total;
-	}
 
 	/**
 	 * Constructor with four parameters
@@ -50,9 +30,9 @@ public class FinanceFilter {
 	 * @param total
 	 *            true if turnover should be used
 	 */
-	public FinanceFilter(Date startDate, Date endDate,
-			ArrayList<String> reason, boolean expense, boolean income,
+	public FinanceFilter(Date startDate, Date endDate, ArrayList<String> reason, boolean expense, boolean income,
 			boolean total) {
+
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.reason = reason;
@@ -62,60 +42,83 @@ public class FinanceFilter {
 	}
 
 	/**
-	 * @reason will be added to ArrayList if it wasn't already
+	 * Constructor with three parameters (reason is empty by default)
 	 * 
+	 * @param expense
+	 *            true if expense should be used
+	 * @param income
+	 *            true if income should be used
+	 * @param total
+	 *            true if turnover should be used
+	 */
+	public FinanceFilter(Date startDate, Date endDate, boolean expense, boolean income, boolean total) {
+
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.reason = new ArrayList<String>();
+		this.expense = expense;
+		this.income = income;
+		this.total = total;
+	}
+
+	/**
+	 * @reason will be added to ArrayList if it wasn't already
 	 * @param reason
 	 *            reason to be added
 	 */
 	public void addReason(String reason) {
-		if (!this.reason.contains(reason))
+
+		if (!this.reason.contains(reason)) {
 			this.reason.add(reason);
+		}
 	}
 
-	/**
-	 * 
-	 * @return ArrayList with reasons
-	 */
-	public ArrayList<String> getReason() {
-		return this.reason;
-	}
-
-	/**
-	 * 
-	 * @return true if expense shall be used
-	 */
-	public boolean isExpense() {
-		return expense;
-	}
-
-	/**
-	 * 
-	 * @return true if income shall be used
-	 */
-	public boolean isIncome() {
-		return income;
-	}
-
-	/**
-	 * 
-	 * @return true if total turnover shall be used
-	 */
-	public boolean isTotal() {
-		return total;
-	}
-	
-	/**
-	 * @return start date of the filter
-	 */
-	public Date getStartDate() {
-		return startDate;
-	}
-	
 	/**
 	 * @return end date of the filter
 	 */
 	public Date getEndDate() {
-		return endDate;
+
+		return this.endDate;
+	}
+
+	/**
+	 * @return ArrayList with reasons
+	 */
+	public ArrayList<String> getReason() {
+
+		return this.reason;
+	}
+
+	/**
+	 * @return start date of the filter
+	 */
+	public Date getStartDate() {
+
+		return this.startDate;
+	}
+
+	/**
+	 * @return true if expense shall be used
+	 */
+	public boolean isExpense() {
+
+		return this.expense;
+	}
+
+	/**
+	 * @return true if income shall be used
+	 */
+	public boolean isIncome() {
+
+		return this.income;
+	}
+
+	/**
+	 * @return true if total turnover shall be used
+	 */
+	public boolean isTotal() {
+
+		return this.total;
 	}
 
 }

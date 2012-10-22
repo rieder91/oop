@@ -1,34 +1,23 @@
+
 package band;
 
 import helper.InvalidDateException;
-
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-
 import auth.Authenticatable;
 
 /**
- * Class that contains the cost of a rehearsal.
- * 
- * A rehearsal is an event, the event information is stored in event.
+ * Class that contains the cost of a rehearsal. A rehearsal is an event, the event information is stored in event.
  * 
  * @author OOP Gruppe 187
  */
 public class Rehearsal extends Event {
 
 	private BigDecimal cost;
-
-	/**
-	 * @return a string representation of a rehearsal
-	 */
-	@Override
-	public String toString() {
-		return super.toString() + " Costs: " + this.cost;
-	}
 
 	/**
 	 * Constructor which requires four arguments
@@ -44,6 +33,7 @@ public class Rehearsal extends Event {
 	 */
 	@Deprecated
 	public Rehearsal(Date time, String place, Integer duration, BigDecimal cost) {
+
 		this("", time, new Place(place), duration, cost);
 	}
 
@@ -61,7 +51,28 @@ public class Rehearsal extends Event {
 	 */
 	@Deprecated
 	public Rehearsal(Date time, String place, Integer duration, Double cost) {
+
 		this("", time, new Place(place), duration, new BigDecimal(cost));
+	}
+
+	/**
+	 * five param-constructor with place object
+	 * 
+	 * @param name
+	 *            name of the event
+	 * @param time
+	 *            the time of the rehearsal
+	 * @param place
+	 *            the place of the rehearsal
+	 * @param duration
+	 *            the duration of the rehearsal
+	 * @param cost
+	 *            the cost of the rehearsal
+	 */
+	public Rehearsal(String name, Date time, Place place, Integer duration, BigDecimal cost) {
+
+		super(name, time, place, duration);
+		this.cost = cost;
 	}
 
 	/**
@@ -79,36 +90,25 @@ public class Rehearsal extends Event {
 	 *            the pay of the rehearsal
 	 */
 	@Deprecated
-	public Rehearsal(String name, Date time, String place, Integer duration,
-			BigDecimal cost) {
+	public Rehearsal(String name, Date time, String place, Integer duration, BigDecimal cost) {
+
 		this(name, time, new Place(place), duration, cost);
-	}
-	
-	/**
-	 * five param-constructor with place object
-	 * 
-	 * @param name
-	 *            name of the event
-	 * @param time
-	 *            the time of the rehearsal
-	 * @param place
-	 *            the place of the rehearsal
-	 * @param duration
-	 *            the duration of the rehearsal
-	 * @param cost
-	 *            the cost of the rehearsal
-	 */
-	public Rehearsal(String name, Date time, Place place, Integer duration, BigDecimal cost) {
-		super(name, time, place, duration);
-		this.cost = cost;
 	}
 
 	/**
-	 * @return the cost of the rehearsal
+	 * @param m
+	 *            method that is checked
+	 * @param p
+	 *            permissions that the caller possesses
+	 * @return true if the method m can be invoked with the permissions p
 	 */
 	@Override
-	public BigDecimal getFinances() {
-		return this.cost.multiply(new BigDecimal(-1.0));
+	public boolean allowedMethod(Method m, Permission p) {
+
+		for (Permission allowed : this.permissions.get(m)) {
+			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) { return true; }
+		}
+		return false;
 	}
 
 	/**
@@ -124,46 +124,51 @@ public class Rehearsal extends Event {
 		return ret && this.cost.equals(((Rehearsal) o).cost);
 	}
 
+	/**
+	 * @return the cost of the rehearsal
+	 */
 	@Override
-	public void updateEvent(Event e, Date changeDate)
-			throws InvalidDateException {
-		for (Date d : this.getEventHistory().keySet())
-			if (d.after(changeDate))
-				throw new InvalidDateException(
-						"change date is before last edit");
+	public BigDecimal getFinances() {
 
-		if (e.getClass() == this.getClass()) {
-			Rehearsal newRehearsal = (Rehearsal) e;
-			Rehearsal history = new Rehearsal(this.getTime(), this.getPlace(),
-					this.getDuration(), this.cost);
-			this.addToHistory(history, changeDate);
+		return this.cost.multiply(new BigDecimal(-1.0));
+	}
 
-			this.setTime(newRehearsal.getTime());
-			this.setDuration(newRehearsal.getDuration());
-			this.setPlace(newRehearsal.getPlace());
-			this.cost = newRehearsal.cost;
-		} else {
-			// type error
+	@Override
+	public HashMap<Method, ArrayList<Permission>> getPermissions() {
+
+		return this.permissions;
+	}
+
+	/**
+	 * gets the role of @auth in the context if this object
+	 * 
+	 * @param auth
+	 *            auth-object
+	 * @return the permissions of the object
+	 */
+	@Override
+	public Permission getRole(Authenticatable auth) {
+
+		if (this.roles.containsKey(auth)) {
+			return this.roles.get(auth);
+		}
+		else {
+			return Permission.NONE;
 		}
 	}
 
 	@Override
-	public void restoreEvent(Date restoreDate, Date currentDate)
-			throws InvalidDateException {
-		Rehearsal oldGig = (Rehearsal) this.getEventHistory().get(restoreDate);
-		if (oldGig != null)
-			this.updateEvent(oldGig, currentDate);
-		else
-			throw new InvalidDateException(
-					"no event found at the specified date");
+	public HashMap<Authenticatable, Permission> getRoles() {
+
+		return this.roles;
 	}
 
 	/**
-	 * initializes the permissions for each method of the class; this method
-	 * should be called in the constructor
+	 * initializes the permissions for each method of the class; this method should be called in the constructor
 	 */
 	@Override
 	public void initPermissions() {
+
 		this.permissions = new HashMap<Method, ArrayList<Permission>>();
 		this.roles = new HashMap<Authenticatable, Permission>();
 
@@ -177,10 +182,13 @@ public class Rehearsal extends Event {
 			if ("getFinances".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
 				tPerm.add(Permission.MANAGEMENT);
-			} else if ("restoreEvent".equals(m.getName()))
+			}
+			else if ("restoreEvent".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
-			else if ("updateEvent".equals(m.getName()))
+			}
+			else if ("updateEvent".equals(m.getName())) {
 				tPerm.add(Permission.OWNER);
+			}
 
 			// save the permissions and reset the temporary list
 			this.permissions.put(m, new ArrayList<Permission>(tPerm));
@@ -191,19 +199,16 @@ public class Rehearsal extends Event {
 		this.setRole(this, Permission.OWNER);
 	}
 
-	/**
-	 * gets the role of @auth in the context if this object
-	 * 
-	 * @param auth
-	 *            auth-object
-	 * @return the permissions of the object
-	 */
 	@Override
-	public Permission getRole(Authenticatable auth) {
-		if (this.roles.containsKey(auth))
-			return this.roles.get(auth);
-		else
-			return Permission.NONE;
+	public void restoreEvent(Date restoreDate, Date currentDate) throws InvalidDateException {
+
+		Rehearsal oldGig = (Rehearsal) this.getEventHistory().get(restoreDate);
+		if (oldGig != null) {
+			this.updateEvent(oldGig, currentDate);
+		}
+		else {
+			throw new InvalidDateException("no event found at the specified date");
+		}
 	}
 
 	/**
@@ -213,36 +218,42 @@ public class Rehearsal extends Event {
 	 *            auth-object
 	 * @param p
 	 *            target-permission
-	 * 
 	 */
 	@Override
 	public void setRole(Authenticatable auth, Permission p) {
+
 		this.roles.put(auth, p);
 	}
 
 	/**
-	 * @param m
-	 *            method that is checked
-	 * @param p
-	 *            permissions that the caller possesses
-	 * @return true if the method m can be invoked with the permissions p
+	 * @return a string representation of a rehearsal
 	 */
 	@Override
-	public boolean allowedMethod(Method m, Permission p) {
-		for (Permission allowed : this.permissions.get(m))
-			if (allowed.equals(p) || allowed.equals(Permission.WORLD))
-				return true;
-		return false;
+	public String toString() {
+
+		return super.toString() + " Costs: " + this.cost;
 	}
 
 	@Override
-	public HashMap<Method, ArrayList<Permission>> getPermissions() {
-		return permissions;
-	}
+	public void updateEvent(Event e, Date changeDate) throws InvalidDateException {
 
-	@Override
-	public HashMap<Authenticatable, Permission> getRoles() {
-		return roles;
+		for (Date d : this.getEventHistory().keySet()) {
+			if (d.after(changeDate)) { throw new InvalidDateException("change date is before last edit"); }
+		}
+
+		if (e.getClass() == this.getClass()) {
+			Rehearsal newRehearsal = (Rehearsal) e;
+			Rehearsal history = new Rehearsal(this.getTime(), this.getPlace(), this.getDuration(), this.cost);
+			this.addToHistory(history, changeDate);
+
+			this.setTime(newRehearsal.getTime());
+			this.setDuration(newRehearsal.getDuration());
+			this.setPlace(newRehearsal.getPlace());
+			this.cost = newRehearsal.cost;
+		}
+		else {
+			// type error
+		}
 	}
 
 }
