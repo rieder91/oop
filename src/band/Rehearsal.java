@@ -121,10 +121,7 @@ public class Rehearsal extends Event {
 
 		boolean ret = super.equals(o);
 
-		if (ret && this.cost.equals(((Rehearsal) o).cost))
-			return true;
-		else
-			return false;
+		return ret && this.cost.equals(((Rehearsal) o).cost);
 	}
 
 	@Override

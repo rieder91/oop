@@ -121,10 +121,7 @@ public class Gig extends Event {
 	public boolean equals(Object o) {
 		boolean ret = super.equals(o);
 
-		if (ret && this.pay.equals(((Gig) o).pay))
-			return true;
-		else
-			return false;
+		return ret && this.pay.equals(((Gig) o).pay);
 	}
 
 	@Override

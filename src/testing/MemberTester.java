@@ -561,7 +561,6 @@ public class MemberTester implements Tester {
 			case22.add(markus);
 			case22.add(dominic);
 			case22.add(thomas);
-			;
 			if (Validator.check(
 					ultraCoders.getMemberWithRehearsals(2, formatTime.parse("10.08.2010 20:00"),
 							formatTime.parse("20.08.2010 20:00")), case22, 22)) {
