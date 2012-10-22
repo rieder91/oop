@@ -20,13 +20,13 @@ _WS2012, Vienna University of Technology_
  - Assignment 3 - 9
  
 ## Syllabus
- - Überblick über das objektorientierte Programmierparadigma und entsprechende Programmiersprachen
+ - Ãœberblick Ã¼ber das objektorientierte Programmierparadigma und entsprechende Programmiersprachen
  - Fortgeschrittenere objektorientierte Sprachkonzepte in Java, gute Kenntnisse einfacher Sprachkonzepte werden vorausgesetzt
- - Sprachkonzepte für Generizität, Nebenläufigkeit und Modularisierung in Java
+ - Sprachkonzepte fÃ¼r GenerizitÃ¤t, NebenlÃ¤ufigkeit und Modularisierung in Java
  - Produktive Verwendung dieser Konzepte in einer dem objektorientierten Paradigma entsprechenden Weise
- - Genaue Betrachtung der Ersetzbarkeit und anderer für die Wiederverwendung in objektorientierten Programmen bedeutender Prinzipien
- - Zusammenhänge zwischen verschiedenen objektorientierten Konzepten und Prinzipien
- - Ausgewählte Entwurfsmuster und objektorientierte Programmiertechniken
+ - Genaue Betrachtung der Ersetzbarkeit und anderer fÃ¼r die Wiederverwendung in objektorientierten Programmen bedeutender Prinzipien
+ - ZusammenhÃ¤nge zwischen verschiedenen objektorientierten Konzepten und Prinzipien
+ - AusgewÃ¤hlte Entwurfsmuster und objektorientierte Programmiertechniken
  
  
 ## Contact
