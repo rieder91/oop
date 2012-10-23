@@ -5,6 +5,7 @@ import helper.InsufficientPermissionsException;
 import helper.InvalidBandObjectException;
 import helper.InvalidDateException;
 import helper.Validator;
+
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -12,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+
 import auth.Authenticatable.Permission;
 import auth.Authenticator;
 import band.Band;
@@ -125,10 +127,14 @@ public class AuthenticationTester implements Tester {
 		}
 
 		Method isSubstituteMemberMethod = null, bandAddMember = null, bandGetMembers = null;
+		Class<?> isSubstituteMemberArgs[] = new Class<?>[] {
+				Member.class, Date.class};
+		Class<?> emptyArgs[] = new Class<?>[0];
+		
 		try {
-			isSubstituteMemberMethod = Member.class.getMethod("isSubstituteMember", new Class[] {});
-			bandAddMember = Band.class.getMethod("addMember", new Class[] { Member.class, Date.class });
-			bandGetMembers = Band.class.getMethod("getMembers", new Class[] {});
+			isSubstituteMemberMethod = Member.class.getMethod("isSubstituteMember", emptyArgs);
+			bandAddMember = Band.class.getMethod("addMember", isSubstituteMemberArgs);
+			bandGetMembers = Band.class.getMethod("getMembers", emptyArgs);
 		}
 		catch (SecurityException e) {
 			e.printStackTrace();
