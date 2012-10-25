@@ -62,6 +62,10 @@ public class Member extends Person {
 	 *            the instrument of the member
 	 * @param telephoneNumber
 	 *            the telephone number of the member
+	 * @param substituteMember
+	 *            the substitute status of the member
+	 *            true - member is a substitute member
+	 *            false - otherwise
 	 */
 	public Member(final String firstName, final String lastName, final String instrument, final String telephoneNumber,
 			final boolean substituteMember) {
@@ -82,7 +86,10 @@ public class Member extends Person {
 	}
 
 	/**
+	 * adds a new band to the member
+	 * 
 	 * @param bnd
+	 *            a band the member is in
 	 * @throws InvalidBandObjectException
 	 *             if the member is already in this band
 	 */
@@ -127,8 +134,11 @@ public class Member extends Person {
 	 * @param tr
 	 *            track to be added
 	 * @param d
+	 *            the actual date
 	 * @throws InvalidBandObjectException
+	 *             if the Member already knows the track
 	 * @throws InvalidDateException
+	 *             if the track is added at a date the track already was in the track list of the band
 	 */
 	public void addTrack(final Track tr, Date d) throws InvalidDateException, InvalidBandObjectException {
 
@@ -151,6 +161,7 @@ public class Member extends Person {
 	 * @param agreed
 	 *            agree or disagree to the proposed date true - agree false - disagree
 	 * @throws InvalidBandObjectException
+	 *             if the event is not in the event list of the member
 	 */
 	public void agree(final Event e, final Date date, final boolean agreed) throws InvalidBandObjectException {
 
@@ -168,8 +179,11 @@ public class Member extends Person {
 	 * @param reason
 	 *            the reason you have agreed or disagreed
 	 * @param agreed
-	 *            agree or disagree to the proposed date true - agree false - disagree
+	 *            agree or disagree to the proposed date
+	 *            true - agree
+	 *            false - disagree
 	 * @throws InvalidBandObjectException
+	 *             if the event is not in the event list of the member
 	 */
 	public void agree(final Event e, final Date date, final String reason, final boolean agreed)
 			throws InvalidBandObjectException {
@@ -184,10 +198,11 @@ public class Member extends Person {
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
 	 * @param e
-	 *            event you want to agree or disagree
+	 *            proposed date you want to agree or disagree
 	 * @param agreed
 	 *            agree or disagree to the proposed date true - agree false - disagree
 	 * @throws InvalidBandObjectException
+	 *             if the event is not in the event list of the member
 	 */
 	public void agree(ProposedDate e, boolean agreed) throws InvalidBandObjectException {
 
@@ -200,12 +215,13 @@ public class Member extends Person {
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
 	 * @param e
-	 *            event you want to agree or disagree
+	 *            proposed date you want to agree or disagree
 	 * @param reason
 	 *            the reason you have agreed or disagreed
 	 * @param agreed
 	 *            agree or disagree to the proposed date true - agree false - disagree
 	 * @throws InvalidBandObjectException
+	 *             if the event is not in the event list of the member
 	 */
 	public void agree(ProposedDate e, final String reason, final boolean agreed) throws InvalidBandObjectException {
 
@@ -225,6 +241,8 @@ public class Member extends Person {
 	/**
 	 * compares two members
 	 * 
+	 * @param obj
+	 *            the member to compare with
 	 * @return true if the members are equal false otherwise
 	 */
 	@Override
@@ -254,7 +272,7 @@ public class Member extends Person {
 	}
 
 	/**
-	 * @return the firstName
+	 * @return the firstName of the member
 	 */
 	public String getFirstName() {
 
@@ -262,7 +280,7 @@ public class Member extends Person {
 	}
 
 	/**
-	 * @return the lastName
+	 * @return the lastName of the member
 	 */
 	public String getLastName() {
 
@@ -270,8 +288,11 @@ public class Member extends Person {
 	}
 
 	/**
+	 * used to get the notifications of the member
+	 * 
 	 * @param all
-	 *            true - all notifications false - only unread notifications
+	 *            true - all notifications
+	 *            false - only unread notifications
 	 * @return the notifications of the member
 	 */
 	public ArrayList<EventNotification> getNotifications(boolean all) {
@@ -286,6 +307,9 @@ public class Member extends Person {
 		return alen;
 	}
 
+	/**
+	 * @return the permissions-hashmap
+	 */
 	@Override
 	public HashMap<Method, ArrayList<Permission>> getPermissions() {
 
@@ -301,7 +325,7 @@ public class Member extends Person {
 	}
 
 	/**
-	 * @return
+	 * @return the rehearsals the member attended
 	 */
 	public ArrayList<Rehearsal> getRehearsals() {
 
@@ -317,6 +341,9 @@ public class Member extends Person {
 
 	}
 
+	/**
+	 * @return the roles-hashmap
+	 */
 	@Override
 	public HashMap<Authenticatable, Permission> getRoles() {
 
@@ -333,6 +360,8 @@ public class Member extends Person {
 	}
 
 	/**
+	 * used to get the hash value of a member
+	 * 
 	 * @return a hash value representing the member
 	 */
 	@Override
@@ -411,7 +440,11 @@ public class Member extends Person {
 	}
 
 	/**
-	 * @return true if the member is a substitute member false if the member isn't a substitute member
+	 * used to get the substitute status of a member
+	 * 
+	 * @return
+	 *         true if the member is a substitute member
+	 *         false if the member isn't a substitute member
 	 */
 	public boolean isSubstituteMember() {
 
@@ -422,6 +455,9 @@ public class Member extends Person {
 	 * Notify a member about the event @e.
 	 * 
 	 * @param e
+	 *            the event, the member should be notified
+	 * @param stat
+	 *            the status of the event
 	 * @throws InvalidBandObjectException
 	 *             if the member was already notified about the event
 	 */
@@ -456,6 +492,8 @@ public class Member extends Person {
 	}
 
 	/**
+	 * used to get a readable representation of a member
+	 * 
 	 * @return a string representation of an member
 	 */
 	@Override

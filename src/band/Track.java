@@ -28,6 +28,8 @@ public class Track {
 	/**
 	 * compares two tracks
 	 * 
+	 * @param obj
+	 *            the track to compare with
 	 * @return true if the tracks are equal false otherwise
 	 */
 	@Override

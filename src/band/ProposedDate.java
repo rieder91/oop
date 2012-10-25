@@ -48,8 +48,11 @@ public class ProposedDate {
 	}
 
 	/**
+	 * compares two proposed dates
+	 * 
 	 * @param obj
-	 * @return
+	 *            the proposed date to compare with
+	 * @return true if the proposed dates are equal false otherwise
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -99,7 +102,7 @@ public class ProposedDate {
 	}
 
 	/**
-	 * @return
+	 * @return a hash value representing the proposed date
 	 */
 	@Override
 	public int hashCode() {
@@ -122,7 +125,7 @@ public class ProposedDate {
 	}
 
 	/**
-	 * @return
+	 * @return a string representation of a proposed date
 	 */
 	@Override
 	public String toString() {

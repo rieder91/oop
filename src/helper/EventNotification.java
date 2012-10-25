@@ -16,7 +16,9 @@ public class EventNotification {
 
 	/**
 	 * @param e
+	 *            event to be notified
 	 * @param status
+	 *            status of the event
 	 */
 	public EventNotification(final Event e, final Status status) {
 
@@ -26,8 +28,11 @@ public class EventNotification {
 	}
 
 	/**
+	 * compares two event notifications
+	 * 
 	 * @param obj
-	 * @return
+	 *            the event notification to compare with
+	 * @return true if the event notification are equal false otherwise
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -61,7 +66,7 @@ public class EventNotification {
 	}
 
 	/**
-	 * @return the status
+	 * @return the status of the event
 	 */
 	public Status getStatus() {
 
@@ -69,7 +74,7 @@ public class EventNotification {
 	}
 
 	/**
-	 * @return
+	 * @return a hash value representing the event notification
 	 */
 	@Override
 	public int hashCode() {
@@ -84,6 +89,8 @@ public class EventNotification {
 	/**
 	 * @param not
 	 *            the new notification status
+	 *            true - the member is notified about the event
+	 *            false - otherwise
 	 */
 	public void setNotified(boolean not) {
 
