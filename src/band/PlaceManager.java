@@ -21,7 +21,7 @@ public class PlaceManager {
 	}
 
 	/**
-	 * adds a new place
+	 * adds a new place to the manager, if not already there
 	 * 
 	 * @param p
 	 *            place that is being added
@@ -34,7 +34,7 @@ public class PlaceManager {
 	}
 
 	/**
-	 * return an arraylist of all places that match the requirements
+	 * return an arraylist of all places that match the requirements specified in @inf
 	 * 
 	 * @param inf
 	 *            infrastructure-requirements
@@ -52,7 +52,7 @@ public class PlaceManager {
 	}
 
 	/**
-	 * removes a place via place-obj
+	 * removes a place via place-obj, if it is present
 	 * 
 	 * @param p
 	 *            obj that is being removed
@@ -63,7 +63,7 @@ public class PlaceManager {
 	}
 
 	/**
-	 * removes a place via search-string
+	 * removes a place via search-string, if it is present
 	 * 
 	 * @param name
 	 *            place that is searched for

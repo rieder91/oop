@@ -18,18 +18,19 @@ import auth.Authenticatable;
 public class Gig extends Event {
 
 	private BigDecimal pay;
+	//pay >= 0
 
 	/**
 	 * Constructor which requires four arguments
 	 * 
 	 * @param time
-	 *            the time of the gig
+	 *            the time of the gig (time >= now)
 	 * @param place
-	 *            the place of the gig
+	 *            the name of the place as a String
 	 * @param duration
-	 *            the duration of the gig
+	 *            the duration of the gig (duration >= 0)
 	 * @param pay
-	 *            the pay of the gig
+	 *            the pay of the gig as BigDecimal (pay >=0)
 	 */
 	@Deprecated
 	public Gig(Date time, String place, Integer duration, BigDecimal pay) {
@@ -41,13 +42,13 @@ public class Gig extends Event {
 	 * Constructor which requires four arguments
 	 * 
 	 * @param time
-	 *            the time of the gig
+	 *            the time of the gig (time >= now)
 	 * @param place
-	 *            the place of the gig
+	 *            the name of the place as a String
 	 * @param duration
-	 *            the duration of the gig
+	 *            the duration of the gig (duration >= 0)
 	 * @param pay
-	 *            the pay of the gig
+	 *            the pay of the gig as Double (pay >=0)
 	 */
 	@Deprecated
 	public Gig(Date time, String place, Integer duration, Double pay) {
@@ -61,13 +62,13 @@ public class Gig extends Event {
 	 * @param name
 	 *            name of the event
 	 * @param time
-	 *            the time of the gig
+	 *            the time of the gig (time >= now)
 	 * @param place
-	 *            the place of the gig
+	 *            the place of the gig as Place-object
 	 * @param duration
-	 *            the duration of the gig
+	 *            the duration of the gig (duration >= 0)
 	 * @param pay
-	 *            the pay of the gig
+	 *            the pay of the gig (pay >=0)
 	 */
 	public Gig(String name, Date time, Place place, Integer duration, BigDecimal pay) {
 
@@ -81,13 +82,13 @@ public class Gig extends Event {
 	 * @param name
 	 *            name of the event
 	 * @param time
-	 *            the time of the gig
+	 *            the time of the gig (time >= now)
 	 * @param place
-	 *            the place of the gig
-	 * @param duration
-	 *            the duration of the gig
+	 *            the name of the place as a String
+	 * @param duration 
+	 *            the duration of the gig (duration >= 0)
 	 * @param pay
-	 *            the pay of the gig
+	 *            the pay of the gig (pay >=0)
 	 */
 	@Deprecated
 	public Gig(String name, Date time, String place, Integer duration, BigDecimal pay) {
@@ -100,7 +101,7 @@ public class Gig extends Event {
 	 *            method that is checked
 	 * @param p
 	 *            permissions that the caller possesses
-	 * @return true if the method m can be invoked with the permissions p
+	 * @return true if the method m can be invoked with the permissions p, otherwise false
 	 */
 	@Override
 	public boolean allowedMethod(Method m, Permission p) {
@@ -125,7 +126,7 @@ public class Gig extends Event {
 	}
 
 	/**
-	 * @return the pay you get for the gig
+	 * @return the pay the band gets for the gig
 	 */
 	@Override
 	public BigDecimal getFinances() {
@@ -133,6 +134,9 @@ public class Gig extends Event {
 		return this.pay;
 	}
 
+	/**
+	 * @return a HashMap of methods and their permissions
+	 */
 	@Override
 	public HashMap<Method, ArrayList<Permission>> getPermissions() {
 
@@ -157,6 +161,9 @@ public class Gig extends Event {
 		}
 	}
 
+	/**
+	 * @return the HashMap of permissions
+	 */
 	@Override
 	public HashMap<Authenticatable, Permission> getRoles() {
 
@@ -172,8 +179,7 @@ public class Gig extends Event {
 		this.permissions = new HashMap<Method, ArrayList<Permission>>();
 		this.roles = new HashMap<Authenticatable, Permission>();
 
-		// get all methods of the class; there is NO difference in the
-		// permissions of methods with the same name but different arguments
+		
 		ArrayList<Method> methods = new ArrayList<Method>();
 		methods.addAll(Arrays.asList(this.getClass().getMethods()));
 
@@ -190,20 +196,20 @@ public class Gig extends Event {
 				tPerm.add(Permission.OWNER);
 			}
 
-			// save the permissions and reset the temporary list
+			
 			this.permissions.put(m, new ArrayList<Permission>(tPerm));
 			tPerm.clear();
 		}
 
-		// set the owner to THIS
+		
 		this.setRole(this, Permission.OWNER);
 	}
 
-	@Override
 	/**
 	 * Reverts the Event to the state at @restoreDate and saves the current state with the date @currentDate
-	 * 
+	 * restoreDate before currentDate; currentDate == now
 	 */
+	@Override
 	public void restoreEvent(Date restoreDate, Date currentDate) throws InvalidDateException {
 
 		Gig oldGig = (Gig) this.getEventHistory().get(restoreDate);
@@ -238,6 +244,10 @@ public class Gig extends Event {
 		return super.toString() + " Pay: " + this.pay;
 	}
 
+	/**
+	 * The current event is stored with @changeDate in history and updated to another event @e.
+	 * changeDate after date of last edit
+	 */
 	@Override
 	public void updateEvent(Event e, Date changeDate) throws InvalidDateException {
 
@@ -256,7 +266,7 @@ public class Gig extends Event {
 			this.pay = newGig.pay;
 		}
 		else {
-			// type error
+			
 		}
 	}
 }

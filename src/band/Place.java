@@ -4,7 +4,7 @@ package band;
 import java.util.ArrayList;
 
 /**
- * contains all informations concerining one place
+ * contains all informations concerning one place
  * 
  * @author OOP Gruppe 187
  */
@@ -26,7 +26,7 @@ public class Place {
 	}
 
 	/**
-	 * adds an infrastructure to the place
+	 * adds an infrastructure to the place, if not already there
 	 * 
 	 * @param i
 	 *            infrastructure that is being added
@@ -38,6 +38,11 @@ public class Place {
 		}
 	}
 
+	/**
+	 * compares two places
+	 * 
+	 * @return true if two places are equal, otherwise false
+	 */
 	@Override
 	public boolean equals(Object obj) {
 
@@ -61,7 +66,7 @@ public class Place {
 	}
 
 	/**
-	 * @return
+	 * @return ArrayList of all infrastructures of the place
 	 */
 	public ArrayList<Infrastructure> getInfrastructure() {
 
@@ -69,13 +74,16 @@ public class Place {
 	}
 
 	/**
-	 * @return name of the place
+	 * @return name of the place as String
 	 */
 	public String getName() {
 
 		return this.name;
 	}
 
+	/**
+	 * @return HashCode of the place
+	 */
 	@Override
 	public int hashCode() {
 
@@ -87,7 +95,7 @@ public class Place {
 	}
 
 	/**
-	 * true if the infrastructure is available
+	 * checks the place if all infrastructure-elements specified in @inf are available
 	 * 
 	 * @param inf
 	 *            infrastructure that the place is searched for
@@ -106,7 +114,7 @@ public class Place {
 	 * 
 	 * @param inf
 	 *            one infrastructure object
-	 * @return true if the place has the required infrastrucutre; false otherwise
+	 * @return true if the place has the required infrastructure; false otherwise
 	 */
 	public boolean hasInfrastructure(Infrastructure inf) {
 
@@ -114,6 +122,8 @@ public class Place {
 	}
 
 	/**
+	 * removes infrastructure i from place, if it's there
+	 * 
 	 * @param i
 	 */
 	public void removeInfrastructure(Infrastructure i) {

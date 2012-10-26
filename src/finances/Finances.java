@@ -22,15 +22,16 @@ public class Finances {
 		Income, Expense, Turnover
 	}
 
-	// income
+
 	private TreeMap<Date, HashMap<String, BigDecimal>> income;
 
 	private BigDecimal totalIncome;
-	// expense
+	
 	private TreeMap<Date, HashMap<String, BigDecimal>> expense;
 
 	private BigDecimal totalExpense;
-
+	//income >= 0; totalIncome >= 0; expense <= 0; totalExpense <= 0
+	
 	/**
 	 * Constructor without parameters
 	 */
@@ -44,14 +45,14 @@ public class Finances {
 	}
 
 	/**
-	 * adds income with its information
+	 * adds income with specified information to finances and updates totalIncome
 	 * 
 	 * @param currentDate
-	 *            date of entry
+	 *            date of entry (now)
 	 * @param reason
 	 *            short info why money was get or spent (i.e. "Merchandise" or "Advertisment")
 	 * @param income
-	 *            positive value
+	 *            must be a positive value
 	 */
 	public void add(Date currentDate, String reason, BigDecimal income) {
 
@@ -99,14 +100,14 @@ public class Finances {
 	}
 
 	/**
-	 * adds expense with its information
+	 * adds expense with specified information to finances and updates totalExpense
 	 * 
 	 * @param currentDate
-	 *            date of entry
+	 *            date of entry (now)
 	 * @param reason
 	 *            short info why money was get or spent (i.e. "Merchandise" or "Advertisment")
 	 * @param expense
-	 *            negative value
+	 *            must be a negative value
 	 */
 	public void subtract(Date currentDate, String reason, BigDecimal expense) {
 

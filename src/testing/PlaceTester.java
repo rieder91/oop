@@ -17,18 +17,15 @@ public class PlaceTester implements Tester {
 
 	private static final String moduleName = "Place";
 
-	// number of successful/failed tests
 	private Integer successfulTests;
 	private Integer overallTests;
+	//successfulTests >= 0; overallTests >= 0
 
-	// the test case numbers of all failed tests
 	private ArrayList<Integer> failedTestNumbers;
 
 	private HashMap<Integer, String> testCases;
 
-	/**
-	 * 
-	 */
+	
 	public PlaceTester() {
 
 		this.successfulTests = 0;
@@ -46,6 +43,10 @@ public class PlaceTester implements Tester {
 		Validator.addTests(this.overallTests);
 	}
 
+	/**
+	 * a description of the place test module is displayed
+	 * should be the first method to be called
+	 */
 	@Override
 	public void printTestDescription() {
 
@@ -56,6 +57,10 @@ public class PlaceTester implements Tester {
 		System.out.println();
 	}
 
+	/**
+	 * the results of the place test module is displayed
+	 * must be called after method runTests()
+	 */
 	@Override
 	public void printTestResults() {
 
@@ -72,15 +77,10 @@ public class PlaceTester implements Tester {
 		System.out.println();
 	}
 
-	/*
-	 * deprecation suppression is only used to ignore the warning of the methods we declared deprecated ourselves due to
-	 * the enhancements made in assignment #2
-	 * 
-	 * (non-Javadoc)
-	 * 
-	 * @see testing.Tester#runTests()
+	/**
+	 * run through various test cases of the place module
+	 * must be called before method printTestResults()
 	 */
-	// @SuppressWarnings("deprecation")
 	@Override
 	public void runTests() {
 
@@ -132,7 +132,6 @@ public class PlaceTester implements Tester {
 			Validator.report(false);
 		}
 
-		// parking garage caved in
 		stadtHalle.removeInfrastructure(Infrastructure.ParkingGarage);
 
 		if (!stadtHalle.hasInfrastructure(Infrastructure.ParkingGarage)) {

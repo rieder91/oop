@@ -18,18 +18,19 @@ import auth.Authenticatable;
 public class Rehearsal extends Event {
 
 	private BigDecimal cost;
+	//cost <= 0
 
 	/**
 	 * Constructor which requires four arguments
 	 * 
 	 * @param time
-	 *            the time of the rehearsal
+	 *            the time of the rehearsal (time >= now)
 	 * @param place
-	 *            the place of the rehearsal
+	 *            the name of the place as a String
 	 * @param duration
-	 *            the duration of the rehearsal
+	 *            the duration of the rehearsal (duration >= 0)
 	 * @param cost
-	 *            the costs of the rehearsal
+	 *            the costs of the rehearsal as BigDecimal (cost <= 0)
 	 */
 	@Deprecated
 	public Rehearsal(Date time, String place, Integer duration, BigDecimal cost) {
@@ -41,13 +42,13 @@ public class Rehearsal extends Event {
 	 * Constructor which requires four arguments
 	 * 
 	 * @param time
-	 *            the time of the rehearsal
+	 *            the time of the rehearsal (time >= now)
 	 * @param place
-	 *            the place of the rehearsal
+	 *            the name of the place as a String
 	 * @param duration
-	 *            the duration of the rehearsal
+	 *            the duration of the rehearsal (duration >= 0)
 	 * @param cost
-	 *            the costs of the rehearsal
+	 *            the costs of the rehearsal as Double (cost <= 0)
 	 */
 	@Deprecated
 	public Rehearsal(Date time, String place, Integer duration, Double cost) {
@@ -61,13 +62,13 @@ public class Rehearsal extends Event {
 	 * @param name
 	 *            name of the event
 	 * @param time
-	 *            the time of the rehearsal
+	 *            the time of the rehearsal (time >= now)
 	 * @param place
-	 *            the place of the rehearsal
+	 *            the place of the rehearsal as Place-object
 	 * @param duration
-	 *            the duration of the rehearsal
+	 *            the duration of the rehearsal (duration >= 0)
 	 * @param cost
-	 *            the cost of the rehearsal
+	 *            the pay of the rehearsal (cost <=0)
 	 */
 	public Rehearsal(String name, Date time, Place place, Integer duration, BigDecimal cost) {
 
@@ -76,18 +77,18 @@ public class Rehearsal extends Event {
 	}
 
 	/**
-	 * five param-constructor with place name
+	 * five param-constructor with place-name
 	 * 
 	 * @param name
 	 *            name of the event
 	 * @param time
-	 *            the time of the rehearsal
+	 *            the time of the rehearsal (time >= now)
 	 * @param place
-	 *            the place of the rehearsal
-	 * @param duration
-	 *            the duration of the rehearsal
+	 *            the name of the place as a String
+	 * @param duration 
+	 *            the duration of the rehearsal (duration >= 0)
 	 * @param cost
-	 *            the pay of the rehearsal
+	 *            the pay of the rehearsal (cost <=0)
 	 */
 	@Deprecated
 	public Rehearsal(String name, Date time, String place, Integer duration, BigDecimal cost) {
@@ -100,7 +101,7 @@ public class Rehearsal extends Event {
 	 *            method that is checked
 	 * @param p
 	 *            permissions that the caller possesses
-	 * @return true if the method m can be invoked with the permissions p
+	 * @return true if the method m can be invoked with the permissions p, otherwise false
 	 */
 	@Override
 	public boolean allowedMethod(Method m, Permission p) {
@@ -133,6 +134,9 @@ public class Rehearsal extends Event {
 		return this.cost.multiply(new BigDecimal(-1.0));
 	}
 
+	/**
+	 * @return a HashMap of methods and their permissions
+	 */
 	@Override
 	public HashMap<Method, ArrayList<Permission>> getPermissions() {
 
@@ -157,6 +161,9 @@ public class Rehearsal extends Event {
 		}
 	}
 
+	/**
+	 * @return the HashMap of permissions
+	 */
 	@Override
 	public HashMap<Authenticatable, Permission> getRoles() {
 
@@ -172,8 +179,7 @@ public class Rehearsal extends Event {
 		this.permissions = new HashMap<Method, ArrayList<Permission>>();
 		this.roles = new HashMap<Authenticatable, Permission>();
 
-		// get all methods of the class; there is NO difference in the
-		// permissions of methods with the same name but different arguments
+		
 		ArrayList<Method> methods = new ArrayList<Method>();
 		methods.addAll(Arrays.asList(this.getClass().getMethods()));
 
@@ -190,15 +196,19 @@ public class Rehearsal extends Event {
 				tPerm.add(Permission.OWNER);
 			}
 
-			// save the permissions and reset the temporary list
+			
 			this.permissions.put(m, new ArrayList<Permission>(tPerm));
 			tPerm.clear();
 		}
 
-		// set the owner to THIS
+		
 		this.setRole(this, Permission.OWNER);
 	}
 
+	/**
+	 * Reverts the Event to the state at @restoreDate and saves the current state with the date @currentDate
+	 * restoreDate before currentDate; currentDate == now
+	 */
 	@Override
 	public void restoreEvent(Date restoreDate, Date currentDate) throws InvalidDateException {
 
@@ -234,6 +244,10 @@ public class Rehearsal extends Event {
 		return super.toString() + " Costs: " + this.cost;
 	}
 
+	/**
+	 * The current event is stored with @changeDate in history and updated to another event @e.
+	 * changeDate after date of last edit
+	 */
 	@Override
 	public void updateEvent(Event e, Date changeDate) throws InvalidDateException {
 
@@ -252,7 +266,7 @@ public class Rehearsal extends Event {
 			this.cost = newRehearsal.cost;
 		}
 		else {
-			// type error
+			
 		}
 	}
 

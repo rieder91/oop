@@ -17,18 +17,24 @@ public class FinanceFilter {
 	private boolean expense;
 	private boolean income;
 	private boolean total;
+	//startDate before or equal endDate
 
 	/**
-	 * Constructor with four parameters
+	 * Constructor with six parameters.
+	 * At least one of expense, income and total should be true.
 	 * 
+	 * @param startDate
+	 * 				start of search-period (before or equal endDate)
+	 * @param endDate
+	 * 				end of search-period (after or equal startDate)
 	 * @param reason
-	 *            an ArrayList with information for filtering
+	 *            	an ArrayList with information for filtering
 	 * @param expense
-	 *            true if expense should be used
+	 *            	true if expense should be used, otherwise false
 	 * @param income
-	 *            true if income should be used
+	 *            	true if income should be used, otherwise false
 	 * @param total
-	 *            true if turnover should be used
+	 *            	true if turnover should be used, otherwise false
 	 */
 	public FinanceFilter(Date startDate, Date endDate, ArrayList<String> reason, boolean expense, boolean income,
 			boolean total) {
@@ -42,14 +48,19 @@ public class FinanceFilter {
 	}
 
 	/**
-	 * Constructor with three parameters (reason is empty by default)
+	 * Constructor with three parameters (reason is empty by default).
+	 * At least one of expense, income and total should be true.
 	 * 
+	 * @param startDate
+	 * 				start of search-period (before or equal endDate)
+	 * @param endDate
+	 * 				end of search-period (after or equal startDate)
 	 * @param expense
-	 *            true if expense should be used
+	 *            true if expense should be used, otherwise false
 	 * @param income
-	 *            true if income should be used
+	 *            true if income should be used, otherwise false
 	 * @param total
-	 *            true if turnover should be used
+	 *            true if turnover should be used, otherwise false
 	 */
 	public FinanceFilter(Date startDate, Date endDate, boolean expense, boolean income, boolean total) {
 
@@ -98,7 +109,7 @@ public class FinanceFilter {
 	}
 
 	/**
-	 * @return true if expense shall be used
+	 * @return true if expense shall be used, otherwise false
 	 */
 	public boolean isExpense() {
 
@@ -106,7 +117,7 @@ public class FinanceFilter {
 	}
 
 	/**
-	 * @return true if income shall be used
+	 * @return true if income shall be used, otherwise false
 	 */
 	public boolean isIncome() {
 
@@ -114,7 +125,7 @@ public class FinanceFilter {
 	}
 
 	/**
-	 * @return true if total turnover shall be used
+	 * @return true if total turnover shall be used, otherwise false
 	 */
 	public boolean isTotal() {
 

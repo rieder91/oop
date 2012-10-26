@@ -23,11 +23,10 @@ public class FinanceTester implements Tester {
 
 	private static final String moduleName = "Finances";
 
-	// number of successful/failed tests
 	private Integer successfulTests;
 	private Integer overallTests;
+	//successfulTests >= 0; overallTests >= 0
 
-	// the test case numbers of all failed tests
 	private ArrayList<Integer> failedTestNumbers;
 
 	private HashMap<Integer, String> testCases;
@@ -55,6 +54,10 @@ public class FinanceTester implements Tester {
 		Validator.addTests(this.overallTests);
 	}
 
+	/**
+	 * a description of the finance test module is displayed
+	 * should be the first method to be called
+	 */
 	@Override
 	public void printTestDescription() {
 
@@ -64,7 +67,11 @@ public class FinanceTester implements Tester {
 		}
 		System.out.println();
 	}
-
+	
+	/**
+	 * the results of the finance test module is displayed
+	 * must be called after method runTests()
+	 */
 	@Override
 	public void printTestResults() {
 
@@ -81,11 +88,14 @@ public class FinanceTester implements Tester {
 		System.out.println();
 	}
 
+	/**
+	 * run through various test cases of the finance module
+	 * must be called before method printTestResults()
+	 */
 	@SuppressWarnings("deprecation")
 	@Override
 	public void runTests() {
 
-		// Stuff needed for date parsing
 		SimpleDateFormat formatTime = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
 		Band rofl = new Band("ROFL-copter", "Metal");
@@ -163,11 +173,6 @@ public class FinanceTester implements Tester {
 			e2.printStackTrace();
 		}
 
-		/*
-		 * Test Case #1 Total turnover and adding of finances
-		 * 
-		 * should be: 18900
-		 */
 
 		if (Validator.check(rofl.totalTurnover(), new BigDecimal(18900), 1)) {
 			this.successfulTests++;
@@ -177,11 +182,6 @@ public class FinanceTester implements Tester {
 			this.failedTestNumbers.add(1);
 		}
 
-		/*
-		 * Test Case #2 Income of Events
-		 * 
-		 * should be: 17500
-		 */
 
 		if (Validator.check(rofl.totalEventIncome(), new BigDecimal(17500), 2)) {
 			this.successfulTests++;
@@ -191,11 +191,6 @@ public class FinanceTester implements Tester {
 			this.failedTestNumbers.add(2);
 		}
 
-		/*
-		 * Test Case #3 Expense of Events
-		 * 
-		 * should be: -1100
-		 */
 
 		if (Validator.check(rofl.totalEventExpense(), new BigDecimal(-1100), 3)) {
 			this.successfulTests++;
@@ -207,11 +202,6 @@ public class FinanceTester implements Tester {
 
 		try {
 
-			/*
-			 * Test Case #4 Turnover of Merchandise in a period
-			 * 
-			 * should be: 10000
-			 */
 
 			if (Validator.check(
 					rofl.getFinancesSinceUntilOf(formatTime.parse("01.01.2010 20:00"),
@@ -223,11 +213,6 @@ public class FinanceTester implements Tester {
 				this.failedTestNumbers.add(4);
 			}
 
-			/*
-			 * Test Case #5 Turnover of Merchandise in another period
-			 * 
-			 * should be: 16000
-			 */
 
 			if (Validator.check(
 					rofl.getFinancesSinceUntilOf(formatTime.parse("01.01.2010 20:00"),
@@ -239,11 +224,6 @@ public class FinanceTester implements Tester {
 				this.failedTestNumbers.add(5);
 			}
 
-			/*
-			 * Test Case #6 Turnover of Other in a period
-			 * 
-			 * should be: -5000
-			 */
 
 			if (Validator.check(
 					rofl.getFinancesSinceUntilOf(formatTime.parse("01.01.2010 20:00"),
@@ -260,11 +240,6 @@ public class FinanceTester implements Tester {
 			e1.printStackTrace();
 		}
 
-		/*
-		 * Test Case #7 Filter with expense
-		 * 
-		 * should be: "Expense of Other, Advertisement: -18000\n"
-		 */
 
 		if (Validator.check(rofl.getFinancesFiltered(f1), s1, 7)) {
 			this.successfulTests++;
@@ -274,11 +249,6 @@ public class FinanceTester implements Tester {
 			this.failedTestNumbers.add(7);
 		}
 
-		/*
-		 * Test Case #8 Filter with income
-		 * 
-		 * should be: "Income of Other, Advertisement: 30000\n"
-		 */
 
 		if (Validator.check(rofl.getFinancesFiltered(f2), s2, 8)) {
 			this.successfulTests++;
@@ -288,11 +258,6 @@ public class FinanceTester implements Tester {
 			this.failedTestNumbers.add(8);
 		}
 
-		/*
-		 * Test Case #9 Filter with expense and income
-		 * 
-		 * should be: "Expense of Other, Advertisement: -18000\nIncome of Other, Advertisement: 30000\n"
-		 */
 
 		if (Validator.check(rofl.getFinancesFiltered(f3), s3, 9)) {
 			this.successfulTests++;
@@ -302,12 +267,6 @@ public class FinanceTester implements Tester {
 			this.failedTestNumbers.add(9);
 		}
 
-		/*
-		 * Test Case #10 Filter with expense, income and turnover
-		 * 
-		 * should be:
-		 * "Expense of Other, Advertisement: -18000\nIncome of Other, Advertisement: 30000\nTurnover of Other, Advertisement: 12000\n"
-		 */
 
 		if (Validator.check(rofl.getFinancesFiltered(f4), s5, 10)) {
 			this.successfulTests++;
@@ -317,11 +276,6 @@ public class FinanceTester implements Tester {
 			this.failedTestNumbers.add(10);
 		}
 
-		/*
-		 * Test Case #11 Filter with turnover
-		 * 
-		 * should be: "Turnover of Other, Advertisement: 12000\n"
-		 */
 
 		if (Validator.check(rofl.getFinancesFiltered(f5), s4, 11)) {
 			this.successfulTests++;
