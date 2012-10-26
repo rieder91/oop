@@ -21,6 +21,9 @@ public class ProposedDate {
 	 * 
 	 * @param e
 	 *            event to agree
+	 * @param date
+	 *            (>= than today)
+	 *            date when the event should be
 	 */
 	public ProposedDate(Event e, Date date) {
 
@@ -29,8 +32,11 @@ public class ProposedDate {
 	}
 
 	/**
+	 * agree to a proposed date
+	 * 
 	 * @param agreed
-	 *            the agreed to set
+	 *            true - the member agrees
+	 *            false - the member disagrees
 	 */
 	public void agree(boolean agreed) {
 
@@ -38,8 +44,13 @@ public class ProposedDate {
 	}
 
 	/**
+	 * agree to a proposed date
+	 * 
 	 * @param agreed
-	 *            the agreed to set
+	 *            true - the member agrees
+	 *            false - the member disagrees
+	 * @param reason
+	 *            the reason why you agree/disagree
 	 */
 	public void agree(boolean agreed, String reason) {
 
@@ -52,7 +63,8 @@ public class ProposedDate {
 	 * 
 	 * @param obj
 	 *            the proposed date to compare with
-	 * @return true if the proposed dates are equal false otherwise
+	 * @return true - if the proposed dates are equal
+	 *         false - otherwise
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -117,7 +129,10 @@ public class ProposedDate {
 	}
 
 	/**
-	 * @return true if the member agreed false if the member declined
+	 * before this method is used the member has to accept/decline the proposal
+	 * 
+	 * @return true - if the member agreed
+	 *         false - if the member declined
 	 */
 	public boolean isAgreed() {
 

@@ -15,9 +15,12 @@ public class Track {
 	 * Constructor which requires two arguments
 	 * 
 	 * @param length
+	 *            (> 0)
 	 *            the length of the track
 	 * @param name
+	 *            (!= null)
 	 *            the name of the track
+	 *            should not be null
 	 */
 	public Track(String name, Integer length) {
 
@@ -64,7 +67,7 @@ public class Track {
 	}
 
 	/**
-	 * @return a string representation of a member
+	 * @return a string representation of the track
 	 */
 	@Override
 	public String toString() {

@@ -16,6 +16,7 @@ public class EventNotification {
 
 	/**
 	 * @param e
+	 *            (!= null)
 	 *            event to be notified
 	 * @param status
 	 *            status of the event
@@ -32,7 +33,9 @@ public class EventNotification {
 	 * 
 	 * @param obj
 	 *            the event notification to compare with
-	 * @return true if the event notification are equal false otherwise
+	 * @return
+	 *         true - if the event notification are equal
+	 *         false - otherwise
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -50,7 +53,7 @@ public class EventNotification {
 	}
 
 	/**
-	 * @return the event
+	 * @return the event the member should be notified
 	 */
 	public Event getE() {
 
@@ -59,6 +62,8 @@ public class EventNotification {
 
 	/**
 	 * @return the notification status
+	 *         true - the member was already notified
+	 *         false - otherwise
 	 */
 	public boolean getNotified() {
 
@@ -87,6 +92,8 @@ public class EventNotification {
 	}
 
 	/**
+	 * sets the notification status to @not
+	 * 
 	 * @param not
 	 *            the new notification status
 	 *            true - the member is notified about the event

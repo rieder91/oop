@@ -37,12 +37,16 @@ public class Member extends Person {
 	 * Constructor which requires four arguments
 	 * 
 	 * @param firstName
+	 *            (!= null)
 	 *            the first name of the member
 	 * @param lastName
+	 *            (!= null)
 	 *            the last name of the member
 	 * @param instrument
+	 *            (!= null)
 	 *            the instrument of the member
 	 * @param telephoneNumber
+	 *            (!= null)
 	 *            the telephone number of the member
 	 */
 	@Deprecated
@@ -55,13 +59,17 @@ public class Member extends Person {
 	 * Constructor which requires four arguments
 	 * 
 	 * @param firstName
+	 *            (!= null)
 	 *            the first name of the member
 	 * @param lastName
+	 *            (!= null)
 	 *            the last name of the member
 	 * @param instrument
+	 *            (!= null)
 	 *            the instrument of the member
 	 * @param telephoneNumber
-	 *            the telephone number of the member
+	 *            (!= null)
+	 *            the telephone number of the membe
 	 * @param substituteMember
 	 *            the substitute status of the member
 	 *            true - member is a substitute member
@@ -89,7 +97,9 @@ public class Member extends Person {
 	 * adds a new band to the member
 	 * 
 	 * @param bnd
+	 *            (!= null)
 	 *            a band the member is in
+	 *            the member shouldn't be already in this band
 	 * @throws InvalidBandObjectException
 	 *             if the member is already in this band
 	 */
@@ -103,7 +113,9 @@ public class Member extends Person {
 	 * Adds a new proposed date for an event.
 	 * 
 	 * @param pd
+	 *            (!= null)
 	 *            a time proposal for an event
+	 *            the member should not get the proposal two times
 	 * @throws InvalidBandObjectException
 	 *             if the date was already proposed to this member
 	 */
@@ -121,7 +133,9 @@ public class Member extends Person {
 	 * Adds a Rehearsal the Member attended;
 	 * 
 	 * @param re
+	 *            (!= null)
 	 *            a Rehearsal
+	 *            every rehearsal should only be added once
 	 */
 	public void addRehersal(Rehearsal re) {
 
@@ -132,8 +146,11 @@ public class Member extends Person {
 	 * adds a new track to the repertoire of the member
 	 * 
 	 * @param tr
+	 *            (!= null)
 	 *            track to be added
+	 *            do not add a track two times
 	 * @param d
+	 *            (!= null)
 	 *            the actual date
 	 * @throws InvalidBandObjectException
 	 *             if the Member already knows the track
@@ -157,9 +174,12 @@ public class Member extends Person {
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
 	 * @param e
+	 *            (!= null)
 	 *            event you want to agree or disagree
 	 * @param agreed
 	 *            agree or disagree to the proposed date true - agree false - disagree
+	 * @param date
+	 *            (!= null)
 	 * @throws InvalidBandObjectException
 	 *             if the event is not in the event list of the member
 	 */
@@ -178,6 +198,8 @@ public class Member extends Person {
 	 *            event you want to agree or disagree
 	 * @param reason
 	 *            the reason you have agreed or disagreed
+	 * @param date
+	 *            (!= null)
 	 * @param agreed
 	 *            agree or disagree to the proposed date
 	 *            true - agree
@@ -198,9 +220,12 @@ public class Member extends Person {
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
 	 * @param e
+	 *            (!= null)
 	 *            proposed date you want to agree or disagree
 	 * @param agreed
-	 *            agree or disagree to the proposed date true - agree false - disagree
+	 *            agree or disagree to the proposed date
+	 *            true - agree
+	 *            false - disagree
 	 * @throws InvalidBandObjectException
 	 *             if the event is not in the event list of the member
 	 */
@@ -215,11 +240,14 @@ public class Member extends Person {
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
 	 * @param e
+	 *            (!= null)
 	 *            proposed date you want to agree or disagree
 	 * @param reason
 	 *            the reason you have agreed or disagreed
 	 * @param agreed
-	 *            agree or disagree to the proposed date true - agree false - disagree
+	 *            agree or disagree to the proposed date
+	 *            true - agree
+	 *            false - disagree
 	 * @throws InvalidBandObjectException
 	 *             if the event is not in the event list of the member
 	 */
@@ -469,13 +497,18 @@ public class Member extends Person {
 	}
 
 	/**
-	 * removes a new track from the repertoire of the member
+	 * removes @tr from the repertoire of the member
 	 * 
 	 * @param tr
+	 *            (!= null)
 	 *            track to be removed
+	 * @param d
+	 *            (!= null)
+	 *            date when the track was removed
 	 * @throws InvalidBandObjectException
 	 *             if the track does not exist
 	 * @throws InvalidDateException
+	 *             if the track is removed before is was added
 	 */
 	public void removeTrack(final Track tr, Date d) throws InvalidBandObjectException, InvalidDateException {
 
