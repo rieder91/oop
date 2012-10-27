@@ -14,10 +14,12 @@ _WS2012, Vienna University of Technology_
    - Improve of the band management core
    
 ## WIP
- - Waiting for assignment
+ - Assignment 3
+   - judging our own code quality
+   - writing assertions
 
 ## TODO
- - Assignment 3 - 9
+ - Assignment 4 - 9
  
 ## Syllabus
  - Überblick über das objektorientierte Programmierparadigma und entsprechende Programmiersprachen
