@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * 
  * @author OOP Gruppe 187
  * 
- * GOOD: It is easy to handle various places due to this manager.
+ * GOOD: The name already describes the use of this class pretty well.
  */
 public class PlaceManager {
 
