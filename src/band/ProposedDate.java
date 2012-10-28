@@ -12,11 +12,11 @@ import java.util.Date;
  */
 public class ProposedDate {
 
-	private Event e; // INVARIANT: not null
+	private Event e; 
 
 	private boolean agreed;
 	private String reason;
-	private Date date; // INVARIANT: not null
+	private Date date; 
 
 	/**
 	 * Constructor which requires three arguments

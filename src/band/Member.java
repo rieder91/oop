@@ -28,12 +28,12 @@ public class Member extends Person {
 
 	private boolean substituteMember;
 
-	private ArrayList<Band> bands; // INVARIANT: not null
-	private ArrayList<Track> repertoire; // INVARIANT: not null
-	private ArrayList<Rehearsal> rehersals; // INVARIANT: not null
+	private ArrayList<Band> bands; 
+	private ArrayList<Track> repertoire; 
+	private ArrayList<Rehearsal> rehersals; 
 
-	private ArrayList<ProposedDate> events; // INVARIANT: not null
-	private ArrayList<EventNotification> eventNot; // INVARIANT: not null
+	private ArrayList<ProposedDate> events; 
+	private ArrayList<EventNotification> eventNot; 
 
 	/**
 	 * Constructor which requires four arguments

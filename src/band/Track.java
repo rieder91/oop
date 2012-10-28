@@ -10,7 +10,7 @@ package band;
  */
 public class Track {
 
-	private Integer length; // INVARIANT: length > 0
+	private Integer length; 
 	private String name;
 
 	/**

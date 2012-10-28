@@ -12,8 +12,8 @@ import band.Event;
  */
 public class EventNotification {
 
-	private final Event e; // INVARIANT: not null
-	private final Status status; // INVARIANT: not null
+	private final Event e; 
+	private final Status status; 
 	private boolean notified;
 
 	/**
