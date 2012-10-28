@@ -214,8 +214,9 @@ public class Band implements Authenticatable {
 	 *             new add date
 	 * @throws InvalidBandObjectException
 	 *             thrown if the track already exists
+	 * 
+	 * PRECONDITION: only to be used in member
 	 */
-	// @Deprecated
 	public void addTrack(final Track t, final Date d) throws InvalidDateException, InvalidBandObjectException {
 
 		ArrayList<Track> al = new ArrayList<Track>();
@@ -938,8 +939,9 @@ public class Band implements Authenticatable {
 	 *             thrown if the removal date is prior to the add date
 	 * @throws InvalidBandObjectException
 	 *             thrown if the track doesnt exist
+	 *             
+	 * PRECONDITION: only to be used in member
 	 */
-	// @Deprecated
 	public void removeTrack(Track t, Date d) throws InvalidDateException, InvalidBandObjectException {
 
 		ArrayList<Track> al = new ArrayList<Track>();

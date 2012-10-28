@@ -7,14 +7,16 @@ import java.util.Date;
  * This class is used to save information about a proposed date.
  * 
  * @author OOP Gruppe 187
+ * 
+ * GOOD: the class name
  */
 public class ProposedDate {
 
-	private Event e;
+	private Event e; // INVARIANT: not null
 
 	private boolean agreed;
 	private String reason;
-	private Date date;
+	private Date date; // INVARIANT: not null
 
 	/**
 	 * Constructor which requires three arguments
@@ -22,8 +24,9 @@ public class ProposedDate {
 	 * @param e
 	 *            event to agree
 	 * @param date
-	 *            (>= than today)
 	 *            date when the event should be
+	 * 
+	 * PRECONDITION: none of the parameters are null
 	 */
 	public ProposedDate(Event e, Date date) {
 
@@ -51,6 +54,8 @@ public class ProposedDate {
 	 *            false - the member disagrees
 	 * @param reason
 	 *            the reason why you agree/disagree
+	 *            
+	 * PRECONDITION: reason is not null
 	 */
 	public void agree(boolean agreed, String reason) {
 
@@ -133,6 +138,8 @@ public class ProposedDate {
 	 * 
 	 * @return true - if the member agreed
 	 *         false - if the member declined
+	 *         
+	 * PRECONDITION: before this method is used you have to use agree
 	 */
 	public boolean isAgreed() {
 

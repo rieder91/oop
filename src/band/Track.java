@@ -5,22 +5,25 @@ package band;
  * Class that contains all the information belonging to a track.
  * 
  * @author OOP Gruppe 187
+ * 
+ * GOOD: the class name is self-explanatory
  */
 public class Track {
 
-	private Integer length;
+	private Integer length; // INVARIANT: length > 0
 	private String name;
 
 	/**
 	 * Constructor which requires two arguments
 	 * 
 	 * @param length
-	 *            (> 0)
 	 *            the length of the track
 	 * @param name
-	 *            (!= null)
 	 *            the name of the track
 	 *            should not be null
+	 *            
+	 * PRECONDITION: none of the parameters are null
+	 * PRECONDITION: length is greater than zero
 	 */
 	public Track(String name, Integer length) {
 

@@ -16,6 +16,8 @@ import auth.Authenticatable;
  * Class that contains all the information belonging to a member.
  * 
  * @author OOP Gruppe 187
+ * 
+ * GOOD: the class name is self-explanatory
  */
 public class Member extends Person {
 
@@ -26,28 +28,26 @@ public class Member extends Person {
 
 	private boolean substituteMember;
 
-	private ArrayList<Band> bands;
-	private ArrayList<Track> repertoire;
-	private ArrayList<Rehearsal> rehersals;
+	private ArrayList<Band> bands; // INVARIANT: not null
+	private ArrayList<Track> repertoire; // INVARIANT: not null
+	private ArrayList<Rehearsal> rehersals; // INVARIANT: not null
 
-	private ArrayList<ProposedDate> events;
-	private ArrayList<EventNotification> eventNot;
+	private ArrayList<ProposedDate> events; // INVARIANT: not null
+	private ArrayList<EventNotification> eventNot; // INVARIANT: not null
 
 	/**
 	 * Constructor which requires four arguments
 	 * 
 	 * @param firstName
-	 *            (!= null)
 	 *            the first name of the member
 	 * @param lastName
-	 *            (!= null)
 	 *            the last name of the member
 	 * @param instrument
-	 *            (!= null)
 	 *            the instrument of the member
 	 * @param telephoneNumber
-	 *            (!= null)
 	 *            the telephone number of the member
+	 * 
+	 * PRECONDITION: none of the parameter are null
 	 */
 	@Deprecated
 	public Member(final String firstName, final String lastName, final String instrument, final String telephoneNumber) {
@@ -59,21 +59,19 @@ public class Member extends Person {
 	 * Constructor which requires four arguments
 	 * 
 	 * @param firstName
-	 *            (!= null)
 	 *            the first name of the member
 	 * @param lastName
-	 *            (!= null)
 	 *            the last name of the member
 	 * @param instrument
-	 *            (!= null)
 	 *            the instrument of the member
 	 * @param telephoneNumber
-	 *            (!= null)
-	 *            the telephone number of the membe
+	 *            the telephone number of the member
 	 * @param substituteMember
 	 *            the substitute status of the member
 	 *            true - member is a substitute member
 	 *            false - otherwise
+	 *            
+	 * PRECONDITION: none of the parameter are null
 	 */
 	public Member(final String firstName, final String lastName, final String instrument, final String telephoneNumber,
 			final boolean substituteMember) {
@@ -97,11 +95,12 @@ public class Member extends Person {
 	 * adds a new band to the member
 	 * 
 	 * @param bnd
-	 *            (!= null)
 	 *            a band the member is in
-	 *            the member shouldn't be already in this band
 	 * @throws InvalidBandObjectException
 	 *             if the member is already in this band
+	 *             
+	 * PRECONDITION: bnd is not null
+	 * PRECONDITION: the member should not already be in this band
 	 */
 	public void addBand(Band bnd) throws InvalidBandObjectException {
 
@@ -113,11 +112,12 @@ public class Member extends Person {
 	 * Adds a new proposed date for an event.
 	 * 
 	 * @param pd
-	 *            (!= null)
 	 *            a time proposal for an event
-	 *            the member should not get the proposal two times
 	 * @throws InvalidBandObjectException
 	 *             if the date was already proposed to this member
+	 *             
+	 * PRECONDITION: pd is not null
+	 * PRECONDITION: do not add the same proposal more than one time
 	 */
 	public void addProposedDate(final ProposedDate pd) throws InvalidBandObjectException {
 
@@ -133,9 +133,10 @@ public class Member extends Person {
 	 * Adds a Rehearsal the Member attended;
 	 * 
 	 * @param re
-	 *            (!= null)
 	 *            a Rehearsal
-	 *            every rehearsal should only be added once
+	 *            
+	 * PRECONDITION: re is not null
+	 * PRECONDITION: only add the rehearsal once
 	 */
 	public void addRehersal(Rehearsal re) {
 
@@ -156,6 +157,9 @@ public class Member extends Person {
 	 *             if the Member already knows the track
 	 * @throws InvalidDateException
 	 *             if the track is added at a date the track already was in the track list of the band
+	 *             
+	 * PRECONDITION:tr and d are not null
+	 * PRECONDITION:a track could only be added another time if he was deleted before
 	 */
 	public void addTrack(final Track tr, Date d) throws InvalidDateException, InvalidBandObjectException {
 
@@ -174,14 +178,15 @@ public class Member extends Person {
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
 	 * @param e
-	 *            (!= null)
 	 *            event you want to agree or disagree
 	 * @param agreed
 	 *            agree or disagree to the proposed date true - agree false - disagree
 	 * @param date
-	 *            (!= null)
 	 * @throws InvalidBandObjectException
 	 *             if the event is not in the event list of the member
+	 *             
+	 * PRECONDITION: none of the parameters are null
+	 * PRECONDITION: you can only agree to an event you already added with addProposedDate
 	 */
 	public void agree(final Event e, final Date date, final boolean agreed) throws InvalidBandObjectException {
 
@@ -206,6 +211,9 @@ public class Member extends Person {
 	 *            false - disagree
 	 * @throws InvalidBandObjectException
 	 *             if the event is not in the event list of the member
+	 * 
+	 * PRECONDITION: none of the arguments are null
+	 * PRECONDITION: you can only agree to an event you already added with addProposedDate
 	 */
 	public void agree(final Event e, final Date date, final String reason, final boolean agreed)
 			throws InvalidBandObjectException {
@@ -220,7 +228,6 @@ public class Member extends Person {
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
 	 * @param e
-	 *            (!= null)
 	 *            proposed date you want to agree or disagree
 	 * @param agreed
 	 *            agree or disagree to the proposed date
@@ -228,6 +235,9 @@ public class Member extends Person {
 	 *            false - disagree
 	 * @throws InvalidBandObjectException
 	 *             if the event is not in the event list of the member
+	 *             
+	 * PRECONDITION: none of the arguments are null
+	 * PRECONDITION: you can only agree to a proposed date you already added with addProposedDate
 	 */
 	public void agree(ProposedDate e, boolean agreed) throws InvalidBandObjectException {
 
@@ -240,7 +250,6 @@ public class Member extends Person {
 	 * This method is used to agree/disagree to a proposed Date.
 	 * 
 	 * @param e
-	 *            (!= null)
 	 *            proposed date you want to agree or disagree
 	 * @param reason
 	 *            the reason you have agreed or disagreed
@@ -250,6 +259,9 @@ public class Member extends Person {
 	 *            false - disagree
 	 * @throws InvalidBandObjectException
 	 *             if the event is not in the event list of the member
+	 *             
+	 * PRECONDITION: none of the arguments are null
+	 * PRECONDITION: you can only agree to a proposed date you already added with addProposedDate
 	 */
 	public void agree(ProposedDate e, final String reason, final boolean agreed) throws InvalidBandObjectException {
 
@@ -322,6 +334,8 @@ public class Member extends Person {
 	 *            true - all notifications
 	 *            false - only unread notifications
 	 * @return the notifications of the member
+	 * 
+	 * POSTCONDITION:you always get a ArrayList even if there are no notifications
 	 */
 	public ArrayList<EventNotification> getNotifications(boolean all) {
 
@@ -337,6 +351,8 @@ public class Member extends Person {
 
 	/**
 	 * @return the permissions-hashmap
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
 	 */
 	@Override
 	public HashMap<Method, ArrayList<Permission>> getPermissions() {
@@ -346,6 +362,8 @@ public class Member extends Person {
 
 	/**
 	 * @return the date proposals of the member
+	 * 
+	 * POSTCONDITION: you always get a ArrayList even if there are no date proposals
 	 */
 	public ArrayList<ProposedDate> getProposedDates() {
 
@@ -354,6 +372,8 @@ public class Member extends Person {
 
 	/**
 	 * @return the rehearsals the member attended
+	 * 
+	 * POSTCONDITION: you always get a ArrayList even if the member attended no rehearsals
 	 */
 	public ArrayList<Rehearsal> getRehearsals() {
 
@@ -362,6 +382,8 @@ public class Member extends Person {
 
 	/**
 	 * @return a list of rehearsals the Member attended
+	 * 
+	 * POSTCONDITION: you always get a ArrayList even if the member attended no rehearsals
 	 */
 	public ArrayList<Rehearsal> getRehersal() {
 
@@ -371,6 +393,8 @@ public class Member extends Person {
 
 	/**
 	 * @return the roles-hashmap
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
 	 */
 	@Override
 	public HashMap<Authenticatable, Permission> getRoles() {
@@ -380,6 +404,8 @@ public class Member extends Person {
 
 	/**
 	 * @return the repertoire of the member
+	 * 
+	 * POSTCONDITION: you always get a ArrayList even if the member has no tracks
 	 */
 	public ArrayList<Track> getTracks() {
 
@@ -406,6 +432,8 @@ public class Member extends Person {
 
 	/**
 	 * initializes the permissions for each method of the class; this method should be called in the constructor
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
 	 */
 	@Override
 	public void initPermissions() {
@@ -488,6 +516,8 @@ public class Member extends Person {
 	 *            the status of the event
 	 * @throws InvalidBandObjectException
 	 *             if the member was already notified about the event
+	 *             
+	 * PRECONDITION: none of the parameters are null
 	 */
 	public void notifyEvent(final Event e, final Status stat) throws InvalidBandObjectException {
 
@@ -509,6 +539,9 @@ public class Member extends Person {
 	 *             if the track does not exist
 	 * @throws InvalidDateException
 	 *             if the track is removed before is was added
+	 *             
+	 * PRECONDITION: none of the parameters are null
+	 * PRECONDITION: the member must know the track
 	 */
 	public void removeTrack(final Track tr, Date d) throws InvalidBandObjectException, InvalidDateException {
 

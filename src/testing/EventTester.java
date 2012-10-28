@@ -18,19 +18,31 @@ import band.Rehearsal;
  * test class for event requirements
  * 
  * @author OOP Gruppe 187
+ *         NOTE: this class inherits all pre- and postconditions the interface Tester has
+ *         GOOD: there are no additional pre- or postconditions in any of the methods inherited
+ *         from the interface
+ *         BAD: duplicate code common to all other Tester-classes in the print()-methods
  */
 public class EventTester implements Tester {
 
 	private static final String moduleName = "EventHistory";
 
-	// number of successful/failed tests
+	// NOTE: number of successful/failed tests
 	private Integer successfulTests;
 	private Integer overallTests;
 
-	// the test case numbers of all failed tests
+	// NOTE: the test case numbers of all failed tests
 	private ArrayList<Integer> failedTestNumbers;
 
 	private HashMap<Integer, String> testCases;
+
+	/*
+	 * POSTCONDITION: all test cases which are references in runTests() have been
+	 * added to testCases
+	 * POSTCONDITION: the number of successfulTests is set to 0
+	 * POSTCONDITION: the Validator-class knows the total number of test cases in this
+	 * module
+	 */
 
 	public EventTester() {
 
@@ -78,10 +90,15 @@ public class EventTester implements Tester {
 	/*
 	 * deprecation suppression is only used to ignore the warning of the methods we declared deprecated ourselves due to
 	 * the enhancements made in assignment #2
-	 * 
 	 * (non-Javadoc)
-	 * 
 	 * @see testing.Tester#runTests()
+	 * 
+	 * 
+	 * NOTE: as this class it meant to check all existing contracts of the class it's meant
+	 * to test, there are no further details on the pre- and post-conditions provided
+	 * here; these are explained in the respective classes themselves
+	 * 
+	 * 
 	 */
 	@SuppressWarnings("deprecation")
 	@Override
@@ -90,10 +107,10 @@ public class EventTester implements Tester {
 		SimpleDateFormat formatTime = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		SimpleDateFormat formatDate = new SimpleDateFormat("dd.MM.yyyy");
 
-		// Create all the necessary members, tracks, events, ...
+		// NOTE: Create all the necessary members, tracks, events, ...
 		Band ultraCoders = new Band("Ultra Coders", "Rock");
 
-		// init variables which throw exceptions
+		// NOTE: init variables which throw exceptions
 		Gig novarock2010 = null, novarock2011 = null, novarock2012 = null, case02 = null, case01 = null;
 		Rehearsal postNova2010 = null, postNova2011 = null;
 
@@ -113,10 +130,11 @@ public class EventTester implements Tester {
 		}
 
 		/*
+		 * NOTE:
 		 * All variables needed for validation of test cases
 		 */
 
-		// used in cases: 24, 28, 29
+		// NOTE: used in cases: 24, 28, 29
 		ArrayList<Event> allEvents = new ArrayList<Event>();
 		allEvents.add(novarock2010);
 		allEvents.add(novarock2011);
@@ -132,8 +150,8 @@ public class EventTester implements Tester {
 			ultraCoders.addEvent(postNova2011);
 
 			/*
+			 * NOTE:
 			 * Test Case #1 Change the details of an event
-			 * 
 			 * should be: case01
 			 */
 
@@ -148,8 +166,8 @@ public class EventTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * Test case #2 Revert the changes made to an event
-			 * 
 			 * should be: case02
 			 */
 
@@ -163,8 +181,8 @@ public class EventTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * Test case #3 Try to edit an event with a invalid changeDate
-			 * 
 			 * should: throw exception
 			 */
 
@@ -178,8 +196,8 @@ public class EventTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * Test case #4 restore non existant Event
-			 * 
 			 * should: throw exception
 			 */
 
@@ -193,8 +211,8 @@ public class EventTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * Test case #5 remove and restore an event
-			 * 
 			 * should: restore the event
 			 */
 			ultraCoders.removeEvent(novarock2010, formatDate.parse("17.10.2012"));

@@ -24,20 +24,32 @@ import band.Track;
  * test-class for member requirements
  * 
  * @author OOP Gruppe 187
+ *         NOTE: this class inherits all pre- and postconditions the interface Tester has
+ *         GOOD: there are no additional pre- or postconditions in any of the methods inherited
+ *         from the interface
+ *         BAD: duplicate code common to all other Tester-classes in the print()-methods
  */
 public class MemberTester implements Tester {
 
 	private static final String moduleName = "Member";
 
-	// number of successful/failed tests
+	// NOTE: number of successful/failed tests
 	private Integer successfulTests;
 	private Integer overallTests;
 
-	// the test case numbers of all failed tests
+	// NOTE: the test case numbers of all failed tests
 	private ArrayList<Integer> failedTestNumbers;
 
 	private HashMap<Integer, String> testCases;
-
+	
+	/*
+	 * POSTCONDITION: all test cases which are references in runTests() have been
+	 * added to testCases
+	 * POSTCONDITION: the number of successfulTests is set to 0
+	 * POSTCONDITION: the Validator-class knows the total number of test cases in this
+	 * module
+	 */
+	
 	public MemberTester() {
 
 		this.successfulTests = 0;
@@ -105,16 +117,23 @@ public class MemberTester implements Tester {
 	 * (non-Javadoc)
 	 * 
 	 * @see testing.Tester#runTests()
+	 * 
+	 * 
+	 * NOTE: as this class it meant to check all existing contracts of the class it's meant
+	 * to test, there are no further details on the pre- and post-conditions provided
+	 * here; these are explained in the respective classes themselves
+	 * 
+	 *
 	 */
 	// @SuppressWarnings("deprecation")
 	@Override
 	public void runTests() {
 
-		// Stuff needed for date parsing
+		// NOTE: Stuff needed for date parsing
 		SimpleDateFormat formatTime = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		SimpleDateFormat formatDate = new SimpleDateFormat("dd.MM.yyyy");
 
-		// Create all the necessary members, tracks, events, ...
+		// NOTE: Create all the necessary members, tracks, events, ...
 		Band ultraCoders = new Band("Ultra Coders", "Rock");
 
 		ArrayList<Class<? extends Event>> allTypes = new ArrayList<Class<? extends Event>>();
@@ -140,7 +159,7 @@ public class MemberTester implements Tester {
 		Track byob = new Track("B.Y.O.B.", 256);
 		Track myCurse = new Track("My Curse", 245);
 
-		// init variables which throw exceptions
+		// NOTE: init variables which throw exceptions
 		Gig novarock2010 = null, novarock2011 = null, novarock2012 = null;
 		Rehearsal postNova2010 = null, postNova2011 = null;
 
@@ -161,7 +180,7 @@ public class MemberTester implements Tester {
 			System.out.println("Date parsing failed");
 		}
 
-		// used in cases: 2, 11, 14
+		// NOTE: used in cases: 2, 11, 14
 		ArrayList<Track> allTracks = new ArrayList<Track>();
 		allTracks.add(thunderstruck);
 		allTracks.add(stairway);
@@ -170,7 +189,7 @@ public class MemberTester implements Tester {
 		allTracks.add(byob);
 		allTracks.add(myCurse);
 
-		// used in cases: 1, 18
+		// NOTE: used in cases: 1, 18
 		ArrayList<Member> allMembers = new ArrayList<Member>();
 		allMembers.add(markus);
 		allMembers.add(thomas);
@@ -178,28 +197,29 @@ public class MemberTester implements Tester {
 		allMembers.add(dominic);
 		allMembers.add(jane);
 
-		// used in cases: 3
+		// NOTE: used in cases: 3
 		ArrayList<Member> allSubstitute = new ArrayList<Member>();
 		allSubstitute.add(jens);
 		allSubstitute.add(jane);
 
-		// used in cases: 4, 21
+		// NOTE: used in cases: 4, 21
 		ArrayList<Member> allNonSubstitute = new ArrayList<Member>();
 		allNonSubstitute.add(markus);
 		allNonSubstitute.add(thomas);
 		allNonSubstitute.add(dominic);
 
-		// used in cases: 7, 13
+		// NOTE: used in cases: 7, 13
 		ArrayList<Track> tracksNobyob = new ArrayList<Track>();
 		tracksNobyob.addAll(allTracks);
 		tracksNobyob.remove(byob);
 
-		// used in cases: 12
+		// NOTE: used in cases: 12
 		ArrayList<Track> someTracks = new ArrayList<Track>();
 		someTracks.add(thunderstruck);
 		someTracks.add(stairway);
 		someTracks.add(prayer);
 
+		//NOTE: used in case 15
 		ArrayList<EventNotification> case15 = new ArrayList<EventNotification>();
 		case15.add(new EventNotification(postNova2011, Status.scheduled));
 		case15.add(new EventNotification(novarock2010, Status.scheduled));
@@ -208,7 +228,7 @@ public class MemberTester implements Tester {
 		case15.add(new EventNotification(novarock2012, Status.scheduled));
 		case15.add(new EventNotification(postNova2011, Status.deferred));
 
-		// used in case: 16
+		// NOTE: used in case: 16
 		ArrayList<ProposedDate> propd = new ArrayList<ProposedDate>();
 		try {
 			propd.add(new ProposedDate(novarock2010, formatTime.parse("15.08.2010 20:00")));
@@ -222,6 +242,7 @@ public class MemberTester implements Tester {
 		try {
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #1 Add some valid members to band
 			 * 
@@ -242,6 +263,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #2 Gets the tracklist to a time at which all tracks were present
 			 * 
@@ -264,6 +286,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #3 get all substitute member
 			 * 
@@ -277,6 +300,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #4 get all permanent member
 			 * 
@@ -290,6 +314,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #5 Add a track which already exists
 			 * 
@@ -307,6 +332,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #6 Try to remove a track before it was added
 			 * 
@@ -324,6 +350,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #7 Remove a valid track
 			 * 
@@ -339,6 +366,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #8 Remove a track which doesn't exist
 			 * 
@@ -356,6 +384,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #9 Add a track before its last removal date
 			 * 
@@ -373,6 +402,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #10 Add a valid track for the second time
 			 * 
@@ -390,6 +420,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #11 Gets the tracklist to a time at which all tracks were present
 			 * 
@@ -404,6 +435,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #12 Gets the tracklist to a time at which some tracks were present
 			 * 
@@ -418,6 +450,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #13 Gets the tracklist to a time at which one track was removed
 			 * 
@@ -432,6 +465,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #14 Gets the tracklist to a time at which the removed track was added again
 			 */
@@ -444,6 +478,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #15 Gets the event notifications from one member.
 			 */
@@ -463,6 +498,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #16 make some date proposals to a member
 			 */
@@ -479,6 +515,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #17 accept/decline some date proposals
 			 */
@@ -500,6 +537,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #18 get members from event
 			 */
@@ -512,6 +550,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #19 change member to substitute
 			 */
@@ -525,6 +564,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #20 get all substitute member
 			 */
@@ -537,6 +577,7 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
 			 * 
 			 * Test Case #21 get all non substitute member
 			 */
@@ -551,6 +592,8 @@ public class MemberTester implements Tester {
 			}
 
 			/*
+			 * NOTE:
+			 * 
 			 * Test Case #22 get all not blocked member
 			 */
 

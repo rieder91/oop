@@ -7,11 +7,13 @@ import band.Event;
  * contains all the information for a single event notification
  * 
  * @author OOP Gruppe 187
+ * 
+ * GOOD: the class name
  */
 public class EventNotification {
 
-	private final Event e;
-	private final Status status;
+	private final Event e; // INVARIANT: not null
+	private final Status status; // INVARIANT: not null
 	private boolean notified;
 
 	/**
@@ -20,6 +22,8 @@ public class EventNotification {
 	 *            event to be notified
 	 * @param status
 	 *            status of the event
+	 *            
+	 * PRECONDITION: none of the parameter are null
 	 */
 	public EventNotification(final Event e, final Status status) {
 
