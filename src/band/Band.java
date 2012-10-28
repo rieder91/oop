@@ -23,34 +23,45 @@ import finances.Finances.FinanceTypes;
  * within a given time frame.
  * 
  * @author OOP Gruppe 187
+ * 
+ * GOOD: the name of the class
+ * 
+ * BAD: the class depends rather heavily on Event, Member and Track; 
+ *      a more generic implementation would have been nice and easier
+ *      to expand in the future (this actually was one of the points of
+ *      the 2nd assignment which he had to drop due to time constraints)
+ *      
+ * NOTE: this class inherits all pre- and postconditions the interface 
+ *       Authenticatable has
+ *      
  */
 public class Band implements Authenticatable {
 
-	// global band information
+	// NOTE: global band information
 	private String name;
 	private String genre;
 
-	// contain the current information
+	// NOTE: contain the current information
 	private ArrayList<Event> events;
 	private ArrayList<Member> members;
 	private ArrayList<Track> tracks;
 
-	// History of deletedEvents
+	// NOTE: History of deletedEvents
 	private HashMap<Event, ArrayList<Date>> previousEvents;
 
-	// contain the "join dates"
+	// NOTE: contain the "join dates"
 	private HashMap<Member, ArrayList<Date>> memberDates;
 	private HashMap<Track, ArrayList<Date>> trackDates;
 
-	// contain the "leave dates"
+	// NOTE: contain the "leave dates"
 	private HashMap<Member, ArrayList<Date>> previousMembers;
 	private HashMap<Track, ArrayList<Date>> previousTracks;
 
-	// authentication stuff
+	// NOTE: authentication stuff
 	HashMap<Method, ArrayList<Permission>> permissions;
 	HashMap<Authenticatable, Permission> roles;
 
-	// finance handling
+	// NOTE: finance handling
 	private Finances finances;
 
 	/**
@@ -100,7 +111,7 @@ public class Band implements Authenticatable {
 
 			ArrayList<Member> alm = new ArrayList<Member>();
 			for (Member m : this.members) {
-				// if ((e instanceof Event)&&)
+				// NOTE: if ((e instanceof Event)&&)
 				alm.add(m);
 			}
 			e.setMember(alm);
@@ -153,7 +164,7 @@ public class Band implements Authenticatable {
 
 		if (!this.members.contains(m)) {
 			if (this.memberDates.containsKey(m)) {
-				// the member has already been part of the band once before
+				// NOTE: the member has already been part of the band once before
 				// date
 				final ArrayList<Date> history = this.previousMembers.get(m);
 				final Date leaveDate = history.get(history.size() - 1);
@@ -237,7 +248,7 @@ public class Band implements Authenticatable {
 		}
 
 		this.tracks = al;
-		// else throw new InvalidBandObjectException("track already exists");
+		// NOTE:  else throw new InvalidBandObjectException("track already exists");
 
 	}
 
@@ -247,6 +258,8 @@ public class Band implements Authenticatable {
 	 * @param p
 	 *            permissions that the caller possesses
 	 * @return true if the method m can be invoked with the permissions p
+	 * 
+	 * PRECONDITION: permissions does in fact contain the permission for each method
 	 */
 	@Override
 	public boolean allowedMethod(final Method m, final Permission p) {
@@ -558,7 +571,7 @@ public class Band implements Authenticatable {
 				}
 			}
 
-			// if he left the group, get the "leave-date" after the
+			// NOTE: if he left the group, get the "leave-date" after the
 			// lastValidDate
 			if (lastValidDate != null && this.previousMembers.containsKey(m)) {
 				for (final Date leaveDate : this.previousMembers.get(m)) {
@@ -606,7 +619,13 @@ public class Band implements Authenticatable {
 		}
 		return memlist;
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see auth.Authenticatable#getPermissions()
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
+	 */
 	@Override
 	public HashMap<Method, ArrayList<Permission>> getPermissions() {
 
@@ -619,6 +638,8 @@ public class Band implements Authenticatable {
 	 * @param auth
 	 *            auth-object
 	 * @return the permissions of the object
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
 	 */
 	@Override
 	public Permission getRole(final Authenticatable auth) {
@@ -630,7 +651,14 @@ public class Band implements Authenticatable {
 			return Permission.NONE;
 		}
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see auth.Authenticatable#getRoles()
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
+	 * 
+	 */
 	@Override
 	public HashMap<Authenticatable, Permission> getRoles() {
 
@@ -731,6 +759,8 @@ public class Band implements Authenticatable {
 
 	/**
 	 * initializes the permissions for each method of the class; this method should be called in the constructor
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
 	 */
 	@Override
 	public void initPermissions() {
@@ -738,7 +768,7 @@ public class Band implements Authenticatable {
 		this.permissions = new HashMap<Method, ArrayList<Permission>>();
 		this.roles = new HashMap<Authenticatable, Permission>();
 
-		// get all methods of the class; there is NO difference in the
+		// NOTE: get all methods of the class; there is NO difference in the
 		// permissions of methods with the same name but different arguments
 		final ArrayList<Method> methods = new ArrayList<Method>();
 		methods.addAll(Arrays.asList(this.getClass().getMethods()));
@@ -789,12 +819,12 @@ public class Band implements Authenticatable {
 				tPerm.add(Permission.WORLD);
 			}
 
-			// save the permissions and reset the temporary list
+			// NOTE: save the permissions and reset the temporary list
 			this.permissions.put(m, new ArrayList<Permission>(tPerm));
 			tPerm.clear();
 		}
 
-		// set the owner to THIS
+		// NOTE: set the owner to THIS
 		this.setRole(this, Permission.OWNER);
 	}
 
@@ -933,7 +963,7 @@ public class Band implements Authenticatable {
 			else {
 
 				if (this.previousTracks.containsKey(t)) {
-					// we need to add a new date to the history
+					// NOTE: we need to add a new date to the history
 					this.previousTracks.get(t).add(d);
 				}
 				else {
@@ -1004,6 +1034,9 @@ public class Band implements Authenticatable {
 	 *            auth-object
 	 * @param p
 	 *            target-permission
+	 *            
+	 * BAD: this method actually violates the inherited POSTCONDITION as Permissions
+	 * 		of a Band-object on itself could be set to NONE
 	 */
 	@Override
 	public void setRole(final Authenticatable auth, final Permission p) {

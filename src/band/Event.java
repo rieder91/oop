@@ -14,6 +14,7 @@ import auth.Authenticatable;
  * and Rehearsal
  * 
  * @author OOP Gruppe 187
+ * 
  */
 public abstract class Event implements Authenticatable {
 
@@ -24,7 +25,7 @@ public abstract class Event implements Authenticatable {
 	private HashMap<Date, Event> eventHistory;
 	private ArrayList<Member> attended;
 
-	// Authentication stuff
+	// NOTE: Authentication stuff
 	HashMap<Method, ArrayList<Permission>> permissions;
 	HashMap<Authenticatable, Permission> roles;
 
@@ -64,7 +65,8 @@ public abstract class Event implements Authenticatable {
 		this.eventHistory = new HashMap<Date, Event>();
 		this.permissions = new HashMap<Method, ArrayList<Permission>>();
 		this.roles = new HashMap<Authenticatable, Permission>();
-
+		
+		// NOTE: calls the child's initPermissions()
 		this.initPermissions();
 	}
 

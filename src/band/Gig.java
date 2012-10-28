@@ -14,6 +14,9 @@ import auth.Authenticatable;
  * Class that contains the pay of a gig. A gig is an event, the event information is stored in event.
  * 
  * @author OOP Gruppe 187
+ * 
+ * NOTE: this class inherits all pre- and postconditions the interface 
+ *       Authenticatable has
  */
 public class Gig extends Event {
 
@@ -136,6 +139,8 @@ public class Gig extends Event {
 
 	/**
 	 * @return a HashMap of methods and their permissions
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
 	 */
 	@Override
 	public HashMap<Method, ArrayList<Permission>> getPermissions() {
@@ -149,6 +154,8 @@ public class Gig extends Event {
 	 * @param auth
 	 *            auth-object
 	 * @return the permissions of the object
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
 	 */
 	@Override
 	public Permission getRole(Authenticatable auth) {
@@ -163,6 +170,8 @@ public class Gig extends Event {
 
 	/**
 	 * @return the HashMap of permissions
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
 	 */
 	@Override
 	public HashMap<Authenticatable, Permission> getRoles() {
@@ -172,6 +181,8 @@ public class Gig extends Event {
 
 	/**
 	 * initializes the permissions for each method of the class; this method should be called in the constructor
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
 	 */
 	@Override
 	public void initPermissions() {
@@ -228,6 +239,9 @@ public class Gig extends Event {
 	 *            auth-object
 	 * @param p
 	 *            target-permission
+	 *            
+	 * BAD: this method actually violates the inherited POSTCONDITION as Permissions
+	 * 		of a Band-object on itself could be set to NONE
 	 */
 	@Override
 	public void setRole(Authenticatable auth, Permission p) {

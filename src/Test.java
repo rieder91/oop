@@ -25,7 +25,12 @@ public class Test {
 	public static void main(String[] args) {
 
 		boolean verbose = false;
-
+		
+		/*
+		 * GOOD: dynamic binding makes the testing of new modules relatively easy
+		 * 		 and helps keep the main-class clean
+		 */
+		
 		ArrayList<Tester> testedModules = new ArrayList<Tester>();
 		testedModules.add(new AuthenticationTester());
 		testedModules.add(new BandTester());
@@ -38,11 +43,22 @@ public class Test {
 			if (verbose) {
 				t.printTestDescription();
 			}
+			/*
+			 * BAD: there is a unchecked history-constraint in each Tester:
+			 * 		if printTestResults() is executed before runTests() all tests
+			 * 	  	of the module are considered failed; also runTests() mustn't be
+			 * 		executed twice
+			 */
 			t.runTests();
 			t.printTestResults();
 		}
 
-		// Get Overview
+		/*
+		 * BAD: in the same way that there is an unchecked history-constraint in each
+		 *      class that implements the Tester-interface - Validator.report 
+		 *      has to be called after each Testing-module was run otherwise it will
+		 *      consider all tests failed
+		 */
 		Validator.report();
 	}
 }

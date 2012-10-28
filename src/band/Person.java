@@ -10,10 +10,17 @@ import auth.Authenticatable;
  * class which all human beings share; used to simplify permission management
  * 
  * @author OOP Gruppe 187
+ * 
+ * NOTE: this class inherits all pre- and postconditions the interface 
+ *       Authenticatable has
+ * 
+ * GOOD: this class create an abstraction layer for all humans and makes them
+ * 		 automatically Authenticatable; this makes it easy to implement another 
+ * 		 class like Manager or Fan
  */
 public abstract class Person implements Authenticatable {
 
-	// stuff needed for authentication
+	// NOTE: stuff needed for authentication
 	HashMap<Method, ArrayList<Permission>> permissions;
 	HashMap<Authenticatable, Permission> roles;
 
@@ -28,6 +35,8 @@ public abstract class Person implements Authenticatable {
 	 * @param p
 	 *            permissions that the caller possesses
 	 * @return true if the method m can be invoked with the permissions p
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
 	 */
 	@Override
 	public boolean allowedMethod(Method m, Permission p) {
@@ -44,6 +53,8 @@ public abstract class Person implements Authenticatable {
 	 * @param auth
 	 *            auth-object
 	 * @return the permissions of the object
+	 * 
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
 	 */
 	@Override
 	public Permission getRole(Authenticatable auth) {
@@ -69,12 +80,14 @@ public abstract class Person implements Authenticatable {
 	 *            auth-object
 	 * @param p
 	 *            target-permission
+	 *            
+	 * GOOD: the method doesn't violate it's inherited CONDITIONS
 	 */
 	@Override
 	public void setRole(Authenticatable auth, Permission p) {
 
 		if (this.roles.containsKey(auth) && auth.equals(this)) {
-			// don't overwrite the own OWNER-permission
+			// NOTE: don't overwrite the own OWNER-permission
 		}
 		else {
 			this.roles.put(auth, p);
