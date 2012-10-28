@@ -23,21 +23,36 @@ import band.Member;
 /**
  * testing class for the authentication requirements
  * 
+ * 
+ * NOTE: this class inherits all pre- and postconditions the interface Tester has
+ * 
+ * GOOD: there are no additional pre- or postconditions in any of the methods inherited
+ * 		 from the interface
+ * 
+ * BAD: duplicate code common to all other Tester-classes in the print()-methods
+ * 
  * @author OOP Gruppe 187
  */
 public class AuthenticationTester implements Tester {
 
 	private static final String moduleName = "Authentication";
 
-	// number of successful/failed tests
+	// NOTE: number of successful/failed tests
 	private Integer successfulTests;
 	private Integer overallTests;
 
-	// the test case numbers of all failed tests
+	// NOTE: the test case numbers of all failed tests
 	private ArrayList<Integer> failedTestNumbers;
 
 	private HashMap<Integer, String> testCases;
 
+	/*
+	 * POSTCONDITION: all test cases which are references in runTests() have been
+	 * 				  added to testCases
+	 * POSTCONDITION: the number of successfulTests is set to 0
+	 * POSTCONDITION: the Validator-class knows the total number of test cases in this
+	 * 				  module
+	 */
 	public AuthenticationTester() {
 
 		this.successfulTests = 0;
@@ -91,12 +106,18 @@ public class AuthenticationTester implements Tester {
 	}
 
 	/*
-	 * deprecation suppression is only used to ignore the warning of the methods we declared deprecated ourselves due to
+	 * NOTE: deprecation suppression is only used to ignore the warning of the methods we declared deprecated ourselves due to
 	 * the enhancements made in assignment #2
 	 * 
 	 * (non-Javadoc)
 	 * 
 	 * @see testing.Tester#runTests()
+	 * 
+	 * 
+	 * 
+	 * NOTE: as this class it meant to check all existing contracts of the class it's meant
+	 * 		 to test, there are no further details on the pre- and post-conditions provided
+	 * 		 here; these are explained in the respective classes themselves
 	 */
 	@SuppressWarnings("deprecation")
 	@Override
@@ -234,7 +255,6 @@ public class AuthenticationTester implements Tester {
 			this.failedTestNumbers.add(8);
 		}
 
-		// not really beautiful
 		Gig t = (Gig) tempBand.getEvents().get(0);
 
 		if (Validator.check(Permission.GROUP, t.getRole(thomas), 9)) {

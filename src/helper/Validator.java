@@ -8,6 +8,16 @@ import java.util.ArrayList;
  * Compared to static methods in the test-class itself, this class is more portable
  * 
  * @author OOP Gruppe 187
+ * 
+ * BAD: the name of the class should be changed to TestCaseManager as the class
+ * 		does in fact not run any test-cases itself; it only stores the results
+ * 		of all test-cases that are run in each Tester-class
+ * 
+ * BAD: there is a history-constraint that the report()-method shouldn't be called
+ * 		until all test-modules has been run(). this is not checked and the number of
+ * 		failed tests is actually false if report() is run prior to runTests()
+ * 
+ * GOOD: low object coupling because of generic methods
  */
 public class Validator {
 
@@ -19,6 +29,8 @@ public class Validator {
 	 * 
 	 * @param n
 	 *            count of test cases
+	 *            
+	 * PRECONDITION: the number of tests is positive
 	 */
 	public static void addTests(Integer n) {
 
@@ -35,6 +47,8 @@ public class Validator {
 	 * @param caseNum
 	 *            number of the test case
 	 * @return true of the params are equal
+	 * 
+	 * PRECONDITION: the type T implements a valid equals()-method
 	 */
 	public static <T> boolean check(ArrayList<T> a, ArrayList<T> b, Integer caseNum) {
 
@@ -53,6 +67,11 @@ public class Validator {
 	 * @param caseNum
 	 *            number of the test case
 	 * @return true of the params are equal
+	 * 
+	 * PRECONDITION: the type T implements a valid equals()-method
+	 * 
+	 * BAD: it would be good if a POSTCONDITION were that the successfulCount
+	 * 	 	would never be higher than the overall count
 	 */
 	public static <T> boolean check(T a, T b, Integer caseNum) {
 
@@ -67,6 +86,8 @@ public class Validator {
 
 	/**
 	 * prints the test-case overview to stdout
+	 * 
+	 * NOTE: history-constraint: see class description
 	 */
 	public static void report() {
 
@@ -77,6 +98,9 @@ public class Validator {
 	/**
 	 * @param status
 	 *            true if successful test; false otherwise
+	 *            
+	 * BAD: it would be good if a POSTCONDITION were that the successfulCount
+	 * 	 	would never be higher than the overall count
 	 */
 	public static void report(boolean status) {
 

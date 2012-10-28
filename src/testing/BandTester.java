@@ -20,6 +20,16 @@ import band.Track;
  * This class was refactored from the previous Main() test class for band requirements
  * 
  * @author OOP Gruppe 187
+ * 
+ * 
+ * NOTE: this class inherits all pre- and postconditions the interface Tester has
+ * 
+ * GOOD: there are no additional pre- or postconditions in any of the methods inherited
+ * 		 from the interface
+ * 
+ * BAD: duplicate code common to all other Tester-classes in the print()-methods
+ * 
+ * 
  */
 public class BandTester implements Tester {
 
@@ -34,6 +44,14 @@ public class BandTester implements Tester {
 
 	private HashMap<Integer, String> testCases;
 
+	
+	/*
+	 * POSTCONDITION: all test cases which are references in runTests() have been
+	 * 				  added to testCases
+	 * POSTCONDITION: the number of successfulTests is set to 0
+	 * POSTCONDITION: the Validator-class knows the total number of test cases in this
+	 * 				  module
+	 */
 	public BandTester() {
 
 		this.successfulTests = 0;
@@ -105,16 +123,24 @@ public class BandTester implements Tester {
 	 * (non-Javadoc)
 	 * 
 	 * @see testing.Tester#runTests()
+	 * 
+	 * 
+	 * 
+	 * NOTE: as this class it meant to check all existing contracts of the class it's meant
+	 * 		 to test, there are no further details on the pre- and post-conditions provided
+	 * 		 here; these are explained in the respective classes themselves
+	 * 
+	 * 
 	 */
 	@SuppressWarnings("deprecation")
 	@Override
 	public void runTests() {
 
-		// Stuff needed for date parsing
+		// NOTE: Stuff needed for date parsing
 		SimpleDateFormat formatTime = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		SimpleDateFormat formatDate = new SimpleDateFormat("dd.MM.yyyy");
 
-		// Create all the necessary members, tracks, events, ...
+		// NOTE: Create all the necessary members, tracks, events, ...
 		Band ultraCoders = new Band("Ultra Coders", "Rock");
 
 		ArrayList<Class<? extends Event>> allTypes = new ArrayList<Class<? extends Event>>();
@@ -142,7 +168,7 @@ public class BandTester implements Tester {
 		Track byob = new Track("B.Y.O.B.", 256);
 		Track myCurse = new Track("My Curse", 245);
 
-		// init variables which throw exceptions
+		// NOTE: init variables which throw exceptions
 		Gig novarock2010 = null, novarock2011 = null, novarock2012 = null;
 		Rehearsal postNova2010 = null, postNova2011 = null;
 
@@ -158,7 +184,7 @@ public class BandTester implements Tester {
 			System.out.println("Date parsing failed");
 		}
 
-		// used in cases: 13, 19, 20, 23
+		// NOTE: used in cases: 13, 19, 20, 23
 		ArrayList<Track> allTracks = new ArrayList<Track>();
 		allTracks.add(thunderstruck);
 		allTracks.add(stairway);
@@ -167,18 +193,18 @@ public class BandTester implements Tester {
 		allTracks.add(byob);
 		allTracks.add(myCurse);
 
-		// used in cases: 16, 22
+		// NOTE: used in cases: 16, 22
 		ArrayList<Track> tracksNoCurse = new ArrayList<Track>();
 		tracksNoCurse.addAll(allTracks);
 		tracksNoCurse.remove(myCurse);
 
-		// used in cases: 21
+		// NOTE: used in cases: 21
 		ArrayList<Track> someTracks = new ArrayList<Track>();
 		someTracks.add(thunderstruck);
 		someTracks.add(stairway);
 		someTracks.add(prayer);
 
-		// used in cases: 1, 5, 6, 8
+		// NOTE: used in cases: 1, 5, 6, 8
 		ArrayList<Member> allMembers = new ArrayList<Member>();
 		allMembers.add(markus);
 		allMembers.add(thomas);
@@ -186,12 +212,12 @@ public class BandTester implements Tester {
 		allMembers.add(dominic);
 		allMembers.add(jane);
 
-		// used in cases: 3, 7, 11
+		// NOTE: used in cases: 3, 7, 11
 		ArrayList<Member> membersNoTom = new ArrayList<Member>();
 		membersNoTom.addAll(allMembers);
 		membersNoTom.remove(thomas);
 
-		// used in cases: 24, 28, 29
+		// NOTE:  used in cases: 24, 28, 29
 		ArrayList<Event> allEvents = new ArrayList<Event>();
 		allEvents.add(novarock2010);
 		allEvents.add(novarock2011);
@@ -199,29 +225,29 @@ public class BandTester implements Tester {
 		allEvents.add(postNova2010);
 		allEvents.add(postNova2011);
 
-		// used in cases: 26
+		// NOTE: used in cases: 26
 		ArrayList<Event> eventsNo2010 = new ArrayList<Event>();
 		eventsNo2010.addAll(allEvents);
 		eventsNo2010.remove(novarock2010);
 
-		// used in cases: 31
+		// NOTE: used in cases: 31
 		ArrayList<Event> gigEventsOnly = new ArrayList<Event>();
 		gigEventsOnly.add(novarock2010);
 		gigEventsOnly.add(novarock2011);
 		gigEventsOnly.add(novarock2012);
 
-		// used in cases: 32
+		// NOTE: used in cases: 32
 		ArrayList<Event> rehearsalEventsOnly = new ArrayList<Event>();
 		rehearsalEventsOnly.add(postNova2010);
 		rehearsalEventsOnly.add(postNova2011);
 
-		// used in cases: 30
+		// NOTE: used in cases: 30
 		ArrayList<Event> someEvents = new ArrayList<Event>();
 		someEvents.add(novarock2010);
 		someEvents.add(novarock2011);
 		someEvents.add(postNova2010);
 
-		// used in cases: 34, 35, 36, 37 (DUH!)
+		// NOTE: used in cases: 34, 35, 36, 37 (DUH!)
 		BigDecimal case34, case35, case36, case37;
 		case34 = new BigDecimal(16400);
 		case35 = new BigDecimal(17500);
@@ -230,7 +256,7 @@ public class BandTester implements Tester {
 
 		try {
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #1 Add several valid members
 			 * 
 			 * should be: thomas, markus, dominic, jens, jane
@@ -250,7 +276,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #2 Try to remove a member with an invalid date
 			 * 
 			 * should: throw exception
@@ -268,7 +294,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #3 Remove a member with a valid date
 			 * 
 			 * should be: markus, dominic, jens, jane
@@ -284,7 +310,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #4 Try to add a member with an invalid date
 			 * 
 			 * should: throw exception
@@ -302,7 +328,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #5 Try to add the same member for the second time
 			 * 
 			 * should be: thomas, markus, dominic, jens, jane
@@ -324,7 +350,7 @@ public class BandTester implements Tester {
 				}
 			}
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #6 Get all members before one was removed
 			 * 
 			 * should be: thomas, markus, dominic, jane, joe
@@ -338,10 +364,9 @@ public class BandTester implements Tester {
 				this.failedTestNumbers.add(6);
 			}
 
-			// Should be:
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #7 Get all members after one was removed
 			 * 
 			 * should be: markus, dominic, jane, joe
@@ -356,7 +381,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #8 Get all members after one was removed and added again
 			 * 
 			 * Should be: thomas, markus, dominic, jane, joe
@@ -371,7 +396,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #9 Try to add a member which already exists
 			 * 
 			 * should: throw exception
@@ -389,7 +414,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #10 Try to remove a member before it joined the band
 			 * 
 			 * should: throw exception
@@ -407,7 +432,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #11 Remove a valid member for the second time
 			 * 
 			 * should be: thomas, markus, dominic, jane, joe
@@ -423,7 +448,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #12 Try to remove a member which doesnt exist
 			 * 
 			 * should: throw exception
@@ -441,7 +466,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #13 Adds several valid events
 			 * 
 			 * should be: novarock2010, novarock2011, novarock2012, postnova2010, postnova2011
@@ -462,7 +487,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #14 Try to add an event which already exists
 			 * 
 			 * should: throw exception
@@ -480,7 +505,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #15 Try to remove a valid event
 			 * 
 			 * should be: novarock2011, novarock2012, postnova2010, postnova2011
@@ -496,7 +521,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #16 Try to remove an event which doesnt exist
 			 * 
 			 * should: throw exception
@@ -513,7 +538,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #17 Try to add an event which was removed before
 			 * 
 			 * should be: novarock2010, novarock2011, novarock2012, postnova2010, postnova2011
@@ -528,10 +553,9 @@ public class BandTester implements Tester {
 				this.failedTestNumbers.add(17);
 			}
 
-			// Check if add was successful
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #18 Get ALL events
 			 * 
 			 * should be: novarock2010, novarock2011, novarock2012, postnovarock2010, postnovarock2011
@@ -548,7 +572,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #19 Get a subset of all events
 			 * 
 			 * should be: novarock2010, novarock2011, postnovarock2010
@@ -565,7 +589,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #20 Get the gigs only
 			 * 
 			 * should be: novarock2010, novarock2011, novarock2012
@@ -582,7 +606,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #21 Get the rehearsals only
 			 * 
 			 * should be: postnovarock2010, postnovarock2011
@@ -598,7 +622,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #22 Get no events at all; check for handling of empty ArrayList-param
 			 * 
 			 * should be: empty
@@ -615,7 +639,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #23 Get the billing over the entire time period
 			 * 
 			 * should be: 16400
@@ -632,7 +656,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #24 Get the billing over the entire time period of gigs only
 			 * 
 			 * should be: 17500
@@ -648,7 +672,7 @@ public class BandTester implements Tester {
 				this.failedTestNumbers.add(24);
 			}
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #25 Get the billing over the entire time period of rehearsals only
 			 * 
 			 * should be: -1100
@@ -664,7 +688,7 @@ public class BandTester implements Tester {
 			}
 
 			/*
-			 * 
+			 * NOTE: 
 			 * Test Case #26 Get the billing over no events; check for handling of empty ArrayList-param
 			 * 
 			 * should be: 0
