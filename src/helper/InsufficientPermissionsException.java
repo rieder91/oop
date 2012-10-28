@@ -5,6 +5,9 @@ package helper;
  * This exception is thrown if someone tries to invoke a method with insufficient privileges
  * 
  * @author OOP Gruppe 187
+ * 
+ * GOOD: name of the class
+ * GOOD: low object coupling (obviously - it's an exception after all)
  */
 public class InsufficientPermissionsException extends Exception {
 
