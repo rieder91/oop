@@ -10,6 +10,10 @@ import java.util.TreeMap;
  * This class stores information for any kind of income and expense. It is used in the FinanceHandler class.
  * 
  * @author OOP Gruppe 187
+ * 
+ * GOOD: Names describe variables and methods well.
+ * 
+ * BAD: Due to only public and getter-methods every variable is visible.
  */
 public class Finances {
 

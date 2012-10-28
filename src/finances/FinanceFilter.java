@@ -8,6 +8,9 @@ import java.util.Date;
  * This class implements a filter for enhanced search in finances.
  * 
  * @author OOP Gruppe 187
+ * 
+ * GOOD: Names describe variables and methods well and if a variable is removed,
+ * 		 something important would be missing.
  */
 public class FinanceFilter {
 
@@ -17,7 +20,7 @@ public class FinanceFilter {
 	private boolean expense;
 	private boolean income;
 	private boolean total;
-	//startDate before or equal endDate
+	// INVARIANT: startDate before or equal endDate
 
 	/**
 	 * Constructor with six parameters.

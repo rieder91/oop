@@ -21,7 +21,7 @@ import auth.Authenticatable;
 public class Gig extends Event {
 
 	private BigDecimal pay;
-	//pay >= 0
+	// INVARIANT: pay >= 0
 
 	/**
 	 * Constructor which requires four arguments
