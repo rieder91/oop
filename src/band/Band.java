@@ -741,6 +741,7 @@ public class Band implements Authenticatable {
 	 * @return all valid members
 	 * 
 	 * PRECONDITION: none of the parameters are null
+	 * PRECONDITION: min>=0
 	 */
 	public ArrayList<Member> getValidMember(Date d, int min) {
 
