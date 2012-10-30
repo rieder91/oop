@@ -165,6 +165,8 @@ public class Member extends Person {
 	 *             
 	 * PRECONDITION:tr and d are not null
 	 * PRECONDITION:a track could only be added another time if he was deleted before
+	 * 
+	 * BAD: invalid band object exception is misleading because it has nothing to do with band
 	 */
 	public void addTrack(final Track tr, Date d) throws InvalidDateException, InvalidBandObjectException {
 
@@ -192,6 +194,8 @@ public class Member extends Person {
 	 *             
 	 * PRECONDITION: none of the parameters are null
 	 * PRECONDITION: you can only agree to an event you already added with addProposedDate
+	 * 
+	 * BAD: invalid band object exception is misleading because it has nothing to do with band
 	 */
 	public void agree(final Event e, final Date date, final boolean agreed) throws InvalidBandObjectException {
 
@@ -219,6 +223,8 @@ public class Member extends Person {
 	 * 
 	 * PRECONDITION: none of the arguments are null
 	 * PRECONDITION: you can only agree to an event you already added with addProposedDate
+	 * 
+	 * BAD: invalid band object exception is misleading because it has nothing to do with band
 	 */
 	public void agree(final Event e, final Date date, final String reason, final boolean agreed)
 			throws InvalidBandObjectException {
@@ -243,6 +249,8 @@ public class Member extends Person {
 	 *             
 	 * PRECONDITION: none of the arguments are null
 	 * PRECONDITION: you can only agree to a proposed date you already added with addProposedDate
+	 * 
+	 * BAD: invalid band object exception is misleading because it has nothing to do with band
 	 */
 	public void agree(ProposedDate e, boolean agreed) throws InvalidBandObjectException {
 
@@ -267,6 +275,8 @@ public class Member extends Person {
 	 *             
 	 * PRECONDITION: none of the arguments are null
 	 * PRECONDITION: you can only agree to a proposed date you already added with addProposedDate
+	 * 
+	 * BAD: invalid band object exception is misleading because it has nothing to do with band
 	 */
 	public void agree(ProposedDate e, final String reason, final boolean agreed) throws InvalidBandObjectException {
 
