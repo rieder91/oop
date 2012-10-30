@@ -11,6 +11,8 @@ import java.util.Date;
  * 
  * GOOD: Names describe variables and methods well and if a variable is removed,
  * 		 something important would be missing.
+ * 
+ * BAD: low Klassenzusammenhalt due to duplicate constructors
  */
 public class FinanceFilter {
 
@@ -20,7 +22,6 @@ public class FinanceFilter {
 	private boolean expense;
 	private boolean income;
 	private boolean total;
-	// INVARIANT: startDate before or equal endDate
 
 	/**
 	 * Constructor with six parameters.
@@ -38,6 +39,8 @@ public class FinanceFilter {
 	 *            	true if income should be used, otherwise false
 	 * @param total
 	 *            	true if turnover should be used, otherwise false
+	 *            
+	 * PRECONDITION: the startDate must be BEFORE the endDate
 	 */
 	public FinanceFilter(Date startDate, Date endDate, ArrayList<String> reason, boolean expense, boolean income,
 			boolean total) {
@@ -64,6 +67,8 @@ public class FinanceFilter {
 	 *            true if income should be used, otherwise false
 	 * @param total
 	 *            true if turnover should be used, otherwise false
+	 *            
+	 * PRECONDITION: the startDate must be BEFORE the endDate
 	 */
 	public FinanceFilter(Date startDate, Date endDate, boolean expense, boolean income, boolean total) {
 
@@ -79,6 +84,8 @@ public class FinanceFilter {
 	 * @reason will be added to ArrayList if it wasn't already
 	 * @param reason
 	 *            reason to be added
+	 *            
+	 * PRECONDITION: reason must not be null
 	 */
 	public void addReason(String reason) {
 

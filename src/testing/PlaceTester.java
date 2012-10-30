@@ -17,15 +17,22 @@ public class PlaceTester implements Tester {
 
 	private static final String moduleName = "Place";
 
+	// INVARIANT: successfulTests <= overallTests
+	// INVARIANT successfulTests >= overallTests >= 0
 	private Integer successfulTests;
 	private Integer overallTests;
-	//successfulTests >= 0; overallTests >= 0
 
 	private ArrayList<Integer> failedTestNumbers;
 
 	private HashMap<Integer, String> testCases;
 
-	
+	/*
+	 * POSTCONDITION: all test cases which are referenced in runTests() have been
+	 * 				  added to testCases
+	 * POSTCONDITION: the number of successfulTests is set to 0
+	 * POSTCONDITION: the Validator-class knows the total number of test cases in this
+	 * 				  module
+	 */
 	public PlaceTester() {
 
 		this.successfulTests = 0;
@@ -80,6 +87,10 @@ public class PlaceTester implements Tester {
 	/**
 	 * run through various test cases of the place module
 	 * must be called before method printTestResults()
+	 * 
+	 * NOTE: as this class it meant to check all existing contracts of the class it's meant
+	 * 		 to test, there are no further details on the pre- and post-conditions provided
+	 * 		 here; these are explained in the respective classes themselves
 	 */
 	@Override
 	public void runTests() {

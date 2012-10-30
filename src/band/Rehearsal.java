@@ -17,6 +17,8 @@ import auth.Authenticatable;
  * 
  * NOTE: this class inherits all pre- and postconditions the interface 
  *       Authenticatable has
+ *       
+ * GOOD: low object coupling (only depends on date)
  */
 public class Rehearsal extends Event {
 	// INVARIANT: cost <= 0
@@ -219,6 +221,8 @@ public class Rehearsal extends Event {
 	/**
 	 * Reverts the Event to the state at @restoreDate and saves the current state with the date @currentDate
 	 * restoreDate before currentDate; currentDate == now
+	 * 
+	 * PRECONDITION: currentdate is not null
 	 */
 	@Override
 	public void restoreEvent(Date restoreDate, Date currentDate) throws InvalidDateException {
@@ -261,6 +265,8 @@ public class Rehearsal extends Event {
 	/**
 	 * The current event is stored with @changeDate in history and updated to another event @e.
 	 * changeDate after date of last edit
+	 * 
+	 * PRECONDITION: e is not null
 	 */
 	@Override
 	public void updateEvent(Event e, Date changeDate) throws InvalidDateException {

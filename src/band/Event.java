@@ -15,6 +15,8 @@ import auth.Authenticatable;
  * 
  * @author OOP Gruppe 187
  * 
+ * GOOD: low object coupling (only depends on date)
+ * 
  */
 public abstract class Event implements Authenticatable {
 
@@ -93,6 +95,8 @@ public abstract class Event implements Authenticatable {
 	 *            new event
 	 * @param d
 	 *            date the event was added
+	 *            
+	 * PRECONDITION: e and d are not null
 	 */
 	public void addToHistory(Event e, Date d) {
 

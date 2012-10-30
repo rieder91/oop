@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * @author OOP Gruppe 187
  * 
  * GOOD: The name already describes the use of this class pretty well.
+ * GOOD: high Klassenzusammenhalt
  */
 public class PlaceManager {
 
@@ -41,6 +42,8 @@ public class PlaceManager {
 	 * @param inf
 	 *            infrastructure-requirements
 	 * @return arraylist of all places that match
+	 * 
+	 * PRECONDITION: inf is not null
 	 */
 	public ArrayList<Place> getPlacesByFilter(ArrayList<Infrastructure> inf) {
 

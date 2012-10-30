@@ -103,6 +103,8 @@ public class Band implements Authenticatable {
 	 *            event to be added
 	 * @throws InvalidBandObjectException
 	 *             thrown if the event already exists
+	 *             
+	 * PRECONDITION: e is not null
 	 */
 	public void addEvent(final Event e) throws InvalidBandObjectException {
 
@@ -136,6 +138,8 @@ public class Band implements Authenticatable {
 	 *            short info why money was get or spent (i.e. "Merchandise" or "Advertisment")
 	 * @param money
 	 *            income if positive, expense if negative
+	 *            
+	 * PRECONDITION: the currentDate must not be null
 	 */
 	public void addFinance(final Date currentDate, final String reason, final BigDecimal money) {
 
@@ -159,6 +163,8 @@ public class Band implements Authenticatable {
 	 *             join-date
 	 * @throws InvalidBandObjectException
 	 *             thrown if the member already exists
+	 *             
+	 * PRECONDITION: neither m nor d are null
 	 */
 	public void addMember(final Member m, final Date d) throws InvalidDateException, InvalidBandObjectException {
 
@@ -215,7 +221,9 @@ public class Band implements Authenticatable {
 	 * @throws InvalidBandObjectException
 	 *             thrown if the track already exists
 	 * 
-	 * PRECONDITION: only to be used in member
+	 * PRECONDITION: should only be called by a member
+	 * NOTE: protected instead of public would've been better
+	 * PRECONDITON: neither t nor d are null
 	 */
 	public void addTrack(final Track t, final Date d) throws InvalidDateException, InvalidBandObjectException {
 
@@ -280,6 +288,8 @@ public class Band implements Authenticatable {
 	 *            new date of the Event
 	 * @throws InvalidBandObjectException
 	 *             thrown if the event doesnt exist
+	 *             
+	 * PRECONDITION: neither e nor d are null
 	 */
 	public void deferreEvent(final Event e, final Date d) throws InvalidBandObjectException {
 
@@ -371,6 +381,8 @@ public class Band implements Authenticatable {
 	 * @param d2
 	 *            to-date
 	 * @return the sum of the costs of all events within the given time period
+	 * 
+	 * PRECONDITION: none of the parameters are null
 	 */
 	public BigDecimal getBilling(final Date d1, final Date d2, final ArrayList<Class<? extends Event>> types)
 			throws InvalidDateException {
@@ -409,6 +421,8 @@ public class Band implements Authenticatable {
 	 * @param types
 	 *            the types of events that should be returned
 	 * @return an ArrayList of all events within the given time period
+	 * 
+	 * PRECONDITION: none of the parameters are null
 	 */
 	public ArrayList<Event> getEvents(final Date d1, final Date d2, final ArrayList<Class<? extends Event>> types)
 			throws InvalidDateException {
@@ -436,6 +450,8 @@ public class Band implements Authenticatable {
 	 * @param f
 	 *            a filter used for enhanced search
 	 * @return a string with the specified filter information
+	 * 
+	 * PRECONDITION: none of the parameters are null
 	 */
 	public HashMap<FinanceTypes, BigDecimal> getFinancesFiltered(final FinanceFilter f) {
 
@@ -498,6 +514,8 @@ public class Band implements Authenticatable {
 	 * @param reason
 	 *            short info why money was get or spent (i.e. "Merchandise" or "Advertisement")
 	 * @return total finances of @reason, 0 if no entries where found
+	 * 
+	 * PRECONDITION: none of the parameters are null
 	 */
 	public BigDecimal getFinancesSinceUntilOf(final Date startDate, final Date endDate, final String reason) {
 
@@ -559,6 +577,8 @@ public class Band implements Authenticatable {
 	 * @param d
 	 *            key date
 	 * @return an ArrayList of all members that were part of the band on the given day
+	 * 
+	 * PRECONDITION: none of the parameters are null
 	 */
 	public ArrayList<Member> getMembers(final Date d) {
 
@@ -601,6 +621,8 @@ public class Band implements Authenticatable {
 	 * @param to
 	 *            end of the time interval
 	 * @return all valid member
+	 * 
+	 * PRECONDITION: none of the parameters are null
 	 */
 	public ArrayList<Member> getMemberWithRehearsals(Integer numberOfRehearsals, Date from, Date to) {
 
@@ -680,6 +702,8 @@ public class Band implements Authenticatable {
 	 * @param d
 	 *            key date
 	 * @return an ArrayList of all the tracks that the band was performing at the given date
+	 * 
+	 * PRECONDITION: none of the parameters are null
 	 */
 	public ArrayList<Track> getTracks(Date d) {
 
@@ -715,6 +739,8 @@ public class Band implements Authenticatable {
 	 * @param min
 	 *            number of rehersals the member should have attendet since @d
 	 * @return all valid members
+	 * 
+	 * PRECONDITION: none of the parameters are null
 	 */
 	public ArrayList<Member> getValidMember(Date d, int min) {
 
@@ -861,6 +887,8 @@ public class Band implements Authenticatable {
 	 *            date of removal
 	 * @throws InvalidBandObjectException
 	 *             thrown if the event doesnt exist
+	 *             
+	 * PRECONDITION: d is not null
 	 */
 	public void removeEvent(final Event e, final Date d) throws InvalidBandObjectException {
 
@@ -891,6 +919,8 @@ public class Band implements Authenticatable {
 	 *             thrown if the "leave-date" of the member is prior to the last join date
 	 * @throws InvalidBandObjectException
 	 *             thrown if the member doesnt exist
+	 *             
+	 * PRECONDITION: d is not null
 	 */
 	public void removeMember(final Member m, final Date d) throws InvalidDateException, InvalidBandObjectException {
 
@@ -941,6 +971,7 @@ public class Band implements Authenticatable {
 	 *             thrown if the track doesnt exist
 	 *             
 	 * PRECONDITION: only to be used in member
+	 * PRECONDITION: none of the parameters are null
 	 */
 	public void removeTrack(Track t, Date d) throws InvalidDateException, InvalidBandObjectException {
 
@@ -990,6 +1021,8 @@ public class Band implements Authenticatable {
 	 *            the time the even took place
 	 * @throws InvalidBandObjectException
 	 *             thrown if no event is found
+	 *             
+	 * PRECONDITION: none of the parameters are null 
 	 */
 	public void restoreEvent(final String place, final Integer duration, final Date time)
 			throws InvalidBandObjectException {
@@ -1017,6 +1050,8 @@ public class Band implements Authenticatable {
 	 * @param time
 	 *            the time the even took place
 	 * @return arraylist of all events that match the criterea
+	 * 
+	 * PRECONDITION: none of the parameters are null
 	 */
 	private ArrayList<Event> searchEvent(final String place, final Integer duration, final Date time) {
 

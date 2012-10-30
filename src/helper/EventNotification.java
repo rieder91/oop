@@ -23,7 +23,7 @@ public class EventNotification {
 	 * @param status
 	 *            status of the event
 	 *            
-	 * PRECONDITION: none of the parameter are null
+	 * PRECONDITION: none of the parameters are null
 	 */
 	public EventNotification(final Event e, final Status status) {
 

@@ -11,6 +11,7 @@ import java.util.HashMap;
  * @author OOP Gruppe 187
  * 
  * GOOD: the class name is self-explanatory
+ * GOOD: weak object-coupling
  */
 public interface Authenticatable {
 

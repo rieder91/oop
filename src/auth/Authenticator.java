@@ -15,7 +15,7 @@ import auth.Authenticatable.Permission;
  * GOOD: the name of the class is self-explanatory
  * 
  * GOOD: the methods are easy to use and type-safe as everything is done using
- * 		 the Autenticatable and Permissions
+ * 		 the Autenticatable interface and the Permissions-enum
  */
 public class Authenticator {
 

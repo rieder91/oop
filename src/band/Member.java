@@ -18,6 +18,11 @@ import auth.Authenticatable;
  * @author OOP Gruppe 187
  * 
  * GOOD: the class name is self-explanatory
+ * 
+ * BAD: the class has high object coupling as it depends on Band, Track, 
+ * 		Rehearsal, Date, Event, EventNotification and ProposedDate
+ * 
+ * NOTE: storing generic BandObjects might have been smarter
  */
 public class Member extends Person {
 

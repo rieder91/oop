@@ -17,11 +17,14 @@ import auth.Authenticatable;
  * 
  * NOTE: this class inherits all pre- and postconditions the interface 
  *       Authenticatable has
+ *       
+ * GOOD: low object coupling (only depends on date)
+ *
  */
 public class Gig extends Event {
-
-	private BigDecimal pay;
+	
 	// INVARIANT: pay >= 0
+	private BigDecimal pay;
 
 	/**
 	 * Constructor which requires four arguments
@@ -219,6 +222,9 @@ public class Gig extends Event {
 	/**
 	 * Reverts the Event to the state at @restoreDate and saves the current state with the date @currentDate
 	 * restoreDate before currentDate; currentDate == now
+	 * 
+	 * 
+	 * PRECONDITION: currentDate is not null
 	 */
 	@Override
 	public void restoreEvent(Date restoreDate, Date currentDate) throws InvalidDateException {
@@ -261,6 +267,8 @@ public class Gig extends Event {
 	/**
 	 * The current event is stored with @changeDate in history and updated to another event @e.
 	 * changeDate after date of last edit
+	 * 
+	 * PRECONDITION: e is not null
 	 */
 	@Override
 	public void updateEvent(Event e, Date changeDate) throws InvalidDateException {

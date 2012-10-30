@@ -9,6 +9,8 @@ import java.util.Date;
  * @author OOP Gruppe 187
  * 
  * GOOD: the class name
+ * GOOD: high Klassenzusammenhalt
+ * GOOD: low object coupling
  */
 public class ProposedDate {
 

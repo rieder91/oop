@@ -36,6 +36,8 @@ public class BandTester implements Tester {
 	private static final String moduleName = "Band";
 
 	// number of successful/failed tests
+	// INVARIANT: successfulTests <= overallTests
+	// INVARIANT successfulTests >= overallTests >= 0
 	private Integer successfulTests;
 	private Integer overallTests;
 
@@ -46,7 +48,7 @@ public class BandTester implements Tester {
 
 	
 	/*
-	 * POSTCONDITION: all test cases which are references in runTests() have been
+	 * POSTCONDITION: all test cases which are referenced in runTests() have been
 	 * 				  added to testCases
 	 * POSTCONDITION: the number of successfulTests is set to 0
 	 * POSTCONDITION: the Validator-class knows the total number of test cases in this

@@ -12,8 +12,8 @@ import java.util.TreeMap;
  * @author OOP Gruppe 187
  * 
  * GOOD: Names describe variables and methods well.
- * 
- * BAD: Due to only public and getter-methods every variable is visible.
+ * GOOD: weak object coupling
+ * GOOD: high Klassenzusammenhalt
  */
 public class Finances {
 
@@ -34,7 +34,6 @@ public class Finances {
 	private TreeMap<Date, HashMap<String, BigDecimal>> expense;
 
 	private BigDecimal totalExpense;
-	//income >= 0; totalIncome >= 0; expense <= 0; totalExpense <= 0
 	
 	/**
 	 * Constructor without parameters
@@ -57,6 +56,9 @@ public class Finances {
 	 *            short info why money was get or spent (i.e. "Merchandise" or "Advertisment")
 	 * @param income
 	 *            must be a positive value
+	 *            
+	 * PRECONDITION: the income must be positive
+	 * PRECONDITION: the currentDate must not be null
 	 */
 	public void add(Date currentDate, String reason, BigDecimal income) {
 
@@ -112,6 +114,9 @@ public class Finances {
 	 *            short info why money was get or spent (i.e. "Merchandise" or "Advertisment")
 	 * @param expense
 	 *            must be a negative value
+	 *            
+	 * PRECONDITION: the expense must be negative
+	 * PRECONDITION: the currentDate must not be null
 	 */
 	public void subtract(Date currentDate, String reason, BigDecimal expense) {
 

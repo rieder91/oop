@@ -7,6 +7,7 @@ package band;
  * @author OOP Gruppe 187
  * 
  * GOOD: the class name is self-explanatory
+ * GOOD: the class has low object coupling
  */
 public class Track {
 

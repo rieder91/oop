@@ -7,6 +7,9 @@ import java.util.ArrayList;
  * contains all informations concerning one place
  * 
  * @author OOP Gruppe 187
+ * 
+ * GOOD: only depends on infraastructure
+ * GOOD: high Klassenzusammenhalt
  */
 public class Place {
 
@@ -100,6 +103,9 @@ public class Place {
 	 * @param inf
 	 *            infrastructure that the place is searched for
 	 * @return true if available; false otherwise
+	 * 
+	 * 
+	 * PRECONDITION: inf must not be null
 	 */
 	public boolean hasInfrastructure(ArrayList<Infrastructure> inf) {
 

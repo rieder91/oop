@@ -34,6 +34,8 @@ public class MemberTester implements Tester {
 	private static final String moduleName = "Member";
 
 	// NOTE: number of successful/failed tests
+	// INVARIANT: successfulTests <= overallTests
+	// INVARIANT successfulTests >= overallTests >= 0
 	private Integer successfulTests;
 	private Integer overallTests;
 
@@ -43,13 +45,12 @@ public class MemberTester implements Tester {
 	private HashMap<Integer, String> testCases;
 	
 	/*
-	 * POSTCONDITION: all test cases which are references in runTests() have been
-	 * added to testCases
+	 * POSTCONDITION: all test cases which are referenced in runTests() have been
+	 * 				  added to testCases
 	 * POSTCONDITION: the number of successfulTests is set to 0
 	 * POSTCONDITION: the Validator-class knows the total number of test cases in this
-	 * module
+	 * 				  module
 	 */
-	
 	public MemberTester() {
 
 		this.successfulTests = 0;
@@ -125,7 +126,6 @@ public class MemberTester implements Tester {
 	 * 
 	 *
 	 */
-	// @SuppressWarnings("deprecation")
 	@Override
 	public void runTests() {
 
