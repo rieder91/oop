@@ -533,6 +533,8 @@ public class Member extends Person {
 	 *             if the member was already notified about the event
 	 *             
 	 * PRECONDITION: none of the parameters are null
+	 * 
+	 * BAD: invalid band object exception is misleading because it has nothing to do with band
 	 */
 	public void notifyEvent(final Event e, final Status stat) throws InvalidBandObjectException {
 
@@ -557,6 +559,8 @@ public class Member extends Person {
 	 *             
 	 * PRECONDITION: none of the parameters are null
 	 * PRECONDITION: the member must know the track
+	 * 
+	 * BAD: invalid band object exception is misleading because it has nothing to do with band
 	 */
 	public void removeTrack(final Track tr, Date d) throws InvalidBandObjectException, InvalidDateException {
 
