@@ -12,11 +12,11 @@ _WS2012, Vienna University of Technology_
    - Band Management
  - Assignment 2
    - Improve of the band management core
-   
-## WIP
  - Assignment 3
    - judging our own code quality
    - writing assertions
+   
+## WIP
 
 ## TODO
  - Assignment 4 - 9
