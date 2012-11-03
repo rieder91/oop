@@ -2,12 +2,14 @@
 package band;
 
 import helper.InvalidDateException;
+
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+
 import auth.Authenticatable;
 
 /**
@@ -77,8 +79,27 @@ public class Gig extends Event {
 	 *            the pay of the gig (pay >=0)
 	 */
 	public Gig(String name, Date time, Place place, Integer duration, BigDecimal pay) {
-
-		super(name, time, place, duration);
+		this(name, time, place, duration, pay, globalPermissions);
+	}
+	
+	/**
+	 * six param-constructor with place object and default permissions
+	 * 
+	 * @param name
+	 *            name of the event
+	 * @param time
+	 *            the time of the gig (time >= now)
+	 * @param place
+	 *            the place of the gig as Place-object
+	 * @param duration
+	 *            the duration of the gig (duration >= 0)
+	 * @param pay
+	 *            the pay of the gig (pay >=0)
+	 * @param defaultPermissions
+	 * 			  the default permissions of each method
+	 */
+	public Gig(String name, Date time, Place place, Integer duration, BigDecimal pay, Permission defaultPermissions) {
+		super(name, time, place, duration, defaultPermissions);
 		this.pay = pay;
 	}
 
@@ -111,6 +132,10 @@ public class Gig extends Event {
 	 */
 	@Override
 	public boolean allowedMethod(Method m, Permission p) {
+		// NOTE: Check default permissions
+		if(p.equals(defaultPermissions) && !defaultPermissions.equals(Permission.NONE)) {
+			return true;
+		}
 
 		for (Permission allowed : this.permissions.get(m)) {
 			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) { return true; }
@@ -246,13 +271,12 @@ public class Gig extends Event {
 	 * @param p
 	 *            target-permission
 	 *            
-	 * BAD: this method actually violates the inherited POSTCONDITION as Permissions
-	 * 		of a Band-object on itself could be set to NONE
 	 */
 	@Override
 	public void setRole(Authenticatable auth, Permission p) {
-
-		this.roles.put(auth, p);
+		if(auth != this) {
+			this.roles.put(auth, p);
+		}
 	}
 
 	/**

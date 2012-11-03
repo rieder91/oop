@@ -4,6 +4,7 @@ package band;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import auth.Authenticatable;
 
 /**
@@ -23,9 +24,11 @@ public abstract class Person implements Authenticatable {
 	// NOTE: stuff needed for authentication
 	HashMap<Method, ArrayList<Permission>> permissions;
 	HashMap<Authenticatable, Permission> roles;
+	
+	// NOTE: permissions for every method
+	Permission defaultPermissions;
 
 	public Person() {
-
 		this.initPermissions();
 	}
 
@@ -40,7 +43,11 @@ public abstract class Person implements Authenticatable {
 	 */
 	@Override
 	public boolean allowedMethod(Method m, Permission p) {
-
+		// NOTE: Check default permissions
+		if(p.equals(defaultPermissions) && !defaultPermissions.equals(Permission.NONE)) {
+			return true;
+		}
+				
 		for (Permission allowed : this.permissions.get(m)) {
 			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) { return true; }
 		}

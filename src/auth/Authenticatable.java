@@ -14,6 +14,8 @@ import java.util.HashMap;
  * GOOD: weak object-coupling
  */
 public interface Authenticatable {
+	
+	public Permission globalPermissions = Permission.NONE;
 
 	/**
 	 * enum which contains all the possible permission groups

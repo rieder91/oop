@@ -63,6 +63,9 @@ public class Band implements Authenticatable {
 
 	// NOTE: finance handling
 	private Finances finances;
+	
+	// NOTE: permissions for every method
+	private Permission defaultPermissions;
 
 	/**
 	 * Constructor which requires two arguments
@@ -73,7 +76,22 @@ public class Band implements Authenticatable {
 	 *            the genre of the band
 	 */
 	public Band(final String name, final String genre) {
-
+		// NOTE: call constructor with the global permissions
+		this(name, genre, globalPermissions);
+	}
+	
+	/**
+	 * constructor which requires name, genre and the default permissions for
+	 * each method
+	 * 
+	 * @param name
+	 *            name of the band
+	 * @param genre
+	 *            genre of the band
+	 * @param defaultPermissions
+	 *            the permissions which each method automatically possesses
+	 */
+	public Band(String name, String genre, Permission defaultPermissions) {
 		this.name = name;
 		this.genre = genre;
 
@@ -92,7 +110,10 @@ public class Band implements Authenticatable {
 		this.roles = new HashMap<Authenticatable, Permission>();
 
 		this.finances = new Finances();
-
+		
+		// NOTE: specify defaultPermissions if they are set
+		this.defaultPermissions = defaultPermissions;
+		
 		this.initPermissions();
 	}
 
@@ -272,7 +293,11 @@ public class Band implements Authenticatable {
 	 */
 	@Override
 	public boolean allowedMethod(final Method m, final Permission p) {
-
+		// NOTE: Check default permissions
+		if(p.equals(defaultPermissions) && !defaultPermissions.equals(Permission.NONE)) {
+			return true;
+		}
+		
 		for (final Permission allowed : this.permissions.get(m)) {
 			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) { return true; }
 		}
@@ -1073,13 +1098,12 @@ public class Band implements Authenticatable {
 	 * @param p
 	 *            target-permission
 	 *            
-	 * BAD: this method actually violates the inherited POSTCONDITION as Permissions
-	 * 		of a Band-object on itself could be set to NONE
 	 */
 	@Override
 	public void setRole(final Authenticatable auth, final Permission p) {
-
-		this.roles.put(auth, p);
+		if(auth != this) {
+			this.roles.put(auth, p);
+		}
 	}
 
 	/**

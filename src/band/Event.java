@@ -2,11 +2,13 @@
 package band;
 
 import helper.InvalidDateException;
+
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+
 import auth.Authenticatable;
 
 /**
@@ -30,6 +32,9 @@ public abstract class Event implements Authenticatable {
 	// NOTE: Authentication stuff
 	HashMap<Method, ArrayList<Permission>> permissions;
 	HashMap<Authenticatable, Permission> roles;
+	
+	// NOTE: permissions for every method
+	Permission defaultPermissions;
 
 	/**
 	 * three parameter constructor
@@ -58,7 +63,22 @@ public abstract class Event implements Authenticatable {
 	 *            duration of the event
 	 */
 	public Event(String name, Date time, Place place, Integer duration) {
-
+		this(name, time, place, duration, globalPermissions);
+	}
+	
+	/**
+	 * @param name
+	 *            name of the event
+	 * @param time
+	 *            time of the event
+	 * @param place
+	 *            place of the event
+	 * @param duration
+	 *            duration of the event
+	 * @param defaultPermissions
+	 * 			  the default permissions of each method
+	 */
+	public Event(String name, Date time, Place place, Integer duration, Permission defaultPermissions) {
 		this.name = name;
 		this.place = place;
 		this.time = time;
@@ -67,6 +87,8 @@ public abstract class Event implements Authenticatable {
 		this.eventHistory = new HashMap<Date, Event>();
 		this.permissions = new HashMap<Method, ArrayList<Permission>>();
 		this.roles = new HashMap<Authenticatable, Permission>();
+		
+		this.defaultPermissions = defaultPermissions;
 		
 		// NOTE: calls the child's initPermissions()
 		this.initPermissions();

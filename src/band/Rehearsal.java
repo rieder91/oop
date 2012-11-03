@@ -2,12 +2,14 @@
 package band;
 
 import helper.InvalidDateException;
+
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+
 import auth.Authenticatable;
 
 /**
@@ -76,8 +78,27 @@ public class Rehearsal extends Event {
 	 *            the pay of the rehearsal (cost <=0)
 	 */
 	public Rehearsal(String name, Date time, Place place, Integer duration, BigDecimal cost) {
-
-		super(name, time, place, duration);
+		this(name, time, place, duration, cost, globalPermissions);
+	}
+	
+	/**
+	 * six param-constructor with place object and permissions
+	 * 
+	 * @param name
+	 *            name of the event
+	 * @param time
+	 *            the time of the rehearsal (time >= now)
+	 * @param place
+	 *            the place of the rehearsal as Place-object
+	 * @param duration
+	 *            the duration of the rehearsal (duration >= 0)
+	 * @param cost
+	 *            the pay of the rehearsal (cost <=0)
+	 * @param defaultPermissions
+	 * 			  the default permissions of each method
+	 */
+	public Rehearsal(String name, Date time, Place place, Integer duration, BigDecimal cost, Permission defaultPermissions) {
+		super(name, time, place, duration, defaultPermissions);
 		this.cost = cost;
 	}
 
@@ -110,6 +131,10 @@ public class Rehearsal extends Event {
 	 */
 	@Override
 	public boolean allowedMethod(Method m, Permission p) {
+		// NOTE: Check default permissions
+		if(p.equals(defaultPermissions) && !defaultPermissions.equals(Permission.NONE)) {
+			return true;
+		}
 
 		for (Permission allowed : this.permissions.get(m)) {
 			if (allowed.equals(p) || allowed.equals(Permission.WORLD)) { return true; }
@@ -249,8 +274,9 @@ public class Rehearsal extends Event {
 	 */
 	@Override
 	public void setRole(Authenticatable auth, Permission p) {
-
-		this.roles.put(auth, p);
+		if(auth != this) {
+			this.roles.put(auth, p);
+		}
 	}
 
 	/**

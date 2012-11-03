@@ -77,6 +77,8 @@ public class AuthenticationTester implements Tester {
 				"Once the members leave a band their permission to all of the band's events are set to NONE");
 		this.testCases.put(11, "A band member can only invoke a method of it's own band");
 		this.testCases.put(12, "Everyone has the permission to get the band's members");
+		this.testCases.put(13, "Set the default permissions of each band method to GROUP");
+		this.testCases.put(14, "Try to invoke a method without an method without explicit permissions");
 
 		this.overallTests = this.testCases.size();
 		Validator.addTests(this.overallTests);
@@ -134,6 +136,7 @@ public class AuthenticationTester implements Tester {
 
 		Band tempBand = new Band("/tmp", "Math Rock");
 		Band anotherBand = new Band("/bin", "Progressive Metal");
+		Band thirdBand = new Band("/dev/urandom", "Grindcore", Permission.GROUP);
 
 		Gig tempGig = null;
 		try {
@@ -150,7 +153,7 @@ public class AuthenticationTester implements Tester {
 			e1.printStackTrace();
 		}
 
-		Method isSubstituteMemberMethod = null, bandAddMember = null, bandGetMembers = null;
+		Method isSubstituteMemberMethod = null, bandAddMember = null, bandGetMembers = null, totalTurnover = null;
 		Class<?> isSubstituteMemberArgs[] = new Class<?>[] {
 				Member.class, Date.class};
 		Class<?> emptyArgs[] = new Class<?>[0];
@@ -159,6 +162,7 @@ public class AuthenticationTester implements Tester {
 			isSubstituteMemberMethod = Member.class.getMethod("isSubstituteMember", emptyArgs);
 			bandAddMember = Band.class.getMethod("addMember", isSubstituteMemberArgs);
 			bandGetMembers = Band.class.getMethod("getMembers", emptyArgs);
+			totalTurnover = Band.class.getDeclaredMethod("totalTurnover", emptyArgs);
 		}
 		catch (SecurityException e) {
 			e.printStackTrace();
@@ -220,6 +224,9 @@ public class AuthenticationTester implements Tester {
 			tempBand.addMember(thomas, formatDate.parse("01.01.2010"));
 			tempBand.addMember(markus, formatDate.parse("01.01.2010"));
 			tempBand.addMember(dominic, formatDate.parse("01.01.2010"));
+			thirdBand.addMember(thomas, formatDate.parse("01.01.2010"));
+			thirdBand.addMember(markus, formatDate.parse("01.01.2010"));
+			thirdBand.addMember(dominic, formatDate.parse("01.01.2010"));
 		}
 		catch (InvalidDateException e) {
 			e.printStackTrace();
@@ -291,6 +298,22 @@ public class AuthenticationTester implements Tester {
 		}
 		catch (InsufficientPermissionsException e) {
 			this.failedTestNumbers.add(12);
+		}
+		
+		try {
+			Authenticator.checkPermissions(thomas, thirdBand, totalTurnover);
+			this.successfulTests++;
+			Validator.report(true);
+		} catch (InsufficientPermissionsException e) {
+			this.failedTestNumbers.add(13);
+		}
+		
+		try {
+			Authenticator.checkPermissions(dominic, tempBand, totalTurnover);
+			this.failedTestNumbers.add(14);
+		} catch (InsufficientPermissionsException e) {
+			this.successfulTests++;
+			Validator.report(true);
 		}
 
 	}

@@ -61,7 +61,7 @@ public class Member extends Person {
 	}
 
 	/**
-	 * Constructor which requires four arguments
+	 * Constructor which requires five arguments
 	 * 
 	 * @param firstName
 	 *            the first name of the member
@@ -80,7 +80,31 @@ public class Member extends Person {
 	 */
 	public Member(final String firstName, final String lastName, final String instrument, final String telephoneNumber,
 			final boolean substituteMember) {
-
+		this(firstName, lastName, instrument, telephoneNumber, substituteMember, globalPermissions);
+	}
+	
+	/**
+	 * Constructor which requires six arguments
+	 * 
+	 * @param firstName
+	 *            the first name of the member
+	 * @param lastName
+	 *            the last name of the member
+	 * @param instrument
+	 *            the instrument of the member
+	 * @param telephoneNumber
+	 *            the telephone number of the member
+	 * @param substituteMember
+	 *            the substitute status of the member true - member is a
+	 *            substitute member false - otherwise
+	 * @param defaultPermissions
+	 *            the default permissions which of each method
+	 * 
+	 *            PRECONDITION: none of the parameter are null
+	 */
+	public Member(final String firstName, final String lastName,
+			final String instrument, final String telephoneNumber,
+			final boolean substituteMember, Permission defaultPermissions) {
 		super();
 		this.events = new ArrayList<ProposedDate>();
 		this.repertoire = new ArrayList<Track>();
@@ -92,6 +116,9 @@ public class Member extends Person {
 		this.lastName = lastName;
 		this.instrument = instrument;
 		this.substituteMember = substituteMember;
+
+		this.defaultPermissions = defaultPermissions;
+
 		// set the owner to THIS
 		this.setRole(this, Permission.OWNER);
 	}
