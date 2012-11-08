@@ -15,11 +15,16 @@ _WS2012, Vienna University of Technology_
  - Assignment 3
    - judging our own code quality
    - writing assertions
-   
+
+
 ## WIP
+ - Assignment 4
+   - generics, interfaces and inheritance
+   - using classes that are not type-safe on purpose -_-
+
 
 ## TODO
- - Assignment 4 - 9
+ - Assignment 5 - 9
  
 ## Syllabus
  - Überblick über das objektorientierte Programmierparadigma und entsprechende Programmiersprachen
