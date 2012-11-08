@@ -46,8 +46,7 @@ public class Test {
 		Scaled<Pict> myScaled = new Scaled<Pict>(scaled);
 		myScaled.scale(2.0);
 		
-//		System.out.println(myScaled.toString());
-		
+		System.out.println(myScaled.toString());
 		
 	}
 }
