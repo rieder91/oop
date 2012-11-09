@@ -32,21 +32,31 @@ public class Test {
 		myPicts[1][0] = darkBox;
 		myPicts[1][1] = freeBox;
 		
-		Pict scaled[]  = new Pict[4];
-		scaled[0] = plainBox;
-		scaled[1] = clearBox;
-		scaled[2] = darkBox;
-		scaled[3] = freeBox;
+		String myStrings[][] = new String[3][2];
+		myStrings[0][0] = "Das";
+		myStrings[0][1] = "ist"; 
+		myStrings[1][0] = "ein";
+		myStrings[1][1] = "Test"; 
+		myStrings[2][0] = "mit";
+		myStrings[2][1] = "Leer zeichen!"; 
 		
 		Repeated<Pict> myGrid = new Repeated<Pict>(myPicts);
-		myGrid.scale(0.5);
+		myGrid.scale(1.5);
+		System.out.println(myGrid);
 		
-		System.out.println(myGrid.toString());
+		Scaled<Pict> myScaled = new Scaled<Pict>(myPicts);
+		myScaled.scale(3.0);
+		System.out.println(myScaled);
 		
-		Scaled<Pict> myScaled = new Scaled<Pict>(scaled);
-		myScaled.scale(2.0);
+		Repeated<String> myStringGrid = new Repeated<String>(myStrings);
+		myStringGrid.scale(5.0);
+		System.out.println(myStringGrid);
 		
-		System.out.println(myScaled.toString());
+		
+		
+		
+		
+		
 		
 	}
 }

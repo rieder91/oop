@@ -1,11 +1,16 @@
 /**
+ * 
+ *
+ * 
  * the dark box does not extend box as it violates the condition of the
  * border- and fill-style being final
+ * 
+ * a darkbox is a character-grid
  * 
  * @author OOP Gruppe 187
  * 
  */
-public class DarkBox implements Pict {
+public class DarkBox extends Repeated<Character> {
 	private Double height;
 	private Double width;
 	

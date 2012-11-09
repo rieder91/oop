@@ -1,10 +1,10 @@
 /**
- * 
+ * a grid-representation of the string-representations of and object-array
  * @author OOP Gruppe 187
  * 
  */
 
-public class Repeated<P> {
+public class Repeated<P> implements Pict {
 	// </3 array that cant be generic
 	private Object data[][];
 
@@ -13,13 +13,17 @@ public class Repeated<P> {
 
 	private Double scale;
 
+	protected Repeated() {
+
+	}
+
 	/**
 	 * constructor which takes an object array
 	 * 
 	 * @param data
 	 *            object array
 	 */
-	public Repeated(Object data[][]) {
+	public Repeated(P data[][]) {
 		assert (data != null) : "array cant be null";
 		assert (data[0] != null) : "array cant be null";
 
@@ -28,12 +32,13 @@ public class Repeated<P> {
 		for (int i = 0; i < data.length; i++) {
 			for (int j = 0; j < data[0].length; j++) {
 				assert (data[i][j] != null) : "array-element cannot be null";
+				assert (PictHelper.isSquare(data[i][j].toString()));
 				this.data[i][j] = data[i][j];
 			}
 		}
 
-		maxHeight = getMaxHeight();
-		maxWidth = getMaxWidth();
+		maxHeight = PictHelper.getMaxHeight(this.data);
+		maxWidth = PictHelper.getMaxWidth(this.data);
 
 		scale = 1.0;
 	}
@@ -67,9 +72,10 @@ public class Repeated<P> {
 
 		if (scale < 1.0) {
 			int lastHeight = (int) Math.ceil(maxHeight * scale * data.length);
-			int lastWidth = (int) Math.ceil((maxWidth - 1) * scale * data[0].length);
+			int lastWidth = (int) Math.ceil((maxWidth - 1) * scale
+					* data[0].length);
 			String text = ret.toString();
-			
+
 			for (int i = 0; i < lastHeight; i++) {
 				ret2.append(getLine(text, i).substring(0, lastWidth) + "\n");
 			}
@@ -81,18 +87,19 @@ public class Repeated<P> {
 
 			String text = ret.toString();
 			int lastHeight = (int) Math.ceil(maxHeight * scale * data.length);
-			int lastWidth = (int) Math.ceil((maxWidth - 1) * scale * data[0].length);
-			int currentWidth = getWidth(ret.toString()) - 1;
-			int numLines = getHeight(ret.toString());
+			int lastWidth = (int) Math.ceil((maxWidth - 1) * scale
+					* data[0].length);
+			int currentWidth = PictHelper.getWidth(ret.toString()) - 1;
+			int numLines = PictHelper.getHeight(ret.toString());
 
-			for(int i = 0; i < lastHeight; i++) {
+			for (int i = 0; i < lastHeight; i++) {
 
 				String newLine = getLine(text, i % numLines);
 
-				for(int j = 0; j < lastWidth; j++) {
+				for (int j = 0; j < lastWidth; j++) {
 					ret2.append(newLine.charAt(j % (currentWidth)));
 				}
-				if(i + 1 != lastHeight) {
+				if (i + 1 != lastHeight) {
 					ret2.append('\n');
 				}
 			}
@@ -110,134 +117,18 @@ public class Repeated<P> {
 	 *            number of the line
 	 * @return the n-th line in the string-representation of the object e
 	 */
-	private String getLine(String e, int n) {
-		if (getHeight(e) <= n) {
-			return "";
-		}
+	public static String getLine(String e, int n) {
+		int h = PictHelper.getHeight(e);
+		int width = PictHelper.getWidth(e.toString());
 
-		int width = getWidth(e.toString());
+		if (h <= n) {
+			return "";
+		} else if (h == 1) {
+			return e;
+		}
 
 		return e.toString().substring(n * width, n * width + width - 1);
-	}
 
-	/**
-	 * return the n-th of and object an repeat the object itself if the scale is
-	 * high enough
-	 * 
-	 * @param e
-	 *            object that is being examined
-	 * @param n
-	 *            number of the line
-	 * @return the n-th line in the string-representation of the object e
-	 * 
-	 */
-	@SuppressWarnings("unused")
-	@Deprecated
-	private String getLineRepeat(Object e, int n) {
-		int height = getHeight(e.toString());
-		Double scaledHeight = Math.ceil(height * scale);
-
-		if (scaledHeight <= n) {
-			return "";
-		} else if (height < scaledHeight && n != 1) {
-			scaledHeight = scaledHeight % height;
-			if (scaledHeight != 0) {
-				n = n % scaledHeight.intValue();
-			} else {
-				n = n % height;
-			}
-		}
-
-		int width = getWidth(e.toString());
-		String retT = e.toString().substring(n * width, n * width + width - 1);
-		String ret = "";
-		Double end = Math.ceil((retT.length()) * scale);
-
-		if (scale < 1.0) {
-			ret = retT.substring(0, end.intValue());
-		} else if (scale >= 1.0) {
-			while (end >= retT.length() - 1) {
-				end -= retT.length();
-				ret += retT;
-			}
-			ret += retT.substring(0, end.intValue());
-		}
-
-		return ret;
-	}
-
-	/**
-	 * returns the height of one object's string representation
-	 * 
-	 * @param e
-	 *            object that is being examined
-	 * @return number of lines
-	 */
-	private int getHeight(String t) {
-		int ret = 1;
-
-		for (int i = 0; i < t.length(); i++) {
-			if (t.charAt(i) == '\n') {
-				ret++;
-			}
-		}
-		return ret;
-	}
-
-	/**
-	 * returns the width of one object's string representation
-	 * 
-	 * @param e
-	 *            object that is being examined
-	 * @return number of chars in each line
-	 */
-	private int getWidth(String t) {
-		int idx = t.indexOf('\n');
-		return idx == -1 ? t.length() : idx + 1;
-	}
-
-	/**
-	 * gets the maximum height of the string-representation of an item in the
-	 * data-array
-	 * 
-	 * @return maximum height
-	 */
-	private int getMaxHeight() {
-		int val;
-		int max = 0;
-
-		for (int i = 0; i < data.length; i++) {
-			for (int j = 0; j < data[0].length; j++) {
-				val = getHeight(data[i][j].toString());
-				if (val > max) {
-					max = val;
-				}
-			}
-		}
-
-		return max;
-	}
-
-	/**
-	 * gets the maximum width of the string-representation of an item in the
-	 * data-array
-	 * 
-	 * @return maximum width
-	 */
-	private int getMaxWidth() {
-		int val;
-		int max = 0;
-
-		for (int i = 0; i < data.length; i++) {
-			for (int j = 0; j < data[0].length; j++) {
-				val = getWidth(data[i][j].toString());
-
-				if (val > max) {
-					max = val;
-				}
-			}
-		}
-		return max;
 	}
 
 	/**
@@ -250,8 +141,6 @@ public class Repeated<P> {
 
 		scale = factor;
 
-		// only useful if the objects are being scaled too
-		// maxHeight *= scale;
-		// maxWidth *= scale;
 	}
+
 }

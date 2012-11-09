@@ -1,19 +1,17 @@
-import java.util.ArrayList;
 
 /**
  * as this class uses the scale-method which all classes that implement Pict
- * must have definied, the generic type of the class must extend Pict
+ * have definied, the generic type of the class must extend Pict
  * 
- * As there was no indication that the internal representation of the
- * Pictogramms had to be an two-dimensional array (as with Repeated) we used an
- * arraylist due to it's type-safety [generic arrays are not possible in java]
+ * Scaled extends Repeated as it has the addtional requirement that it's
+ * type must have a .scale()-method and the global scale is always 1.0
  * 
  * @author OOP Gruppe 187
  * 
  */
 
-public class Scaled<P extends Pict> {
-	final private ArrayList<P> data;
+public class Scaled<P extends Pict> extends Repeated<P> {
+	private Pict data[][];
 
 	/**
 	 * constructor which takes an array of pictograms; only used to make
@@ -22,25 +20,18 @@ public class Scaled<P extends Pict> {
 	 * @param data
 	 *            array with all the values
 	 */
-	public Scaled(P data[]) {
+	public Scaled(P data[][]) {
 		assert (data != null) : "array cant be null";
+		assert (data[0] != null) : "array cant be null";
 
-		this.data = new ArrayList<P>();
+		this.data = new Pict[data.length][data[0].length];
 
 		for (int i = 0; i < data.length; i++) {
-			assert (data[i] != null) : "array-element should not be null";
-			this.data.add(data[i]);
+			for (int j = 0; j < data[0].length; j++) {
+				assert (data[i][j] != null) : "array-element cannot be null";
+				this.data[i][j] = data[i][j];
+			}
 		}
-	}
-
-	/**
-	 * constructor which takes an arraylist as an argument
-	 * 
-	 * @param l
-	 *            arraylist with the pictogramms
-	 */
-	public Scaled(ArrayList<P> l) {
-		data = new ArrayList<P>(l);
 	}
 
 	/**
@@ -51,8 +42,12 @@ public class Scaled<P extends Pict> {
 	public void scale(double factor) {
 		assert (0.1 <= factor && factor <= 10.0) : "invalid factor";
 
-		for (P e : data) {
-			e.scale(factor);
+		// scale objects
+
+		for(int i = 0; i < data.length; i++) {
+			for(int j = 0; j < data[0].length; j++) {
+				data[i][j].scale(factor);
+			}
 		}
 	}
 
@@ -64,8 +59,25 @@ public class Scaled<P extends Pict> {
 	public String toString() {
 		StringBuilder ret = new StringBuilder();
 
-		for (P e : data) {
-			ret.append(e + "\n");
+		int maxWidth = PictHelper.getMaxWidth(data);
+		int maxHeight = PictHelper.getMaxHeight(data);
+
+		String currentLine;
+		int currentWidth;
+
+		for(int i = 0; i < data.length; i++) {
+			for(int k = 0; k < maxHeight; k++) {
+				for(int j = 0; j < data[0].length; j++) {
+					currentLine = getLine(data[i][j].toString(), k);
+					currentWidth = PictHelper.getWidth(currentLine);
+					ret.append(currentLine);
+					for(int l = currentWidth; l < maxWidth; l++) {
+						ret.append(" ");
+					}
+				}
+				ret.append("\n");
+			}
+			
 		}
 
 		return ret.toString();

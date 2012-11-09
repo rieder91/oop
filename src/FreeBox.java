@@ -1,15 +1,21 @@
 /**
- * this class implements Pict and doesnt extend Box as the definition
- * of the border and the filling are radically different
+ * this class is the box with the loosest conditions and extends repeated as
+ * it has the same scaling-behaviour
+ * 
+ * a freebox is a character-grid
  * 
  * @author OOP Gruppe 187
  * 
  */
-public class FreeBox implements Pict {
-	final private String boxText;
+public class FreeBox extends Repeated<Character> {
+	private String boxText;
 	
-	private Double height;
-	private Double width;
+	protected Double height;
+	protected Double width;
+	
+	protected FreeBox() {
+		
+	}
 
 	/**
 	 * constructors which takes the contents of the box as an arguments

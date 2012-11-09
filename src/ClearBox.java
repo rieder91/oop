@@ -1,6 +1,5 @@
 /**
- * the clearbox extends a normal box and satifises all inheritied
- * conditions/invariants
+ * a clearbox is a box with a fixed style and an getAspectRatio method
  * 
  * @author OOP Gruppe 187
  * 

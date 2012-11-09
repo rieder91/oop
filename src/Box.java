@@ -1,13 +1,12 @@
-/**
- * Box class which implements is a pictogramm
+/** 
+ * a box is a freebox with additional requirements:
+ *  - different style for the border and the filling
+ *  - border cant be ' '
  * 
  * @author OOP Gruppe 187
  * 
  */
-public class Box implements Pict {
-	private Double height;
-	private Double width;
-
+public class Box extends FreeBox {
 	final private char border;
 	final private char fill;
 
@@ -36,6 +35,7 @@ public class Box implements Pict {
 		this.border = border;
 		this.fill = fill;
 	}
+	
 
 	/**
 	 * returns the string-representation of the box; height and width are
