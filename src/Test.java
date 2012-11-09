@@ -28,13 +28,13 @@ public class Test {
 		 * 
 		 * 
 		 * Scaled ist ein Untertyp von Repeated, da es alle Zusicherungen von
-		 * Repeated erfüllt und zusätzlich vorrausetzt, dass seine Elemente
+		 * Repeated erfuellt und zusaetzlich vorrausetzt, dass seine Elemente
 		 * Pict implementieren
 		 * 
 		 * 
 		 * Auch eine FreeBox ist ein Untertyp von Repeated, da es sich dabei
 		 * um Repeated<Character> handelt und die Zusicherungen der Oberklasse
-		 * erfüllt
+		 * erfuellt
 		 * 
 		 * 
 		 * Box ist KEIN Untertyp von Repeated, da es ein anderes
@@ -42,13 +42,13 @@ public class Test {
 		 * 
 		 * 
 		 * ClearBox ist ein Untertyp von Box, da es alle Zusicherungen von Box
-		 * (rand != " " und finaler Stil) übernimmt und der Stil nur von Anfang
+		 * (rand != " " und finaler Stil) uebernimmt und der Stil nur von Anfang
 		 * an festgelegt ist
 		 * 
 		 * 
 		 * DarkBox ist WEDER Untertyp von Repeated NOCH von Box, da es deren
-		 * Zusicherungen verletzen würde: der Stil lässt sich nämlich im
-		 * Nachhinein ändern - sie implementiert Pict direkt
+		 * Zusicherungen verletzen wuerde: der Stil laesst sich naemlich im
+		 * Nachhinein aendern - sie implementiert Pict direkt
 		 */
 		
 
