@@ -6,11 +6,13 @@
  * Scaled extends Repeated as it has the addtional requirement that it's
  * type must have a .scale()-method and the global scale is always 1.0
  * 
+ * Scaled is a character-grid
+ * 
  * @author OOP Gruppe 187
  * 
  */
 
-public class Scaled<P extends Pict> extends Repeated<P> {
+public class Scaled<P extends Pict> extends Repeated<Box> {
 	private Pict data[][];
 
 	/**

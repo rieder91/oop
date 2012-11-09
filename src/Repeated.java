@@ -1,20 +1,48 @@
 /**
- * a grid-representation of the string-representations of and object-array
+ * a grid of the string-representations of an object-array
  * @author OOP Gruppe 187
  * 
  */
 
 public class Repeated<P> implements Pict {
 	// </3 array that cant be generic
-	private Object data[][];
-
+	protected Object data[][];
+	protected Double scale;
+	
 	private int maxHeight;
 	private int maxWidth;
 
-	private Double scale;
-
+	/** 
+	 * empty constructor for inheritance req.
+	 */
 	protected Repeated() {
 
+	}
+	
+	/**
+	 * constructors which deconstructs a string into an array
+	 * @param s string that is deconstructed
+	 */
+	protected Repeated(String s) {
+		assert(s != "") : "string cant be null";
+		assert(PictHelper.isSquare(s)) : "string has to be square!";
+		
+		int h = PictHelper.getHeight(s);
+		int w = PictHelper.getWidth(s) - 1;
+		
+		this.data = new Character[h][w];
+		s = s.replaceAll("\\n", "");
+		
+		for(int i = 0; i < h; i++) {
+			for(int j = 0; j < w; j++) {
+				this.data[i][j] = s.charAt(i * w + j);
+			}
+		}
+		
+		this.scale = 1.0;
+		this.maxHeight = 1;
+		this.maxWidth = 1;
+		
 	}
 
 	/**
@@ -42,6 +70,7 @@ public class Repeated<P> implements Pict {
 
 		scale = 1.0;
 	}
+	
 
 	/**
 	 * returns the string-representation of the object-grid; repeats if scale >
@@ -69,10 +98,12 @@ public class Repeated<P> implements Pict {
 				}
 			}
 		}
+		
+		int correction = maxWidth == 1 ? 0 : 1;
 
 		if (scale < 1.0) {
 			int lastHeight = (int) Math.ceil(maxHeight * scale * data.length);
-			int lastWidth = (int) Math.ceil((maxWidth - 1) * scale
+			int lastWidth = (int) Math.ceil((maxWidth - correction) * scale
 					* data[0].length);
 			String text = ret.toString();
 
@@ -83,11 +114,10 @@ public class Repeated<P> implements Pict {
 			ret = ret2;
 
 		} else if (scale > 1.0) {
-			ret2.append('\n');
 
 			String text = ret.toString();
 			int lastHeight = (int) Math.ceil(maxHeight * scale * data.length);
-			int lastWidth = (int) Math.ceil((maxWidth - 1) * scale
+			int lastWidth = (int) Math.ceil((maxWidth - correction) * scale
 					* data[0].length);
 			int currentWidth = PictHelper.getWidth(ret.toString()) - 1;
 			int numLines = PictHelper.getHeight(ret.toString());

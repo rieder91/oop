@@ -1,14 +1,17 @@
 /** 
- * a box is a freebox with additional requirements:
- *  - different style for the border and the filling
- *  - border cant be ' '
+ * 
+ * a box is a special type of pictogram and does not extend repeated<character> 
+ * as it scales differently
  * 
  * @author OOP Gruppe 187
  * 
  */
-public class Box extends FreeBox {
+public class Box implements Pict {
 	final private char border;
 	final private char fill;
+	
+	private Double height;
+	private Double width;
 
 	/**
 	 * Constructor which requires four arguments neither height nor width can be
