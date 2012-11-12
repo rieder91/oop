@@ -12,8 +12,7 @@
  * 
  */
 
-public class Scaled<P extends Pict> extends Repeated<Pict> {
-	private Pict data[][];
+public class Scaled<P extends Pict> extends Repeated<P> {
 
 	/**
 	 * constructor which takes an array of pictograms; only used to make
@@ -23,17 +22,7 @@ public class Scaled<P extends Pict> extends Repeated<Pict> {
 	 *            array with all the values
 	 */
 	public Scaled(P data[][]) {
-		assert (data != null) : "array cant be null";
-		assert (data[0] != null) : "array cant be null";
-
-		this.data = new Pict[data.length][data[0].length];
-
-		for (int i = 0; i < data.length; i++) {
-			for (int j = 0; j < data[0].length; j++) {
-				assert (data[i][j] != null) : "array-element cannot be null";
-				this.data[i][j] = data[i][j];
-			}
-		}
+		super(data);
 	}
 
 	/**
@@ -45,10 +34,9 @@ public class Scaled<P extends Pict> extends Repeated<Pict> {
 		assert (0.1 <= factor && factor <= 10.0) : "invalid factor";
 
 		// scale objects
-
 		for(int i = 0; i < data.length; i++) {
 			for(int j = 0; j < data[0].length; j++) {
-				data[i][j].scale(factor);
+				((Pict) data[i][j]).scale(factor);
 			}
 		}
 	}
