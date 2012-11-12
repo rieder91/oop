@@ -32,6 +32,8 @@ public class Scaled<P extends Pict> extends Repeated<P> {
 	 */
 	public void scale(double factor) {
 		assert (0.1 <= factor && factor <= 10.0) : "invalid factor";
+		
+		Object[][] data = getData();
 
 		// scale objects
 		for(int i = 0; i < data.length; i++) {
@@ -48,6 +50,8 @@ public class Scaled<P extends Pict> extends Repeated<P> {
 	 */
 	public String toString() {
 		StringBuilder ret = new StringBuilder();
+		
+		Object[][] data = getData();
 
 		int maxWidth = PictHelper.getMaxWidth(data);
 		int maxHeight = PictHelper.getMaxHeight(data);

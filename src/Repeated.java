@@ -6,8 +6,8 @@
 
 public class Repeated<P> implements Pict {
 	// </3 array that cant be generic
-	protected Object data[][];
-	protected Double scale;
+	private Object data[][];
+	private Double scale;
 	
 	private int maxHeight;
 	private int maxWidth;
@@ -171,6 +171,14 @@ public class Repeated<P> implements Pict {
 
 		scale = factor;
 
+	}
+	
+	/**
+	 * getter for the data-array
+	 * @return data-array
+	 */
+	public Object[][] getData() {
+		return data;
 	}
 
 }
