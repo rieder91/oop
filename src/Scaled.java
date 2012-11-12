@@ -12,7 +12,7 @@
  * 
  */
 
-public class Scaled<P extends Pict> extends Repeated<Box> {
+public class Scaled<P extends Pict> extends Repeated<Pict> {
 	private Pict data[][];
 
 	/**
