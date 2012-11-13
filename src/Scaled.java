@@ -33,6 +33,10 @@ public class Scaled<P extends Pict> extends Repeated<P> {
 	public void scale(double factor) {
 		assert (0.1 <= factor && factor <= 10.0) : "invalid factor";
 		
+		if(factor < 0.1 || factor > 10.0) {
+			throw new IllegalArgumentException("illegal factor");
+		}
+		
 		Object[][] data = getData();
 
 		// scale objects

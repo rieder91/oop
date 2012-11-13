@@ -54,6 +54,10 @@ public class Repeated<P> implements Pict {
 	public Repeated(P data[][]) {
 		assert (data != null) : "array cant be null";
 		assert (data[0] != null) : "array cant be null";
+		
+		if(data == null || data[0] == null) {
+			throw new IllegalArgumentException("array cant be null");
+		}
 
 		this.data = new Object[data.length][data[0].length];
 
@@ -61,6 +65,11 @@ public class Repeated<P> implements Pict {
 			for (int j = 0; j < data[0].length; j++) {
 				assert (data[i][j] != null) : "array-element cannot be null";
 				assert (PictHelper.isSquare(data[i][j].toString()));
+				
+				if(data[i][j] == null) {
+					throw new RuntimeException("the array element cannot be null");
+				}
+				
 				this.data[i][j] = data[i][j];
 			}
 		}
@@ -168,6 +177,10 @@ public class Repeated<P> implements Pict {
 	 */
 	public void scale(double factor) {
 		assert (0.1 <= factor && factor <= 10.0) : "invalid factor";
+		
+		if(factor < 0.1 || factor > 10.0) {
+			throw new IllegalArgumentException("illegal factor");
+		}
 
 		scale = factor;
 

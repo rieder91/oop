@@ -22,8 +22,12 @@ public class DarkBox implements Pict {
 	 * @param style style of the box
 	 */
 	public DarkBox(Double height, Double width, char style) {
-		assert(height > 0);
-		assert(width > 0);
+		assert(height > 0) : "height must be > 0";
+		assert(width > 0) : "width must be > 0";
+		
+		if(height < 0 || width < 0) {
+			throw new IllegalArgumentException("invalid box-creation arguments");
+		}
 		
 		this.height = height;
 		this.width = width;
@@ -38,6 +42,10 @@ public class DarkBox implements Pict {
 	 */
 	public void scale(double factor) {
 		assert (0.1 <= factor && factor <= 10.0) : "invalid factor";
+		
+		if(factor < 0.1 || factor > 10.0) {
+			throw new IllegalArgumentException("illegal factor");
+		}
 		
 		height *= factor;
 		width *= factor;

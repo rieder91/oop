@@ -27,13 +27,18 @@ public class Box implements Pict {
 	 *            fill-style of the box
 	 */
 	public Box(Double height, Double width, char border, char fill) {
-		assert (height > 0);
-		assert (width > 0);
+		assert (height > 0) 	: "height must be > 0";
+		assert (width > 0) 		: "width must be > 0";
+		assert (border != ' ') 	: "border cant be blank";
+		
+		if(height < 0 || width < 0 || border == ' ') {
+			throw new IllegalArgumentException("invalid box-creation arguments");
+		}
 
 		this.height = height;
 		this.width = width;
 
-		assert (border != ' ');
+		
 
 		this.border = border;
 		this.fill = fill;
@@ -80,9 +85,14 @@ public class Box implements Pict {
 	 */
 	public void scale(double factor) {
 		assert (0.1 <= factor && factor <= 10.0) : "invalid factor";
-
+		
+		if(factor < 0.1 || factor > 10.0) {
+			throw new IllegalArgumentException("illegal factor");
+		}
+		
+		
 		height *= factor;
-		width *= factor;
+		width  *= factor;
 	}
 
 	/**
