@@ -1,6 +1,10 @@
 /**
  * a clearbox is a box with a fixed style and an getAspectRatio method
  * 
+ * 
+ * ASSERTIONS (Zusicherungen):
+ *  - same as Box
+ * 
  * @author OOP Gruppe 187
  * 
  */

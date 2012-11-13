@@ -1,4 +1,9 @@
-
+/**
+ * Helper class which contains methods common to all pictograms
+ * 
+ * @author OOP Gruppe 187
+ * 
+ */
 public class PictHelper {
 
 	/**
@@ -29,6 +34,29 @@ public class PictHelper {
 	public static int getWidth(String t) {
 		int idx = t.indexOf('\n');
 		return idx == -1 ? t.length() : idx + 1;
+	}
+	
+	/**
+	 * returns the n-th of the string-representation of an object
+	 * 
+	 * @param e
+	 *            object that is being examined
+	 * @param n
+	 *            number of the line
+	 * @return the n-th line in the string-representation of the object e
+	 */
+	public static String getLine(String e, int n) {
+		int h = PictHelper.getHeight(e) ;
+		int width = PictHelper.getWidth(e.toString());
+
+		if (h <= n) {
+			return "";
+		} else if (h == 1) {
+			return e;
+		}
+
+		return e.toString().substring(n * width, n * width + width - 1);
+
 	}
 
 	/**
@@ -74,28 +102,29 @@ public class PictHelper {
 		}
 		return max;
 	}
-	
+
 	/**
 	 * checks whether an object's string representation is shaped as a square
-	 * @param s object that is being checked
+	 * 
+	 * @param s
+	 *            object that is being checked
 	 * @return true if shaped like a square
 	 */
 	public static boolean isSquare(String s) {
-		
-		if(s.charAt(s.length() - 1) == '\n') {
+
+		if (s.charAt(s.length() - 1) == '\n') {
 			return false;
 		}
-		
-		
+
 		int h = getHeight(s);
 		int newL = s.indexOf('\n');
-		
-		if(h == 1) {
+
+		if (h == 1) {
 			return true;
 		} else if (s.replaceAll("\\n", "").length() % newL != 0) {
-				return false;
+			return false;
 		}
-		
+
 		return true;
 	}
 
