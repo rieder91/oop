@@ -75,7 +75,9 @@ public class Scaled<P extends Pict> extends Repeated<P> {
 						ret.append(" ");
 					}
 				}
-				if(k != maxHeight - 1) {
+				if(k == maxHeight - 1 && i == data.length - 1) {
+					// skip last \n
+				} else {
 					ret.append("\n");
 				}
 			}
