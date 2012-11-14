@@ -15,16 +15,17 @@ _WS2012, Vienna University of Technology_
  - Assignment 3
    - judging our own code quality
    - writing assertions
-
-
-## WIP
  - Assignment 4
    - generics, interfaces and inheritance
-   - using classes that are not type-safe on purpose -_-
+ 
+
+## WIP
+ - Assignment 5
+    - generics and iterators
 
 
 ## TODO
- - Assignment 5 - 9
+ - Assignment 6 - 9
  
 ## Syllabus
  - Überblick über das objektorientierte Programmierparadigma und entsprechende Programmiersprachen
@@ -40,3 +41,5 @@ _WS2012, Vienna University of Technology_
  - Thomas Rieder
     - via twitter: [My Profile](https://twitter.com/#!/thomasrieder)
     - via email: thomasrieder _at_ aon _dot_ at
+ - Markus Zisser
+ - Dominic Riedl
