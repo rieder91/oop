@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 /**
  * Test class for Assignment 5
