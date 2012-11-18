@@ -1,4 +1,4 @@
-import java.util.Iterator;
+//import java.util.Iterator;
 
 /**
  * This class implements an Iterator for Maps
@@ -24,7 +24,7 @@ public class MapIterator<T extends Shorter<? super T>,U> extends OrderedSetItera
 	/**
 	 * @return an iterator for the Set in the Map
 	 */
-	public Iterator<U> iterator() {
+	public InMapIterator<U> iterator() {
 		return new InMapIterator<U>(elem);
 	}
 	
@@ -34,7 +34,7 @@ public class MapIterator<T extends Shorter<? super T>,U> extends OrderedSetItera
 	public class InMapIterator<N> extends SetIterator<N>{
 		
 		/**
-		 * Constructor with two parameter
+		 * Constructor with one parameter
 		 * 
 		 * @param start
 		 * 			The Map were the iterator is used

@@ -35,7 +35,7 @@ public class SetIterator<T> implements Iterator<T> {
 	@Override
 	public boolean hasNext() {
 		
-		return this.entry.next != null;
+		return this.entry != null;
 	}
 
 	/**

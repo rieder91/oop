@@ -1,5 +1,3 @@
-import java.util.Iterator;
-
 /**
  * An OrderedSet is a sorted Set<T>.
  * 
@@ -34,11 +32,10 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 	 * @param e
 	 * 			element to be inserted
 	 * @return false if e is identical to another entry, true if successful
-	 *//*
+	 */
 	public boolean insert(T e) {
 		
-		if(this.value == e)
-			return false;
+		Set<T> tmpSet = this.next;
 		
 		if(this.value == null) {
 			this.value = e;
@@ -53,19 +50,28 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 			this.next.next = tmp;
 			return true;
 		}
+		
 		if(this.next == null) {
 			this.next = new Set<T>(e);
 			return true;
-		} else {
-			return this.next.insert(e);
 		}
-	}*/
-	
-	/**
-	 * @return an iterator for the Set
-	 */
-	public Iterator<T> iterator(){
 		
-		return new OrderedSetIterator<T>(this);
+		while(!e.shorter(tmpSet.value) && tmpSet.next != null) {
+			if(tmpSet.value == e)
+				return false;
+			tmpSet = this.next;
+		}
+		
+		if(e.shorter(tmpSet.value)) {
+			Set<T> tmp2 = tmpSet.next;
+			T v2 = tmpSet.value;
+			tmpSet.value = e;
+			tmpSet.next = new Set<T>(v2);
+			tmpSet.next.next = tmp2;
+			return true;
+		} else {
+			tmpSet.next = new Set<T>(e);
+			return true;
+		}
 	}
 }

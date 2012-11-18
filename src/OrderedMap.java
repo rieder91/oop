@@ -1,4 +1,4 @@
-import java.util.Iterator;
+//import java.util.Iterator;
 
 /**
  * An OrderedMap is a sorted Set<T>.
@@ -35,7 +35,7 @@ public class OrderedMap<T extends Shorter<? super T>, U> extends OrderedSet<T>{
 	/**
 	 * @return an iterator for the Map
 	 */
-	public Iterator<T> iterator() {
+	public MapIterator<T,U> iterator() {
 		
 		return new MapIterator<T,U>(this);
 	}

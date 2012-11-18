@@ -23,6 +23,26 @@ public class MeanElapsedTime extends ElapsedTime{
 	}
 	
 	/**
+	 * Constructor with one parameter
+	 * 
+	 * @param entries
+	 * 			Set of values
+	 */
+	public MeanElapsedTime(Set<Double> entries) {
+		super();
+		this.entries = entries;
+		
+		Iterator<Double> it = this.entries.iterator();
+		Double sum = 0.0;
+		
+		while(it.hasNext()) {
+			sum += it.next();
+		}
+		
+		this.value = sum / count();
+	}
+	
+	/**
 	 * Adds more ElapsedTimes
 	 * 
 	 * @param et
@@ -30,8 +50,8 @@ public class MeanElapsedTime extends ElapsedTime{
 	 */
 	public void add(ElapsedTime et) {
 		
-		this.entries.insert(et.value);
-		this.value = (this.value + et.value) / this.count();
+		if(this.entries.insert(et.value))
+			this.value = this.value + (et.value / this.count());
 	}
 	
 	/**
