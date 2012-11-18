@@ -91,7 +91,7 @@ public class Test {
 		MapIterator<MeanElapsedTime,CompositeTime> it2 = om.iterator();
 		it2.next();
 		
-		InMapIterator<CompositeTime> inIt2 = it2.iterator();
+		InMapIterator<CompositeTime> inIt2 = it2.iterator();/*
 		inIt2.add(comp1);
 		inIt2.add(comp2);
 		inIt2.next();
@@ -112,17 +112,17 @@ public class Test {
 		inIt2.add(comp5);
 		inIt2.next();
 		inIt2.add(comp2);
-		
+		*/
 		// get min/max values
 		it2 = om.iterator();
 		
 		while(it2.hasNext()) {
 			System.out.println("Max: " + it2.next().getMax());
-			
+			/*
 			inIt2 = it2.iterator();
 			
 			while(inIt2.hasNext())
-				System.out.println("Min: " + inIt2.next().getMin());
+				System.out.println("Min: " + inIt2.next().getMin());*/
 		}
 		
 		/*

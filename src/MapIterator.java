@@ -1,4 +1,4 @@
-//import java.util.Iterator;
+import java.util.Iterator;
 
 /**
  * This class implements an Iterator for Maps
@@ -6,9 +6,9 @@
  * @author OOP Gruppe 187
  */
 
-public class MapIterator<T extends Shorter<? super T>,U> extends SetIterator<T> {
+public class MapIterator<T extends Shorter<? super T>,U> implements Iterator<T> {
 	
-	private Set<U> elem;
+	private OrderedMap<T,U> elem;
 
 	/**
 	 * Constructor with one parameter
@@ -17,9 +17,8 @@ public class MapIterator<T extends Shorter<? super T>,U> extends SetIterator<T> 
 	 * 			The Map were the iterator is used
 	 */
 	public MapIterator(OrderedMap<T,U> start) {
-		
-		super(start);
-		this.elem = start.elements;
+
+		this.elem = start;
 	}
 	
 	/**
@@ -27,7 +26,32 @@ public class MapIterator<T extends Shorter<? super T>,U> extends SetIterator<T> 
 	 */
 	public InMapIterator<U> iterator() {
 
-		return new InMapIterator<U>(this.elem);
+		return new InMapIterator<U>(this.elem.elements);
+	}
+
+	@Override
+	public boolean hasNext() {
+		
+		return this.elem != null;
+	}
+
+	@Override
+	public T next() {
+		
+		if(this.elem.value != null) {
+			T res = this.elem.value;
+			this.elem = this.elem.next;
+			return res;
+			
+		}
+		return null;
+	}
+
+	@Override
+	public void remove() {
+		
+		this.elem.value = this.elem.next.value;
+		this.elem.next = this.elem.next.next;
 	}
 	
 	/*
