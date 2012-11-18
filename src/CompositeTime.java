@@ -29,6 +29,7 @@ public class CompositeTime extends ElapsedTime{
 	public CompositeTime(Double[] val) {
 		super();
 		
+		comp = new Double[val.length];
 		Double tmp = 0.0;
 		int i = 0;
 		

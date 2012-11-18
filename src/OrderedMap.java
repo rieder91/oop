@@ -17,7 +17,7 @@ public class OrderedMap<T extends Shorter<? super T>, U> extends OrderedSet<T>{
 	public OrderedMap() {
 		
 		super();
-		elements = null;
+		this.elements = null;
 	}
 	
 	/**
@@ -29,14 +29,20 @@ public class OrderedMap<T extends Shorter<? super T>, U> extends OrderedSet<T>{
 	public OrderedMap(T e) {
 		
 		super(e);
-		elements = null;
+		this.elements = null;
+	}
+	
+	public OrderedMap(T e, Set<U> elements) {
+		
+		super(e);
+		this.elements = new Set<U>(elements);
 	}
 	
 	/**
 	 * @return an iterator for the Map
 	 */
 	public MapIterator<T,U> iterator() {
-		
+
 		return new MapIterator<T,U>(this);
 	}
 }
