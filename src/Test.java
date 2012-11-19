@@ -16,7 +16,7 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		System.out
-				.println("Objektorientierte Programmiertechniken                 \n"
+				.println("Objektorientierte Programmiertechniken                  \n"
 						+ "Datum: 14.11.2012                                      \n"
 						+ "Aufgabe 5                                              \n"
 						+ "Gruppe 187: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
