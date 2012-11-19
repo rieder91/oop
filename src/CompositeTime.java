@@ -4,43 +4,41 @@
  * @author OOP Gruppe 187
  */
 
-public class CompositeTime extends ElapsedTime{
+public class CompositeTime extends ElapsedTime {
 
 	private Double[] comp;
 	
 	/**
 	 * Constructor with one value as parameter
 	 * 
-	 * @param val
+	 * @param comp
 	 * 			A time consumed by a process
 	 */
-	public CompositeTime(Double val) {
-		
-		super(val);
-		comp = new Double[1];
-		comp[0] = val;
+	public CompositeTime(Double comp) {
+		this(new Double[]{comp});
 	}
 	
 	/**
 	 * Constructor with an Array as parameter
 	 * 
-	 * @param val
+	 * @param comp
 	 * 			An Array of times consumed by a process
 	 */
-	public CompositeTime(Double[] val) {
+	public CompositeTime(Double[] comp) {
 		super();
 		
-		comp = new Double[val.length];
-		Double tmp = 0.0;
+		this.comp = new Double[comp.length];
+		
+		Double sum = 0.0;
 		int i = 0;
 		
-		for(Double a: val) {
-			comp[i] = a;
-			tmp += a;
+		for(Double a : comp) {
+			this.comp[i] = a;
+			sum += a;
 			i++;
 		}
-		
-		this.value = tmp;
+
+		this.setValue(sum);
 	}
 	
 	/**
@@ -49,15 +47,15 @@ public class CompositeTime extends ElapsedTime{
 	 * @return minimum entry of CompositeTime
 	 */
 	public Double getMin() {
-		
-		Double tmp = this.comp[0];
+		Double min = Double.MAX_VALUE;
 		
 		for(Double a: this.comp) {
-			if(tmp > a)
-				tmp = a;
+			if(min > a) {
+				min = a;
+			}
 		}
 		
-		return tmp;
+		return min;
 	}
 	
 	/**
@@ -65,14 +63,11 @@ public class CompositeTime extends ElapsedTime{
 	 * 
 	 * @return the number of times saved
 	 */
-	@Override
 	public int count() {
-		
 		return this.comp.length;
 	}
 	
 	public boolean shorter(CompositeTime ct) {
-		
-		return super.shorter(ct.value);
+		return super.shorter(ct.getValue());
 	}
 }

@@ -1,5 +1,5 @@
 
-public class InMapIterator<N> extends SetIterator<N>{
+public class InMapIterator<T> extends SetIterator<T> {
 	
 	/**
 	 * Constructor with one parameter
@@ -7,7 +7,7 @@ public class InMapIterator<N> extends SetIterator<N>{
 	 * @param start
 	 * 			The Map were the iterator is used
 	 */
-	public InMapIterator(Set<N> in) {
+	public InMapIterator(Set<T> in) {
 		super(in);
 	}
 	
@@ -17,8 +17,8 @@ public class InMapIterator<N> extends SetIterator<N>{
 	 * @param e
 	 * 			Element to be added
 	 */
-	public void add(N e) {
-	
+	public void add(T e) {
+		/*
 		if(this.entry == null) {
 			this.entry = new Set<N>(e);
 			return;
@@ -32,7 +32,7 @@ public class InMapIterator<N> extends SetIterator<N>{
 			this.entry.value = e;
 			this.entry.next = new Set<N>(v);
 			this.entry.next.next = tmp;
-		}
+		}*/
 	}
 }
 

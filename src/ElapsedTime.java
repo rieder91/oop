@@ -7,13 +7,12 @@
 //TODO: abstract
 public abstract class ElapsedTime implements Shorter<ElapsedTime> {
 
-	protected Double value;
+	private Double value;
 	
 	/**
 	 * Default constructor
 	 */
 	public ElapsedTime() {
-		
 		value = 0.0;
 	}
 	
@@ -24,20 +23,27 @@ public abstract class ElapsedTime implements Shorter<ElapsedTime> {
 	 * 			The time that was consumed by a process
 	 */
 	public ElapsedTime(Double value) {
-		
 		this.value = value;
 	}
 	
-	
+	/**
+	 * 
+	 */
 	public boolean shorter(ElapsedTime other) {
-		
 		return this.shorter(other.value);
 	}
 	
+	/**
+	 * 
+	 * @param val
+	 * @return
+	 */
 	public boolean shorter(Double val) {
-		if(this.value < val) 
+		if(this.value < val) {
 			return true;
-		return false;
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -47,4 +53,20 @@ public abstract class ElapsedTime implements Shorter<ElapsedTime> {
 	 * @return number of saved elements
 	 */
 	public abstract int count();
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Double getValue() {
+		return value;
+	}
+	
+	/**
+	 * 
+	 * @param value
+	 */
+	public void setValue(Double value) {
+		this.value = value;
+	}
 }

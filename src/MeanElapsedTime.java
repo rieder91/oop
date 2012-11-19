@@ -6,7 +6,7 @@ import java.util.Iterator;
  * @author OOP Gruppe 187
  */
 
-public class MeanElapsedTime extends ElapsedTime{
+public class MeanElapsedTime extends ElapsedTime {
 
 	private Set<Double> entries;
 	
@@ -17,9 +17,7 @@ public class MeanElapsedTime extends ElapsedTime{
 	 * 			First ElapsedTime of a row
 	 */
 	public MeanElapsedTime(ElapsedTime v) {
-		
-		super(v.value);
-		this.entries = new Set<Double>(v.value);
+		this(new Set<Double>(v.getValue()));
 	}
 	
 	/**
@@ -29,8 +27,7 @@ public class MeanElapsedTime extends ElapsedTime{
 	 * 			Set of values
 	 */
 	public MeanElapsedTime(Set<Double> entries) {
-		super();
-		this.entries = entries;
+		this.entries = new Set<Double>(entries);
 		
 		Iterator<Double> it = this.entries.iterator();
 		Double sum = 0.0;
@@ -39,7 +36,7 @@ public class MeanElapsedTime extends ElapsedTime{
 			sum += it.next();
 		}
 		
-		this.value = sum / count();
+		this.setValue(sum / count());
 	}
 	
 	/**
@@ -49,9 +46,11 @@ public class MeanElapsedTime extends ElapsedTime{
 	 * 			The ElapsedTime that shall be added to MeanElapsedTime
 	 */
 	public void add(ElapsedTime et) {
-		
-		if(this.entries.insert(et.value))
-			this.value = this.value + (et.value / this.count());
+		if(this.entries.insert(et.getValue())) {
+			this.setValue(this.getValue() + (et.getValue() / this.count()));
+		} else {
+			throw new RuntimeException("MeanElapsedTime: Object already exists!");
+		}
 	}
 	
 	/**
@@ -61,13 +60,14 @@ public class MeanElapsedTime extends ElapsedTime{
 	 */
 	public Double getMax() {
 		
-		Double tmp, max = 0.0;
+		Double tmp, max = Double.MIN_VALUE;
 		Iterator<Double> it = this.entries.iterator();
 		
 		while(it.hasNext()) {
 			tmp = it.next();
-			if(tmp > max)
+			if(tmp > max) {
 				max = tmp;
+			}
 		}
 		
 		return max;
@@ -80,7 +80,6 @@ public class MeanElapsedTime extends ElapsedTime{
 	 */
 	@Override
 	public int count() {
-		
 		int tmp = 0;
 		Iterator<Double> it = this.entries.iterator();
 		
@@ -92,8 +91,13 @@ public class MeanElapsedTime extends ElapsedTime{
 		return tmp;
 	}
 	
+	/**
+	 * 
+	 * @param other
+	 * @return
+	 */
 	public boolean shorter(MeanElapsedTime other) {
 		
-		return super.shorter(other.value);
+		return super.shorter(other.getValue());
 	}
 }

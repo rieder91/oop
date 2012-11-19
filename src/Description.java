@@ -16,14 +16,18 @@ public class Description implements Shorter<Description>{
 	 * 			The String used for the description
 	 */
 	public Description(String desc) {
-		this.desc = new String(desc);
+		this.desc = desc;
 	}
 	
-	@Override
+	/**
+	 * 
+	 */
 	public boolean shorter(Description other) {
-		if(this.length() < other.length())
+		if(this.length() < other.length()) {
 			return true;
-		return false;
+		} else {
+			return false;
+		}
 	}
 	
 	/**

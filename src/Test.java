@@ -135,5 +135,26 @@ public class Test {
 		
 		// FAIL
 //		CompositeTime t = new CompositeTime(1.0);
+		
+		
+		
+		Set<String> iteratorSet = new Set<String>();
+		iteratorSet.insert("Thomas");
+		iteratorSet.insert("Markus");
+//		iteratorSet.insert("Dominic");
+//		iteratorSet.insert("Patrick");
+//		iteratorSet.insert("Manuel");
+
+		Iterator<String> setIterator = iteratorSet.iterator();
+		setIterator.next();
+//		setIterator.next();
+//		setIterator.next();
+//		setIterator.next();
+//		setIterator.next();
+		setIterator.remove();
+		
+		System.out.println(iteratorSet);
+		
+		
 	}
 }

@@ -62,8 +62,16 @@ public class SetIterator<T> implements Iterator<T> {
 	 */
 	@Override
 	public void remove() {
-		if(this.lastIndexReturned == 0) {
-			this.entries = this.entries.next;
+		if(this.lastIndexReturned == -1) {
+			throw new RuntimeException("SetIterator: next() was never called");
+		} else if(this.lastIndexReturned == 0 && hasNext()) {
+			// there is a next element and we remove the 1st element
+			this.entries.value = this.entries.next.value;
+			this.entries.next = this.entries.next.next;
+		} else if(this.lastIndexReturned == 0 && !hasNext()) {
+			// there is no next element and we remove the 1st element
+			this.entries.value = null;
+			this.entries.next = null;
 		} else {
 			Set<T> previous = null;
 			Set<T> current = entries;
@@ -80,5 +88,9 @@ public class SetIterator<T> implements Iterator<T> {
 				previous.next = null;
 			}
 		}
+	}
+
+	public Set<T> getEntries() {
+		return entries;
 	}
 }
