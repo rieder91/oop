@@ -5,7 +5,6 @@
  * @author OOP Gruppe 187
  */
 //TODO Untertyp von Set/Ordered Set
-// nur ein Typparameter
 public class OrderedMap<T extends Shorter<? super T>, U> {
 	
 	protected OrderedMap<T,U> next;
