@@ -93,4 +93,8 @@ public class SetIterator<T> implements Iterator<T> {
 	public Set<T> getEntries() {
 		return entries;
 	}
+
+	public void setEntries(Set<T> entries) {
+		this.entries = entries;
+	}
 }
