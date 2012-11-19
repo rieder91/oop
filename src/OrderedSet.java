@@ -10,7 +10,7 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 	 * Default constructor
 	 */
 	public OrderedSet() {
-		
+		//TODO: delete
 		super();
 	}
 	
@@ -21,7 +21,6 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 	 * 			element to be inserted
 	 */
 	public OrderedSet(T e) {
-		
 		super(e);
 	}
 	
@@ -74,4 +73,5 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 			return true;
 		}
 	}
+	
 }

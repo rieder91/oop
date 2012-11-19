@@ -4,13 +4,15 @@
  * 
  * @author OOP Gruppe 187
  */
-
+//TODO Untertyp von Set/Ordered Set
+// nur ein Typparameter
 public class OrderedMap<T extends Shorter<? super T>, U> {
 	
 	protected OrderedMap<T,U> next;
 	protected T value;
 	protected Set<U> elements;
 	
+	//TODO
 	public OrderedMap() {
 		
 		this.next = null;

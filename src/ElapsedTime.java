@@ -4,8 +4,8 @@
  * 
  * @author OOP Gruppe 187
  */
-
-public class ElapsedTime implements Shorter<ElapsedTime> {
+//TODO: abstract
+public abstract class ElapsedTime implements Shorter<ElapsedTime> {
 
 	protected Double value;
 	
@@ -46,8 +46,5 @@ public class ElapsedTime implements Shorter<ElapsedTime> {
 	 * 
 	 * @return number of saved elements
 	 */
-	public int count() {
-		
-		return 1;
-	}
+	public abstract int count();
 }

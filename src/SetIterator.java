@@ -14,7 +14,6 @@ public class SetIterator<T> implements Iterator<T> {
 	 * Default constructor
 	 */
 	public SetIterator() {
-		
 		this.entry = null;
 	}
 	
@@ -58,7 +57,7 @@ public class SetIterator<T> implements Iterator<T> {
 	 */
 	@Override
 	public void remove() {
-		
+		//TODO: null pointer exception if next is null
 		this.entry.value = this.entry.next.value;
 		this.entry.next = this.entry.next.next;
 	}

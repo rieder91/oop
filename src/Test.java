@@ -132,5 +132,8 @@ public class Test {
 		/*
 		 * Test Case 4 of Assignment 5
 		 */
+		
+		// FAIL
+//		CompositeTime t = new CompositeTime(1.0);
 	}
 }

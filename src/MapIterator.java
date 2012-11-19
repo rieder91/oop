@@ -5,7 +5,7 @@ import java.util.Iterator;
  * 
  * @author OOP Gruppe 187
  */
-
+//TODO: extends Set Iterator
 public class MapIterator<T extends Shorter<? super T>,U> implements Iterator<T> {
 	
 	private OrderedMap<T,U> elem;

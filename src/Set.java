@@ -6,16 +6,15 @@ import java.util.Iterator;
  * @author OOP Gruppe 187
  */
 
-public class Set<T> implements Iterable<T>{
-	
+public class Set<T> implements Iterable<T> {
 	protected T value;
 	protected Set<T> next;
 	
 	/**
 	 * Default constructor
 	 */
+	//TODO
 	public Set() {
-		
 		this.value = null;
 		this.next = null;
 	}
