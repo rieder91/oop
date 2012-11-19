@@ -8,13 +8,17 @@ import java.util.Iterator;
 
 public class SetIterator<T> implements Iterator<T> {
 
-	protected Set<T> entry;
+	private Integer lastIndexReturned;
+	private Set<T> cursor;
+	private Set<T> entries;
 	
 	/**
 	 * Default constructor
 	 */
 	public SetIterator() {
-		this.entry = null;
+		this.lastIndexReturned = -1;
+		this.cursor = null;
+		this.entries = null;
 	}
 	
 	/**
@@ -24,8 +28,9 @@ public class SetIterator<T> implements Iterator<T> {
 	 * 			The Set were the iterator is used
 	 */
 	public SetIterator(Set<T> start) {
-		
-		this.entry = start;
+		this.cursor = start;
+		this.entries = start;
+		this.lastIndexReturned = -1;
 	}
 
 	/**
@@ -33,8 +38,7 @@ public class SetIterator<T> implements Iterator<T> {
 	 */
 	@Override
 	public boolean hasNext() {
-		
-		return this.entry != null;
+		return this.cursor != null;
 	}
 
 	/**
@@ -42,14 +46,15 @@ public class SetIterator<T> implements Iterator<T> {
 	 */
 	@Override
 	public T next() {
-		
-		if(this.entry.value != null) {
-			T res = this.entry.value;
-			this.entry = this.entry.next;
-			return res;
+		if (this.hasNext()) {
+			T result = this.cursor.value;
+			this.lastIndexReturned++;
+			this.cursor = this.cursor.next;
 			
+			return result;
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	/**
@@ -57,8 +62,23 @@ public class SetIterator<T> implements Iterator<T> {
 	 */
 	@Override
 	public void remove() {
-		//TODO: null pointer exception if next is null
-		this.entry.value = this.entry.next.value;
-		this.entry.next = this.entry.next.next;
+		if(this.lastIndexReturned == 0) {
+			this.entries = this.entries.next;
+		} else {
+			Set<T> previous = null;
+			Set<T> current = entries;
+			for(int i = 0; i < this.lastIndexReturned; i++) {
+				if(i == this.lastIndexReturned - 1) {
+					previous = current;
+				}
+				current = current.next;
+			}
+			
+			if(current.next != null) {
+				previous.next = current.next;
+			} else {
+				previous.next = null;
+			}
+		}
 	}
 }
