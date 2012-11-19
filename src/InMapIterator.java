@@ -18,21 +18,21 @@ public class InMapIterator<T> extends SetIterator<T> {
 	 * 			Element to be added
 	 */
 	public void add(T e) {
-		/*
-		if(this.entry == null) {
-			this.entry = new Set<N>(e);
+		
+		if(this.getEntries() == null) {
+			this.setEntries(new Set<T>(e));
 			return;
 		}
-		if(this.entry.value == null) {
-			this.entry.value = e;
+		if(this.getEntries().value == null) {
+			this.getEntries().value = e;
 			return;
 		} else {
-			Set<N> tmp = this.entry.next;
-			N v = this.entry.value;
-			this.entry.value = e;
-			this.entry.next = new Set<N>(v);
-			this.entry.next.next = tmp;
-		}*/
+			Set<T> tmp = this.getEntries().next;
+			T v = this.getEntries().value;
+			this.getEntries().value = e;
+			this.getEntries().next = new Set<T>(v);
+			this.getEntries().next.next = tmp;
+		}
 	}
 }
 

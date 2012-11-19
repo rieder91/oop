@@ -5,10 +5,12 @@ import java.util.Iterator;
  * 
  * @author OOP Gruppe 187
  */
-//TODO: extends Set Iterator
+//TODO: extends Set Iterator (nur möglich, wenn OrderedMap extends Set, glaub ich)
 public class MapIterator<T extends Shorter<? super T>,U> implements Iterator<T> {
 	
+	private Integer lastIndexReturned;
 	private OrderedMap<T,U> elem;
+	private OrderedMap<T,U> cursor;
 
 	/**
 	 * Constructor with one parameter
@@ -19,6 +21,8 @@ public class MapIterator<T extends Shorter<? super T>,U> implements Iterator<T> 
 	public MapIterator(OrderedMap<T,U> start) {
 
 		this.elem = start;
+		this.cursor = start;
+		this.lastIndexReturned = -1;
 	}
 	
 	/**
@@ -26,69 +30,55 @@ public class MapIterator<T extends Shorter<? super T>,U> implements Iterator<T> 
 	 */
 	public InMapIterator<U> iterator() {
 
-		return new InMapIterator<U>(this.elem.elements);
+		return new InMapIterator<U>(this.cursor.elements);
 	}
 
 	@Override
 	public boolean hasNext() {
 		
-		return this.elem != null;
+		return this.cursor != null;
 	}
 
 	@Override
 	public T next() {
-		
-		if(this.elem.value != null) {
-			T res = this.elem.value;
-			this.elem = this.elem.next;
-			return res;
+		if (this.hasNext()) {
+			T result = this.cursor.value;
+			this.lastIndexReturned++;
+			this.cursor = this.cursor.next;
 			
+			return result;
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	@Override
 	public void remove() {
-		
-		this.elem.value = this.elem.next.value;
-		this.elem.next = this.elem.next.next;
-	}
-	
-	/*
-	 * Inner Class Begin
-	 */
-	//public class InMapIterator<N> extends SetIterator<N>{
-		
-		/**
-		 * Constructor with one parameter
-		 * 
-		 * @param start
-		 * 			The Map were the iterator is used
-		 *//*
-		public InMapIterator(Set<N> in) {
-			super(in);
-		}*/
-		
-		/**
-		 * Adds an element at the position where the iterator points at
-		 * 
-		 * @param e
-		 * 			Element to be added
-		 *//*
-		public void add(N e) {
-		
-			if(entry.value == null) {
-				entry.value = e;
+		if(this.lastIndexReturned == -1) {
+			throw new RuntimeException("SetIterator: next() was never called");
+		} else if(this.lastIndexReturned == 0 && hasNext()) {
+			// there is a next element and we remove the 1st element
+			this.elem.value = this.elem.next.value;
+			this.elem.next = this.elem.next.next;
+		} else if(this.lastIndexReturned == 0 && !hasNext()) {
+			// there is no next element and we remove the 1st element
+			this.elem.value = null;
+			this.elem.next = null;
+		} else {
+			OrderedMap<T,U> previous = null;
+			OrderedMap<T,U> current = this.elem;
+			for(int i = 0; i < this.lastIndexReturned; i++) {
+				if(i == this.lastIndexReturned - 1) {
+					previous = current;
+				}
+				current = current.next;
+			}
+			
+			if(current.next != null) {
+				previous.next = current.next;
 			} else {
-				Set<N> tmp = entry.next;
-				N v = entry.value;
-				entry.value = e;
-				entry.next = new Set<N>(v);
-				entry.next.next = tmp;
+				previous.next = null;
 			}
 		}
 	}
-	/*
-	 * Inner Class End
-	 */
 }
