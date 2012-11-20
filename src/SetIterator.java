@@ -113,4 +113,8 @@ public class SetIterator<T> implements Iterator<T> {
 	public Set<T> getCursor() {
 		return cursor;
 	}
+
+	public Integer getLastIndexReturned() {
+		return lastIndexReturned;
+	}
 }

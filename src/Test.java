@@ -26,7 +26,7 @@ public class Test {
 		testClasses.add(new SetTester());
 		testClasses.add(new OrderedSetTester());
 		testClasses.add(new OrderedMapTester());
-		testClasses.add(new AssignmentTester());
+		//testClasses.add(new AssignmentTester());
 		testClasses.add(new TimeTester());
 		testClasses.add(new DescriptionTester());
 		

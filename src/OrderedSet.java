@@ -34,7 +34,6 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 	 * @return false if e is identical to another entry, true if successful
 	 */
 	public boolean insert(T e) {
-		
 		Set<T> tmpSet = this.getNext();
 		
 		// if e is already in the set, return false
@@ -83,7 +82,7 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 	 * @param e element which is searched for
 	 * @return true if the set contains the element
 	 */
-	private boolean contains(T e) {
+	public boolean contains(T e) {
 		Iterator<T> it = this.iterator();
 		
 		while(it.hasNext()) {
@@ -94,5 +93,4 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 		
 		return false;
 	}
-	
 }
