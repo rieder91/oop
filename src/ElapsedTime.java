@@ -4,7 +4,6 @@
  * 
  * @author OOP Gruppe 187
  */
-//TODO: abstract
 public abstract class ElapsedTime implements Shorter<ElapsedTime> {
 
 	private Double value;
@@ -27,16 +26,25 @@ public abstract class ElapsedTime implements Shorter<ElapsedTime> {
 	}
 	
 	/**
+	 * Compares @this with @other
 	 * 
+	 * @param other
+	 * 			elapsed time to compare with
+	 * @return 	true - if this is shorter than other
+	 * 			false - otherwise
 	 */
 	public boolean shorter(ElapsedTime other) {
 		return this.shorter(other.value);
 	}
 	
 	/**
+	 * Compares the value of the elapsed time with @val
 	 * 
-	 * @param val
-	 * @return
+	 * @param val 
+	 * 		value to compare with
+	 * @return true - if this is shorter than other
+	 * 			false - otherwise
+	 * 		
 	 */
 	public boolean shorter(Double val) {
 		if(this.value < val) {
@@ -55,16 +63,14 @@ public abstract class ElapsedTime implements Shorter<ElapsedTime> {
 	public abstract int count();
 	
 	/**
-	 * 
-	 * @return
+	 * @return the value of the elapsed time
 	 */
 	public Double getValue() {
 		return value;
 	}
 	
 	/**
-	 * 
-	 * @param value
+	 * @param value the new value of the elapsed time
 	 */
 	public void setValue(Double value) {
 		this.value = value;

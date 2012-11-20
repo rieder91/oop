@@ -20,14 +20,15 @@ public class Description implements Shorter<Description>{
 	}
 	
 	/**
+	 * Compares @this with @other
 	 * 
+	 * @param other
+	 * 			Description to compare with
+	 * @return 	true - if this is shorter than other
+	 * 			false - otherwise
 	 */
 	public boolean shorter(Description other) {
-		if(this.length() < other.length()) {
-			return true;
-		} else {
-			return false;
-		}
+		return(this.length() < other.length());
 	}
 	
 	/**
@@ -46,5 +47,14 @@ public class Description implements Shorter<Description>{
 	 */
 	public String toString() {
 		return this.desc;
+	}
+	
+	/**
+	 * Returns the number of lines in the description
+	 * 
+	 * @return the number of lines in the description
+	 */
+	public int lines(){
+		return this.desc.split("\n").length;
 	}
 }

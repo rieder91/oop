@@ -67,6 +67,14 @@ public class CompositeTime extends ElapsedTime {
 		return this.comp.length;
 	}
 	
+	/**
+	 * Compares @this with @other
+	 * 
+	 * @param other
+	 * 			CompositeTime to compare with
+	 * @return 	true - if this is shorter than other
+	 * 			false - otherwise
+	 */
 	public boolean shorter(CompositeTime ct) {
 		return super.shorter(ct.getValue());
 	}

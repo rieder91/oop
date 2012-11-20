@@ -1,5 +1,7 @@
 import java.util.Iterator;
 
+
+
 /**
  * This class represents the average time of measurement series.
  * 
@@ -9,6 +11,13 @@ import java.util.Iterator;
 public class MeanElapsedTime extends ElapsedTime {
 
 	private Set<Double> entries;
+	
+	/**
+	 * Default Constructor
+	 */
+	public MeanElapsedTime(){
+		this.entries=new Set<Double>();
+	}
 	
 	/**
 	 * Constructor with one parameter
@@ -29,25 +38,38 @@ public class MeanElapsedTime extends ElapsedTime {
 	public MeanElapsedTime(Set<Double> entries) {
 		this.entries = new Set<Double>(entries);
 		
-		Iterator<Double> it = this.entries.iterator();
 		Double sum = 0.0;
 		
-		while(it.hasNext()) {
-			sum += it.next();
+		for(Double a:this.entries){
+			sum+=a;
 		}
 		
 		this.setValue(sum / count());
 	}
 	
 	/**
-	 * Adds more ElapsedTimes
+	 * Adds a ElapsedTime
 	 * 
 	 * @param et
 	 * 			The ElapsedTime that shall be added to MeanElapsedTime
 	 */
 	public void add(ElapsedTime et) {
-		if(this.entries.insert(et.getValue())) {
-			this.setValue(this.getValue() + (et.getValue() / this.count()));
+		this.add(et.getValue());
+	}
+	
+	/**
+	 * Adds a value
+	 * 
+	 * @param et
+	 * 			The value that shall be added to MeanElapsedTime
+	 */
+	public void add(Double value) {
+		Double sum=0.0;
+		for(Double a:this.entries){
+			sum+=a;
+		}
+		if(this.entries.insert(value)) {
+			this.setValue(sum/this.count());
 		} else {
 			throw new RuntimeException("MeanElapsedTime: Object already exists!");
 		}
@@ -60,13 +82,11 @@ public class MeanElapsedTime extends ElapsedTime {
 	 */
 	public Double getMax() {
 		
-		Double tmp, max = Double.MIN_VALUE;
-		Iterator<Double> it = this.entries.iterator();
+		Double max = Double.MIN_VALUE;
 		
-		while(it.hasNext()) {
-			tmp = it.next();
-			if(tmp > max) {
-				max = tmp;
+		for(Double a:this.entries){
+			if(a > max) {
+				max = a;
 			}
 		}
 		
@@ -81,10 +101,9 @@ public class MeanElapsedTime extends ElapsedTime {
 	@Override
 	public int count() {
 		int tmp = 0;
-		Iterator<Double> it = this.entries.iterator();
 		
-		while(it.hasNext()) {
-			it.next();
+		for (Iterator<Double> iterator = this.entries.iterator(); iterator.hasNext();) {
+			iterator.next();
 			tmp++;
 		}
 		
@@ -92,9 +111,12 @@ public class MeanElapsedTime extends ElapsedTime {
 	}
 	
 	/**
+	 * Compares @this with @other
 	 * 
 	 * @param other
-	 * @return
+	 * 			MeanElapsedTime to compare with
+	 * @return 	true - if this is shorter than other
+	 * 			false - otherwise
 	 */
 	public boolean shorter(MeanElapsedTime other) {
 		
