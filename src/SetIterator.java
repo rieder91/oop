@@ -79,12 +79,16 @@ public class SetIterator<T> implements Iterator<T> {
 				if(i == this.lastIndexReturned - 1) {
 					previous = current;
 				}
-				current = current.getNext();
+				if(current != null) {
+					current = current.getNext();
+				} else {
+					this.lastIndexReturned = -1;
+				}
 			}
 			
-			if(current.getNext() != null) {
+			if(current != null && current.getNext() != null) {
 				previous.setNext(current.getNext());
-			} else {
+			} else if(lastIndexReturned != -1){
 				previous.setNext(null);
 			}
 		}
@@ -116,5 +120,9 @@ public class SetIterator<T> implements Iterator<T> {
 
 	public Integer getLastIndexReturned() {
 		return lastIndexReturned;
+	}
+
+	public void setCursor(Set<T> cursor) {
+		this.cursor = cursor;
 	}
 }
