@@ -9,9 +9,9 @@ _WS2012, Vienna University of Technology_
 
 ## Done
  - Assignment 1
-   - Band Management
+   - band management
  - Assignment 2
-   - Improve of the band management core
+   - improving the band management core
  - Assignment 3
    - judging our own code quality
    - writing assertions
