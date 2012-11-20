@@ -27,6 +27,8 @@ public class Test {
 		testClasses.add(new OrderedSetTester());
 		testClasses.add(new OrderedMapTester());
 		testClasses.add(new AssignmentTester());
+		testClasses.add(new TimeTester());
+		testClasses.add(new DescriptionTester());
 		
 		for(Tester t : testClasses) {
 			t.runTests();
@@ -36,12 +38,12 @@ public class Test {
 		
 		
 		/*						verified		test cases
-		 * CompositeTime
-		 * Description			   x  				-
-		 * ElapsedTime
+		 * CompositeTime		   x				x
+		 * Description			   x  				x
+		 * ElapsedTime			   x				x
 		 * InMapIterator
 		 * MapIterator
-		 * MeanElapsedTime
+		 * MeanElapsedTime		   x				x
 		 * OrderedMap
 		 * OrderedSet			   x			    x
 		 * Set                     x                x

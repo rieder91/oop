@@ -47,7 +47,7 @@ public class CompositeTime extends ElapsedTime {
 	 * @return minimum entry of CompositeTime
 	 */
 	public Double getMin() {
-		Double min = Double.MAX_VALUE;
+		Double min = this.getValue();
 		
 		for(Double a: this.comp) {
 			if(min > a) {

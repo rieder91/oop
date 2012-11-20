@@ -38,7 +38,7 @@ public class MeanElapsedTime extends ElapsedTime {
 	public MeanElapsedTime(Set<Double> entries) {
 		this.entries = new Set<Double>(entries);
 		
-		Double sum = 0.0;
+		double sum = 0.0;
 		
 		for(Double a:this.entries){
 			sum+=a;
@@ -64,11 +64,12 @@ public class MeanElapsedTime extends ElapsedTime {
 	 * 			The value that shall be added to MeanElapsedTime
 	 */
 	public void add(Double value) {
-		Double sum=0.0;
-		for(Double a:this.entries){
-			sum+=a;
-		}
+		
 		if(this.entries.insert(value)) {
+			double sum=0.0;
+			for(Double a:this.entries){
+				sum+=a;
+			}
 			this.setValue(sum/this.count());
 		} else {
 			throw new RuntimeException("MeanElapsedTime: Object already exists!");
@@ -82,7 +83,7 @@ public class MeanElapsedTime extends ElapsedTime {
 	 */
 	public Double getMax() {
 		
-		Double max = Double.MIN_VALUE;
+		Double max = this.getValue();
 		
 		for(Double a:this.entries){
 			if(a > max) {

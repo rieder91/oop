@@ -28,7 +28,7 @@ public class Description implements Shorter<Description>{
 	 * 			false - otherwise
 	 */
 	public boolean shorter(Description other) {
-		return(this.length() < other.length());
+		return(this.length() < other.length())?true:false;
 	}
 	
 	/**
