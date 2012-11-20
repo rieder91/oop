@@ -29,6 +29,12 @@ public class MapIterator<T extends Shorter<? super T>,U> implements Iterator<T> 
 	 * @return an iterator for the Set in the Map
 	 */
 	public InMapIterator<U> iterator() {
+		if(this.cursor == null) {
+			return new InMapIterator<U>();
+		}
+		if(this.cursor.elements == null) {
+			this.cursor.elements = new Set<U>();
+		}
 
 		return new InMapIterator<U>(this.cursor.elements);
 	}

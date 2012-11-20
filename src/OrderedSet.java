@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 /**
  * An OrderedSet is a sorted Set<T>.
  * 
@@ -36,6 +38,11 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 		
 		Set<T> tmpSet = this.next;
 		
+		// if e is already in the set, return false
+		if(lfElem(e)) {
+			return false;
+		}
+		
 		if(this.value == null) {
 			this.value = e;
 			return true;
@@ -56,9 +63,9 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 		}
 		
 		while(!e.shorter(tmpSet.value) && tmpSet.next != null) {
-			if(tmpSet.value == e)
-				return false;
-			tmpSet = this.next;
+//			if(tmpSet.value == e)
+//				return false;
+			tmpSet = tmpSet.next;
 		}
 		
 		if(e.shorter(tmpSet.value)) {
@@ -72,6 +79,18 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 			tmpSet.next = new Set<T>(e);
 			return true;
 		}
+	}
+	
+	private boolean lfElem(T e) {
+		Iterator<T> it = this.iterator();
+		
+		while(it.hasNext()) {
+			if(it.next() == e) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 }

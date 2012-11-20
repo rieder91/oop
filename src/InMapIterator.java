@@ -1,6 +1,11 @@
 
 public class InMapIterator<T> extends SetIterator<T> {
 	
+	
+	public InMapIterator() {
+		super();
+	}
+	
 	/**
 	 * Constructor with one parameter
 	 * 
@@ -9,6 +14,15 @@ public class InMapIterator<T> extends SetIterator<T> {
 	 */
 	public InMapIterator(Set<T> in) {
 		super(in);
+	}
+	
+	public boolean hasNext() {
+		if(this.getCursor() == null || this.getCursor().value == null) {
+			return false;
+		} else {
+			return true;
+		}
+		//return this.getCursor() != null;
 	}
 	
 	/**

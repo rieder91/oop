@@ -92,7 +92,7 @@ public class Test {
 		InMapIterator<CompositeTime> inIt2;
 		
 		if(it2.hasNext()) {
-			it2.next();
+//			it2.next();
 			inIt2 = it2.iterator();
 			inIt2.add(comp1);
 			inIt2.add(comp2);
@@ -122,9 +122,9 @@ public class Test {
 		it2 = om.iterator();
 		
 		while(it2.hasNext()) {
-			System.out.println("Max: " + it2.next().getMax());
-			
 			inIt2 = it2.iterator();
+			
+			System.out.println("Max: " + it2.next().getMax());
 			
 			while(inIt2.hasNext())
 				System.out.println("Min: " + inIt2.next().getMin());
@@ -134,9 +134,34 @@ public class Test {
 		 * Test Case 3 of Assignment 5
 		 */
 		
+		// TODO: einen grund nennen, warum OrderedMap kein Untertyp von OrderedSet ist
+		
 		/*
 		 * Test Case 4 of Assignment 5
 		 */
+		
+		OrderedSet<ElapsedTime> osEt = new OrderedSet<ElapsedTime>();
+		
+		// fill osEt with all MeanElapsedTime- and CompositeTime-instances of om
+		it2 = om.iterator();
+		
+		while(it2.hasNext()) {
+			inIt2 = it2.iterator();
+			
+			osEt.insert(it2.next());
+			
+			while(inIt2.hasNext())
+				osEt.insert(inIt2.next());
+		}
+		
+		// print count() of all values
+		Iterator<ElapsedTime> osEtIt = osEt.iterator();
+		int i = 1;
+		
+		while(osEtIt.hasNext()) {
+			System.out.println("Value " + i +": " + osEtIt.next().count());
+			i++;
+		}
 		
 		// FAIL
 //		CompositeTime t = new CompositeTime(1.0);
@@ -158,7 +183,7 @@ public class Test {
 //		setIterator.next();
 		setIterator.remove();
 		
-		System.out.println(iteratorSet);
+//		System.out.println(iteratorSet);
 		
 		
 	}

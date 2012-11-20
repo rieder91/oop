@@ -97,4 +97,8 @@ public class SetIterator<T> implements Iterator<T> {
 	public void setEntries(Set<T> entries) {
 		this.entries = entries;
 	}
+
+	public Set<T> getCursor() {
+		return cursor;
+	}
 }
