@@ -38,7 +38,7 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 		Set<T> tmpSet = this.getNext();
 		
 		// if e is already in the set, return false
-		if(lfElem(e)) {
+		if(contains(e)) {
 			return false;
 		}
 		
@@ -80,7 +80,12 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 		}
 	}
 	
-	private boolean lfElem(T e) {
+	/**
+	 * WTF
+	 * @param e
+	 * @return
+	 */
+	private boolean contains(T e) {
 		Iterator<T> it = this.iterator();
 		
 		while(it.hasNext()) {
