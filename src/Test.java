@@ -24,6 +24,8 @@ public class Test {
 		/*
 		 * Test Case 1 of Assignment 5
 		 */
+		System.out.println("Testfall 1");
+		
 		OrderedSet<Description> os = new OrderedSet<Description>();
 		
 		if(!os.insert(new Description("Ein Text")))
@@ -37,14 +39,50 @@ public class Test {
 		
 		Iterator<Description> it1 = os.iterator();
 		
+		System.out.println("\nLaenge der einzelnen Elemente der befuellten OrderedSet<Description>:");
+		
 		while(it1.hasNext()) {
 			System.out.println(it1.next().length());
 		}
 		
+		it1 = os.iterator();
+		
+		if(it1.hasNext()) {
+			it1.next();
+		}
+		
+		it1.remove();
+		
+		System.out.println("\nErstes Element wurde geloescht:");
+		
+		it1 = os.iterator();
+		
+		while(it1.hasNext()) {
+			System.out.println(it1.next().length());
+		}
+		
+		it1 = os.iterator();
+		
+		for(int i = 0; i < 2; i++) {
+			if(it1.hasNext()) {
+				it1.next();
+			}
+		}
+		
+		it1.remove();
+		
+		System.out.println("\nZweites Element (der verbliebenen) wurde geloescht:");
+		
+		it1 = os.iterator();
+		
+		while(it1.hasNext()) {
+			System.out.println(it1.next().length());
+		}
 		
 		/*
 		 * Test Case 2 of Assignment 5
 		 */
+		System.out.println("\n\nTestfall 2");
 		OrderedMap<MeanElapsedTime,CompositeTime> om = new OrderedMap<MeanElapsedTime,CompositeTime>();
 		
 		Set<Double> sd1 = new Set<Double>();
@@ -76,23 +114,17 @@ public class Test {
 		MeanElapsedTime met1 = new MeanElapsedTime(sd1);
 		MeanElapsedTime met2 = new MeanElapsedTime(sd2);
 		MeanElapsedTime met3 = new MeanElapsedTime(sd3);
-		
-		//Set<CompositeTime> sct1 = new Set<CompositeTime>(comp1);
-		
+				
 		// fill om
-		if(!om.insert(met1))
-			System.out.println("Fehler 1");
-		if(!om.insert(met2))
-			System.out.println("Fehler 1");
-		if(!om.insert(met3))
-			System.out.println("Fehler 1");
+		om.insert(met1);
+		om.insert(met2);
+		om.insert(met3);
 		
 		
 		MapIterator<MeanElapsedTime,CompositeTime> it2 = om.iterator();
 		InMapIterator<CompositeTime> inIt2;
 		
 		if(it2.hasNext()) {
-//			it2.next();
 			inIt2 = it2.iterator();
 			inIt2.add(comp1);
 			inIt2.add(comp2);
@@ -118,6 +150,8 @@ public class Test {
 			inIt2.add(comp2);
 		}
 		
+		System.out.println("\nMaxima der MET und Minima der CT der befuellten OrderedMap<MeanElapsedTime,CompositeTime>:");
+
 		// get min/max values
 		it2 = om.iterator();
 		
@@ -130,16 +164,55 @@ public class Test {
 				System.out.println("Min: " + inIt2.next().getMin());
 		}
 		
+		it2 = om.iterator();
+		it2.next();
+		it2.remove();
+		
+		System.out.println("\nKompletter erster Eintrag wurde geloescht:");
+		
+		it2 = om.iterator();
+		
+		while(it2.hasNext()) {
+			inIt2 = it2.iterator();
+			
+			System.out.println("Max: " + it2.next().getMax());
+			
+			while(inIt2.hasNext())
+				System.out.println("Min: " + inIt2.next().getMin());
+		}
+		
+		it2 = om.iterator();
+		it2.next();
+		inIt2 = it2.iterator();
+		inIt2.next();
+		inIt2.remove();
+		
+		System.out.println("\nErstes Element des zweiten Eintrags wurde geloescht:");
+		
+		it2 = om.iterator();
+		
+		while(it2.hasNext()) {
+			inIt2 = it2.iterator();
+			
+			System.out.println("Max: " + it2.next().getMax());
+			
+			while(inIt2.hasNext())
+				System.out.println("Min: " + inIt2.next().getMin());
+		}
+		
+		
+		
 		/*
 		 * Test Case 3 of Assignment 5
 		 */
-		
-		// TODO: einen grund nennen, warum OrderedMap kein Untertyp von OrderedSet ist
+		System.out.println("\n\nTestfall 3");
+		System.out.println("OrderedMap<T,U> wurde als eigene Klasse ohne Bezug auf Set<T> bzw. OrderedSet<T> erstellt.\n" +
+							"Hier besteht keine Untertypbeziehung zwischen diesen Collections.");
 		
 		/*
 		 * Test Case 4 of Assignment 5
 		 */
-		
+		System.out.println("\n\nTestfall 4");
 		OrderedSet<ElapsedTime> osEt = new OrderedSet<ElapsedTime>();
 		
 		// fill osEt with all MeanElapsedTime- and CompositeTime-instances of om
@@ -155,6 +228,8 @@ public class Test {
 		}
 		
 		// print count() of all values
+		System.out.println("\nBefuelltes OrderedSet<ElapsedTime> mit verbliebenen Elementen aus Testfall 2\n" +
+							"Anzahl der Einzelzeiten pro Eintrag:");
 		Iterator<ElapsedTime> osEtIt = osEt.iterator();
 		int i = 1;
 		
@@ -162,12 +237,11 @@ public class Test {
 			System.out.println("Value " + i +": " + osEtIt.next().count());
 			i++;
 		}
+				
 		
-		// FAIL
-//		CompositeTime t = new CompositeTime(1.0);
-		
-		
-		
+		/*
+		 * Debug-Removal-test of Set
+		 *//*
 		Set<String> iteratorSet = new Set<String>();
 		iteratorSet.insert("Thomas");
 		iteratorSet.insert("Markus");
@@ -185,6 +259,6 @@ public class Test {
 		
 //		System.out.println(iteratorSet);
 		
-		
+		*/
 	}
 }
