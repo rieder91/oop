@@ -16,6 +16,9 @@ public class Description implements Shorter<Description>{
 	 * 			The String used for the description
 	 */
 	public Description(String desc) {
+		if(desc==null){
+			throw new RuntimeException("description should not be null");
+		}
 		this.desc = desc;
 	}
 	

@@ -20,12 +20,21 @@ public class DescriptionTester implements Tester {
 		Description d2 = new Description(desc2);
 		Description d3 = new Description(desc3);
 		Description d4 = new Description(desc4);
+		try{
+			new Description(null);
+			Validator.report(false,"check if exception is thrown if you make a new Description of null");
+		}catch(RuntimeException ex){
+			Validator.report(true,"check if exception is thrown if you make a new Description of null");
+		}
 		
-		Validator.report(d4.length()==17,"Description Test laenge");
-		Validator.report(d.lines()==6,"Description Test lines");
-		Validator.report(d.shorter(d2)==false,"Description Test shorter1");
-		Validator.report(d.shorter(d3)==true,"Description Test shorter2");
-		Validator.report(d.shorter(d4)==false,"Description Test shorter3");
+		
+		
+		Validator.report(d4.length()==17,"test of length function");
+		Validator.report(d.lines()==6,"test of lines function");
+		Validator.report(d.shorter(d2)==false,"shorter test");
+		Validator.report(d.shorter(d3)==true,"another shorter test");
+		Validator.report(d.shorter(d4)==false,"too much shorter tests");
+		Validator.report(d4.toString().equals(desc4), "test to string of description");
 
 	}
 
