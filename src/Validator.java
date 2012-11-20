@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class Validator {
@@ -53,6 +54,26 @@ public class Validator {
 		
 		if(count != list1.size()) {
 			return false;
+		}
+		
+		return true;
+	}
+	
+	static <T extends Shorter<? super T>> boolean compareTo(OrderedSet<T> a, OrderedSet<T> b) {
+		if(a == null &&  b != null) {
+			return false;
+		} else if(a != null && b == null) {
+			return false;
+		}
+		
+		Iterator<T> it = b.iterator();
+		
+		for(T ele : a) {
+			if(it.next() == ele) {
+				
+			} else {
+				return false;
+			}
 		}
 		
 		return true;

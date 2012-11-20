@@ -7,6 +7,5 @@ public class OrderedMapTester implements Tester {
 	
 	public void runTests() {
 		// TODO Auto-generated method stub
-		
 	}
 }

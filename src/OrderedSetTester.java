@@ -8,14 +8,90 @@ import java.util.Iterator;
 public class OrderedSetTester implements Tester {
 	public void runTests() {
 		OrderedSet<Description> os1 = new OrderedSet<Description>();
-		Iterator<Description> it = (SetIterator<Description>) os1.iterator();
+		OrderedSet<Description> os2 = new OrderedSet<Description>();
+		Iterator<Description> it = os2.iterator();
 		
+		Description first = new Description("A");
+		Description second = new Description("BB");
+		Description third = new Description("CCC");
+		Description fourth = new Description("DDDD");
 		
+		os1.insert(first);
+		os1.insert(second);
+		os1.insert(third);
+		os1.insert(fourth);
 		
-		System.out.println("i am run");
+		os2.insert(fourth);
+		os2.insert(third);
+		os2.insert(second);
+		os2.insert(first);
+		
+		Validator.report(Validator.compareTo(os1, os2) == true, "check that the sets are actually sorted");
+		
+		os1 = new OrderedSet<Description>();
+		os1.insert(first);
+		if(os1.insert(first) == false) {
+			Validator.report(true, "check that the same element cant be added twice");
+		} else {
+			Validator.report(false, "check that the same element cant be added twice");
+		}
+		
+		try {
+			it.remove();
+			Validator.report(false, "try to call remove before next() was called");
+		} catch (RuntimeException e) {
+			Validator.report(true, "try to call remove before next() was called");
+		}
+		
 		
 		it.next();
+		it.remove();
+		
+		os1 = new OrderedSet<Description>();
+		os1.insert(second);
+		os1.insert(third);
+		os1.insert(fourth);
+		
+		Validator.report(Validator.compareTo(os1, os2) == true, "remove the first element");
+		
+		os1 = new OrderedSet<Description>();
+		os1.insert(first);
+		os1.insert(second);
+		os1.insert(fourth);
+		
+		os2 = new OrderedSet<Description>();
+		os2.insert(first);
+		os2.insert(second);
+		os2.insert(third);
+		os2.insert(fourth);
+		
+		it = os2.iterator();
 		it.next();
-
+		it.next();
+		it.next();
+		it.remove();
+		
+		Validator.report(Validator.compareTo(os1, os2) == true, "remove an element in the middle");
+		
+		
+		os1 = new OrderedSet<Description>();
+		os1.insert(first);
+		os1.insert(second);
+		os1.insert(third);
+		
+		os2 = new OrderedSet<Description>();
+		os2.insert(first);
+		os2.insert(second);
+		os2.insert(third);
+		os2.insert(fourth);
+		
+		it = os2.iterator();
+		while(it.hasNext()) {
+			it.next();
+		}
+		
+		it.remove();
+		
+		Validator.report(Validator.compareTo(os1, os2) == true, "remove the last element");
 	}
 }

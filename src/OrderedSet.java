@@ -62,8 +62,6 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 		}
 		
 		while(!e.shorter(tmpSet.getValue()) && tmpSet.getNext() != null) {
-//			if(tmpSet.value == e)
-//				return false;
 			tmpSet = tmpSet.getNext();
 		}
 		
@@ -81,9 +79,9 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 	}
 	
 	/**
-	 * WTF
-	 * @param e
-	 * @return
+	 * check if the set contains an element
+	 * @param e element which is searched for
+	 * @return true if the set contains the element
 	 */
 	private boolean contains(T e) {
 		Iterator<T> it = this.iterator();
