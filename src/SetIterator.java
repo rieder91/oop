@@ -117,4 +117,8 @@ public class SetIterator<T> implements Iterator<T> {
 	public Integer getLastIndexReturned() {
 		return lastIndexReturned;
 	}
+
+	public void setCursor(Set<T> cursor) {
+		this.cursor = cursor;
+	}
 }

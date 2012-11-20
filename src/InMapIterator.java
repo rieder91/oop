@@ -1,4 +1,10 @@
 
+/**
+ * 
+ * @author OOP Gruppe 187
+ *
+ * @param <T>
+ */
 public class InMapIterator<T> extends SetIterator<T> {
 	
 	
@@ -16,14 +22,6 @@ public class InMapIterator<T> extends SetIterator<T> {
 		super(in);
 	}
 	
-	public boolean hasNext() {
-		if(this.getCursor() == null || this.getCursor().getValue() == null) {
-			return false;
-		} else {
-			return true;
-		}
-		//return this.getCursor() != null;
-	}
 	
 	/**
 	 * Adds an element at the position where the iterator points at
@@ -32,21 +30,53 @@ public class InMapIterator<T> extends SetIterator<T> {
 	 * 			Element to be added
 	 */
 	public void add(T e) {
+		Integer lastIndex = this.getLastIndexReturned();
 		
-		if(this.getEntries() == null) {
-			this.setEntries(new Set<T>(e));
+		if(e == null) {
 			return;
 		}
-		if(this.getEntries().getValue() == null) {
-			this.getEntries().setValue(e);
-			return;
+		
+		if(lastIndex < 0) {
+			throw new RuntimeException("next() needs to be called prior to calling add()");
+		} else if(lastIndex == 0) {
+			Set<T> firstSet = this.getEntries();
+			Set<T> secondSet = new Set<T>(firstSet.getValue());
+			secondSet.setNext(firstSet.getNext());
+			firstSet.setValue(e);
+			firstSet.setNext(secondSet);
+			this.setCursor(firstSet);
+			
 		} else {
-			Set<T> tmp = this.getEntries().getNext();
-			T v = this.getEntries().getValue();
-			this.getEntries().setValue(e);
-			this.getEntries().setNext(new Set<T>(v));
-			this.getEntries().getNext().setNext(tmp);
+			Set<T> nextSet = this.getEntries();
+			Set<T> previousSet = new Set<T>();
+			for(int i = 0; i < lastIndex + 1; i++) {
+				if(i == lastIndex) {
+					previousSet = nextSet;
+				}
+				nextSet = nextSet.getNext();
+			}
+			
+			Set<T> newSet = new Set<T>(e);
+			previousSet.setNext(newSet);
+			newSet.setNext(nextSet);
+			this.setCursor(newSet);
 		}
+		
+		
+//		if(this.getEntries() == null) {
+//			this.setEntries(new Set<T>(e));
+//			return;
+//		}
+//		if(this.getEntries().getValue() == null) {
+//			this.getEntries().setValue(e);
+//			return;
+//		} else {
+//			Set<T> tmp = this.getEntries().getNext();
+//			T v = this.getEntries().getValue();
+//			this.getEntries().setValue(e);
+//			this.getEntries().setNext(new Set<T>(v));
+//			this.getEntries().getNext().setNext(tmp);
+//		}
 	}
 }
 
