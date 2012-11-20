@@ -242,6 +242,9 @@ public class Test {
 		
 		ArrayList<Tester> testClasses = new ArrayList<Tester>();
 		testClasses.add(new SetTester());
+		testClasses.add(new OrderedSetTester());
+		testClasses.add(new OrderedMapTester());
+		testClasses.add(new AssignmentTester());
 		
 		for(Tester t : testClasses) {
 			t.runTests();

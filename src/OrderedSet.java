@@ -12,7 +12,6 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 	 * Default constructor
 	 */
 	public OrderedSet() {
-		//TODO: delete
 		super();
 	}
 	
