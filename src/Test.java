@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Test class for Assignment 5
@@ -26,7 +25,7 @@ public class Test {
 		testClasses.add(new SetTester());
 		testClasses.add(new OrderedSetTester());
 		testClasses.add(new OrderedMapTester());
-		testClasses.add(new AssignmentTester());
+//		testClasses.add(new AssignmentTester());
 		
 		for(Tester t : testClasses) {
 			t.runTests();
