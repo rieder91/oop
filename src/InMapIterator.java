@@ -63,20 +63,6 @@ public class InMapIterator<T> extends SetIterator<T> {
 		}
 		
 		
-//		if(this.getEntries() == null) {
-//			this.setEntries(new Set<T>(e));
-//			return;
-//		}
-//		if(this.getEntries().getValue() == null) {
-//			this.getEntries().setValue(e);
-//			return;
-//		} else {
-//			Set<T> tmp = this.getEntries().getNext();
-//			T v = this.getEntries().getValue();
-//			this.getEntries().setValue(e);
-//			this.getEntries().setNext(new Set<T>(v));
-//			this.getEntries().getNext().setNext(tmp);
-//		}
 	}
 }
 
