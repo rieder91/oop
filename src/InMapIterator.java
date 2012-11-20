@@ -17,7 +17,7 @@ public class InMapIterator<T> extends SetIterator<T> {
 	}
 	
 	public boolean hasNext() {
-		if(this.getCursor() == null || this.getCursor().value == null) {
+		if(this.getCursor() == null || this.getCursor().getValue() == null) {
 			return false;
 		} else {
 			return true;
@@ -37,15 +37,15 @@ public class InMapIterator<T> extends SetIterator<T> {
 			this.setEntries(new Set<T>(e));
 			return;
 		}
-		if(this.getEntries().value == null) {
-			this.getEntries().value = e;
+		if(this.getEntries().getValue() == null) {
+			this.getEntries().setValue(e);
 			return;
 		} else {
-			Set<T> tmp = this.getEntries().next;
-			T v = this.getEntries().value;
-			this.getEntries().value = e;
-			this.getEntries().next = new Set<T>(v);
-			this.getEntries().next.next = tmp;
+			Set<T> tmp = this.getEntries().getNext();
+			T v = this.getEntries().getValue();
+			this.getEntries().setValue(e);
+			this.getEntries().setNext(new Set<T>(v));
+			this.getEntries().getNext().setNext(tmp);
 		}
 	}
 }

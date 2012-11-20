@@ -38,7 +38,7 @@ public class SetIterator<T> implements Iterator<T> {
 	 */
 	@Override
 	public boolean hasNext() {
-		return this.cursor != null;
+		return this.cursor != null && cursor.getValue() != null;
 	}
 
 	/**
@@ -47,9 +47,9 @@ public class SetIterator<T> implements Iterator<T> {
 	@Override
 	public T next() {
 		if (this.hasNext()) {
-			T result = this.cursor.value;
+			T result = this.cursor.getValue();
 			this.lastIndexReturned++;
-			this.cursor = this.cursor.next;
+			this.cursor = this.cursor.getNext();
 			
 			return result;
 		} else {
@@ -66,12 +66,12 @@ public class SetIterator<T> implements Iterator<T> {
 			throw new RuntimeException("SetIterator: next() was never called");
 		} else if(this.lastIndexReturned == 0 && hasNext()) {
 			// there is a next element and we remove the 1st element
-			this.entries.value = this.entries.next.value;
-			this.entries.next = this.entries.next.next;
+			this.entries.setValue(this.entries.getNext().getValue());
+			this.entries.setNext(this.entries.getNext().getNext());
 		} else if(this.lastIndexReturned == 0 && !hasNext()) {
 			// there is no next element and we remove the 1st element
-			this.entries.value = null;
-			this.entries.next = null;
+			this.entries.setValue(null);
+			this.entries.setNext(null);
 		} else {
 			Set<T> previous = null;
 			Set<T> current = entries;
@@ -79,25 +79,37 @@ public class SetIterator<T> implements Iterator<T> {
 				if(i == this.lastIndexReturned - 1) {
 					previous = current;
 				}
-				current = current.next;
+				current = current.getNext();
 			}
 			
-			if(current.next != null) {
-				previous.next = current.next;
+			if(current.getNext() != null) {
+				previous.setNext(current.getNext());
 			} else {
-				previous.next = null;
+				previous.setNext(null);
 			}
 		}
 	}
 
+	/**
+	 * getter for the set behind the iterator
+	 * @return set behind the iterator
+	 */
 	public Set<T> getEntries() {
 		return entries;
 	}
 
-	public void setEntries(Set<T> entries) {
+	/**
+	 * setter for the set the iterator points to; used by InMapIterator
+	 * @param entries 
+	 */
+	protected void setEntries(Set<T> entries) {
 		this.entries = entries;
 	}
 
+	/**
+	 * getter for the current element the iterator points to; similar to peek()
+	 * @return the current posiiton of the iterator
+	 */
 	public Set<T> getCursor() {
 		return cursor;
 	}

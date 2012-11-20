@@ -36,47 +36,47 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 	 */
 	public boolean insert(T e) {
 		
-		Set<T> tmpSet = this.next;
+		Set<T> tmpSet = this.getNext();
 		
 		// if e is already in the set, return false
 		if(lfElem(e)) {
 			return false;
 		}
 		
-		if(this.value == null) {
-			this.value = e;
+		if(this.getValue() == null) {
+			this.setValue(e);
 			return true;
 		}
 		
-		if(e.shorter(this.value)) {
-			Set<T> tmp = this.next;
-			T v = this.value;
-			this.value = e;
-			this.next = new Set<T>(v);
-			this.next.next = tmp;
+		if(e.shorter(this.getValue())) {
+			Set<T> tmp = this.getNext();
+			T v = this.getValue();
+			this.setValue(e);
+			this.setNext(new Set<T>(v));
+			this.getNext().setNext(tmp);
 			return true;
 		}
 		
-		if(this.next == null) {
-			this.next = new Set<T>(e);
+		if(this.getNext() == null) {
+			this.setNext(new Set<T>(e));
 			return true;
 		}
 		
-		while(!e.shorter(tmpSet.value) && tmpSet.next != null) {
+		while(!e.shorter(tmpSet.getValue()) && tmpSet.getNext() != null) {
 //			if(tmpSet.value == e)
 //				return false;
-			tmpSet = tmpSet.next;
+			tmpSet = tmpSet.getNext();
 		}
 		
-		if(e.shorter(tmpSet.value)) {
-			Set<T> tmp2 = tmpSet.next;
-			T v2 = tmpSet.value;
-			tmpSet.value = e;
-			tmpSet.next = new Set<T>(v2);
-			tmpSet.next.next = tmp2;
+		if(e.shorter(tmpSet.getValue())) {
+			Set<T> tmp2 = tmpSet.getNext();
+			T v2 = tmpSet.getValue();
+			tmpSet.setValue(e);
+			tmpSet.setNext(new Set<T>(v2));
+			tmpSet.getNext().setNext(tmp2);
 			return true;
 		} else {
-			tmpSet.next = new Set<T>(e);
+			tmpSet.setNext(new Set<T>(e));
 			return true;
 		}
 	}

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -239,26 +240,32 @@ public class Test {
 		}
 				
 		
-		/*
-		 * Debug-Removal-test of Set
-		 *//*
-		Set<String> iteratorSet = new Set<String>();
-		iteratorSet.insert("Thomas");
-		iteratorSet.insert("Markus");
-//		iteratorSet.insert("Dominic");
-//		iteratorSet.insert("Patrick");
-//		iteratorSet.insert("Manuel");
-
-		Iterator<String> setIterator = iteratorSet.iterator();
-		setIterator.next();
-//		setIterator.next();
-//		setIterator.next();
-//		setIterator.next();
-//		setIterator.next();
-		setIterator.remove();
+		ArrayList<Tester> testClasses = new ArrayList<Tester>();
+		testClasses.add(new SetTester());
 		
-//		System.out.println(iteratorSet);
+		for(Tester t : testClasses) {
+			t.runTests();
+		}
 		
-		*/
+		Validator.printOverview();
+		
+		
+		/*						verified		test cases
+		 * CompositeTime
+		 * Description
+		 * ElapsedTime
+		 * InMapIterator
+		 * MapIterator
+		 * MeanElapsedTime
+		 * OrderedMap
+		 * OrderedSet
+		 * Set                     x                x
+		 * SetIterator             x                x
+		 * Shorter
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
 	}
 }
