@@ -13,66 +13,70 @@ public class AssignmentTester implements Tester {
 		/*
 		 * Test Case 1 of Assignment 5
 		 */
-		System.out.println("Testfall 1");
+		
+		Description desc1 = new Description("Ein Text");
+		Description desc2 = new Description("Wieder ein Text");
+		Description desc3 = new Description("Noch ein Text");
+		Description desc4 = new Description("Text");
+		Description desc5 = new Description("Thomas");
+		Description desc6 = new Description("Markus");
+		Description desc7 = new Description("Dominic");
 		
 		OrderedSet<Description> os = new OrderedSet<Description>();
+		Iterator<Description> it1;
+		Integer count = 0;
 		
-		if(!os.insert(new Description("Ein Text")))
-			System.out.println("Fehler 1");
-		if(!os.insert(new Description("Wieder ein Text")))
-			System.out.println("Fehler 2");
-		if(!os.insert(new Description("Noch ein Text")))
-			System.out.println("Fehler 3");
-		if(!os.insert(new Description("Text")))
-			System.out.println("Fehler 4");
-		
-		Iterator<Description> it1 = os.iterator();
-		
-		System.out.println("\nLaenge der einzelnen Elemente der befuellten OrderedSet<Description>:");
-		
-		while(it1.hasNext()) {
-			System.out.println(it1.next().length());
-		}
+		os.insert(desc1);
+		os.insert(desc2);
+		os.insert(desc3);
+		os.insert(desc4);
 		
 		it1 = os.iterator();
 		
-		if(it1.hasNext()) {
+		while(it1.hasNext()) {
 			it1.next();
+			count++;
 		}
 		
-		it1.remove();
+		Validator.report(count == 4, "add four elements to an orderedset and verify their existance");
 		
-		System.out.println("\nErstes Element wurde geloescht:");
+		os.insert(desc5);
 		
+		count = 0;
 		it1 = os.iterator();
-		
 		while(it1.hasNext()) {
-			System.out.println(it1.next().length());
-		}
-		
-		it1 = os.iterator();
-		
-		for(int i = 0; i < 2; i++) {
-			if(it1.hasNext()) {
-				it1.next();
+			it1.next();
+			count++;
+			if(count == 0 || count == 1) {
+				it1.remove();
 			}
 		}
 		
-		it1.remove();
-		
-		System.out.println("\nZweites Element (der verbliebenen) wurde geloescht:");
+		Validator.report(count == 3, "add one additional element and remove two");
 		
 		it1 = os.iterator();
-		
 		while(it1.hasNext()) {
-			System.out.println(it1.next().length());
+			it1.next();
+			it1.remove();
 		}
+		
+		count = 0;
+		it1 = os.iterator();
+		while(it1.hasNext()) {
+			it1.next();
+			count++;
+		}
+		
+		Validator.report(count == 0, "remove ALL the elements");
+		
+		
+		/*****************/
 		
 		/*
 		 * Test Case 2 of Assignment 5
 		 */
-		System.out.println("\n\nTestfall 2");
-		OrderedMap<MeanElapsedTime,CompositeTime> om = new OrderedMap<MeanElapsedTime,CompositeTime>();
+		
+		OrderedMap<MeanElapsedTime, CompositeTime> map2 = new OrderedMap<MeanElapsedTime, CompositeTime>();
 		
 		Set<Double> sd1 = new Set<Double>();
 		sd1.insert(5.4);
@@ -103,14 +107,14 @@ public class AssignmentTester implements Tester {
 		MeanElapsedTime met1 = new MeanElapsedTime(sd1);
 		MeanElapsedTime met2 = new MeanElapsedTime(sd2);
 		MeanElapsedTime met3 = new MeanElapsedTime(sd3);
-				
+		
 		// fill om
-		om.insert(met1);
-		om.insert(met2);
-		om.insert(met3);
+		map2.insert(met1);
+		map2.insert(met2);
+		map2.insert(met3);
 		
 		
-		MapIterator<MeanElapsedTime,CompositeTime> it2 = om.iterator();
+		MapIterator<MeanElapsedTime,CompositeTime> it2 = map2.iterator();
 		InMapIterator<CompositeTime> inIt2;
 		
 		if(it2.hasNext()) {

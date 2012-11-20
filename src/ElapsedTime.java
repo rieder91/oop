@@ -65,14 +65,14 @@ public abstract class ElapsedTime implements Shorter<ElapsedTime> {
 	/**
 	 * @return the value of the elapsed time
 	 */
-	public Double getValue() {
+	protected Double getValue() {
 		return value;
 	}
 	
 	/**
 	 * @param value the new value of the elapsed time
 	 */
-	public void setValue(Double value) {
+	protected void setValue(Double value) {
 		this.value = value;
 	}
 }
