@@ -12,7 +12,7 @@ public class OrderedMap<T extends Shorter<? super T>, U> extends OrderedSet<T> {
 
 
 	/**
-	 * 
+	 * default constructor
 	 */
 	public OrderedMap() {
 		super();
@@ -20,8 +20,8 @@ public class OrderedMap<T extends Shorter<? super T>, U> extends OrderedSet<T> {
 	}
 
 	/**
-	 * 
-	 * @param e
+	 * default constructor which requires one value
+	 * @param e first element of the map
 	 */
 	public OrderedMap(T e) {
 		super(e);
@@ -37,16 +37,16 @@ public class OrderedMap<T extends Shorter<? super T>, U> extends OrderedSet<T> {
 	}
 
 	/**
-	 * 
+	 * gets the values of the map-key 
 	 * @return
 	 */
-	public Set<U> getElements() {
+	protected Set<U> getElements() {
 		return elements;
 	}
 
 	/**
-	 * 
-	 * @param elements
+	 * sets the elements of the map-key
+	 * @param elements new elements
 	 */
 	protected void setElements(Set<U> elements) {
 		this.elements = elements;
@@ -99,18 +99,16 @@ public class OrderedMap<T extends Shorter<? super T>, U> extends OrderedSet<T> {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * @return returns the pointer to the next map inside the data-structure
 	 */
-	public OrderedMap<T, U> getNextMap() {
+	protected OrderedMap<T, U> getNextMap() {
 		return nextMap;
 	}
 
 	/**
-	 * 
-	 * @param nextMap
+	 * @param nextMap sets the next map inside the data-structure
 	 */
-	public void setNextMap(OrderedMap<T, U> nextMap) {
+	protected void setNextMap(OrderedMap<T, U> nextMap) {
 		this.nextMap = nextMap;
 		super.setNext(nextMap); // makes the map iterator easier
 	}

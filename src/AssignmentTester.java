@@ -38,7 +38,11 @@ public class AssignmentTester implements Tester {
 		}
 
 		Validator.report(count == 4, "AssignmentTester: add four elements to an orderedset and verify their existance");
-
+		
+		if(Validator.debug) {
+			Validator.debuggingLog.append("\n\nAssignmentTester: add four elements to an orderedset and verify their existance\nOutput: " + count);
+		}
+		
 		os.insert(desc5);
 
 		count = 0;
@@ -52,6 +56,10 @@ public class AssignmentTester implements Tester {
 		}
 		Validator.report(count - 2 == 3, "AssignmentTester: add one additional element and remove two");
 
+		if(Validator.debug) {
+			Validator.debuggingLog.append("\n\nAssignmentTester: add one additional element and remove two\nOutput: " + count);
+		}
+		
 		it1 = os.iterator();
 		
 		while(it1.hasNext()) {
@@ -67,7 +75,11 @@ public class AssignmentTester implements Tester {
 		}
 
 		Validator.report(count == 0, "AssignmentTester: remove ALL the elements");
-
+		
+		if(Validator.debug) {
+			Validator.debuggingLog.append("\n\nAssignmentTester: remove ALL the elements\nOutput: " + count);
+		}
+		
 
 		/*****************/
 
@@ -120,6 +132,7 @@ public class AssignmentTester implements Tester {
 			inIt2 = it2.iterator();
 			inIt2.add(comp1);
 			inIt2.add(comp2);
+			inIt2.next();
 			inIt2.add(comp3);
 		}
 
@@ -128,6 +141,7 @@ public class AssignmentTester implements Tester {
 			inIt2 = it2.iterator();
 			inIt2.add(comp4);
 			inIt2.add(comp1);
+			inIt2.next();
 			inIt2.add(comp3);
 		}
 
@@ -136,6 +150,7 @@ public class AssignmentTester implements Tester {
 			inIt2 = it2.iterator();
 			inIt2.add(comp4);
 			inIt2.add(comp5);
+			inIt2.next();
 			inIt2.add(comp2);
 		}
 
@@ -159,17 +174,37 @@ public class AssignmentTester implements Tester {
 		Iterator<Double> maximumIt = maxValues.iterator();
 		Iterator<Double> minimumIt = minValues.iterator();
 		
+		Double t1;
+		
 		boolean result = true;
 		
 		// get min/max values
 		it2 = om.iterator();
+		
+		if(Validator.debug) {
+			Validator.debuggingLog.append("\n\nAssignmentTester: validating the minimum and maximum values from an OrderedMap<MET, CT>\nOutput: \n");
+		}
 
 		while(it2.hasNext()) {
 			inIt2 = it2.iterator();
-			result = result && (it2.next().getMax().equals(maximumIt.next()));
+			t1 = it2.next().getMax();
+			result = result && (t1.equals(maximumIt.next()));
+			
+			if(Validator.debug) {
+				Validator.debuggingLog.append("Max: " + t1);
+			}
 			
 			while(inIt2.hasNext()) {
-				result = result && (minimumIt.next().equals(inIt2.next().getMin()));
+				t1 = inIt2.next().getMin();
+				result = result && (minimumIt.next().equals(t1));
+				
+				if(Validator.debug) {
+					Validator.debuggingLog.append("\tMin: " + t1);
+				}
+			}
+			
+			if(Validator.debug) {
+				Validator.debuggingLog.append("\n");
 			}
 		}
 		
@@ -196,19 +231,31 @@ public class AssignmentTester implements Tester {
 		maximumIt = maxValues.iterator();
 		minimumIt = minValues.iterator();
 
-		System.out.println("\nKompletter erster Eintrag wurde geloescht:");
-
 		it2 = om.iterator();
 		
 		result = true;
 
 		while(it2.hasNext()) {
 			inIt2 = it2.iterator();
+			t1 = it2.next().getMax();
+			result = result && (t1.equals(maximumIt.next()));
 
-			result = result && (it2.next().getMax().equals(maximumIt.next()));
-
+			if(Validator.debug) {
+				Validator.debuggingLog.append("Max: " + t1);
+			}
+			
 			while(inIt2.hasNext()) {
-				result = result && (minimumIt.next().equals(inIt2.next().getMin()));
+				
+				t1 = inIt2.next().getMin();
+				result = result && (minimumIt.next().equals(t1));
+				
+				if(Validator.debug) {
+					Validator.debuggingLog.append("\tMin: " + t1);
+				}
+			}
+			
+			if(Validator.debug) {
+				Validator.debuggingLog.append("\n");
 			}
 		}
 		
@@ -222,8 +269,6 @@ public class AssignmentTester implements Tester {
 		inIt2.next();
 		inIt2.remove();
 
-		System.out.println("\nErstes Element des zweiten Eintrags wurde geloescht:");
-
 		
 		maxValues = new ArrayList<Double>();
 		minValues = new ArrayList<Double>();
@@ -234,7 +279,6 @@ public class AssignmentTester implements Tester {
 		minValues.add(1.7);
 		minValues.add(0.3);
 		minValues.add(1.7);
-		minValues.add(1.7);
 		minValues.add(0.3);
 		
 		maximumIt = maxValues.iterator();
@@ -243,20 +287,40 @@ public class AssignmentTester implements Tester {
 		
 		
 		it2 = om.iterator();
+		result = true;
 
 		while(it2.hasNext()) {
 			inIt2 = it2.iterator();
 
-			System.out.println("Max: " + it2.next().getMax());
+			t1 = it2.next().getMax();
+			
+			result = result && (t1.equals(maximumIt.next()));
+			
+			if(Validator.debug) {
+				Validator.debuggingLog.append("Max: " + t1);
+			}
 
-			while(inIt2.hasNext())
-				System.out.println("Min: " + inIt2.next().getMin());
+			while(inIt2.hasNext()) {
+				t1 = inIt2.next().getMin();
+				
+				result = result && (minimumIt.next().equals(t1));
+				
+				if(Validator.debug) {
+					Validator.debuggingLog.append("\tMin: " + t1);
+				}
+			}
+			
+			if(Validator.debug) {
+				Validator.debuggingLog.append("\n");
+			}
 		}
 
+		
+		Validator.report(result, "AssignmentTester: removed the first element of the second subset");
 
 
 		/*
-		 * Test Case 3 of Assignment 5
+		 * Test Case 3 of Assignment 5 FAIL
 		 */
 		System.out.println("\n\nTestfall 3");
 		System.out.println("OrderedMap<T,U> wurde als eigene Klasse ohne Bezug auf Set<T> bzw. OrderedSet<T> erstellt.\n" +
@@ -265,7 +329,6 @@ public class AssignmentTester implements Tester {
 		/*
 		 * Test Case 4 of Assignment 5
 		 */
-		System.out.println("\n\nTestfall 4");
 		OrderedSet<ElapsedTime> osEt = new OrderedSet<ElapsedTime>();
 
 		// fill osEt with all MeanElapsedTime- and CompositeTime-instances of om
@@ -279,16 +342,29 @@ public class AssignmentTester implements Tester {
 			while(inIt2.hasNext())
 				osEt.insert(inIt2.next());
 		}
+		
+		if(Validator.debug) {
+			Validator.debuggingLog.append("\nAssignmentTester: entered all elements from test case #2 into an orderset and counted the number of elements\nOutput:\n");
+		}
 
 		// print count() of all values
-		System.out.println("\nBefuelltes OrderedSet<ElapsedTime> mit verbliebenen Elementen aus Testfall 2\n" +
-				"Anzahl der Einzelzeiten pro Eintrag:");
 		Iterator<ElapsedTime> osEtIt = osEt.iterator();
-		int i = 1;
+		int i = 0;
+		
+		int verify[] = new int[]{3, 2, 3, 3, 0};
+		result = true;
 
 		while(osEtIt.hasNext()) {
-			System.out.println("Value " + i +": " + osEtIt.next().count());
+			int t = osEtIt.next().count();
+			
+			if(Validator.debug) {
+				Validator.debuggingLog.append("Subset[" + (i+1) + "] = " + t + "\n");
+			}
+			
+			result = result && (t == verify[i]);
 			i++;
 		}
+		
+		Validator.report(result, "AssignmentTester: entered all elements from test case #2 into an orderset and counted the number of elements");
 	}
 }

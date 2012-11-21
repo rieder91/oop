@@ -127,11 +127,18 @@ public class SetIterator<T> implements Iterator<T> {
 		return cursor;
 	}
 
+	/**
+	 * @return the index of the last element that was returned
+	 */
 	public Integer getLastIndexReturned() {
 		return lastIndexReturned;
 	}
-
-	public void setCursor(Set<T> cursor) {
+	
+	/**
+	 * sets the iterator-cursor to a new target
+	 * @param cursor new target
+	 */
+	protected void setCursor(Set<T> cursor) {
 		this.cursor = cursor;
 	}
 }
