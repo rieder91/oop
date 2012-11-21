@@ -1,10 +1,11 @@
 
 
-public class BeruehrungssensitiverSkin extends AbstractSkin{
-
-	@Override
-	public String getSkinName() {
-		return "Beruehrungssensitiver Skin";
+public class BeruehrungssensitiverSkin implements Skin {
+	private final String seriennummer;
+	
+	public BeruehrungssensitiverSkin(String seriennummer) {
+		this.seriennummer = seriennummer;
 	}
-
+	
+	
 }

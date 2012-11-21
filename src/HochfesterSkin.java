@@ -1,10 +1,9 @@
 
 
-public class HochfesterSkin extends AbstractSkin{
-
-	@Override
-	public String getSkinName() {
-		return "Hochfester Skin";
+public class HochfesterSkin implements Skin {
+	private final String seriennummer;
+	
+	public HochfesterSkin(String seriennummer) {
+		this.seriennummer = seriennummer;
 	}
-
 }

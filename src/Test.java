@@ -20,6 +20,21 @@ public class Test {
 						+ "Aufgabe 6                                              \n"
 						+ "Gruppe 187: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
 		
-		HochfesterSkin hs = new HochfesterSkin();
+		BeruehrungsSkinFactory bSkinFactory = new BeruehrungsSkinFactory();
+		HochfesterSkinFactory hSkinFactory = new HochfesterSkinFactory();
+		GepanzerterSkinFactory gSkinFactory = new GepanzerterSkinFactory();
+		
+		Hilfskraft sonnic;
+		sonnic = new Hilfskraft("R2-D2");
+		
+		Hilfskraft sonnic2;
+		sonnic2 = new Hilfskraft("R4-D2");
+		
+		hSkinFactory.einbauenIn(sonnic);
+		
+		
+		System.out.println();
+		
+		
 	}
 }
