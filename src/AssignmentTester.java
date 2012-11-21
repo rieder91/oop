@@ -120,7 +120,6 @@ public class AssignmentTester implements Tester {
 			inIt2 = it2.iterator();
 			inIt2.add(comp1);
 			inIt2.add(comp2);
-			inIt2.next();
 			inIt2.add(comp3);
 		}
 
@@ -129,7 +128,6 @@ public class AssignmentTester implements Tester {
 			inIt2 = it2.iterator();
 			inIt2.add(comp4);
 			inIt2.add(comp1);
-			inIt2.next();
 			inIt2.add(comp3);
 		}
 
@@ -138,7 +136,6 @@ public class AssignmentTester implements Tester {
 			inIt2 = it2.iterator();
 			inIt2.add(comp4);
 			inIt2.add(comp5);
-			inIt2.next();
 			inIt2.add(comp2);
 		}
 
@@ -208,12 +205,16 @@ public class AssignmentTester implements Tester {
 		while(it2.hasNext()) {
 			inIt2 = it2.iterator();
 
-			System.out.println("Max: " + it2.next().getMax());
+			result = result && (it2.next().getMax().equals(maximumIt.next()));
 
 			while(inIt2.hasNext()) {
-				System.out.println("Min: " + inIt2.next().getMin());
+				result = result && (minimumIt.next().equals(inIt2.next().getMin()));
 			}
 		}
+		
+		
+		Validator.report(result, "AssignmentTester: removed the first element of the map and recalculated min/max");
+		
 
 		it2 = om.iterator();
 		it2.next();
@@ -223,6 +224,24 @@ public class AssignmentTester implements Tester {
 
 		System.out.println("\nErstes Element des zweiten Eintrags wurde geloescht:");
 
+		
+		maxValues = new ArrayList<Double>();
+		minValues = new ArrayList<Double>();
+		
+		maxValues.add(5.4);
+		maxValues.add(9.0);
+		
+		minValues.add(1.7);
+		minValues.add(0.3);
+		minValues.add(1.7);
+		minValues.add(1.7);
+		minValues.add(0.3);
+		
+		maximumIt = maxValues.iterator();
+		minimumIt = minValues.iterator();
+		
+		
+		
 		it2 = om.iterator();
 
 		while(it2.hasNext()) {
