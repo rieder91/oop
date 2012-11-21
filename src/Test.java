@@ -20,9 +20,6 @@ public class Test {
 						+ "Aufgabe 6                                              \n"
 						+ "Gruppe 187: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
 		
-		BeruehrungsSkinFactory bSkinFactory = new BeruehrungsSkinFactory();
-		HochfesterSkinFactory hSkinFactory = new HochfesterSkinFactory();
-		GepanzerterSkinFactory gSkinFactory = new GepanzerterSkinFactory();
 		
 		Hilfskraft sonnic;
 		sonnic = new Hilfskraft("R2-D2");
@@ -30,10 +27,28 @@ public class Test {
 		Hilfskraft sonnic2;
 		sonnic2 = new Hilfskraft("R4-D2");
 		
-		hSkinFactory.einbauenIn(sonnic);
+		Hilfskraft sonnic3;
+		sonnic3 = new Hilfskraft("R6-D2");
 		
+		Hilfskraft sonnic4;
+		sonnic4 = new Hilfskraft("R8-D2");
+		
+		
+		BeruehrungssensitiverSkin bSkin = new BeruehrungssensitiverSkin();
+		HochfesterSkin hSkin = new HochfesterSkin();
+		GepanzerterSkin gSkin = new GepanzerterSkin();
+		
+		bSkin.integrate(sonnic);
+		bSkin.integrate(sonnic2);
+		
+		sonnic3.einbauen(hSkin);
+		sonnic4.einbauen(gSkin);
 		
 		System.out.println();
+		
+		HilfskraefteSoftware winWord = new HilfskraefteSoftware(new SecurityLevel1());
+		
+		sonnic.einbauen(winWord);
 		
 		
 	}
