@@ -20,5 +20,6 @@ public class Test {
 						+ "Aufgabe 6                                              \n"
 						+ "Gruppe 187: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
 		
+		HochfesterSkin hs = new HochfesterSkin();
 	}
 }
