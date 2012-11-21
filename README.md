@@ -17,15 +17,16 @@ _WS2012, Vienna University of Technology_
    - writing assertions
  - Assignment 4
    - generics, interfaces and inheritance
- 
+ - Assignment 5
+    - generics and iterators 
 
 ## WIP
- - Assignment 5
-    - generics and iterators
+ - Assignment 6
+    - Covariance
 
 
 ## TODO
- - Assignment 6 - 9
+ - Assignment 7 - 9
  
 ## Syllabus
  - Überblick über das objektorientierte Programmierparadigma und entsprechende Programmiersprachen
