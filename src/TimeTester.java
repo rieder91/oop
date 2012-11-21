@@ -28,9 +28,9 @@ public class TimeTester implements Tester {
 		met.add(5.0);
 		Validator.report(met.count()==4,"TimeTester: count Test after some elements were added");
 		Validator.report(met.getMax()==5.0,"TimeTester: max Test after some elements were added");
-		Validator.report(met.shorter(met2)==false,"TimeTester: shorter Test after some elements were added");	
+		Validator.report(met.shorter(met2)==false,"TimeTester: shorter Test after some elements were added #1");	
 		met2.add(10.0);
-		Validator.report(met.shorter(met2)==true,"TimeTester: shorter Test after some elements were added");	
+		Validator.report(met.shorter(met2)==true,"TimeTester: shorter Test after some elements were added #2");	
 		met2.add(met3);
 		/***************/
 		
@@ -38,10 +38,10 @@ public class TimeTester implements Tester {
 		CompositeTime ct2 = new CompositeTime(10.0);
 		CompositeTime ct3 = new CompositeTime(11.0);
 		Double val=10.0;
-		Validator.report(ct.shorter(ct2)==false,"TimeTester: shorter Test");
-		Validator.report(ct.shorter(ct3)==true,"TimeTester: shorter Test");
-		Validator.report(ct.shorter(val)==false,"TimeTester: shorter Test");
-		Validator.report(ct.shorter(val+1)==true,"TimeTester: shorter Test");
+		Validator.report(ct.shorter(ct2)==false,"TimeTester: shorter Test #1");
+		Validator.report(ct.shorter(ct3)==true,"TimeTester: shorter Test #2");
+		Validator.report(ct.shorter(val)==false,"TimeTester: shorter Test #3");
+		Validator.report(ct.shorter(val+1)==true,"TimeTester: shorter Test #4");
 		Validator.report(ct.count()==4,"TimeTester: count Test");
 		Validator.report(ct.getMin()==0.0,"TimeTester: Composite Time min");
 		

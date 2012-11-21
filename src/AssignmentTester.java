@@ -102,7 +102,8 @@ public class AssignmentTester implements Tester {
 		Set<Double> sd3 = new Set<Double>();
 		sd3.insert(1.4);
 		sd3.insert(4.9);
-
+		
+		
 		Double[] c1 = {2.3, 4.1, 7.3, 1.4};
 		Double[] c2 = {0.3, 5.5};
 		Double[] c3 = {1.7, 8.3, 3.0};
@@ -118,6 +119,7 @@ public class AssignmentTester implements Tester {
 		MeanElapsedTime met1 = new MeanElapsedTime(sd1);
 		MeanElapsedTime met2 = new MeanElapsedTime(sd2);
 		MeanElapsedTime met3 = new MeanElapsedTime(sd3);
+		
 
 		// fill om
 		om.insert(met1);
@@ -153,6 +155,8 @@ public class AssignmentTester implements Tester {
 			inIt2.next();
 			inIt2.add(comp2);
 		}
+		
+		ArrayList<Double> maxValuesForSet = new ArrayList<Double>();
 
 		ArrayList<Double> maxValues = new ArrayList<Double>();
 		ArrayList<Double> minValues = new ArrayList<Double>();
@@ -160,7 +164,9 @@ public class AssignmentTester implements Tester {
 		maxValues.add(4.9);
 		maxValues.add(5.4);
 		maxValues.add(9.0);
-		maxValues.add(4.9);
+		
+		maxValuesForSet.add(3.14);
+		maxValuesForSet.addAll(maxValues);
 		
 		minValues.add(1.7);
 		minValues.add(1.7);
@@ -234,6 +240,10 @@ public class AssignmentTester implements Tester {
 		it2 = om.iterator();
 		
 		result = true;
+		
+		if(Validator.debug) {
+			Validator.debuggingLog.append("\n\nAssignmentTester: removed the first element of the map and recalculated min/max\nOutput: \n");
+		}
 
 		while(it2.hasNext()) {
 			inIt2 = it2.iterator();
@@ -284,7 +294,9 @@ public class AssignmentTester implements Tester {
 		maximumIt = maxValues.iterator();
 		minimumIt = minValues.iterator();
 		
-		
+		if(Validator.debug) {
+			Validator.debuggingLog.append("\n\nAssignmentTester: removed the first element of the second subset\nOutput: \n");
+		}
 		
 		it2 = om.iterator();
 		result = true;
@@ -322,10 +334,43 @@ public class AssignmentTester implements Tester {
 		/*
 		 * Test Case 3 of Assignment 5 FAIL
 		 */
-		System.out.println("\n\nTestfall 3");
-		System.out.println("OrderedMap<T,U> wurde als eigene Klasse ohne Bezug auf Set<T> bzw. OrderedSet<T> erstellt.\n" +
-				"Hier besteht keine Untertypbeziehung zwischen diesen Collections.");
-
+		
+		
+		
+		OrderedSet<MeanElapsedTime> os3 = new OrderedSet<MeanElapsedTime>();
+		os3.insert(met1);
+		os3.insert(met2);
+		os3.insert(met3);
+		
+		Set<Double> sd4 = new Set<Double>();
+		sd4.insert(3.14);
+		sd4.insert(2.72);
+		
+		
+		
+		MeanElapsedTime met4 = new MeanElapsedTime(sd4);
+		
+		os3.insert(met4);
+		
+		Iterator<Double> itm = maxValuesForSet.iterator();
+		result = true;
+		
+		if(Validator.debug) {
+			Validator.debuggingLog.append("\nAssignmentTester: creating an orderedset out of the input for the orderedmap and comparing the results\nOutput:\n");
+		}
+		
+		
+		for(MeanElapsedTime m : os3) {
+			t1 = m.getMax();
+			result = result && (t1.equals(itm.next()));
+			
+			if(Validator.debug) {
+				Validator.debuggingLog.append("Max: " + t1 + "\n");
+			}
+		}
+		
+		Validator.report(result, "AssignmentTester: creating an orderedset out of the input for the orderedmap and comparing the results");
+		
 		/*
 		 * Test Case 4 of Assignment 5
 		 */
@@ -358,7 +403,7 @@ public class AssignmentTester implements Tester {
 			int t = osEtIt.next().count();
 			
 			if(Validator.debug) {
-				Validator.debuggingLog.append("Subset[" + (i+1) + "] = " + t + "\n");
+				Validator.debuggingLog.append("Subset #" + (i+1) + " = " + t + "\n");
 			}
 			
 			result = result && (t == verify[i]);
