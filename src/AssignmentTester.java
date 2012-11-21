@@ -131,10 +131,10 @@ public class AssignmentTester implements Tester {
 		InMapIterator<CompositeTime> inIt2;
 
 		if(it2.hasNext()) {
+			it2.next();
 			inIt2 = it2.iterator();
 			inIt2.add(comp1);
 			inIt2.add(comp2);
-			inIt2.next();
 			inIt2.add(comp3);
 		}
 
@@ -143,7 +143,6 @@ public class AssignmentTester implements Tester {
 			inIt2 = it2.iterator();
 			inIt2.add(comp4);
 			inIt2.add(comp1);
-			inIt2.next();
 			inIt2.add(comp3);
 		}
 
@@ -152,7 +151,6 @@ public class AssignmentTester implements Tester {
 			inIt2 = it2.iterator();
 			inIt2.add(comp4);
 			inIt2.add(comp5);
-			inIt2.next();
 			inIt2.add(comp2);
 		}
 		
@@ -169,13 +167,14 @@ public class AssignmentTester implements Tester {
 		maxValuesForSet.addAll(maxValues);
 		
 		minValues.add(1.7);
-		minValues.add(1.7);
 		minValues.add(0.3);
+		minValues.add(1.4);
 		minValues.add(1.7);
-		minValues.add(1.7);
-		minValues.add(0.3);
+		minValues.add(1.4);
+		minValues.add(2.3);
 		minValues.add(0.3);
 		minValues.add(0.4);
+		minValues.add(2.3);
 		
 		Iterator<Double> maximumIt = maxValues.iterator();
 		Iterator<Double> minimumIt = minValues.iterator();
@@ -192,8 +191,10 @@ public class AssignmentTester implements Tester {
 		}
 
 		while(it2.hasNext()) {
-			inIt2 = it2.iterator();
+			
 			t1 = it2.next().getMax();
+			inIt2 = it2.iterator();
+
 			result = result && (t1.equals(maximumIt.next()));
 			
 			if(Validator.debug) {
@@ -217,22 +218,24 @@ public class AssignmentTester implements Tester {
 		Validator.report(result, "AssignmentTester: validating the minimum and maximum values from an OrderedMap<MET, CT>");
 		
 		it2 = om.iterator();
-		it2.next();
+		while(it2.hasNext()) {
+			it2.next();
+		}
 		it2.remove();
 		
 		
 		maxValues = new ArrayList<Double>();
 		minValues = new ArrayList<Double>();
 		
+		maxValues.add(4.9);
 		maxValues.add(5.4);
-		maxValues.add(9.0);
 		
 		minValues.add(1.7);
-		minValues.add(1.7);
 		minValues.add(0.3);
+		minValues.add(1.4);
 		minValues.add(1.7);
-		minValues.add(1.7);
-		minValues.add(0.3);
+		minValues.add(1.4);
+		minValues.add(2.3);
 		
 		maximumIt = maxValues.iterator();
 		minimumIt = minValues.iterator();
@@ -242,14 +245,14 @@ public class AssignmentTester implements Tester {
 		result = true;
 		
 		if(Validator.debug) {
-			Validator.debuggingLog.append("\n\nAssignmentTester: removed the first element of the map and recalculated min/max\nOutput: \n");
+			Validator.debuggingLog.append("\n\nAssignmentTester: removed the last element of the map and recalculated min/max\nOutput: \n");
 		}
 
 		while(it2.hasNext()) {
-			inIt2 = it2.iterator();
+			
 			t1 = it2.next().getMax();
 			result = result && (t1.equals(maximumIt.next()));
-
+			inIt2 = it2.iterator();
 			if(Validator.debug) {
 				Validator.debuggingLog.append("Max: " + t1);
 			}
@@ -270,7 +273,7 @@ public class AssignmentTester implements Tester {
 		}
 		
 		
-		Validator.report(result, "AssignmentTester: removed the first element of the map and recalculated min/max");
+		Validator.report(result, "AssignmentTester: removed the last element of the map and recalculated min/max");
 		
 
 		it2 = om.iterator();
@@ -283,14 +286,15 @@ public class AssignmentTester implements Tester {
 		maxValues = new ArrayList<Double>();
 		minValues = new ArrayList<Double>();
 		
+		maxValues.add(4.9);
 		maxValues.add(5.4);
-		maxValues.add(9.0);
 		
-		minValues.add(1.7);
 		minValues.add(0.3);
+		minValues.add(1.4);
 		minValues.add(1.7);
-		minValues.add(0.3);
-		
+		minValues.add(1.4);
+		minValues.add(2.3);
+
 		maximumIt = maxValues.iterator();
 		minimumIt = minValues.iterator();
 		
@@ -302,12 +306,12 @@ public class AssignmentTester implements Tester {
 		result = true;
 
 		while(it2.hasNext()) {
-			inIt2 = it2.iterator();
 
 			t1 = it2.next().getMax();
 			
 			result = result && (t1.equals(maximumIt.next()));
-			
+			inIt2 = it2.iterator();
+
 			if(Validator.debug) {
 				Validator.debuggingLog.append("Max: " + t1);
 			}
@@ -389,14 +393,14 @@ public class AssignmentTester implements Tester {
 		}
 		
 		if(Validator.debug) {
-			Validator.debuggingLog.append("\nAssignmentTester: entered all elements from test case #2 into an orderset and counted the number of elements\nOutput:\n");
+			Validator.debuggingLog.append("\n\nAssignmentTester: entered all elements from test case #2 into an orderset and counted the number of elements\nOutput:\n");
 		}
 
 		// print count() of all values
 		Iterator<ElapsedTime> osEtIt = osEt.iterator();
 		int i = 0;
 		
-		int verify[] = new int[]{3, 2, 3, 3, 0};
+		int verify[] = new int[]{2, 3, 2, 4};
 		result = true;
 
 		while(osEtIt.hasNext()) {

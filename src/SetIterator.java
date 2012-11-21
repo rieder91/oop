@@ -141,4 +141,12 @@ public class SetIterator<T> implements Iterator<T> {
 	protected void setCursor(Set<T> cursor) {
 		this.cursor = cursor;
 	}
+
+	/**
+	 * setter for the last index returned by the iterator
+	 * @param lastIndexReturned last index returned
+	 */
+	protected void setLastIndexReturned(Integer lastIndexReturned) {
+		this.lastIndexReturned = lastIndexReturned;
+	}
 }

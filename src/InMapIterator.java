@@ -38,6 +38,7 @@ public class InMapIterator<T> extends SetIterator<T> {
 		
 		if(lastIndex == -1 && this.getEntries().getNext() == null) {
 			this.getEntries().setValue(e);
+			this.setLastIndexReturned(0);
 		} else if(lastIndex == 0) {
 			Set<T> firstSet = this.getEntries();
 			Set<T> secondSet = new Set<T>(firstSet.getValue());
@@ -64,5 +65,6 @@ public class InMapIterator<T> extends SetIterator<T> {
 		
 		
 	}
+	
 }
 
