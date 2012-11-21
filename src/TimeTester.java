@@ -15,7 +15,7 @@ public class TimeTester implements Tester {
 		
 		/*******************/
 		
-		Set<Double> test=new Set<>();
+		Set<Double> test=new Set<Double>();
 		test.insert(1.0);
 		Double a=0.0;
 		MeanElapsedTime met = new MeanElapsedTime();
