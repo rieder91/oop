@@ -36,8 +36,8 @@ public class InMapIterator<T> extends SetIterator<T> {
 			return;
 		}
 		
-		if(lastIndex < 0) {
-			throw new RuntimeException("next() needs to be called prior to calling add()");
+		if(lastIndex == -1 && this.getEntries().getNext() == null) {
+			this.getEntries().setValue(e);
 		} else if(lastIndex == 0) {
 			Set<T> firstSet = this.getEntries();
 			Set<T> secondSet = new Set<T>(firstSet.getValue());

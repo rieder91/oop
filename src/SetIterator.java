@@ -11,7 +11,9 @@ public class SetIterator<T> implements Iterator<T> {
 	private Integer lastIndexReturned;
 	private Set<T> cursor;
 	private Set<T> entries;
-	
+	private Set<T> lastElement;
+	private Set<T> previousElement;
+
 	/**
 	 * Default constructor
 	 */
@@ -19,8 +21,10 @@ public class SetIterator<T> implements Iterator<T> {
 		this.lastIndexReturned = -1;
 		this.cursor = null;
 		this.entries = null;
+		this.lastElement = null;
+		this.previousElement = null;
 	}
-	
+
 	/**
 	 * Constructor with one parameter
 	 * 
@@ -31,6 +35,8 @@ public class SetIterator<T> implements Iterator<T> {
 		this.cursor = start;
 		this.entries = start;
 		this.lastIndexReturned = -1;
+		this.lastElement = null;
+		this.previousElement = null;
 	}
 
 	/**
@@ -47,11 +53,19 @@ public class SetIterator<T> implements Iterator<T> {
 	@Override
 	public T next() {
 		if (this.hasNext()) {
+
 			T result = this.cursor.getValue();
 			this.lastIndexReturned++;
+			if(this.lastElement != null) {
+				this.previousElement = this.lastElement;
+			}
+
+
+			this.lastElement = this.cursor;
 			this.cursor = this.cursor.getNext();
-			
+
 			return result;
+
 		} else {
 			return null;
 		}
@@ -68,29 +82,24 @@ public class SetIterator<T> implements Iterator<T> {
 			// there is a next element and we remove the 1st element
 			this.entries.setValue(this.entries.getNext().getValue());
 			this.entries.setNext(this.entries.getNext().getNext());
+			
+			lastIndexReturned--;
 		} else if(this.lastIndexReturned == 0 && !hasNext()) {
 			// there is no next element and we remove the 1st element
 			this.entries.setValue(null);
 			this.entries.setNext(null);
 		} else {
-			Set<T> previous = null;
-			Set<T> current = entries;
-			for(int i = 0; i < this.lastIndexReturned; i++) {
-				if(i == this.lastIndexReturned - 1) {
-					previous = current;
-				}
-				if(current != null) {
-					current = current.getNext();
-				} else {
-					this.lastIndexReturned = -1;
-				}
-			}
+			Set<T> previous = previousElement;
+			Set<T> current = lastElement;
+
+			previous.setNext(current.getNext());
+
+			this.cursor = entries.getNext();
+			this.lastElement = previous;
+			this.previousElement = null;
 			
-			if(current != null && current.getNext() != null) {
-				previous.setNext(current.getNext());
-			} else if(lastIndexReturned != -1){
-				previous.setNext(null);
-			}
+			lastIndexReturned--;
+
 		}
 	}
 

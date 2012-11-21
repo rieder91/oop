@@ -26,9 +26,9 @@ public class OrderedMapTester implements Tester {
 		om.insert(first);
 		
 		if(om.insert(first) == false) {
-			Validator.report(true, "check that the same value can't be added twice");
+			Validator.report(true, "OrderedMapTester: check that the same value can't be added twice");
 		} else {
-			Validator.report(false, "check that the same value can't be added twice");
+			Validator.report(false, "OrderedMapTester: check that the same value can't be added twice");
 		}
 		
 		om.insert(third);
@@ -40,7 +40,7 @@ public class OrderedMapTester implements Tester {
 		omCheck.insert(third); 
 		omCheck.insert(fourth); 
 		
-		Validator.report(Validator.compareTo(om, omCheck) == true, "check that the map is actually ordered");
+		Validator.report(Validator.compareTo(om, omCheck) == true, "OrderedMapTester: check that the map is actually ordered");
 		
 		
 		om = new OrderedMap<Description, String>();
@@ -53,18 +53,18 @@ public class OrderedMapTester implements Tester {
 		
 		try {
 			it.remove();
-			Validator.report(false, "check that remove can't be called before next");
+			Validator.report(false, "OrderedMapTester: check that remove can't be called before next");
 		} catch(RuntimeException e) {
-			Validator.report(true, "check that remove can't be called before next");
+			Validator.report(true, "OrderedMapTester: check that remove can't be called before next");
 		}
 		
 		
-		Validator.report(it.next() == first, "check that the iterators returns the first element successfully");
+		Validator.report(it.next() == first, "OrderedMapTester: check that the iterators returns the first element successfully");
 		it.next();
-		Validator.report(it.next() == third, "check that the iterators returns an element in the middle successfully");
-		Validator.report(it.next() == fourth, "check that the iterators returns the last element");
+		Validator.report(it.next() == third, "OrderedMapTester: check that the iterators returns an element in the middle successfully");
+		Validator.report(it.next() == fourth, "OrderedMapTester: check that the iterators returns the last element");
 		
-		Validator.report(it.hasNext() == false, "check that the iterator doesn't report anymore elements if it shouldn't");
+		Validator.report(it.hasNext() == false, "OrderedMapTester: check that the iterator doesn't report anymore elements if it shouldn't");
 		
 		/**************/
 		
@@ -77,7 +77,7 @@ public class OrderedMapTester implements Tester {
 		omCheck.insert(third); 
 		omCheck.insert(fourth); 
 		
-		Validator.report(Validator.compareTo(om, omCheck), "remove the first element of an OrderedMap");
+		Validator.report(Validator.compareTo(om, omCheck), "OrderedMapTester: remove the first element of an OrderedMap");
 		
 		/**************/
 		
@@ -98,7 +98,7 @@ public class OrderedMapTester implements Tester {
 		omCheck.insert(second);
 		omCheck.insert(fourth); 
 		
-		Validator.report(Validator.compareTo(om, omCheck), "remove an element in the middle of an OrderedMap");
+		Validator.report(Validator.compareTo(om, omCheck), "OrderedMapTester: remove an element in the middle of an OrderedMap");
 		
 		/**************/
 		
@@ -119,7 +119,7 @@ public class OrderedMapTester implements Tester {
 		omCheck.insert(second);
 		omCheck.insert(third); 
 		
-		Validator.report(Validator.compareTo(om, omCheck), "remove the last element of an OrderedMap");
+		Validator.report(Validator.compareTo(om, omCheck), "OrderedMapTester: remove the last element of an OrderedMap");
 		
 		/**************/
 		
@@ -143,12 +143,12 @@ public class OrderedMapTester implements Tester {
 		
 		InMapIterator<String> inIt = it.iterator();
 		
-		Validator.report(inIt.next() == name1, "check if the InMap-Iterators correctly returns first elements");
-		Validator.report(inIt.next() == name2, "check if the InMap-Iterators correctly returns an element in the middle");
+		Validator.report(inIt.next() == name1, "OrderedMapTester: check if the InMap-Iterators correctly returns first elements");
+		Validator.report(inIt.next() == name2, "OrderedMapTester: check if the InMap-Iterators correctly returns an element in the middle");
 		inIt.next();
-		Validator.report(inIt.next() == name3, "check if the InMap-Iterators correctly returns the last element");
+		Validator.report(inIt.next() == name3, "OrderedMapTester: check if the InMap-Iterators correctly returns the last element");
 		
-		/**************/
+		
 		
 		om = new OrderedMap<Description, String>();
 		om.insert(first);
@@ -168,20 +168,14 @@ public class OrderedMapTester implements Tester {
 		it.next();
 		
 		inIt = it.iterator();
-		try {
-			inIt.add(name1);
-			Validator.report(false, "attempt to call add() prior to next()");
-		} catch (RuntimeException e) {
-			Validator.report(true, "attempt to call add() prior to next()");
-		}
 		
 		inIt.next();
 		inIt.add(name4);
 		
 		inIt = it.iterator();
-		Validator.report(inIt.next() == name4, "add a new first value in a subset of a map");
+		Validator.report(inIt.next() == name4, "OrderedMapTester: add a new first value in a subset of a map");
 		inIt.remove();
-		Validator.report(inIt.next() == name1, "remove the first value in a subset of a map");
+		Validator.report(inIt.next() == name1, "OrderedMapTester: remove the first value in a subset of a map");
 		
 		inIt = it.iterator();
 		
@@ -189,7 +183,7 @@ public class OrderedMapTester implements Tester {
 		inIt.next();
 		inIt.next();
 		inIt.add(name4);
-		Validator.report(inIt.next() == name4, "add a value in the middle of a subset of a map");
+		Validator.report(inIt.next() == name4, "OrderedMapTester: add a value in the middle of a subset of a map");
 		
 		
 		inIt = it.iterator();
@@ -198,6 +192,6 @@ public class OrderedMapTester implements Tester {
 		}
 		
 		inIt.add(name6);
-		Validator.report(inIt.next() == name6, "add a value at the end of a subset of a map");
+		Validator.report(inIt.next() == name6, "OrderedMapTester: add a value at the end of a subset of a map");
 	}
 }

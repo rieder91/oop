@@ -26,21 +26,21 @@ public class OrderedSetTester implements Tester {
 		os2.insert(second);
 		os2.insert(first);
 		
-		Validator.report(Validator.compareTo(os1, os2) == true, "check that the sets are actually sorted");
+		Validator.report(Validator.compareTo(os1, os2) == true, "OrderedSetTester: check that the sets are actually sorted");
 		
 		os1 = new OrderedSet<Description>();
 		os1.insert(first);
 		if(os1.insert(first) == false) {
-			Validator.report(true, "check that the same element cant be added twice");
+			Validator.report(true, "OrderedSetTester: check that the same element cant be added twice");
 		} else {
-			Validator.report(false, "check that the same element cant be added twice");
+			Validator.report(false, "OrderedSetTester: check that the same element cant be added twice");
 		}
 		
 		try {
 			it.remove();
-			Validator.report(false, "try to call remove before next() was called");
+			Validator.report(false, "OrderedSetTester: try to call remove before next() was called");
 		} catch (RuntimeException e) {
-			Validator.report(true, "try to call remove before next() was called");
+			Validator.report(true, "OrderedSetTester: try to call remove before next() was called");
 		}
 		
 		
@@ -52,7 +52,7 @@ public class OrderedSetTester implements Tester {
 		os1.insert(third);
 		os1.insert(fourth);
 		
-		Validator.report(Validator.compareTo(os1, os2) == true, "remove the first element");
+		Validator.report(Validator.compareTo(os1, os2) == true, "OrderedSetTester: remove the first element");
 		
 		os1 = new OrderedSet<Description>();
 		os1.insert(first);
@@ -71,7 +71,7 @@ public class OrderedSetTester implements Tester {
 		it.next();
 		it.remove();
 		
-		Validator.report(Validator.compareTo(os1, os2) == true, "remove an element in the middle");
+		Validator.report(Validator.compareTo(os1, os2) == true, "OrderedSetTester: remove an element in the middle");
 		
 		
 		os1 = new OrderedSet<Description>();
@@ -92,6 +92,6 @@ public class OrderedSetTester implements Tester {
 		
 		it.remove();
 		
-		Validator.report(Validator.compareTo(os1, os2) == true, "remove the last element");
+		Validator.report(Validator.compareTo(os1, os2) == true, "OrderedSetTester: remove the last element");
 	}
 }

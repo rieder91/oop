@@ -5,8 +5,11 @@ import java.util.Iterator;
 public class Validator {
 	static int successfulTests = 0;
 	static int failedTests = 0;
+	
+	static boolean debug = false;
 
 	static ArrayList<String> failedDesc = new ArrayList<String>();
+	static ArrayList<String> allTests = new ArrayList<String>();
 
 	static void report(boolean expected, String desc) {
 
@@ -17,10 +20,27 @@ public class Validator {
 			failedDesc.add(desc);
 		}
 		
+		if(debug) {
+			allTests.add(desc);
+		}
+		
+	}
+	
+	static void enableDebug() {
+		debug = true;
+	}
+	
+	static void disableDebug() {
+		debug = false;
 	}
 
 	static void printOverview() {
-		System.out.println("Number of successful tests: " + successfulTests);
+		System.out.println("Descriptions of the test cases: ");
+		for(String s : allTests) {
+			System.out.println(s);
+		}
+		
+		System.out.println("\nNumber of successful tests: " + successfulTests);
 		System.out.println("Number of failed tests: " + failedTests);
 
 		if(failedTests > 0) {
@@ -29,6 +49,8 @@ public class Validator {
 				System.out.println(s);
 			}
 		}
+		
+		
 	}
 
 	static <T> boolean compareTo(Set<T> a, Set<T> b) {
