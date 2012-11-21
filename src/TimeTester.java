@@ -23,7 +23,7 @@ public class TimeTester implements Tester {
 		MeanElapsedTime met3 = new MeanElapsedTime(met2);
 		Validator.report(met.count()==0,"check that the right number of elements is returned bevore elements are added");
 		Validator.report(met.getMax()==0,"check that Max is 0 bevor a element was edded");
-		Validator.report(met.shorter(met2)==false,"check that shorter works bevore elements are added");	
+		Validator.report(met.shorter(met)==false,"check that shorter works bevore elements are added");	
 		met.add(a);
 		met.add(3.0);
 		met.add(2.0);
