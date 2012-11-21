@@ -7,9 +7,6 @@
 
 public class DescriptionTester implements Tester {
 
-	/**
-	 * 
-	 */
 	@Override
 	public void runTests() {
 		String desc = "Ich"+'\n'+"bin"+'\n'+"ein"+'\n'+"Description"+'\n'+"Test"+'\n'+"String";
@@ -22,19 +19,19 @@ public class DescriptionTester implements Tester {
 		Description d4 = new Description(desc4);
 		try{
 			new Description(null);
-			Validator.report(false,"check if exception is thrown if you make a new Description of null");
+			Validator.report(false,"DescriptionTester: check if exception is thrown if you make a new Description of null");
 		}catch(RuntimeException ex){
-			Validator.report(true,"check if exception is thrown if you make a new Description of null");
+			Validator.report(true,"DescriptionTester: check if exception is thrown if you make a new Description of null");
 		}
 		
 		
 		
-		Validator.report(d4.length()==17,"test of length function");
-		Validator.report(d.lines()==6,"test of lines function");
-		Validator.report(d.shorter(d2)==false,"shorter test");
-		Validator.report(d.shorter(d3)==true,"another shorter test");
-		Validator.report(d.shorter(d4)==false,"too much shorter tests");
-		Validator.report(d4.toString().equals(desc4), "test to string of description");
+		Validator.report(d4.length()==17,"DescriptionTester: test of length function");
+		Validator.report(d.lines()==6,"DescriptionTester: test of lines function");
+		Validator.report(d.shorter(d2)==false,"DescriptionTester: shorter test");
+		Validator.report(d.shorter(d3)==true,"DescriptionTester: another shorter test");
+		Validator.report(d.shorter(d4)==false,"DescriptionTester: too much shorter tests");
+		Validator.report(d4.toString().equals(desc4), "DescriptionTester: test to string of description");
 
 	}
 
