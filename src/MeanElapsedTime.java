@@ -16,7 +16,7 @@ public class MeanElapsedTime extends ElapsedTime {
 	 * Default Constructor
 	 */
 	public MeanElapsedTime(){
-		this.entries=new Set<>();
+		this.entries=new Set<Double>();
 	}
 	
 	/**
@@ -26,7 +26,7 @@ public class MeanElapsedTime extends ElapsedTime {
 	 * 			First ElapsedTime of a row
 	 */
 	public MeanElapsedTime(ElapsedTime v) {
-		this(new Set<>(v.getValue()));
+		this(new Set<Double>(v.getValue()));
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class MeanElapsedTime extends ElapsedTime {
 	 * 			Set of values
 	 */
 	public MeanElapsedTime(Set<Double> entries) {
-		this.entries = new Set<>(entries);
+		this.entries = new Set<Double>(entries);
 		
 		double sum = 0.0;
 		
