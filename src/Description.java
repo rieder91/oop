@@ -30,6 +30,7 @@ public class Description implements Shorter<Description>{
 	 * @return 	true - if this is shorter than other
 	 * 			false - otherwise
 	 */
+	@Override
 	public boolean shorter(Description other) {
 		return(this.length() < other.length())?true:false;
 	}
@@ -48,6 +49,7 @@ public class Description implements Shorter<Description>{
 	 * 
 	 * @return a readable String of the description
 	 */
+	@Override
 	public String toString() {
 		return this.desc;
 	}

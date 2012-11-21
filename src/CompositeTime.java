@@ -63,6 +63,7 @@ public class CompositeTime extends ElapsedTime {
 	 * 
 	 * @return the number of times saved
 	 */
+	@Override
 	public int count() {
 		return this.comp.length;
 	}

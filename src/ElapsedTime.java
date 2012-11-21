@@ -33,6 +33,7 @@ public abstract class ElapsedTime implements Shorter<ElapsedTime> {
 	 * @return 	true - if this is shorter than other
 	 * 			false - otherwise
 	 */
+	@Override
 	public boolean shorter(ElapsedTime other) {
 		return this.shorter(other.value);
 	}
