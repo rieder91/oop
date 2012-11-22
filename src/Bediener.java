@@ -18,21 +18,12 @@ public abstract class Bediener extends Android {
 		super.installieren(s);
 	}
 	
-//
-//	@Override
-//	public void skinEinbauen(GepanzerterSkin s) {
-//		// forbidden
-//	}
 
 	@Override
 	public void skinEinbauen(Skin s) {
 		s.integrate(this);
 	}
 
-//	@Override
-//	public void skinEinbauen(HochfesterSkin s) {
-//		// forbidden
-//	}
 	
 	public  void calledFromBauarbeiterSoftware(BauarbeiterSoftware s) {}
 	public  void calledFromKaempferSoftware(KaempferSoftware s) {}
