@@ -6,23 +6,24 @@ public abstract class Beschuetzer extends Android {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void calledFromGepanzert(GepanzerterSkin s) {
-		super.installieren(s);
-	}
-	@Override
-	public void calledFromHochfester(HochfesterSkin s) {
-		super.installieren(s);
-	}
-	@Override
-	public void calledFromBeruehrungs(BeruehrungssensitiverSkin s) {
+	/*
+	 * Beschuezter duerfen alle Skin-Typen haben
+	 * (non-Javadoc)
+	 * @see Android#calledFromGepanzert(GepanzerterSkin)
+	 */
+	
+	protected void calledFromGepanzert(GepanzerterSkin s) {
 		super.installieren(s);
 	}
 
-	@Override
-	public void skinEinbauen(Skin s) {
-		s.einbauen(this);
+	protected void calledFromHochfester(HochfesterSkin s) {
+		super.installieren(s);
 	}
+
+	protected void calledFromBeruehrungs(BeruehrungssensitiverSkin s) {
+		super.installieren(s);
+	}
+
 
 	public  void calledFromBauarbeiterSoftware(BauarbeiterSoftware s) {}
 	public  void calledFromGesellschaftlerSoftware(GesellschaftlerSoftware s) {}

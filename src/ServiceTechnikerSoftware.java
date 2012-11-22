@@ -2,6 +2,7 @@
 
 public class ServiceTechnikerSoftware implements Software {
 	private SecurityLevel level;
+	
 	@SuppressWarnings("unused")
 	private final String seriennummer;
 

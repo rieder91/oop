@@ -19,22 +19,6 @@ public abstract class Schwerarbeiter extends Android{
 		super.installieren(s);
 	}
 	
-	
-//	@Override
-//	public void skinEinbauen(GepanzerterSkin s) {
-//		// forbidden
-//	}
-	
-	@Override
-	public void skinEinbauen(Skin s) {
-		s.einbauen(this);
-	}
-	
-//	@Override
-//	public void skinEinbauen(HochfesterSkin s) {
-//		s.integrate(this);
-//	}
-	
 	public  void calledFromGesellschaftlerSoftware(GesellschaftlerSoftware s) {}
 	public  void calledFromHilfskraefteSoftware(HilfskraefteSoftware s) {}
 	public  void calledFromKaempferSoftware(KaempferSoftware s) {}

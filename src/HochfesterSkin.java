@@ -12,18 +12,7 @@ public class HochfesterSkin implements Skin {
 		this.seriennummer = seriennummer;
 	}
 
-	@Override
-	public void einbauen(Bediener android) {
-		// forbidden
-	}
-
-	@Override
-	public void einbauen(Beschuetzer android) {
-		android.calledFromHochfester(new HochfesterSkin(android.getSeriennummer()));
-	}
-
-	@Override
-	public void einbauen(Schwerarbeiter android) {
+	public void einbauen(Android android) {
 		android.calledFromHochfester(new HochfesterSkin(android.getSeriennummer()));
 	}
 }

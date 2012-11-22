@@ -12,20 +12,7 @@ public class GepanzerterSkin implements Skin {
 		this.seriennummer = seriennummer;
 	}
 
-	@Override
-	public void einbauen(Bediener android) {
-		// forbidden
-	}
-
-	@Override
-	public void einbauen(Beschuetzer android) {
+	public void einbauen(Android android) {
 		android.calledFromGepanzert(new GepanzerterSkin(android.getSeriennummer()));
 	}
-
-	@Override
-	public void einbauen(Schwerarbeiter android) {
-		// forbidden
-	}
-
-	
 }

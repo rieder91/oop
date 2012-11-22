@@ -18,18 +18,18 @@ public class SkinTester implements Tester {
 	@Override
 	public void runTests() {
 		// Bediener
-		Bediener hilf = new Hilfskraft("Hilfroboter");
-		Bediener gesell = new Gesellschaftler("Gesellschaftsroboter");
+		Android hilf = new Hilfskraft("Hilfroboter");
+		Android gesell = new Gesellschaftler("Gesellschaftsroboter");
 
 		// Schwerarbeiter
-		Schwerarbeiter bau = new Bauarbeiter("Bauroboter");
-		Schwerarbeiter service = new ServiceTechniker("Serviceroboter");
-		Schwerarbeiter transport = new Transportarbeiter("Transportroboter");
+		Android bau = new Bauarbeiter("Bauroboter");
+		Android service = new ServiceTechniker("Serviceroboter");
+		Android transport = new Transportarbeiter("Transportroboter");
 
 		// Beschuetzer
-		Kaempfer kampf = new Kaempfer("Kampfroboter");
-		Leibwaechter leib = new Leibwaechter("Leibwaechteroboter");
-		Objektbewacher object = new Objektbewacher("Objektroboter");
+		Android kampf = new Kaempfer("Kampfroboter");
+		Android leib = new Leibwaechter("Leibwaechteroboter");
+		Android object = new Objektbewacher("Objektroboter");
 
 		// alle Skins
 		Skin bSkin = new BeruehrungssensitiverSkin();

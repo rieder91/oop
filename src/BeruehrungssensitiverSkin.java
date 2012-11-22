@@ -12,19 +12,7 @@ public class BeruehrungssensitiverSkin implements Skin {
 		this.seriennummer = seriennummer;
 	}
 
-	@Override
-	public void einbauen(Bediener android) {
+	public void einbauen(Android android) {
 		android.calledFromBeruehrungs(new BeruehrungssensitiverSkin(android.getSeriennummer()));
 	}
-
-	@Override
-	public void einbauen(Beschuetzer android) {
-		android.calledFromBeruehrungs(new BeruehrungssensitiverSkin(android.getSeriennummer()));
-	}
-
-	@Override
-	public void einbauen(Schwerarbeiter android) {
-		android.calledFromBeruehrungs(new BeruehrungssensitiverSkin(android.getSeriennummer()));
-	}
-
 }

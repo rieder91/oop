@@ -5,24 +5,25 @@ public abstract class Bediener extends Android {
 	public Bediener(String seriennummer) {
 		super(seriennummer);
 	}
-
-	@Override
-	protected void calledFromGepanzert(GepanzerterSkin s) {	/* forbidden */}
 	
-	@Override
-	protected void calledFromHochfester(HochfesterSkin s) {
-		// forbidden
-	}
-	@Override
+	/* Skins */
+	
+	/*
+	 * Bediener muessen einen BeruehrungssensitivenSkin haben
+	 * (non-Javadoc)
+	 * @see Android#calledFromGepanzert(GepanzerterSkin)
+	 */
+	
+	// verboten
+	protected void calledFromGepanzert(GepanzerterSkin s) { }
+	protected void calledFromHochfester(HochfesterSkin s) {	}
+	
+	// erlaubt
 	protected void calledFromBeruehrungs(BeruehrungssensitiverSkin s) {
 		super.installieren(s);
 	}
 	
 
-	@Override
-	public void skinEinbauen(Skin s) {
-		s.einbauen(this);
-	}
 
 	
 	public  void calledFromBauarbeiterSoftware(BauarbeiterSoftware s) {}
