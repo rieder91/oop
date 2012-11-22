@@ -6,13 +6,10 @@ public class Transportarbeiter extends Schwerarbeiter {
 		super(seriennummer);
 	}
 
-
-	public void calledFromBauarbeiterSoftware(Software s) { }
-	public void calledFromServiceTechnikerSoftware(Software s) { }
-
 	public void calledFromTransportarbeiterSoftware(Software s) {
-		s.getSecurityLevel().vonTransportarbeiterVerwendetFuerSoftware(this, s);
+		s.getSecurityLevel().vonSchwerarbeiterVerwendetFuerSoftware(this, s);
 	}
-
-
+	
+	protected void calledFromBauarbeiterSoftware(Software s) {}
+	protected void calledFromServiceTechnikerSoftware(Software s) {}
 }

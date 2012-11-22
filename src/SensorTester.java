@@ -60,12 +60,12 @@ public class SensorTester implements Tester {
 		for(Android android : robots) {
 			for(Software s : allSoftware) {
 				android.wipeSoftware();
-				android.softwareInstallieren(s);
+				android.installSoftware(s);
 				if(android.getSoftware() != null) {
 					
 					for(SensorenAktorenKit sense : sensoren) {
 						android.dismantleKit();
-						android.kitInstallieren(sense);
+						android.installKit(sense);
 						
 						if(android.getKit() != null) {
 							System.out.print(android.getClass().getName() + " is allowed to install " + sense.getClass().getName() 

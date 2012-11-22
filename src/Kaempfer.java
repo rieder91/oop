@@ -12,9 +12,6 @@ public class Kaempfer extends Beschuetzer {
 		
 	}
 
-	public void calledFromLeibwaechterSoftware(Software s) { }
-	public void calledFromObjektbewacherSoftware(Software s) { }
-
 	public void calledFromSoftwareLevel4(Software s) { }
 
 	public void calledFromSoftwareLevel5(Software s) {
@@ -22,14 +19,18 @@ public class Kaempfer extends Beschuetzer {
 	}
 
 	public void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {
-		this.installieren(s);
+		super.installieren(s);
 	}
-
+	
 	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
-		this.installieren(s);
+		super.installieren(s);
 	}
-
+	
 	public void calledFromLeistungZehn(SensorenAktorenKit s) {
-		this.installieren(s);
+		super.installieren(s);
 	}
+	
+	protected void calledFromLeibwaechterSoftware(Software s) {}
+	protected void calledFromObjektbewacherSoftware(Software s) {}
+	
 }

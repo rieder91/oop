@@ -9,15 +9,7 @@
  */
 public class SecurityLevel3 implements SecurityLevel {
 
-	public void vonBauarbeiterVerwendetFuerSoftware(Bauarbeiter android, Software s) {
-		android.calledFromSoftwareLevel4(s);
-	}
-
-	public void vonServiceTechnikerVerwendetFuerSoftware(ServiceTechniker android, Software s) {
-		android.calledFromSoftwareLevel4(s);
-	}
-
-	public void vonTransportarbeiterVerwendetFuerSoftware(Transportarbeiter android, Software s) {
+	public void vonSchwerarbeiterVerwendetFuerSoftware(Schwerarbeiter android, Software s) {
 		android.calledFromSoftwareLevel4(s);
 	}
 
@@ -36,5 +28,4 @@ public class SecurityLevel3 implements SecurityLevel {
 	public String toString() {
 		return "Security Level 3";
 	}
-
 }

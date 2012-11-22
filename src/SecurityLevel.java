@@ -1,15 +1,17 @@
 
-
+/**
+ * security level interface, dass verwendet wird um zu pruefen ob eine software
+ * verwendet oder ein kit eingebaut werden kann
+ * 
+ * @author Thomas
+ * 
+ */
 public interface SecurityLevel {
 	public void vonHilfskraftVerwendetFuerSoftware(Hilfskraft android, Software s);
 
 	public void vonGesellschaftlerVerwendetFuerSoftware(Gesellschaftler android, Software s);
 
-	public void vonBauarbeiterVerwendetFuerSoftware(Bauarbeiter android, Software s);
-
-	public void vonServiceTechnikerVerwendetFuerSoftware(ServiceTechniker android, Software s);
-
-	public void vonTransportarbeiterVerwendetFuerSoftware(Transportarbeiter android, Software s);
+	public void vonSchwerarbeiterVerwendetFuerSoftware(Schwerarbeiter android, Software s);
 
 	public void vonObjektbewacherVerwendetFuerSoftware(Objektbewacher android, Software s);
 

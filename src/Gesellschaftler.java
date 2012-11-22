@@ -1,5 +1,16 @@
+/**
+ * ein Gesellschaftler darf nur seine eigene software von level 1 verwenden
+ * (level 2 ist verboten)
+ * 
+ * @author Thomas
+ * 
+ */
 public class Gesellschaftler extends Bediener {
-
+	
+	/**
+	 * default constructor
+	 * @param seriennummer serial of the android
+	 */
 	public Gesellschaftler(String seriennummer) {
 		super(seriennummer);
 	}
@@ -7,13 +18,7 @@ public class Gesellschaftler extends Bediener {
 	public void calledFromGesellschaftlerSoftware(Software s) {
 		s.getSecurityLevel().vonGesellschaftlerVerwendetFuerSoftware(this, s);
 	}
-
-	public void calledFromHilfskraefteSoftware(Software s) { }
 	
-	// Gesellschafter benötigen Software der Stufe 1
-	public void calledFromSoftwareLevel2(Software s) { }
+	protected void calledFromHilfskraefteSoftware(Software s) {}
 
-	public void calledFromSoftwareLevel1(Software s) {
-		super.installieren(s);
-	}
 }

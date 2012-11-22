@@ -6,16 +6,11 @@ public class ServiceTechniker extends Schwerarbeiter {
 		super(seriennummer);
 	}
 
-	// verboten
-	public void calledFromBauarbeiterSoftware(Software s) { }
-	public void calledFromTransportarbeiterSoftware(Software s) { }
-
-	// erlaubt
 	public void calledFromServiceTechnikerSoftware(Software s) {
-		s.getSecurityLevel().vonServiceTechnikerVerwendetFuerSoftware(this, s);
+		s.getSecurityLevel().vonSchwerarbeiterVerwendetFuerSoftware(this, s);
 	}
-
 	
-
+	protected void calledFromBauarbeiterSoftware(Software s) {}
+	protected void calledFromTransportarbeiterSoftware(Software s) {}
 
 }

@@ -54,7 +54,7 @@ public class SoftwareTester implements Tester {
 		for(Android android : robots) {
 			for(Software s : allSoftware) {
 				android.wipeSoftware();
-				android.softwareInstallieren(s);
+				android.installSoftware(s);
 				if(android.getSoftware() != null) {
 					System.out.print(android.getClass().getName() + " is allowed to install " + s.getClass().getName() + " with level " + s.getSecurityLevel().getClass().getName());
 					

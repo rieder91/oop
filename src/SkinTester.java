@@ -36,7 +36,7 @@ public class SkinTester implements Tester {
 		for(Android android : robots) {
 			for(Skin s : skins) {
 				android.smashSkin();
-				android.skinEinbauen(s);
+				android.installSkin(s);
 				if(android.getSkin() != null) {
 					System.out.print(android.getClass().getName() + " is allowed to install " + s.getClass().getName());
 					

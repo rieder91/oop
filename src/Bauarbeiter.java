@@ -1,19 +1,22 @@
 
-
+/**
+ * ein Bauarbeiter darf nur Bauarbeiter-Software verwenden
+ * 
+ * @author Thomas
+ *
+ */
 public class Bauarbeiter extends Schwerarbeiter {
 
 	public Bauarbeiter(String seriennummer) {
 		super(seriennummer);
 	}
 	
-	// ueber das Security Level checken
+	// checks the security level first
 	protected void calledFromBauarbeiterSoftware(Software s) {
-		s.getSecurityLevel().vonBauarbeiterVerwendetFuerSoftware(this, s);
+		s.getSecurityLevel().vonSchwerarbeiterVerwendetFuerSoftware(this, s);
 	}
 
-	// verboten
-	protected void calledFromServiceTechnikerSoftware(Software s) { }
-	protected void calledFromTransportarbeiterSoftware(Software s) { }
-
+	protected void calledFromServiceTechnikerSoftware(Software s) {}
+	protected void calledFromTransportarbeiterSoftware(Software s) {}
 	
 }

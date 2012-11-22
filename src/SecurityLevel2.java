@@ -17,9 +17,7 @@ public class SecurityLevel2 implements SecurityLevel{
 	}
 
 	public void vonGesellschaftlerVerwendetFuerSoftware(Gesellschaftler android, Software s) { }
-	public void vonBauarbeiterVerwendetFuerSoftware(Bauarbeiter android, Software s) { }
-	public void vonServiceTechnikerVerwendetFuerSoftware(ServiceTechniker android, Software s) { }
-	public void vonTransportarbeiterVerwendetFuerSoftware(Transportarbeiter android, Software s) { }
+	public void vonSchwerarbeiterVerwendetFuerSoftware(Schwerarbeiter android, Software s) { }
 	public void vonObjektbewacherVerwendetFuerSoftware(Objektbewacher android, Software s) { }
 	public void vonLeibwaechterVerwendetFuerSoftware(Leibwaechter android, Software s) { }
 	public void vonKaempferVerwendetFuerSoftware(Kaempfer android, Software s) { }
