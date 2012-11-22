@@ -35,6 +35,6 @@ public class SecurityLevel4 extends SecurityLevel {
 	}
 	
 	public String toString() {
-		return "Security Level 3";
+		return "Security Level 4";
 	}
 }
