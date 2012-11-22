@@ -60,10 +60,14 @@ public class SecurityLevel5 implements SecurityLevel{
 	}
 
 	@Override
-	public void vomAndroidFuerAktoren(Android android,
-			SensorenAktorenKit s) {
-		// TODO Auto-generated method stub
+	public void calledWithLeistungFuenf(Android android, SensorenAktorenKit s) {
+		android.calledForLeistungFuenfWithLevel4(s);
 		
 	}
 
+	@Override
+	public void calledWithLeistungZehn(Android android, SensorenAktorenKit s) {
+		android.calledForLeistungZehnWithLevel4(s);
+		
+	}
 }

@@ -58,7 +58,7 @@ public abstract class Bediener extends Android {
 	protected void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {}
 	
 	public void kitInstallieren(SensorenAktorenKit s) {
-		s.vonBedienerInstalliert(this);
+		s.integrieren(this);
 	}
 	
 }

@@ -34,7 +34,7 @@ public class Kaempfer extends Beschuetzer {
 	}
 	
 	public void kitInstallieren(SensorenAktorenKit s) {
-		s.vonKaempferInstalliert(this);
+		s.integrieren(this);
 	}
 
 }

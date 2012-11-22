@@ -30,14 +30,11 @@ public class Leibwaechter extends Beschuetzer {
 	
 
 	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
+		this.getSoftware().getSecurityLevel().calledWithLeistungFuenf(this, s);
 	}
 	
 	public void calledFromLeistungZehn(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
+		this.getSoftware().getSecurityLevel().calledWithLeistungZehn(this, s);
 	}
 
-	public void kitInstallieren(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
-	}
 }

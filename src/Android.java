@@ -70,7 +70,9 @@ public abstract class Android {
 	
 	// Kits
 	
-	public abstract void kitInstallieren(SensorenAktorenKit s);
+	public void kitInstallieren(SensorenAktorenKit s) {
+		s.integrieren(this);
+	}
 	
 	protected abstract void calledFromLeistungUnbegrenzt(SensorenAktorenKit s);
 	protected abstract void calledFromLeistungEins(SensorenAktorenKit s);
@@ -93,7 +95,19 @@ public abstract class Android {
 
 
 	
-	/* USED FOR DEBUGGING ONLY */
+	/* USED FOR DEBUGGING ONLY!!! */
+	protected void dismantleKit() {
+		this.kit = null;
+	}
+	
+	protected void wipeSoftware() {
+		this.software = null;
+	}
+	
+	protected void smashSkin() {
+		this.skin = null;
+	}
+	
 	protected Software getSoftware() {
 		return software;
 	}

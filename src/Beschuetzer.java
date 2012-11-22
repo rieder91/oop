@@ -37,8 +37,14 @@ public abstract class Beschuetzer extends Android {
 
 	
 	protected abstract void calledFromLeistungUnbegrenzt(SensorenAktorenKit s);
-	protected abstract void calledFromLeistungFuenf(SensorenAktorenKit s);
-	protected abstract void calledFromLeistungZehn(SensorenAktorenKit s);
+	
+	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
+		this.getSoftware().getSecurityLevel().calledWithLeistungFuenf(this, s);
+	}
+	
+	public void calledFromLeistungZehn(SensorenAktorenKit s) {
+		this.getSoftware().getSecurityLevel().calledWithLeistungZehn(this, s);
+	}
 	
 
 	protected void calledFromLeistungEins(SensorenAktorenKit s) {

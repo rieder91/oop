@@ -58,11 +58,18 @@ public class SecurityLevel2 implements SecurityLevel{
 	}
 
 	@Override
-	public void vomAndroidFuerAktoren(Android android,
-			SensorenAktorenKit s) {
+	public void calledWithLeistungFuenf(Android android, SensorenAktorenKit s) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void calledWithLeistungZehn(Android android, SensorenAktorenKit s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 
 

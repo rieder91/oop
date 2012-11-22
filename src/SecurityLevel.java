@@ -17,6 +17,8 @@ public interface SecurityLevel {
 
 	public void vonKaempferVerwendetFuerSoftware(Kaempfer android, Software s);
 	
-	public void vomAndroidFuerAktoren(Android android, SensorenAktorenKit s);
+	public void calledWithLeistungFuenf(Android android, SensorenAktorenKit s);
+	
+	public void calledWithLeistungZehn(Android android, SensorenAktorenKit s);
 	
 }

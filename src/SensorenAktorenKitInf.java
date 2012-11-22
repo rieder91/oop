@@ -11,28 +11,10 @@ public class SensorenAktorenKitInf implements SensorenAktorenKit {
 		this.seriennummer = seriennummer;
 	}
 
-	@Override
-	public void vonBedienerInstalliert(Bediener android) {
-		
-	}
 	
-	@Override
-	public void vonKaempferInstalliert(Kaempfer android) {
-		// TODO Auto-generated method stub
+	public void integrieren(Android android) {
 		android.calledFromLeistungUnbegrenzt(new SensorenAktorenKitInf(android.getSeriennummer()));
-		
 	}
 
-	@Override
-	public void vonLevel3Installiert(Android android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void vonLevel4Installiert(Android android) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -11,30 +11,8 @@ public class SensorenAktorenKitEinKW implements SensorenAktorenKit {
 		this.seriennummer = seriennummer;
 	}
 
-	@Override
-	public void vonBedienerInstalliert(Bediener android) {
-		// TODO Auto-generated method stub
-		android.calledFromLeistungEins(new SensorenAktorenKitEinKW(android.getSeriennummer()));
-
-	}
-
-	@Override
-	public void vonKaempferInstalliert(Kaempfer android) {
-		// TODO Auto-generated method stub
-		android.calledFromLeistungEins(new SensorenAktorenKitEinKW(android.getSeriennummer()));
-
-	}
-
-	@Override
-	public void vonLevel3Installiert(Android android) {
-		// TODO Auto-generated method stub
-		android.calledFromLeistungEins(new SensorenAktorenKitEinKW(android.getSeriennummer()));
-
-	}
-
-	@Override
-	public void vonLevel4Installiert(Android android) {
-		// TODO Auto-generated method stub
+	
+	public void integrieren(Android android) {
 		android.calledFromLeistungEins(new SensorenAktorenKitEinKW(android.getSeriennummer()));
 	}
 
