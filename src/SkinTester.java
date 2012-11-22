@@ -10,18 +10,21 @@
  */
 public class SkinTester implements Tester {
 
+	/**
+	 * default constructor
+	 */
 	public SkinTester() { }
 
 	@Override
 	public void runTests() {
 		// Bediener
-		Hilfskraft hilf = new Hilfskraft("Hilfroboter");
-		Gesellschaftler gesell = new Gesellschaftler("Gesellschaftsroboter");
+		Bediener hilf = new Hilfskraft("Hilfroboter");
+		Bediener gesell = new Gesellschaftler("Gesellschaftsroboter");
 
 		// Schwerarbeiter
-		Bauarbeiter bau = new Bauarbeiter("Bauroboter");
-		ServiceTechniker service = new ServiceTechniker("Serviceroboter");
-		Transportarbeiter transport = new Transportarbeiter("Transportroboter");
+		Schwerarbeiter bau = new Bauarbeiter("Bauroboter");
+		Schwerarbeiter service = new ServiceTechniker("Serviceroboter");
+		Schwerarbeiter transport = new Transportarbeiter("Transportroboter");
 
 		// Beschuetzer
 		Kaempfer kampf = new Kaempfer("Kampfroboter");
@@ -29,9 +32,9 @@ public class SkinTester implements Tester {
 		Objektbewacher object = new Objektbewacher("Objektroboter");
 
 		// alle Skins
-		BeruehrungssensitiverSkin bSkin = new BeruehrungssensitiverSkin();
-		HochfesterSkin hSkin = new HochfesterSkin();
-		GepanzerterSkin gSkin = new GepanzerterSkin();
+		Skin bSkin = new BeruehrungssensitiverSkin();
+		Skin hSkin = new HochfesterSkin();
+		Skin gSkin = new GepanzerterSkin();
 		
 		/*
 		 * Test cases that do android.einbauen(skin)
@@ -227,8 +230,5 @@ public class SkinTester implements Tester {
 		
 		bSkin.einbauen(leib);
 		Validator.report(leib.getSkin() instanceof BeruehrungssensitiverSkin, "versuchen einen beruehrungssensitiven Skin in einen Leibwaechter einzubauen - reverse calling");
-		
-		
 	}
-
 }
