@@ -44,4 +44,7 @@ public class ObjektbewacherSoftware implements Software {
 		return level;
 	}
 
+	public String toString() {
+		return "Objektbewacher-Software";
+	}
 }

@@ -44,5 +44,9 @@ public class KaempferSoftware implements Software {
 	public SecurityLevel getSecurityLevel() {
 		return level;
 	}
+	
+	public String toString() {
+		return "Kampf-Software";
+	}
 
 }

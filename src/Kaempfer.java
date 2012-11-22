@@ -44,4 +44,7 @@ public class Kaempfer extends Beschuetzer {
 	protected void calledFromLeibwaechterSoftware(Software s) {}
 	protected void calledFromObjektbewacherSoftware(Software s) {}
 	
+	public String toString() {
+		return "Kampf-Roboter";
+	}
 }

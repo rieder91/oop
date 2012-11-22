@@ -22,4 +22,7 @@ public class ServiceTechniker extends Schwerarbeiter {
 	protected void calledFromBauarbeiterSoftware(Software s) {}
 	protected void calledFromTransportarbeiterSoftware(Software s) {}
 
+	public String toString() {
+		return "Servicetechnik-Roboter";
+	}
 }

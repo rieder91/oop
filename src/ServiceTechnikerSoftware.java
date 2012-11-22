@@ -44,5 +44,9 @@ public class ServiceTechnikerSoftware implements Software {
 	public SecurityLevel getSecurityLevel() {
 		return level;
 	}
+	
+	public String toString() {
+		return "Servicetechniker-Software";
+	}
 
 }

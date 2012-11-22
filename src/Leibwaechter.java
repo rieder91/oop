@@ -41,4 +41,8 @@ public class Leibwaechter extends Beschuetzer {
 	protected void calledFromLeistungZehn(SensorenAktorenKit s) {
 		this.getSoftware().getSecurityLevel().calledWithLeistungZehn(this, s);
 	}
+	
+	public String toString() {
+		return "Leibwaechter-Roboter";
+	}
 }

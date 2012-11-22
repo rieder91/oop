@@ -43,4 +43,7 @@ public class BauarbeiterSoftware implements Software {
 		return level;
 	}
 	
+	public String toString() {
+		return "Bauarbeiter-Software";
+	}
 }

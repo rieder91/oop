@@ -44,5 +44,9 @@ public class LeibwaechterSoftware implements Software {
 	public SecurityLevel getSecurityLevel() {
 		return level;
 	}
+	
+	public String toString() {
+		return "Leibwaechter-Software";
+	}
 
 }

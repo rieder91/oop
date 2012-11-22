@@ -43,5 +43,9 @@ public class TransportarbeiterSoftware implements Software {
 	public SecurityLevel getSecurityLevel() {
 		return level;
 	}
+	
+	public String toString() {
+		return "Transport-Software";
+	}
 
 }
