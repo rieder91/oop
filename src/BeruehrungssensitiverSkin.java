@@ -29,4 +29,8 @@ public class BeruehrungssensitiverSkin implements Skin {
 	public void einbauen(Android android) {
 		android.calledFromBeruehrungs(new BeruehrungssensitiverSkin(android.getSeriennummer()));
 	}
+	
+	public String toString() {
+		return "Beruehrungssensitiver Skin";
+	}
 }

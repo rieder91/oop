@@ -22,6 +22,6 @@ public class Gesellschaftler extends Bediener {
 	protected void calledFromHilfskraefteSoftware(Software s) {}
 
 	public String toString() {
-		return "Gesellschaftler-Roboter";
+		return "Typ: Gesellschaftler-Roboter" + super.toString();
 	}
 }

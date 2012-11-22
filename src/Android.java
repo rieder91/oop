@@ -140,6 +140,16 @@ public abstract class Android {
 	protected abstract void calledForLeistungZehnWithLevel4(SensorenAktorenKit s);
 	
 	
+	public String toString() {
+		StringBuilder ret = new StringBuilder();
+		ret.append("\nSerial: " + seriennummer);
+		ret.append("\nSoftware: " + software);
+		ret.append("\tSoftware-Level: " + software.getSecurityLevel());
+		ret.append("\nSkin: " + skin);
+		ret.append("\nKit: " + kit + "\n");
+		return ret.toString();
+	}
+	
 	
 	/* USED FOR EASIER DEBUGGING ONLY!!! */
 	

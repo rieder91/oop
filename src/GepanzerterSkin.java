@@ -29,4 +29,8 @@ public class GepanzerterSkin implements Skin {
 	public void einbauen(Android android) {
 		android.calledFromGepanzert(new GepanzerterSkin(android.getSeriennummer()));
 	}
+	
+	public String toString() {
+		return "Gepanzerter Skin";
+	}
 }

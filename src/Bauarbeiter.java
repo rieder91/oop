@@ -24,7 +24,7 @@ public class Bauarbeiter extends Schwerarbeiter {
 	protected void calledFromTransportarbeiterSoftware(Software s) {}
 	
 	public String toString() {
-		return "Bauarbeiter-Roboter";
+		return "Typ: Bauarbeiter-Roboter" + super.toString();
 	}
 	
 }

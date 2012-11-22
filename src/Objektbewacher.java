@@ -42,7 +42,7 @@ public class Objektbewacher extends Beschuetzer {
 	}
 	
 	public String toString() {
-		return "Objektbewacher-Roboter";
+		return "Typ: Objektbewacher-Roboter" + super.toString();
 	}
 
 }

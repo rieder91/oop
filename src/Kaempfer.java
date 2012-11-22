@@ -45,6 +45,6 @@ public class Kaempfer extends Beschuetzer {
 	protected void calledFromObjektbewacherSoftware(Software s) {}
 	
 	public String toString() {
-		return "Kampf-Roboter";
+		return "Typ: Kampf-Roboter" + super.toString();
 	}
 }

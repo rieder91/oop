@@ -20,6 +20,6 @@ public class Hilfskraft extends Bediener {
 	protected void calledFromGesellschaftlerSoftware(Software s) {}
 	
 	public String toString() {
-		return "Hilfskraft-Roboter";
+		return "Typ: Hilfskraft-Roboter" + super.toString();
 	}
 }

@@ -43,6 +43,6 @@ public class Leibwaechter extends Beschuetzer {
 	}
 	
 	public String toString() {
-		return "Leibwaechter-Roboter";
+		return "Typ: Leibwaechter-Roboter" + super.toString();
 	}
 }

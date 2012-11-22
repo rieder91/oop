@@ -23,6 +23,6 @@ public class Transportarbeiter extends Schwerarbeiter {
 	protected void calledFromServiceTechnikerSoftware(Software s) {}
 	
 	public String toString() {
-		return "Transport-Roboter";
+		return "Typ: Transport-Roboter" + super.toString();
 	}
 }

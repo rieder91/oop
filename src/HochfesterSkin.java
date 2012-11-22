@@ -29,4 +29,8 @@ public class HochfesterSkin implements Skin {
 	public void einbauen(Android android) {
 		android.calledFromHochfester(new HochfesterSkin(android.getSeriennummer()));
 	}
+	
+	public String toString() {
+		return "Hochfester Skin";
+	}
 }
