@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 /**
  * This class tests the implementation of SensorenAktorenKit
@@ -16,90 +18,71 @@ public class SensorTester implements Tester {
 	public SensorTester() { }
 
 	public void runTests() {
-		// Bediener
-		Android hilf = new Hilfskraft("Hilfroboter");
-		Android gesell = new Gesellschaftler("Gesellschaftsroboter");
+		ArrayList<Android> robots = new ArrayList<Android>();
+		robots.add(new Hilfskraft("Hilfsroboter"));
+		robots.add(new Gesellschaftler("Gesellschaftsroboter"));
+		robots.add(new Bauarbeiter("Bauroboter"));
+		robots.add(new ServiceTechniker("Serviceroboter"));
+		robots.add(new Transportarbeiter("Transportroboter"));
+		robots.add(new Kaempfer("Kampfroboter"));
+		robots.add(new Leibwaechter("Leibwaechteroboter"));
+		robots.add(new Objektbewacher("Objektroboter"));
+		
+		
+		ArrayList<SecurityLevel> levels = new ArrayList<SecurityLevel>();
+		levels.add(new SecurityLevel1());
+		levels.add(new SecurityLevel2());
+		levels.add(new SecurityLevel3());
+		levels.add(new SecurityLevel4());
+		levels.add(new SecurityLevel5());
+		
+		ArrayList<Software> allSoftware = new ArrayList<Software>();
+		
+		for(SecurityLevel l : levels) {
+			allSoftware.add(new HilfskraefteSoftware(l));
+			allSoftware.add(new GesellschaftlerSoftware(l));
+			allSoftware.add(new BauarbeiterSoftware(l));
+			allSoftware.add(new ServiceTechnikerSoftware(l));
+			allSoftware.add(new TransportarbeiterSoftware(l));
+			allSoftware.add(new KaempferSoftware(l));
+			allSoftware.add(new LeibwaechterSoftware(l));
+			allSoftware.add(new ObjektbewacherSoftware(l));
+		}
+		
+		ArrayList<SensorenAktorenKit> sensoren = new ArrayList<SensorenAktorenKit>();
+		sensoren.add(new SensorenAktorenKitEinKW());
+		sensoren.add(new SensorenAktorenKitFuenfKW());
+		sensoren.add(new SensorenAktorenKitZehnKW());
+		sensoren.add(new SensorenAktorenKitInf());
 
-		// Schwerarbeiter
-		Android bau = new Bauarbeiter("Bauroboter");
-		Android service = new ServiceTechniker("Serviceroboter");
-		Android transport = new Transportarbeiter("Transportroboter");
-
-		// Beschuetzer
-		Android kampf = new Kaempfer("Kampfroboter");
-		Android leib = new Leibwaechter("Leibwaechteroboter");
-		Android object = new Objektbewacher("Objektroboter");
-
-		// alle Skins
-		Skin bSkin = new BeruehrungssensitiverSkin();
-		Skin hSkin = new HochfesterSkin();
-		Skin gSkin = new GepanzerterSkin();
-
-		// alle Security levels
-		SecurityLevel level1 = new SecurityLevel1();
-		SecurityLevel level2 = new SecurityLevel2();
-		SecurityLevel level3 = new SecurityLevel3();
-		SecurityLevel level4 = new SecurityLevel4();
-		SecurityLevel level5 = new SecurityLevel5();
-
-
-		// all possible software combos - for testing
-		Software hilfS1 = new HilfskraefteSoftware(level1);
-		Software hilfS2 = new HilfskraefteSoftware(level2);
-		Software hilfS3 = new HilfskraefteSoftware(level3);
-		Software hilfS4 = new HilfskraefteSoftware(level4);
-		Software hilfS5 = new HilfskraefteSoftware(level5);
-
-		Software gesellS1 = new GesellschaftlerSoftware(level1);
-		Software gesellS2 = new GesellschaftlerSoftware(level2);
-		Software gesellS3 = new GesellschaftlerSoftware(level3);
-		Software gesellS4 = new GesellschaftlerSoftware(level4);
-		Software gesellS5 = new GesellschaftlerSoftware(level5);
-
-
-		Software bauS1 = new BauarbeiterSoftware(level1);
-		Software bauS2 = new BauarbeiterSoftware(level2);
-		Software bauS3 = new BauarbeiterSoftware(level3);
-		Software bauS4 = new BauarbeiterSoftware(level4);
-		Software bauS5 = new BauarbeiterSoftware(level5);
-
-		Software serviceS1 = new ServiceTechnikerSoftware(level1);
-		Software serviceS2 = new ServiceTechnikerSoftware(level2);
-		Software serviceS3 = new ServiceTechnikerSoftware(level3);
-		Software serviceS4 = new ServiceTechnikerSoftware(level4);
-		Software serviceS5 = new ServiceTechnikerSoftware(level5);
-
-		Software transportS1 = new TransportarbeiterSoftware(level1);
-		Software transportS2 = new TransportarbeiterSoftware(level2);
-		Software transportS3 = new TransportarbeiterSoftware(level3);
-		Software transportS4 = new TransportarbeiterSoftware(level4);
-		Software transportS5 = new TransportarbeiterSoftware(level5);
-
-
-		Software kampfS1 = new KaempferSoftware(level1);
-		Software kampfS2 = new KaempferSoftware(level2);
-		Software kampfS3 = new KaempferSoftware(level3);
-		Software kampfS4 = new KaempferSoftware(level4);
-		Software kampfS5 = new KaempferSoftware(level5);
-
-		Software leibS1 = new LeibwaechterSoftware(level1);
-		Software leibS2 = new LeibwaechterSoftware(level2);
-		Software leibS3 = new LeibwaechterSoftware(level3);
-		Software leibS4 = new LeibwaechterSoftware(level4);
-		Software leibS5 = new LeibwaechterSoftware(level5);
-
-		Software objectS1 = new ObjektbewacherSoftware(level1);
-		Software objectS2 = new ObjektbewacherSoftware(level2);
-		Software objectS3 = new ObjektbewacherSoftware(level3);
-		Software objectS4 = new ObjektbewacherSoftware(level4);
-		Software objectS5 = new ObjektbewacherSoftware(level5);
-
-
-		// all kit-types
-		SensorenAktorenKit sensorenInf = new SensorenAktorenKitInf();
-		SensorenAktorenKit sensorenEins = new SensorenAktorenKitEinKW();
-		SensorenAktorenKit sensorenFuenf = new SensorenAktorenKitFuenfKW();
-		SensorenAktorenKit sensorenZehn = new SensorenAktorenKitZehnKW();
+		
+		
+		for(Android android : robots) {
+			for(Software s : allSoftware) {
+				android.wipeSoftware();
+				android.softwareInstallieren(s);
+				if(android.getSoftware() != null) {
+					
+					for(SensorenAktorenKit sense : sensoren) {
+						android.dismantleKit();
+						android.kitInstallieren(sense);
+						
+						if(android.getKit() != null) {
+							System.out.print(android.getClass().getName() + " is allowed to install " + sense.getClass().getName() 
+											 + " with software " + s.getClass().getName() + " and level " + s.getSecurityLevel().getClass().getName());
+						}
+						
+						android.dismantleKit();
+						sense.integrieren(android);
+						
+						if(android.getKit() != null) {
+							System.out.println(" and reverse-calling works");
+						}
+					}
+				}
+				
+			}
+		}
 
 
 
