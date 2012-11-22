@@ -60,4 +60,28 @@ public class SecurityLevel3 implements SecurityLevel {
 		
 	}
 
+	@Override
+	public void vomSchwerarbeiterFuerAktoren(Schwerarbeiter android,
+			SensorenAktorenKit s) {
+		// TODO Auto-generated method stub
+		s.vonLevel3Installiert(android);
+		
+	}
+
+	@Override
+	public void vomLeibwaechterFuerAktoren(Leibwaechter android,
+			SensorenAktorenKit s) {
+		s.vonLevel3Installiert(android);
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void vomObjektbewacherFuerAktoren(Objektbewacher android,
+			SensorenAktorenKit s) {
+		s.vonLevel3Installiert(android);
+		// TODO Auto-generated method stub
+		
+	}
+
 }

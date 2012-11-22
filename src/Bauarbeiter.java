@@ -27,18 +27,5 @@ public class Bauarbeiter extends Schwerarbeiter {
 		
 	}
 
-//	public  void softwareInstallieren(BauarbeiterSoftware s, SecurityLevel3 l) {
-//		// ERLAUBT
-//		s.integrate(this);
-//	}
-//	public  void softwareInstallieren(BauarbeiterSoftware s, SecurityLevel4 l) {
-//		// ERLAUBT
-//	}
-//	
-//	public  void softwareInstallieren(ServiceTechnikerSoftware s, SecurityLevel3 l) {}
-//	public  void softwareInstallieren(ServiceTechnikerSoftware s, SecurityLevel4 l) {}
-//	
-//	public  void softwareInstallieren(TransportarbeiterSoftware s, SecurityLevel3 l) {	}
-//	public  void softwareInstallieren(TransportarbeiterSoftware s, SecurityLevel4 l) {	}
 	
 }

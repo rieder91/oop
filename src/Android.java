@@ -38,9 +38,6 @@ public abstract class Android {
 	protected abstract void calledFromHochfester(HochfesterSkin s);
 	protected abstract void calledFromBeruehrungs(BeruehrungssensitiverSkin s);
 	
-//	public abstract void skinEinbauen(GepanzerterSkin s);
-//	public abstract void skinEinbauen(HochfesterSkin s);
-//	public abstract void skinEinbauen(BeruehrungssensitiverSkin s);
 	public abstract void skinEinbauen(Skin s);
 	
 	/*********************/
@@ -65,5 +62,34 @@ public abstract class Android {
 
 
 	/*****************/
+	
+	public abstract void kitInstallieren(SensorenAktorenKit s);
+	
+	public abstract void calledFromLeistungUnbegrenzt(SensorenAktorenKit s);
+	public abstract void calledFromLeistungEins(SensorenAktorenKit s);
+	public abstract void calledFromLeistungFuenf(SensorenAktorenKit s);
+	public abstract void calledFromLeistungZehn(SensorenAktorenKit s);
+	
+	public  void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s) {
+		this.installieren(s);
+	}
+	public  void calledForLeistungFuenfWithLevel4(SensorenAktorenKit s) {
+		this.installieren(s);
+	}
+	
+	public  void calledForLeistungZehnWithLevel3(SensorenAktorenKit s) { }
+	public  void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {
+		this.installieren(s);
+	}
+
+
+	public String toString() {
+		return this.seriennummer + " " + this.skin + " " + this.software + " " + this.kit;
+	}
+
+	protected Software getSoftware() {
+		return software;
+	}
+
 
 }

@@ -16,4 +16,11 @@ public interface SecurityLevel {
 	public void vonLeibwaechterVerwendetFuerSoftware(Leibwaechter android, Software s);
 
 	public void vonKaempferVerwendetFuerSoftware(Kaempfer android, Software s);
+	
+	public void vomSchwerarbeiterFuerAktoren(Schwerarbeiter android, SensorenAktorenKit s);
+	
+	public void vomLeibwaechterFuerAktoren(Leibwaechter android, SensorenAktorenKit s);
+
+	public void vomObjektbewacherFuerAktoren(Objektbewacher android, SensorenAktorenKit s);
+
 }

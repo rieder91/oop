@@ -46,5 +46,28 @@ public class Kaempfer extends Beschuetzer {
 		
 	}
 
+	@Override
+	public void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {
+		// TODO Auto-generated method stub
+		this.installieren(s);
+		
+	}
+
+	@Override
+	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
+		// TODO Auto-generated method stub
+		this.installieren(s);
+	}
+
+	@Override
+	public void calledFromLeistungZehn(SensorenAktorenKit s) {
+		// TODO Auto-generated method stub
+		this.installieren(s);
+	}
+	
+	public void kitInstallieren(SensorenAktorenKit s) {
+		s.vonKaempferInstalliert(this);
+	}
+
 
 }

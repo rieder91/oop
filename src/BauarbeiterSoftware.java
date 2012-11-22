@@ -30,7 +30,7 @@ public class BauarbeiterSoftware implements Software {
 	@Override
 	public void vonBauarbeiterInstalliert(Bauarbeiter android) {
 		// TODO Auto-generated method stub
-		android.softwareInstallieren(new BauarbeiterSoftware(android.getSeriennummer(), this.level));
+		android.calledFromBauarbeiterSoftware(new BauarbeiterSoftware(android.getSeriennummer(), this.level));
 		
 	}
 

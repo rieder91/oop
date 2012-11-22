@@ -46,5 +46,25 @@ public class Leibwaechter extends Beschuetzer {
 		
 	}
 
+	@Override
+	public void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
+		this.getSoftware().getSecurityLevel().vomLeibwaechterFuerAktoren(this, s);
+	}
+	
+	public void calledFromLeistungZehn(SensorenAktorenKit s) {
+		this.getSoftware().getSecurityLevel().vomLeibwaechterFuerAktoren(this, s);
+	}
+
+	@Override
+	public void kitInstallieren(SensorenAktorenKit s) {
+		this.getSoftware().getSecurityLevel().vomLeibwaechterFuerAktoren(this, s);
+		
+	}
+
 
 }

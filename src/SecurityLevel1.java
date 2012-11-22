@@ -53,5 +53,26 @@ public class SecurityLevel1 implements SecurityLevel {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void vomSchwerarbeiterFuerAktoren(Schwerarbeiter android,
+			SensorenAktorenKit s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void vomLeibwaechterFuerAktoren(Leibwaechter android,
+			SensorenAktorenKit s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void vomObjektbewacherFuerAktoren(Objektbewacher android,
+			SensorenAktorenKit s) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

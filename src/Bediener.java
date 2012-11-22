@@ -44,27 +44,23 @@ public abstract class Bediener extends Android {
 	public  void calledFromSoftwareLevel3(Software s) {}
 	public  void calledFromSoftwareLevel4(Software s) {}
 	public  void calledFromSoftwareLevel5(Software s) {}
+	
+	public  void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {}
+	
+	public  void calledFromLeistungEins(SensorenAktorenKit s) {
+		super.installieren(s);
+	}
+	
+	public  void calledFromLeistungFuenf(SensorenAktorenKit s) {}
+	public  void calledFromLeistungZehn(SensorenAktorenKit s) {}
 
+	public  void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s) {}
+	public  void calledForLeistungFuenfWithLevel4(SensorenAktorenKit s) {}
+	public  void calledForLeistungZehnWithLevel3(SensorenAktorenKit s) {}
+	public  void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {}
 	
-//	public abstract void softwareInstallieren(HilfskraefteSoftware s, SecurityLevel1 l);
-//	public abstract void softwareInstallieren(HilfskraefteSoftware s, SecurityLevel2 l);
-//	
-//	public abstract void softwareInstallieren(GesellschaftlerSoftware s, SecurityLevel1 l);
-//	
-//	public  void softwareInstallieren(BauarbeiterSoftware s, SecurityLevel3 l) {}
-//	public  void softwareInstallieren(BauarbeiterSoftware s, SecurityLevel4 l) {}
-//	
-//	public  void softwareInstallieren(ServiceTechnikerSoftware s, SecurityLevel3 l) {}
-//	public  void softwareInstallieren(ServiceTechnikerSoftware s, SecurityLevel4 l) {}
-//	
-//	public  void softwareInstallieren(TransportarbeiterSoftware s, SecurityLevel3 l) {}
-//	public  void softwareInstallieren(TransportarbeiterSoftware s, SecurityLevel4 l) {}
-//	
-//	public  void softwareInstallieren(ObjektbewacherSoftware s, SecurityLevel4 l) {}
-//	
-//	public void softwareInstallieren(LeibwaechterSoftware s, SecurityLevel4 l) {}
-//	
-//	public  void softwareInstallieren(KaempferSoftware s, SecurityLevel5 l) { }
-	
+	public void kitInstallieren(SensorenAktorenKit s) {
+		s.vonBedienerInstalliert(this);
+	}
 	
 }

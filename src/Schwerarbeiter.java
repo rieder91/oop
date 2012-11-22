@@ -54,24 +54,22 @@ public abstract class Schwerarbeiter extends Android{
 	public void calledFromSoftwareLevel5(Software s) {}
 	
 	
-//	public void softwareInstallieren(HilfskraefteSoftware s, SecurityLevel1 l) {}
-//	public void softwareInstallieren(HilfskraefteSoftware s, SecurityLevel2 l) {}
-//	
-//	public void softwareInstallieren(GesellschaftlerSoftware s, SecurityLevel1 l) {}
-//	
-//	public abstract void softwareInstallieren(BauarbeiterSoftware s, SecurityLevel3 l);
-//	public abstract void softwareInstallieren(BauarbeiterSoftware s, SecurityLevel4 l);
-//	
-//	public abstract void softwareInstallieren(ServiceTechnikerSoftware s, SecurityLevel3 l);
-//	public abstract void softwareInstallieren(ServiceTechnikerSoftware s, SecurityLevel4 l);
-//	
-//	public abstract void softwareInstallieren(TransportarbeiterSoftware s, SecurityLevel3 l);
-//	public abstract void softwareInstallieren(TransportarbeiterSoftware s, SecurityLevel4 l);
-//	
-//	public void softwareInstallieren(ObjektbewacherSoftware s, SecurityLevel4 l) { }
-//	
-//	public void softwareInstallieren(LeibwaechterSoftware s, SecurityLevel4 l) { }
-//	
-//	public void softwareInstallieren(KaempferSoftware s, SecurityLevel5 l) { }
+	public void kitInstallieren(SensorenAktorenKit s) {
+		this.getSoftware().getSecurityLevel().vomSchwerarbeiterFuerAktoren(this, s);
+	}
+	
+	public  void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {}
+	public  void calledFromLeistungEins(SensorenAktorenKit s) {
+		super.installieren(s);
+	}
+	
+	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
+		this.getSoftware().getSecurityLevel().vomSchwerarbeiterFuerAktoren(this, s);
+	}
+	
+	public void calledFromLeistungZehn(SensorenAktorenKit s) {
+		this.getSoftware().getSecurityLevel().vomSchwerarbeiterFuerAktoren(this, s);
+	}
+	
 	
 }

@@ -1,6 +1,6 @@
 
 /**
- * Test class for Assignment 5
+ * Test class for Assignment 6
  * 
  * @author OOP Gruppe 187
  */
@@ -8,7 +8,7 @@
 public class Test {
 
 	/**
-	 * Test class for Assignment 5
+	 * Test class for Assignment 6
 	 * 
 	 * @param args
 	 *            command line arguments
@@ -41,6 +41,12 @@ public class Test {
 		HochfesterSkin hSkin = new HochfesterSkin();
 		GepanzerterSkin gSkin = new GepanzerterSkin();
 		
+		// different kit-types
+		SensorenAktorenKitInf ultraLegs = new SensorenAktorenKitInf();
+		SensorenAktorenKitEinKW miniLegs = new SensorenAktorenKitEinKW();
+		SensorenAktorenKitFuenfKW mediumLegs = new SensorenAktorenKitFuenfKW();
+		SensorenAktorenKitZehnKW largeLegs = new SensorenAktorenKitZehnKW();
+		
 		bSkin.integrate(sonnic);
 		bSkin.integrate(sonnic2);
 		
@@ -49,23 +55,30 @@ public class Test {
 		
 		HilfskraefteSoftware winWord = new HilfskraefteSoftware(new SecurityLevel1());
 		KaempferSoftware excel = new KaempferSoftware(new SecurityLevel5());
+		BauarbeiterSoftware powerPoint3 = new BauarbeiterSoftware(new SecurityLevel3());
+		BauarbeiterSoftware powerPoint4 = new BauarbeiterSoftware(new SecurityLevel4());
 		
 		sonnic2.softwareInstallieren(excel);
-		
-		
-		System.out.println();
-		
 		sonnic2.softwareInstallieren(winWord);
-		
-		System.out.println();
-		
-		warrior.softwareInstallieren(winWord);
-		
-		System.out.println();
-		
 		warrior.softwareInstallieren(excel);
 		
-		System.out.println();
+		Bauarbeiter bob = new Bauarbeiter("Bob");
+		Bauarbeiter alice = new Bauarbeiter("Alice");
+		bob.softwareInstallieren(powerPoint3);
+		alice.softwareInstallieren(powerPoint4);
+		
+		bob.kitInstallieren(largeLegs);
+		alice.kitInstallieren(mediumLegs);
+		
+		
+		warrior.kitInstallieren(miniLegs);
+		sonnic3.kitInstallieren(mediumLegs);
+		
+		
+		
+		
+		
+		System.out.println(alice);
 		
 	}
 }
