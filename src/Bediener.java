@@ -41,24 +41,20 @@ public abstract class Bediener extends Android {
 	protected void calledFromSoftwareLevel5(Software s) {}
 	
 	
+	// Bediener darf nur eine Leistung < 1KW haben
 	protected void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {}
-	
+	protected void calledFromLeistungFuenf(SensorenAktorenKit s) {}
+	protected void calledFromLeistungZehn(SensorenAktorenKit s) {}
 	
 	protected void calledFromLeistungEins(SensorenAktorenKit s) {
 		super.installieren(s);
 	}
 	
-	protected void calledFromLeistungFuenf(SensorenAktorenKit s) {}
-	protected void calledFromLeistungZehn(SensorenAktorenKit s) {}
-
-	// Bediener haben nur Software mit Level 1 oder 2 - verboten
+	
+	// Bediener haben nur Software mit Level 1 oder 2
 	protected void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s) {}
 	protected void calledForLeistungFuenfWithLevel4(SensorenAktorenKit s) {}
 	protected void calledForLeistungZehnWithLevel3(SensorenAktorenKit s) {}
 	protected void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {}
-	
-	public void kitInstallieren(SensorenAktorenKit s) {
-		s.integrieren(this);
-	}
 	
 }

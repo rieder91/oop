@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * This class tests the implementation of Software
  * 
  * THIS CLASS IS FOR TESTING PURPOSES ONLY AND NOT PART OF THE 
- * ACTUAL SOLUTION FOR THE ASSIGNMENT - THAT IS WHY WE USED INSTANCEOF!
+ * ACTUAL SOLUTION FOR THE ASSIGNMENT - THAT IS WHY WE USED GETCLASS!
  * 
  * @author Thomas
  *

@@ -1,5 +1,20 @@
-
-
+/**
+ * Jeder Androide muss mit einer berührungssensitiven, hochfesten oder
+ * gepanzerten Skin ausgestattet sein.
+ * 
+ * 
+ * Die Software muss dem Einsatzgebiet des Androiden entsprechen. Die Software
+ * muss entsprechend der Sicherheitsstufen 1 bis 5 zertifiziert sein.
+ * 
+ * Nachträgliche Änderungen der Androiden sind nur auf eingeschränkte Weise
+ * erlaubt: Die Seriennummer, der Haupttyp (Bediener, Schwerarbeiter oder
+ * Beschützer) sowie die Sicherheitsstufe der Software dürfen nicht geändert
+ * werden.
+ * 
+ * 
+ * @author Thomas
+ * 
+ */
 public abstract class Android {
 	private String seriennummer;
 	private Skin skin;
@@ -79,23 +94,34 @@ public abstract class Android {
 	protected abstract void calledFromLeistungFuenf(SensorenAktorenKit s);
 	protected abstract void calledFromLeistungZehn(SensorenAktorenKit s);
 	
-	// wenn das Security Level = 3,4 ist, ist es erlaubt - unabhaengig vom Robotertyp
-	protected  void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s) {
+	// wenn das Security Level = 3 or 4 ist, ist es erlaubt - unabhaengig vom Robotertyp (außer Bediener)
+	protected void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s) {
 		this.installieren(s);
 	}
-	protected  void calledForLeistungFuenfWithLevel4(SensorenAktorenKit s) {
+	
+	protected void calledForLeistungFuenfWithLevel4(SensorenAktorenKit s) {
+		this.installieren(s);
+	}
+	
+	
+	protected void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {
 		this.installieren(s);
 	}
 	
 	// bei 10KW braucht man Level 4
 	protected void calledForLeistungZehnWithLevel3(SensorenAktorenKit s) { }
-	protected void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {
-		this.installieren(s);
+
+
+	/**
+	 * 
+	 * @return
+	 */
+	protected Software getSoftware() {
+		return software;
 	}
-
-
 	
-	/* USED FOR DEBUGGING ONLY!!! */
+	
+	/* USED FOR EASIER DEBUGGING ONLY!!! */
 	protected void dismantleKit() {
 		this.kit = null;
 	}
@@ -108,9 +134,6 @@ public abstract class Android {
 		this.skin = null;
 	}
 	
-	protected Software getSoftware() {
-		return software;
-	}
 
 	protected Skin getSkin() {
 		return skin;

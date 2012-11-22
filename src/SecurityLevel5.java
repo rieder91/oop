@@ -70,4 +70,8 @@ public class SecurityLevel5 implements SecurityLevel{
 		android.calledForLeistungZehnWithLevel4(s);
 		
 	}
+	
+	public String toString() {
+		return "Security Level 5";
+	}
 }
