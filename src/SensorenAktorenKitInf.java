@@ -31,5 +31,8 @@ public class SensorenAktorenKitInf implements SensorenAktorenKit {
 		android.calledFromLeistungUnbegrenzt(new SensorenAktorenKitInf(android.getSeriennummer()));
 	}
 
+	public String toString() {
+		return "Kit mit Inf. KW";
+	}
 
 }

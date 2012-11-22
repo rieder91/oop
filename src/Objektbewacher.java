@@ -17,7 +17,7 @@ public class Objektbewacher extends Beschuetzer {
 		super(seriennummer);
 	}
 
-	public void calledFromObjektbewacherSoftware(Software s) {
+	protected void calledFromObjektbewacherSoftware(Software s) {
 		s.getSecurityLevel().vonObjektbewacherVerwendetFuerSoftware(this, s);
 		
 	}
@@ -25,7 +25,7 @@ public class Objektbewacher extends Beschuetzer {
 	protected void calledFromKaempferSoftware(Software s) {}
 	protected void calledFromLeibwaechterSoftware(Software s) {}
 	
-	public void calledFromSoftwareLevel4(Software s) { 
+	protected void calledFromSoftwareLevel4(Software s) { 
 		super.installieren(s);
 	}
 	
@@ -33,11 +33,11 @@ public class Objektbewacher extends Beschuetzer {
 	
 	protected void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {}
 	
-	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
+	protected void calledFromLeistungFuenf(SensorenAktorenKit s) {
 		this.getSoftware().getSecurityLevel().calledWithLeistungFuenf(this, s);
 	}
 	
-	public void calledFromLeistungZehn(SensorenAktorenKit s) {
+	protected void calledFromLeistungZehn(SensorenAktorenKit s) {
 		this.getSoftware().getSecurityLevel().calledWithLeistungZehn(this, s);
 	}
 

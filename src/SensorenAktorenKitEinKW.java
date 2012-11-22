@@ -32,5 +32,9 @@ public class SensorenAktorenKitEinKW implements SensorenAktorenKit {
 	public void integrieren(Android android) {
 		android.calledFromLeistungEins(new SensorenAktorenKitEinKW(android.getSeriennummer()));
 	}
+	
+	public String toString() {
+		return "Kit mit <= 1KW";
+	}
 
 }

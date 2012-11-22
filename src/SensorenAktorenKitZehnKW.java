@@ -30,4 +30,7 @@ public class SensorenAktorenKitZehnKW implements SensorenAktorenKit {
 		android.calledFromLeistungZehn(new SensorenAktorenKitZehnKW(android.getSeriennummer()));
 	}
 
+	public String toString() {
+		return "Kit mit <= 10KW";
+	}
 }

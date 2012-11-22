@@ -32,4 +32,7 @@ public class SensorenAktorenKitFuenfKW implements SensorenAktorenKit {
 		android.calledFromLeistungFuenf(new SensorenAktorenKitFuenfKW(android.getSeriennummer()));
 	}
 
+	public String toString() {
+		return "Kit mit <= 5KW";
+	}
 }

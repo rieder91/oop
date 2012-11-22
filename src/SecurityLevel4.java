@@ -9,28 +9,28 @@
  * @author Thomas
  *
  */
-public class SecurityLevel4 implements SecurityLevel {
-	public void vonHilfskraftVerwendetFuerSoftware(Hilfskraft android, Software s) { }
-	public void vonGesellschaftlerVerwendetFuerSoftware(Gesellschaftler android, Software s) { }
-	public void vonKaempferVerwendetFuerSoftware(Kaempfer android, Software s) { }
+public class SecurityLevel4 extends SecurityLevel {
+	protected void vonHilfskraftVerwendetFuerSoftware(Hilfskraft android, Software s) { }
+	protected void vonGesellschaftlerVerwendetFuerSoftware(Gesellschaftler android, Software s) { }
+	protected void vonKaempferVerwendetFuerSoftware(Kaempfer android, Software s) { }
 
-	public void vonSchwerarbeiterVerwendetFuerSoftware(Schwerarbeiter android, Software s) {
+	protected void vonSchwerarbeiterVerwendetFuerSoftware(Schwerarbeiter android, Software s) {
 		android.calledFromSoftwareLevel4(s);
 	}
 
-	public void vonObjektbewacherVerwendetFuerSoftware(Objektbewacher android, Software s) {
+	protected void vonObjektbewacherVerwendetFuerSoftware(Objektbewacher android, Software s) {
 		android.calledFromSoftwareLevel4(s);
 	}
 
-	public void vonLeibwaechterVerwendetFuerSoftware(Leibwaechter android, Software s) {
+	protected void vonLeibwaechterVerwendetFuerSoftware(Leibwaechter android, Software s) {
 		android.calledFromSoftwareLevel4(s);
 	}
 
-	public void calledWithLeistungFuenf(Android android, SensorenAktorenKit s) {
+	protected void calledWithLeistungFuenf(Android android, SensorenAktorenKit s) {
 		android.calledForLeistungFuenfWithLevel4(s);
 	}
 
-	public void calledWithLeistungZehn(Android android, SensorenAktorenKit s) {
+	protected void calledWithLeistungZehn(Android android, SensorenAktorenKit s) {
 		android.calledForLeistungZehnWithLevel4(s);
 	}
 	

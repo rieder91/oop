@@ -19,22 +19,22 @@ public abstract class Schwerarbeiter extends Android{
 		super(seriennummer);
 	}
 
-	public void calledFromHochfester(HochfesterSkin s) {
+	protected void calledFromHochfester(HochfesterSkin s) {
 		super.installieren(s);
 	}
 
-	public void calledFromBeruehrungs(BeruehrungssensitiverSkin s) {
+	protected void calledFromBeruehrungs(BeruehrungssensitiverSkin s) {
 		super.installieren(s);
 	}
 	
 	protected void calledFromGepanzert(GepanzerterSkin s) {}
 	
 	// Schwerarbeiter können mit Software der Stufen 3 und 4 ausgestattet sein
-	public  void calledFromSoftwareLevel3(Software s) {
+	protected void calledFromSoftwareLevel3(Software s) {
 		super.installieren(s);
 	}
 	
-	public  void calledFromSoftwareLevel4(Software s) {
+	protected void calledFromSoftwareLevel4(Software s) {
 		super.installieren(s);
 	}
 	
@@ -50,11 +50,11 @@ public abstract class Schwerarbeiter extends Android{
 	
 	protected void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {}
 	
-	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
+	protected void calledFromLeistungFuenf(SensorenAktorenKit s) {
 		this.getSoftware().getSecurityLevel().calledWithLeistungFuenf(this, s);
 	}
 	
-	public void calledFromLeistungZehn(SensorenAktorenKit s) {
+	protected void calledFromLeistungZehn(SensorenAktorenKit s) {
 		this.getSoftware().getSecurityLevel().calledWithLeistungZehn(this, s);
 	}
 	

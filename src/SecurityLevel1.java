@@ -7,23 +7,23 @@
  * @author Thomas
  * 
  */
-public class SecurityLevel1 implements SecurityLevel {
+public class SecurityLevel1 extends SecurityLevel {
 
-	public void vonHilfskraftVerwendetFuerSoftware(Hilfskraft android, Software s) {
+	protected void vonHilfskraftVerwendetFuerSoftware(Hilfskraft android, Software s) {
 		android.calledFromSoftwareLevel1(s);
 	}
 
-	public void vonGesellschaftlerVerwendetFuerSoftware(Gesellschaftler android, Software s) {
+	protected void vonGesellschaftlerVerwendetFuerSoftware(Gesellschaftler android, Software s) {
 		android.calledFromSoftwareLevel1(s);
 	}
 
-	public void vonSchwerarbeiterVerwendetFuerSoftware(Schwerarbeiter android,Software s) { }
-	public void vonObjektbewacherVerwendetFuerSoftware(Objektbewacher android, Software s) { }
-	public void vonLeibwaechterVerwendetFuerSoftware(Leibwaechter android, Software s) { }
-	public void vonKaempferVerwendetFuerSoftware(Kaempfer android, Software s) { }
+	protected void vonSchwerarbeiterVerwendetFuerSoftware(Schwerarbeiter android,Software s) { }
+	protected void vonObjektbewacherVerwendetFuerSoftware(Objektbewacher android, Software s) { }
+	protected void vonLeibwaechterVerwendetFuerSoftware(Leibwaechter android, Software s) { }
+	protected void vonKaempferVerwendetFuerSoftware(Kaempfer android, Software s) { }
 	
-	public void calledWithLeistungFuenf(Android android, SensorenAktorenKit s) { }
-	public void calledWithLeistungZehn(Android android, SensorenAktorenKit s) { }
+	protected void calledWithLeistungFuenf(Android android, SensorenAktorenKit s) { }
+	protected void calledWithLeistungZehn(Android android, SensorenAktorenKit s) { }
 
 	public String toString() {
 		return "Security Level 1";

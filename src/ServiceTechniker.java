@@ -15,7 +15,7 @@ public class ServiceTechniker extends Schwerarbeiter {
 		super(seriennummer);
 	}
 
-	public void calledFromServiceTechnikerSoftware(Software s) {
+	protected void calledFromServiceTechnikerSoftware(Software s) {
 		s.getSecurityLevel().vonSchwerarbeiterVerwendetFuerSoftware(this, s);
 	}
 	

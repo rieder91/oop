@@ -18,26 +18,26 @@ public class Kaempfer extends Beschuetzer {
 	}
 
 
-	public void calledFromKaempferSoftware(Software s) {
+	protected void calledFromKaempferSoftware(Software s) {
 		s.getSecurityLevel().vonKaempferVerwendetFuerSoftware(this, s);
 		
 	}
 
-	public void calledFromSoftwareLevel4(Software s) { }
+	protected void calledFromSoftwareLevel4(Software s) { }
 
-	public void calledFromSoftwareLevel5(Software s) {
+	protected void calledFromSoftwareLevel5(Software s) {
 		super.installieren(s);
 	}
 
-	public void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {
+	protected void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {
 		super.installieren(s);
 	}
 	
-	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
+	protected void calledFromLeistungFuenf(SensorenAktorenKit s) {
 		super.installieren(s);
 	}
 	
-	public void calledFromLeistungZehn(SensorenAktorenKit s) {
+	protected void calledFromLeistungZehn(SensorenAktorenKit s) {
 		super.installieren(s);
 	}
 	

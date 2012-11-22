@@ -13,7 +13,7 @@ public class Hilfskraft extends Bediener {
 		super(seriennummer);
 	}
 	
-	public void calledFromHilfskraefteSoftware(Software s) {
+	protected void calledFromHilfskraefteSoftware(Software s) {
 		s.getSecurityLevel().vonHilfskraftVerwendetFuerSoftware(this, s);
 	}
 	

@@ -15,7 +15,7 @@ public class Gesellschaftler extends Bediener {
 		super(seriennummer);
 	}
 	
-	public void calledFromGesellschaftlerSoftware(Software s) {
+	protected void calledFromGesellschaftlerSoftware(Software s) {
 		s.getSecurityLevel().vonGesellschaftlerVerwendetFuerSoftware(this, s);
 	}
 	

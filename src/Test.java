@@ -21,7 +21,15 @@ public class Test {
 						+ "Datum: 21.11.2012                                      \n"
 						+ "Aufgabe 6                                              \n"
 						+ "Gruppe 187: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
-		
+
+		/*
+		 * 
+		 * ANMERKUNG: alle Methoden die fuer die Simulation der Multimethoden
+		 * verwendet werden haben wir protected gemacht. Ohne Packages entfaltet
+		 * dies bei java nicht die gewuenschte Wirkung. Allerdings sollte so
+		 * erkennbar sein welche Methoden nicht direkt aufgerufen werden sollten.
+		 * 
+		 */
 		
 		ArrayList<Tester> tests = new ArrayList<Tester>();
 		tests.add(new SkinTester());
@@ -35,9 +43,6 @@ public class Test {
 			t.runTests();
 			System.out.println();
 		}
-//		
-//		Validator.enableDebug();
-//		Validator.printOverview();
 		
 	}
 }
