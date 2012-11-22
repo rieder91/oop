@@ -5,47 +5,23 @@ public class Objektbewacher extends Beschuetzer {
 	
 	public Objektbewacher(String seriennummer) {
 		super(seriennummer);
-		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void softwareInstallieren(Software s) {
-		// TODO Auto-generated method stub
-		s.installiertIn(this);
+
+	public void calledFromKaempferSoftware(Software s) { }
+	public void calledFromLeibwaechterSoftware(Software s) { }
+
+	public void calledFromObjektbewacherSoftware(Software s) {
+		s.getSecurityLevel().vonObjektbewacherVerwendetFuerSoftware(this, s);
 		
 	}
 
-	@Override
-	public void calledFromKaempferSoftware(KaempferSoftware s) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void calledFromLeibwaechterSoftware(LeibwaechterSoftware s) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void calledFromObjektbewacherSoftware(ObjektbewacherSoftware s) {
-		// TODO Auto-generated method stub
-		super.installieren(s);
-		
-	}
-
-	@Override
 	public void calledFromSoftwareLevel4(Software s) {
-		// TODO Auto-generated method stub
 		super.installieren(s);
-		
 	}
 
-	@Override
-	public void calledFromSoftwareLevel5(Software s) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void calledFromSoftwareLevel5(Software s) { }
+	
 	
 	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
 		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
@@ -55,13 +31,8 @@ public class Objektbewacher extends Beschuetzer {
 		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
 	}
 
-	@Override
-	public void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) { }
 
-	@Override
 	public void kitInstallieren(SensorenAktorenKit s) {
 		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
 		

@@ -25,19 +25,22 @@ public abstract class Bediener extends Android {
 	
 
 
-	
-	public  void calledFromBauarbeiterSoftware(BauarbeiterSoftware s) {}
-	public  void calledFromKaempferSoftware(KaempferSoftware s) {}
-	public  void calledFromLeibwaechterSoftware(LeibwaechterSoftware s) {}
-	public  void calledFromObjektbewacherSoftware(ObjektbewacherSoftware s) {}
-	public  void calledFromServiceTechnikerSoftware(ServiceTechnikerSoftware s) {}
-	public  void calledFromTransportarbeiterSoftware(TransportarbeiterSoftware s) {}
+	// verboten - kann man in der abstrakten Klasse machen weil es kein Untertyp von Bediener ist
+	public  void calledFromBauarbeiterSoftware(Software s) {}
+	public  void calledFromKaempferSoftware(Software s) {}
+	public  void calledFromLeibwaechterSoftware(Software s) {}
+	public  void calledFromObjektbewacherSoftware(Software s) {}
+	public  void calledFromServiceTechnikerSoftware(Software s) {}
+	public  void calledFromTransportarbeiterSoftware(Software s) {}
 
+	// verboten - Bediener haben entweder Level 1 oder 2
 	public  void calledFromSoftwareLevel3(Software s) {}
 	public  void calledFromSoftwareLevel4(Software s) {}
 	public  void calledFromSoftwareLevel5(Software s) {}
 	
+	
 	public  void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {}
+	
 	
 	public  void calledFromLeistungEins(SensorenAktorenKit s) {
 		super.installieren(s);
@@ -46,6 +49,7 @@ public abstract class Bediener extends Android {
 	public  void calledFromLeistungFuenf(SensorenAktorenKit s) {}
 	public  void calledFromLeistungZehn(SensorenAktorenKit s) {}
 
+	// Bediener haben nur Software mit Level 1 oder 2 - verboten
 	public  void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s) {}
 	public  void calledForLeistungFuenfWithLevel4(SensorenAktorenKit s) {}
 	public  void calledForLeistungZehnWithLevel3(SensorenAktorenKit s) {}

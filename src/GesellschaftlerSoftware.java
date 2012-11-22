@@ -15,52 +15,10 @@ public class GesellschaftlerSoftware implements Software {
 		this.level = level;
 	}
 
-	@Override
-	public void installiertIn(Hilfskraft android) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void installiertIn(Gesellschaftler android) {
+	public void installiertIn(Android android) {
 		// TODO Auto-generated method stub
 		android.calledFromGesellschaftlerSoftware(new GesellschaftlerSoftware(android.getSeriennummer(), this.level));
-		
-	}
-
-	@Override
-	public void installiertIn(Bauarbeiter android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void installiertIn(ServiceTechniker android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void installiertIn(Transportarbeiter android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void installiertIn(Objektbewacher android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void installiertIn(Leibwaechter android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void installiertIn(Kaempfer android) {
-		// TODO Auto-generated method stub
 		
 	}
 

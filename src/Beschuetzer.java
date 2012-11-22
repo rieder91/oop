@@ -25,11 +25,11 @@ public abstract class Beschuetzer extends Android {
 	}
 
 
-	public  void calledFromBauarbeiterSoftware(BauarbeiterSoftware s) {}
-	public  void calledFromGesellschaftlerSoftware(GesellschaftlerSoftware s) {}
-	public  void calledFromHilfskraefteSoftware(HilfskraefteSoftware s) {}
-	public  void calledFromServiceTechnikerSoftware(ServiceTechnikerSoftware s) {}
-	public  void calledFromTransportarbeiterSoftware(TransportarbeiterSoftware s) {}
+	public  void calledFromBauarbeiterSoftware(Software s) {}
+	public  void calledFromGesellschaftlerSoftware(Software s) {}
+	public  void calledFromHilfskraefteSoftware(Software s) {}
+	public  void calledFromServiceTechnikerSoftware(Software s) {}
+	public  void calledFromTransportarbeiterSoftware(Software s) {}
 
 
 	public  void calledFromSoftwareLevel1(Software s) {}

@@ -4,28 +4,16 @@ public class Bauarbeiter extends Schwerarbeiter {
 
 	public Bauarbeiter(String seriennummer) {
 		super(seriennummer);
-		// TODO Auto-generated constructor stub
 	}
 	
-	public void softwareInstallieren(Software s) {
-		s.installiertIn(this);
-	}
-	
-	public void calledFromBauarbeiterSoftware(BauarbeiterSoftware s) {
-		super.installieren(s);
+	// ueber das Security Level checken
+	public void calledFromBauarbeiterSoftware(Software s) {
+		s.getSecurityLevel().vonBauarbeiterVerwendetFuerSoftware(this, s);
 	}
 
-	@Override
-	public void calledFromServiceTechnikerSoftware(ServiceTechnikerSoftware s) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void calledFromTransportarbeiterSoftware(TransportarbeiterSoftware s) {
-		// TODO Auto-generated method stub
-		
-	}
+	// verboten
+	public void calledFromServiceTechnikerSoftware(Software s) { }
+	public void calledFromTransportarbeiterSoftware(Software s) { }
 
 	
 }

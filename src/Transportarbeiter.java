@@ -6,30 +6,12 @@ public class Transportarbeiter extends Schwerarbeiter {
 		super(seriennummer);
 	}
 
-	@Override
-	public void softwareInstallieren(Software s) {
-		// TODO Auto-generated method stub
-		s.installiertIn(this);
-		
-	}
 
-	@Override
-	public void calledFromBauarbeiterSoftware(BauarbeiterSoftware s) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void calledFromBauarbeiterSoftware(Software s) { }
+	public void calledFromServiceTechnikerSoftware(Software s) { }
 
-	@Override
-	public void calledFromServiceTechnikerSoftware(ServiceTechnikerSoftware s) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void calledFromTransportarbeiterSoftware(TransportarbeiterSoftware s) {
-		// TODO Auto-generated method stub
-		super.installieren(s);
-		
+	public void calledFromTransportarbeiterSoftware(Software s) {
+		s.getSecurityLevel().vonTransportarbeiterVerwendetFuerSoftware(this, s);
 	}
 
 

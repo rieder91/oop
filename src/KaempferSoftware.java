@@ -16,68 +16,7 @@ public class KaempferSoftware implements Software {
 	}
 
 
-
-
-
-	@Override
-	public void installiertIn(Hilfskraft android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void installiertIn(Gesellschaftler android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void installiertIn(Bauarbeiter android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void installiertIn(ServiceTechniker android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void installiertIn(Transportarbeiter android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void installiertIn(Objektbewacher android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void installiertIn(Leibwaechter android) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public void installiertIn(Kaempfer android) {
-		// TODO Auto-generated method stub
+	public void installiertIn(Android android) {
 		android.calledFromKaempferSoftware(new KaempferSoftware(android.getSeriennummer(), this.level));
 
 		

@@ -50,14 +50,14 @@ public abstract class Android {
 		s.installiertIn(this);
 	}
 	
-	protected abstract void calledFromBauarbeiterSoftware(BauarbeiterSoftware s);
-	protected abstract void calledFromGesellschaftlerSoftware(GesellschaftlerSoftware s);
-	protected abstract void calledFromHilfskraefteSoftware(HilfskraefteSoftware s);
-	protected abstract void calledFromKaempferSoftware(KaempferSoftware s);
-	protected abstract void calledFromLeibwaechterSoftware(LeibwaechterSoftware s);
-	protected abstract void calledFromObjektbewacherSoftware(ObjektbewacherSoftware s);
-	protected abstract void calledFromServiceTechnikerSoftware(ServiceTechnikerSoftware s);
-	protected abstract void calledFromTransportarbeiterSoftware(TransportarbeiterSoftware s);
+	protected abstract void calledFromBauarbeiterSoftware(Software s);
+	protected abstract void calledFromGesellschaftlerSoftware(Software s);
+	protected abstract void calledFromHilfskraefteSoftware(Software s);
+	protected abstract void calledFromKaempferSoftware(Software s);
+	protected abstract void calledFromLeibwaechterSoftware(Software s);
+	protected abstract void calledFromObjektbewacherSoftware(Software s);
+	protected abstract void calledFromServiceTechnikerSoftware(Software s);
+	protected abstract void calledFromTransportarbeiterSoftware(Software s);
 	
 	
 	protected abstract void calledFromSoftwareLevel1(Software s);
@@ -78,6 +78,7 @@ public abstract class Android {
 	protected abstract void calledFromLeistungFuenf(SensorenAktorenKit s);
 	protected abstract void calledFromLeistungZehn(SensorenAktorenKit s);
 	
+	// wenn das Security Level = 3,4 ist, ist es erlaubt
 	protected  void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s) {
 		this.installieren(s);
 	}
@@ -85,12 +86,14 @@ public abstract class Android {
 		this.installieren(s);
 	}
 	
+	// bei 10KW braucht man Level 4
 	protected  void calledForLeistungZehnWithLevel3(SensorenAktorenKit s) { }
 	protected  void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {
 		this.installieren(s);
 	}
 
 
+	
 	/* USED FOR DEBUGGING ONLY */
 	protected Software getSoftware() {
 		return software;

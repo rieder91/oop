@@ -4,38 +4,14 @@ public class Gesellschaftler extends Bediener {
 		super(seriennummer);
 	}
 	
-	@Override
-	public void softwareInstallieren(Software s) {
-		// TODO Auto-generated method stub
-		s.installiertIn(this);
-		
+	public void calledFromGesellschaftlerSoftware(Software s) {
+		s.getSecurityLevel().vonGesellschaftlerVerwendetFuerSoftware(this, s);
 	}
 
-	@Override
-	public void calledFromGesellschaftlerSoftware(GesellschaftlerSoftware s) {
-		super.installieren(s);
-		// TODO Auto-generated method stub
-		
-	}
+	public void calledFromHilfskraefteSoftware(Software s) { }
+	public void calledFromSoftwareLevel2(Software s) { }
 
-	@Override
-	public void calledFromHilfskraefteSoftware(HilfskraefteSoftware s) {
-		// VERBOTEN
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void calledFromSoftwareLevel1(Software s) {
-		// TODO Auto-generated method stub
 		super.installieren(s);
-		
 	}
-
-	@Override
-	public void calledFromSoftwareLevel2(Software s) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

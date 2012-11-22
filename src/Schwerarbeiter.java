@@ -6,24 +6,23 @@ public abstract class Schwerarbeiter extends Android{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public void calledFromGepanzert(GepanzerterSkin s) {
 		// forbidden
 	}
-	@Override
+
 	public void calledFromHochfester(HochfesterSkin s) {
 		super.installieren(s);
 	}
-	@Override
+
 	public void calledFromBeruehrungs(BeruehrungssensitiverSkin s) {
 		super.installieren(s);
 	}
 	
-	public  void calledFromGesellschaftlerSoftware(GesellschaftlerSoftware s) {}
-	public  void calledFromHilfskraefteSoftware(HilfskraefteSoftware s) {}
-	public  void calledFromKaempferSoftware(KaempferSoftware s) {}
-	public  void calledFromLeibwaechterSoftware(LeibwaechterSoftware s) {}
-	public  void calledFromObjektbewacherSoftware(ObjektbewacherSoftware s) {}
+	public  void calledFromGesellschaftlerSoftware(Software s) {}
+	public  void calledFromHilfskraefteSoftware(Software s) {}
+	public  void calledFromKaempferSoftware(Software s) {}
+	public  void calledFromLeibwaechterSoftware(Software s) {}
+	public  void calledFromObjektbewacherSoftware(Software s) {}
 	
 	public  void calledFromSoftwareLevel1(Software s) {}
 	public  void calledFromSoftwareLevel2(Software s) {}
@@ -34,6 +33,7 @@ public abstract class Schwerarbeiter extends Android{
 	public  void calledFromSoftwareLevel4(Software s) {
 		super.installieren(s);
 	}
+	
 	
 	public void calledFromSoftwareLevel5(Software s) {}
 	

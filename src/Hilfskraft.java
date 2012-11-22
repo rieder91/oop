@@ -6,16 +6,12 @@ public class Hilfskraft extends Bediener {
 	}
 	
 
-	public void softwareInstallieren(Software s) {
-		s.installiertIn(this);
-	}
-
 	// verboten
-	public void calledFromGesellschaftlerSoftware(GesellschaftlerSoftware s) { }
+	public void calledFromGesellschaftlerSoftware(Software s) { }
 
 	
 	// erlaubt
-	public void calledFromHilfskraefteSoftware(HilfskraefteSoftware s) {
+	public void calledFromHilfskraefteSoftware(Software s) {
 		s.getSecurityLevel().vonHilfskraftVerwendetFuerSoftware(this, s);
 	}
 
