@@ -91,5 +91,13 @@ public abstract class Android {
 		return software;
 	}
 
+	protected Skin getSkin() {
+		return skin;
+	}
+
+	protected SensorenAktorenKit getKit() {
+		return kit;
+	}
+
 
 }

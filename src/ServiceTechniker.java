@@ -10,7 +10,7 @@ public class ServiceTechniker extends Schwerarbeiter {
 	@Override
 	public void softwareInstallieren(Software s) {
 		// TODO Auto-generated method stub
-		s.vonServiceTechnikerInstalliert(this);
+		s.installiertIn(this);
 		
 	}
 

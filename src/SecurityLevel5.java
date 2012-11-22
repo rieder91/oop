@@ -60,21 +60,7 @@ public class SecurityLevel5 implements SecurityLevel{
 	}
 
 	@Override
-	public void vomSchwerarbeiterFuerAktoren(Schwerarbeiter android,
-			SensorenAktorenKit s) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void vomLeibwaechterFuerAktoren(Leibwaechter android,
-			SensorenAktorenKit s) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void vomObjektbewacherFuerAktoren(Objektbewacher android,
+	public void vomAndroidFuerAktoren(Android android,
 			SensorenAktorenKit s) {
 		// TODO Auto-generated method stub
 		

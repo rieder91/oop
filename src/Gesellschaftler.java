@@ -7,7 +7,7 @@ public class Gesellschaftler extends Bediener {
 	@Override
 	public void softwareInstallieren(Software s) {
 		// TODO Auto-generated method stub
-		s.vonGesellschaftlerInstalliert(this);
+		s.installiertIn(this);
 		
 	}
 

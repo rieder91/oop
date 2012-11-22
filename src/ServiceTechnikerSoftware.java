@@ -20,7 +20,7 @@ public class ServiceTechnikerSoftware implements Software {
 
 
 	@Override
-	public void vonHilfskraftInstalliert(Hilfskraft android) {
+	public void installiertIn(Hilfskraft android) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -28,7 +28,7 @@ public class ServiceTechnikerSoftware implements Software {
 
 
 	@Override
-	public void vonGesellschaftlerInstalliert(Gesellschaftler android) {
+	public void installiertIn(Gesellschaftler android) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -36,7 +36,7 @@ public class ServiceTechnikerSoftware implements Software {
 
 
 	@Override
-	public void vonBauarbeiterInstalliert(Bauarbeiter android) {
+	public void installiertIn(Bauarbeiter android) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -44,7 +44,7 @@ public class ServiceTechnikerSoftware implements Software {
 
 
 	@Override
-	public void vonServiceTechnikerInstalliert(ServiceTechniker android) {
+	public void installiertIn(ServiceTechniker android) {
 		// TODO Auto-generated method stub
 		android.calledFromServiceTechnikerSoftware(new ServiceTechnikerSoftware(android.getSeriennummer(), this.level));
 
@@ -54,7 +54,7 @@ public class ServiceTechnikerSoftware implements Software {
 
 
 	@Override
-	public void vonTransportarbeiterInstalliert(Transportarbeiter android) {
+	public void installiertIn(Transportarbeiter android) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -62,7 +62,7 @@ public class ServiceTechnikerSoftware implements Software {
 
 
 	@Override
-	public void vonObjektbewacherInstalliert(Objektbewacher android) {
+	public void installiertIn(Objektbewacher android) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -70,7 +70,7 @@ public class ServiceTechnikerSoftware implements Software {
 
 
 	@Override
-	public void vonLeibwaechterInstalliert(Leibwaechter android) {
+	public void installiertIn(Leibwaechter android) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -78,7 +78,7 @@ public class ServiceTechnikerSoftware implements Software {
 
 
 	@Override
-	public void vonKaempferInstalliert(Kaempfer android) {
+	public void installiertIn(Kaempfer android) {
 		// TODO Auto-generated method stub
 		
 	}

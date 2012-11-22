@@ -11,7 +11,7 @@ public class Objektbewacher extends Beschuetzer {
 	@Override
 	public void softwareInstallieren(Software s) {
 		// TODO Auto-generated method stub
-		s.vonObjektbewacherInstalliert(this);
+		s.installiertIn(this);
 		
 	}
 
@@ -48,11 +48,11 @@ public class Objektbewacher extends Beschuetzer {
 	}
 	
 	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().vomObjektbewacherFuerAktoren(this, s);
+		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
 	}
 	
 	public void calledFromLeistungZehn(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().vomObjektbewacherFuerAktoren(this, s);
+		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class Objektbewacher extends Beschuetzer {
 
 	@Override
 	public void kitInstallieren(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().vomObjektbewacherFuerAktoren(this, s);
+		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
 		
 	}
 

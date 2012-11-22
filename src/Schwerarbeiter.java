@@ -27,7 +27,7 @@ public abstract class Schwerarbeiter extends Android{
 	
 	@Override
 	public void skinEinbauen(Skin s) {
-		s.integrate(this);
+		s.einbauen(this);
 	}
 	
 //	@Override
@@ -55,7 +55,7 @@ public abstract class Schwerarbeiter extends Android{
 	
 	
 	public void kitInstallieren(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().vomSchwerarbeiterFuerAktoren(this, s);
+		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
 	}
 	
 	public  void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {}
@@ -64,11 +64,11 @@ public abstract class Schwerarbeiter extends Android{
 	}
 	
 	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().vomSchwerarbeiterFuerAktoren(this, s);
+		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
 	}
 	
 	public void calledFromLeistungZehn(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().vomSchwerarbeiterFuerAktoren(this, s);
+		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
 	}
 	
 	

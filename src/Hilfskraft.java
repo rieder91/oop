@@ -9,7 +9,7 @@ public class Hilfskraft extends Bediener {
 
 	@Override
 	public void softwareInstallieren(Software s) {
-		s.vonHilfskraftInstalliert(this);
+		s.installiertIn(this);
 		// TODO Auto-generated method stub
 		
 	}
@@ -23,8 +23,7 @@ public class Hilfskraft extends Bediener {
 	@Override
 	public void calledFromHilfskraefteSoftware(HilfskraefteSoftware s) {
 		// TODO Auto-generated method stub
-		super.installieren(s);
-		
+		s.getSecurityLevel().vonHilfskraftVerwendetFuerSoftware(this, s);
 	}
 
 

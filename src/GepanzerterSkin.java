@@ -13,17 +13,17 @@ public class GepanzerterSkin implements Skin {
 	}
 
 	@Override
-	public void integrate(Bediener android) {
+	public void einbauen(Bediener android) {
 		// forbidden
 	}
 
 	@Override
-	public void integrate(Beschuetzer android) {
+	public void einbauen(Beschuetzer android) {
 		android.calledFromGepanzert(new GepanzerterSkin(android.getSeriennummer()));
 	}
 
 	@Override
-	public void integrate(Schwerarbeiter android) {
+	public void einbauen(Schwerarbeiter android) {
 		// forbidden
 	}
 

@@ -21,7 +21,7 @@ public abstract class Beschuetzer extends Android {
 
 	@Override
 	public void skinEinbauen(Skin s) {
-		s.integrate(this);
+		s.einbauen(this);
 	}
 
 	public  void calledFromBauarbeiterSoftware(BauarbeiterSoftware s) {}

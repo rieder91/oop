@@ -10,7 +10,7 @@ public class Kaempfer extends Beschuetzer {
 	@Override
 	public void softwareInstallieren(Software s) {
 		// TODO Auto-generated method stub
-		s.vonKaempferInstalliert(this);
+		s.installiertIn(this);
 		
 	}
 

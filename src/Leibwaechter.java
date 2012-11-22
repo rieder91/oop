@@ -10,7 +10,7 @@ public class Leibwaechter extends Beschuetzer {
 	@Override
 	public void softwareInstallieren(Software s) {
 		// TODO Auto-generated method stub
-		s.vonLeibwaechterInstalliert(this);
+		s.installiertIn(this);
 		
 	}
 
@@ -53,16 +53,16 @@ public class Leibwaechter extends Beschuetzer {
 	}
 
 	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().vomLeibwaechterFuerAktoren(this, s);
+		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
 	}
 	
 	public void calledFromLeistungZehn(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().vomLeibwaechterFuerAktoren(this, s);
+		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
 	}
 
 	@Override
 	public void kitInstallieren(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().vomLeibwaechterFuerAktoren(this, s);
+		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
 		
 	}
 

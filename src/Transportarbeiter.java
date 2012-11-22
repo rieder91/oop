@@ -9,7 +9,7 @@ public class Transportarbeiter extends Schwerarbeiter {
 	@Override
 	public void softwareInstallieren(Software s) {
 		// TODO Auto-generated method stub
-		s.vonTransportarbeiterInstalliert(this);
+		s.installiertIn(this);
 		
 	}
 

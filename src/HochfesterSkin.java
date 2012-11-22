@@ -13,17 +13,17 @@ public class HochfesterSkin implements Skin {
 	}
 
 	@Override
-	public void integrate(Bediener android) {
+	public void einbauen(Bediener android) {
 		// forbidden
 	}
 
 	@Override
-	public void integrate(Beschuetzer android) {
+	public void einbauen(Beschuetzer android) {
 		android.calledFromHochfester(new HochfesterSkin(android.getSeriennummer()));
 	}
 
 	@Override
-	public void integrate(Schwerarbeiter android) {
+	public void einbauen(Schwerarbeiter android) {
 		android.calledFromHochfester(new HochfesterSkin(android.getSeriennummer()));
 	}
 }

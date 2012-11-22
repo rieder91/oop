@@ -1,9 +1,9 @@
 public interface Skin {
 
-	public void integrate(Bediener android);
+	public void einbauen(Bediener android);
 
-	public void integrate(Beschuetzer android);
+	public void einbauen(Beschuetzer android);
 
-	public void integrate(Schwerarbeiter android);
+	public void einbauen(Schwerarbeiter android);
 
 }

@@ -8,7 +8,7 @@ public class Bauarbeiter extends Schwerarbeiter {
 	}
 	
 	public void softwareInstallieren(Software s) {
-		s.vonBauarbeiterInstalliert(this);
+		s.installiertIn(this);
 	}
 	
 	public void calledFromBauarbeiterSoftware(BauarbeiterSoftware s) {
