@@ -1,12 +1,20 @@
 /**
  * 
- * nur Beschuetzer duerfen gepanzerten Skin verwenden
+ * darf Beruehrungssensitiven oder hochfesten Skin verwenden
+ * 
+ * darf Software mit Level 3 oder 4 verwenden
+ * 
+ * darf Kits mit <= 5KW (wenn Level = 3) oder <= 10KW verwenden (wenn Level = 4)
  * 
  * @author Thomas
  *
  */
 public abstract class Schwerarbeiter extends Android{
 
+	/**
+	 * default constructor
+	 * @param seriennummer serial of the android
+	 */
 	public Schwerarbeiter(String seriennummer) {
 		super(seriennummer);
 	}

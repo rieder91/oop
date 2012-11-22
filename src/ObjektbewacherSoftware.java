@@ -1,5 +1,13 @@
 
-
+/**
+ * die Software enthaelt eine Seriennumer die an den Androiden gekoppelt ist
+ * 
+ * die ObjektbewacherSoftware darf nur bei einem Objektbewacher installiert werden
+ * das Level der ObjektbewacherSoftware kann 4 sein
+ * 
+ * @author Thomas
+ *
+ */
 public class ObjektbewacherSoftware implements Software {
 
 	private SecurityLevel level;

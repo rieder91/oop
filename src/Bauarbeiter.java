@@ -1,12 +1,16 @@
 
 /**
- * ein Bauarbeiter darf nur Bauarbeiter-Software verwenden
+ * ein Bauarbeiter darf nur Bauarbeiter-Software mit Level 3 oder 4 verwenden
  * 
  * @author Thomas
  *
  */
 public class Bauarbeiter extends Schwerarbeiter {
 
+	/**
+	 * default constructor
+	 * @param seriennummer serial of the android
+	 */
 	public Bauarbeiter(String seriennummer) {
 		super(seriennummer);
 	}

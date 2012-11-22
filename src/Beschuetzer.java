@@ -14,6 +14,10 @@
  */
 public abstract class Beschuetzer extends Android {
 
+	/**
+	 * default constructor
+	 * @param seriennummer serial of the android
+	 */
 	public Beschuetzer(String seriennummer) {
 		super(seriennummer);
 	}

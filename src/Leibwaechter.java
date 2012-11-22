@@ -1,7 +1,18 @@
 
-
+/**
+ * ein leibwaechter darf nur LeibwaechterSoftware vom Level 4 verwenden
+ * 
+ * wenn sein SecurityLevel 4 ist, darf er Kits mit <= 10KW verwenden
+ * 
+ * @author Thomas
+ *
+ */
 public class Leibwaechter extends Beschuetzer {
 
+	/**
+	 * default constructor
+	 * @param seriennummer serial of the robot
+	 */
 	public Leibwaechter(String seriennummer) {
 		super(seriennummer);
 	}

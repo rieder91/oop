@@ -1,7 +1,18 @@
 
-
+/**
+ * ein Kaempfer kann nur Kampfsoftware vom Level 5 verwenden
+ * 
+ * Er kann Aktoren-Kits mit unbegrenzt viel Leistung verwenden
+ * 
+ * 
+ * @author Thomas
+ *
+ */
 public class Kaempfer extends Beschuetzer {
-
+	/**
+	 * default constructor
+	 * @param seriennummer serial of the android
+	 */
 	public Kaempfer(String seriennummer) {
 		super(seriennummer);
 	}

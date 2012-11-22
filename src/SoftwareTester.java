@@ -17,6 +17,10 @@ public class SoftwareTester implements Tester {
 	 */
 	public SoftwareTester() { }
 
+	/**
+	 * generates all possible robots, softwares and attempts to create new
+	 * android with the values; generates output if the android could be created
+	 */
 	public void runTests() {
 		ArrayList<Android> robots = new ArrayList<Android>();
 		robots.add(new Hilfskraft("Hilfsroboter"));

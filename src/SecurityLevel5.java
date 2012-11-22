@@ -2,7 +2,9 @@
 /**
  * Nur der Kaempfer darf mit SecurityLevel 5 ausgestattet werden
  * 
- * Mit Level 5 darf man sowohl 5KW als auch 10KW Aktoren verwenden
+ * es ist nicht angegeben, dass mit man mit level 5 ueberhaupt aktoren
+ * verwenden darf. die Ausnahme fuer den Kaempfer ist naemlich laut Angabe
+ * nicht von Level 5 abhhaengig
  * 
  * @author Thomas
  *
@@ -19,13 +21,8 @@ public class SecurityLevel5 implements SecurityLevel{
 		android.calledFromSoftwareLevel5(s);
 	}
 
-	public void calledWithLeistungFuenf(Android android, SensorenAktorenKit s) {
-		android.calledForLeistungFuenfWithLevel4(s);
-	}
-
-	public void calledWithLeistungZehn(Android android, SensorenAktorenKit s) {
-		android.calledForLeistungZehnWithLevel4(s);
-	}
+	public void calledWithLeistungFuenf(Android android, SensorenAktorenKit s) { }
+	public void calledWithLeistungZehn(Android android, SensorenAktorenKit s) {	}
 	
 	public String toString() {
 		return "Security Level 5";

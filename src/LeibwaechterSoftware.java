@@ -1,5 +1,13 @@
 
-
+/**
+ * die Software enthaelt eine Seriennumer die an den Androiden gekoppelt ist
+ * 
+ * die LeibwaechterSoftware darf nur bei einem Leibwaechter installiert werden
+ * das Level der LeibwaechterSoftware kann 4 sein
+ * 
+ * @author Thomas
+ *
+ */
 public class LeibwaechterSoftware implements Software {
 
 	private SecurityLevel level;

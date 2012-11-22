@@ -17,6 +17,10 @@ public class SkinTester implements Tester {
 	 */
 	public SkinTester() { }
 
+	/**
+	 * generates all possible robots and skin and attempts to create new
+	 * android with the values; generates output if the android could be created
+	 */
 	public void runTests() {
 		ArrayList<Android> robots = new ArrayList<Android>();
 		robots.add(new Hilfskraft("Hilfsroboter"));

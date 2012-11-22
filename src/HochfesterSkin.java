@@ -1,5 +1,10 @@
 
-
+/**
+ * hochfesterskin kann beschuetzer und schwerarbeiter verwendet werden
+ * 
+ * @author Thomas
+ *
+ */
 public class HochfesterSkin implements Skin {
 	@SuppressWarnings("unused")
 	private final String seriennummer;

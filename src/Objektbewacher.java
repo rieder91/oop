@@ -1,8 +1,18 @@
 
-
+/**
+ * ein objektbewache darf nur objektbewacher-software vom Level 4 verwenden
+ * 
+ * wenn er software vom level 4 hat, darf er kits mit <= 10 KW verwenden
+ * 
+ * @author Thomas
+ *
+ */
 public class Objektbewacher extends Beschuetzer {
 
-	
+	/**
+	 * default constructor
+	 * @param seriennummer serial of the android
+	 */
 	public Objektbewacher(String seriennummer) {
 		super(seriennummer);
 	}

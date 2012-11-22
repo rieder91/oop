@@ -1,5 +1,13 @@
 
-
+/**
+ * die Software enthaelt eine Seriennumer die an den Androiden gekoppelt ist
+ * 
+ * die ServiceTechnikerSoftware Software darf nur bei einem ServiceTechniker installiert werden
+ * das Level der ServiceTechnikerSoftware kann 3 oder 4 sein
+ * 
+ * @author Thomas
+ *
+ */
 public class ServiceTechnikerSoftware implements Software {
 	private SecurityLevel level;
 	
