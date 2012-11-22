@@ -7,13 +7,13 @@ public class Bauarbeiter extends Schwerarbeiter {
 	}
 	
 	// ueber das Security Level checken
-	public void calledFromBauarbeiterSoftware(Software s) {
+	protected void calledFromBauarbeiterSoftware(Software s) {
 		s.getSecurityLevel().vonBauarbeiterVerwendetFuerSoftware(this, s);
 	}
 
 	// verboten
-	public void calledFromServiceTechnikerSoftware(Software s) { }
-	public void calledFromTransportarbeiterSoftware(Software s) { }
+	protected void calledFromServiceTechnikerSoftware(Software s) { }
+	protected void calledFromTransportarbeiterSoftware(Software s) { }
 
 	
 }

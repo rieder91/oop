@@ -24,18 +24,23 @@ public abstract class Schwerarbeiter extends Android{
 	public  void calledFromLeibwaechterSoftware(Software s) {}
 	public  void calledFromObjektbewacherSoftware(Software s) {}
 	
-	public  void calledFromSoftwareLevel1(Software s) {}
-	public  void calledFromSoftwareLevel2(Software s) {}
+	
+	
+	// Schwerarbeiter können mit Software der Stufen 3 und 4 ausgestattet sein
+	public void calledFromSoftwareLevel1(Software s) {}
+	public void calledFromSoftwareLevel2(Software s) {}
+	public void calledFromSoftwareLevel5(Software s) {}
 	
 	public  void calledFromSoftwareLevel3(Software s) {
 		super.installieren(s);
 	}
+	
 	public  void calledFromSoftwareLevel4(Software s) {
 		super.installieren(s);
 	}
 	
 	
-	public void calledFromSoftwareLevel5(Software s) {}
+	
 	
 	
 	public void kitInstallieren(SensorenAktorenKit s) {
@@ -43,6 +48,7 @@ public abstract class Schwerarbeiter extends Android{
 	}
 	
 	public  void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {}
+	
 	public  void calledFromLeistungEins(SensorenAktorenKit s) {
 		super.installieren(s);
 	}

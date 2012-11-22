@@ -3,7 +3,6 @@ public abstract class Beschuetzer extends Android {
 
 	public Beschuetzer(String seriennummer) {
 		super(seriennummer);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -25,24 +24,26 @@ public abstract class Beschuetzer extends Android {
 	}
 
 
-	public  void calledFromBauarbeiterSoftware(Software s) {}
-	public  void calledFromGesellschaftlerSoftware(Software s) {}
-	public  void calledFromHilfskraefteSoftware(Software s) {}
-	public  void calledFromServiceTechnikerSoftware(Software s) {}
-	public  void calledFromTransportarbeiterSoftware(Software s) {}
+	protected void calledFromBauarbeiterSoftware(Software s) {}
+	protected void calledFromGesellschaftlerSoftware(Software s) {}
+	protected void calledFromHilfskraefteSoftware(Software s) {}
+	protected void calledFromServiceTechnikerSoftware(Software s) {}
+	protected void calledFromTransportarbeiterSoftware(Software s) {}
 
 
-	public  void calledFromSoftwareLevel1(Software s) {}
-	public  void calledFromSoftwareLevel2(Software s) {}
-	public  void calledFromSoftwareLevel3(Software s) {}
+	protected void calledFromSoftwareLevel1(Software s) {}
+	protected void calledFromSoftwareLevel2(Software s) {}
+	protected void calledFromSoftwareLevel3(Software s) {}
 
-	public abstract void calledFromLeistungUnbegrenzt(SensorenAktorenKit s);
+	
+	protected abstract void calledFromLeistungUnbegrenzt(SensorenAktorenKit s);
+	protected abstract void calledFromLeistungFuenf(SensorenAktorenKit s);
+	protected abstract void calledFromLeistungZehn(SensorenAktorenKit s);
+	
 
-	public  void calledFromLeistungEins(SensorenAktorenKit s) {
+	protected void calledFromLeistungEins(SensorenAktorenKit s) {
 		super.installieren(s);
 	}
-	public abstract void calledFromLeistungFuenf(SensorenAktorenKit s);
-
-
-	public abstract void calledFromLeistungZehn(SensorenAktorenKit s);
+	
+	
 }

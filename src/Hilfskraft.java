@@ -16,11 +16,10 @@ public class Hilfskraft extends Bediener {
 	}
 
 
-	// Level 1 und Level 2 sind erlaubt
+	// alle anderen Bediener Software der Stufen 1 oder 2
 	public void calledFromSoftwareLevel1(Software s) {
 		super.installieren(s);
 	}
-
 
 	public void calledFromSoftwareLevel2(Software s) {
 		super.installieren(s);

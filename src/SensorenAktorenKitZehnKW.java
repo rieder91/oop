@@ -11,31 +11,19 @@ public class SensorenAktorenKitZehnKW implements SensorenAktorenKit {
 		this.seriennummer = seriennummer;
 	}
 	
-	@Override
-	public void vonBedienerInstalliert(Bediener android) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void vonBedienerInstalliert(Bediener android) {	}
 
-	@Override
 	public void vonKaempferInstalliert(Kaempfer android) {
-		// TODO Auto-generated method stub
 		android.calledFromLeistungZehn(new SensorenAktorenKitZehnKW(android.getSeriennummer()));
 	}
 
-	@Override
 	public void vonLevel3Installiert(Android android) {
-		// TODO Auto-generated method stub
-		// NICHT ERLAUBT
 		android.calledForLeistungZehnWithLevel3(this);
 		
 	}
 
-	@Override
 	public void vonLevel4Installiert(Android android) {
-		// TODO Auto-generated method stub
 		android.calledForLeistungZehnWithLevel4(new SensorenAktorenKitZehnKW(android.getSeriennummer()));
-		
 	}
 
 }

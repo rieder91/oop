@@ -6,7 +6,6 @@ public abstract class Android {
 	private Software software;
 	private SensorenAktorenKit kit;
 
-
 	public Android(String seriennummer) {
 		this.seriennummer = seriennummer;
 		skin = null;
@@ -78,7 +77,7 @@ public abstract class Android {
 	protected abstract void calledFromLeistungFuenf(SensorenAktorenKit s);
 	protected abstract void calledFromLeistungZehn(SensorenAktorenKit s);
 	
-	// wenn das Security Level = 3,4 ist, ist es erlaubt
+	// wenn das Security Level = 3,4 ist, ist es erlaubt - unabhaengig vom Robotertyp
 	protected  void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s) {
 		this.installieren(s);
 	}
@@ -87,8 +86,8 @@ public abstract class Android {
 	}
 	
 	// bei 10KW braucht man Level 4
-	protected  void calledForLeistungZehnWithLevel3(SensorenAktorenKit s) { }
-	protected  void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {
+	protected void calledForLeistungZehnWithLevel3(SensorenAktorenKit s) { }
+	protected void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {
 		this.installieren(s);
 	}
 

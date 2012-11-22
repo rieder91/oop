@@ -2,6 +2,7 @@
 
 public class TransportarbeiterSoftware implements Software {
 	private SecurityLevel level;
+	
 	@SuppressWarnings("unused")
 	private final String seriennummer;
 
@@ -18,7 +19,6 @@ public class TransportarbeiterSoftware implements Software {
 
 	public void installiertIn(Android android) {
 		android.calledFromTransportarbeiterSoftware(new TransportarbeiterSoftware(android.getSeriennummer(), this.level));
-
 	}
 
 	public SecurityLevel getSecurityLevel() {

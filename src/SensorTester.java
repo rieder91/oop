@@ -15,7 +15,6 @@ public class SensorTester implements Tester {
 	 */
 	public SensorTester() { }
 
-	@Override
 	public void runTests() {
 		// Bediener
 		Android hilf = new Hilfskraft("Hilfroboter");

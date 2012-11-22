@@ -15,7 +15,6 @@ public class SkinTester implements Tester {
 	 */
 	public SkinTester() { }
 
-	@Override
 	public void runTests() {
 		// Bediener
 		Android hilf = new Hilfskraft("Hilfroboter");

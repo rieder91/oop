@@ -17,7 +17,6 @@ public class ServiceTechnikerSoftware implements Software {
 	}
 
 
-
 	public void installiertIn(Android android) {
 		android.calledFromServiceTechnikerSoftware(new ServiceTechnikerSoftware(android.getSeriennummer(), this.level));
 	}

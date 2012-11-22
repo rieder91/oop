@@ -25,35 +25,37 @@ public abstract class Bediener extends Android {
 	
 
 
-	// verboten - kann man in der abstrakten Klasse machen weil es kein Untertyp von Bediener ist
-	public  void calledFromBauarbeiterSoftware(Software s) {}
-	public  void calledFromKaempferSoftware(Software s) {}
-	public  void calledFromLeibwaechterSoftware(Software s) {}
-	public  void calledFromObjektbewacherSoftware(Software s) {}
-	public  void calledFromServiceTechnikerSoftware(Software s) {}
-	public  void calledFromTransportarbeiterSoftware(Software s) {}
+	// verboten - kann man in der abstrakten Klasse machen
+	protected void calledFromBauarbeiterSoftware(Software s) {}
+	protected void calledFromKaempferSoftware(Software s) {}
+	protected void calledFromLeibwaechterSoftware(Software s) {}
+	protected void calledFromObjektbewacherSoftware(Software s) {}
+	protected void calledFromServiceTechnikerSoftware(Software s) {}
+	protected void calledFromTransportarbeiterSoftware(Software s) {}
 
 	// verboten - Bediener haben entweder Level 1 oder 2
-	public  void calledFromSoftwareLevel3(Software s) {}
-	public  void calledFromSoftwareLevel4(Software s) {}
-	public  void calledFromSoftwareLevel5(Software s) {}
+	//
+	// Gesellschafter benötigen Software der Stufe 1, alle anderen Bediener Software der Stufen 1 oder 2
+	protected void calledFromSoftwareLevel3(Software s) {}
+	protected void calledFromSoftwareLevel4(Software s) {}
+	protected void calledFromSoftwareLevel5(Software s) {}
 	
 	
-	public  void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {}
+	protected void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {}
 	
 	
-	public  void calledFromLeistungEins(SensorenAktorenKit s) {
+	protected void calledFromLeistungEins(SensorenAktorenKit s) {
 		super.installieren(s);
 	}
 	
-	public  void calledFromLeistungFuenf(SensorenAktorenKit s) {}
-	public  void calledFromLeistungZehn(SensorenAktorenKit s) {}
+	protected void calledFromLeistungFuenf(SensorenAktorenKit s) {}
+	protected void calledFromLeistungZehn(SensorenAktorenKit s) {}
 
 	// Bediener haben nur Software mit Level 1 oder 2 - verboten
-	public  void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s) {}
-	public  void calledForLeistungFuenfWithLevel4(SensorenAktorenKit s) {}
-	public  void calledForLeistungZehnWithLevel3(SensorenAktorenKit s) {}
-	public  void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {}
+	protected void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s) {}
+	protected void calledForLeistungFuenfWithLevel4(SensorenAktorenKit s) {}
+	protected void calledForLeistungZehnWithLevel3(SensorenAktorenKit s) {}
+	protected void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {}
 	
 	public void kitInstallieren(SensorenAktorenKit s) {
 		s.vonBedienerInstalliert(this);

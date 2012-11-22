@@ -16,12 +16,16 @@ public class Objektbewacher extends Beschuetzer {
 		
 	}
 
+	
+	public void calledFromSoftwareLevel5(Software s) { }
+	
 	public void calledFromSoftwareLevel4(Software s) {
 		super.installieren(s);
 	}
 
-	public void calledFromSoftwareLevel5(Software s) { }
 	
+	
+	public void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) { }
 	
 	public void calledFromLeistungFuenf(SensorenAktorenKit s) {
 		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
@@ -31,7 +35,7 @@ public class Objektbewacher extends Beschuetzer {
 		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
 	}
 
-	public void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) { }
+	
 
 	public void kitInstallieren(SensorenAktorenKit s) {
 		this.getSoftware().getSecurityLevel().vomAndroidFuerAktoren(this, s);
