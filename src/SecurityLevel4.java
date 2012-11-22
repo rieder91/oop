@@ -64,9 +64,22 @@ public class SecurityLevel4 implements SecurityLevel {
 		
 	}
 
-	public String toString() {
-		return "Security Level 4";
+	@Override
+	public void calledWithLeistungFuenf(Android android, SensorenAktorenKit s) {
+		android.calledForLeistungFuenfWithLevel4(s);
+		
 	}
+
+	@Override
+	public void calledWithLeistungZehn(Android android, SensorenAktorenKit s) {
+		android.calledForLeistungZehnWithLevel4(s);
+		
+	}
+	
+	public String toString() {
+		return "Security Level 3";
+	}
+
 
 
 }
