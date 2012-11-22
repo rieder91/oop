@@ -8,19 +8,30 @@ public class ServiceTechniker extends Schwerarbeiter {
 	}
 
 	@Override
-	public void einbauen(BauarbeiterSoftware s) {
+	public void softwareInstallieren(Software s) {
+		// TODO Auto-generated method stub
+		s.vonServiceTechnikerInstalliert(this);
 		
 	}
 
 	@Override
-	public void einbauen(ServiceTechnikerSoftware s) {
+	public void calledFromBauarbeiterSoftware(BauarbeiterSoftware s) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void einbauen(TransportarbeiterSoftware s) {
+	public void calledFromServiceTechnikerSoftware(ServiceTechnikerSoftware s) {
+		// TODO Auto-generated method stub
+		super.installieren(s);
 		
 	}
+
+	@Override
+	public void calledFromTransportarbeiterSoftware(TransportarbeiterSoftware s) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

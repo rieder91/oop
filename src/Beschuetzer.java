@@ -8,54 +8,31 @@ public abstract class Beschuetzer extends Android {
 	
 	@Override
 	public void calledFromGepanzert(GepanzerterSkin s) {
-		super.integrate(s);
+		super.installieren(s);
 	}
 	@Override
 	public void calledFromHochfester(HochfesterSkin s) {
-		super.integrate(s);
+		super.installieren(s);
 	}
 	@Override
 	public void calledFromBeruehrungs(BeruehrungssensitiverSkin s) {
-		super.integrate(s);
+		super.installieren(s);
 	}
 	
 	@Override
-	public void einbauen(GepanzerterSkin s) {
+	public void skinEinbauen(Skin s) {
 		s.integrate(this);
 	}
 	
-	@Override
-	public void einbauen(BeruehrungssensitiverSkin s) {
-		s.integrate(this);
-	}
-	
-	@Override
-	public void einbauen(HochfesterSkin s) {
-		s.integrate(this);
-	}
+	public  void calledFromBauarbeiterSoftware(BauarbeiterSoftware s) {}
+	public  void calledFromGesellschaftlerSoftware(GesellschaftlerSoftware s) {}
+	public  void calledFromHilfskraefteSoftware(HilfskraefteSoftware s) {}
+	public  void calledFromServiceTechnikerSoftware(ServiceTechnikerSoftware s) {}
+	public  void calledFromTransportarbeiterSoftware(TransportarbeiterSoftware s) {}
 	
 	
-	
-	@Override
-	public  void einbauen(HilfskraefteSoftware s){
-
-	}
-	@Override
-	public  void einbauen(GesellschaftlerSoftware s) {
-
-	}
-	
-	@Override
-	public  void einbauen(BauarbeiterSoftware s) {
-
-	}
-	@Override
-	public  void einbauen(ServiceTechnikerSoftware s) {
-
-	}
-	@Override
-	public  void einbauen(TransportarbeiterSoftware s) {
-
-	}
+	public  void calledFromSoftwareLevel1(Software s) {}
+	public  void calledFromSoftwareLevel2(Software s) {}
+	public  void calledFromSoftwareLevel3(Software s) {}
 	
 }

@@ -6,31 +6,41 @@ public class Hilfskraft extends Bediener {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void einbauen(HilfskraefteSoftware s) {
-		s.getLevel().isAllowed(this, s);
-		// ERLAUBT
-	}
-	
-	public void einbauen(GesellschaftlerSoftware s) {
-		// NICHT ERLAUBT
-	}
 
 	@Override
-	public void erlaubnis(SecurityLevel1 l, HilfskraefteSoftware s) {
-		super.integrate(s);
+	public void softwareInstallieren(Software s) {
+		s.vonHilfskraftInstalliert(this);
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void erlaubnis(SecurityLevel2 l, HilfskraefteSoftware s) {
-		super.integrate(s);
+	public void calledFromGesellschaftlerSoftware(GesellschaftlerSoftware s) {
+		// TODO Auto-generated method stub
 		
 	}
-	
-	public void calledFromLevel1(HilfskraefteSoftware s) {
-		super.integrate(s);
-	}
-	
 
+	@Override
+	public void calledFromHilfskraefteSoftware(HilfskraefteSoftware s) {
+		// TODO Auto-generated method stub
+		super.installieren(s);
+		
+	}
+
+
+	@Override
+	public void calledFromSoftwareLevel1(Software s) {
+		// TODO Auto-generated method stub
+		super.installieren(s);
+		
+	}
+
+
+	@Override
+	public void calledFromSoftwareLevel2(Software s) {
+		// TODO Auto-generated method stub
+		super.installieren(s);
+	}
+
+	
 }

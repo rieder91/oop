@@ -1,39 +1,89 @@
 
 
 public class TransportarbeiterSoftware implements Software {
+	private SecurityLevel level;
+	@SuppressWarnings("unused")
+	private final String seriennummer;
 
-	@Override
-	public void integrate(Hilfskraft android) {
+	public TransportarbeiterSoftware(SecurityLevel level) {
+		this.level = level;
+		seriennummer = null;
+	}
+	
+	private TransportarbeiterSoftware(String seriennummer, SecurityLevel level) {
+		this.seriennummer = seriennummer;
+		this.level = level;
 	}
 
-	@Override
-	public void integrate(Gesellschaftler android) {
-	}
+
+
+
 
 	@Override
-	public void integrate(Bauarbeiter android) {
-	}
-
-	@Override
-	public void integrate(ServiceTechniker android) {
-	}
-
-	@Override
-	public void integrate(Transportarbeiter android) {
+	public void vonHilfskraftInstalliert(Hilfskraft android) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void integrate(Objektbewacher android) {
-	}
+
 
 	@Override
-	public void integrate(Leibwaechter android) {
+	public void vonGesellschaftlerInstalliert(Gesellschaftler android) {
+		// TODO Auto-generated method stub
+		
 	}
 
+
+
 	@Override
-	public void integrate(Kaempfer android) {
+	public void vonBauarbeiterInstalliert(Bauarbeiter android) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void vonServiceTechnikerInstalliert(ServiceTechniker android) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void vonTransportarbeiterInstalliert(Transportarbeiter android) {
+		// TODO Auto-generated method stub
+		android.calledFromTransportarbeiterSoftware(new TransportarbeiterSoftware(android.getSeriennummer(), this.level));
+
+	}
+
+
+
+	@Override
+	public void vonObjektbewacherInstalliert(Objektbewacher android) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void vonLeibwaechterInstalliert(Leibwaechter android) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void vonKaempferInstalliert(Kaempfer android) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public SecurityLevel getSecurityLevel() {
+		return level;
 	}
 
 }

@@ -8,19 +8,43 @@ public class Kaempfer extends Beschuetzer {
 	}
 
 	@Override
-	public void einbauen(ObjektbewacherSoftware s) {
+	public void softwareInstallieren(Software s) {
+		// TODO Auto-generated method stub
+		s.vonKaempferInstalliert(this);
 		
 	}
 
 	@Override
-	public void einbauen(LeibwaechterSoftware s) {
+	public void calledFromKaempferSoftware(KaempferSoftware s) {
+		// TODO Auto-generated method stub
+		s.getSecurityLevel().vonKaempferVerwendetFuerSoftware(this, s);
 		
 	}
 
 	@Override
-	public void einbauen(KaempferSoftware s) {
-		// ERLAUBT
+	public void calledFromLeibwaechterSoftware(LeibwaechterSoftware s) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void calledFromObjektbewacherSoftware(ObjektbewacherSoftware s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void calledFromSoftwareLevel4(Software s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void calledFromSoftwareLevel5(Software s) {
+		// TODO Auto-generated method stub
+		super.installieren(s);
+		
+	}
+
 
 }

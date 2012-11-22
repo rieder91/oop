@@ -9,18 +9,41 @@ public class Objektbewacher extends Beschuetzer {
 	}
 
 	@Override
-	public void einbauen(ObjektbewacherSoftware s) {
-		// ERLAUBT
+	public void softwareInstallieren(Software s) {
+		// TODO Auto-generated method stub
+		s.vonObjektbewacherInstalliert(this);
 		
 	}
 
 	@Override
-	public void einbauen(LeibwaechterSoftware s) {
+	public void calledFromKaempferSoftware(KaempferSoftware s) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void einbauen(KaempferSoftware s) {
+	public void calledFromLeibwaechterSoftware(LeibwaechterSoftware s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void calledFromObjektbewacherSoftware(ObjektbewacherSoftware s) {
+		// TODO Auto-generated method stub
+		super.installieren(s);
+		
+	}
+
+	@Override
+	public void calledFromSoftwareLevel4(Software s) {
+		// TODO Auto-generated method stub
+		super.installieren(s);
+		
+	}
+
+	@Override
+	public void calledFromSoftwareLevel5(Software s) {
+		// TODO Auto-generated method stub
 		
 	}
 

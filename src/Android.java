@@ -18,15 +18,15 @@ public abstract class Android {
 		return seriennummer;
 	}
 
-	protected void integrate(Skin s) {
+	protected void installieren(Skin s) {
 		skin = s;
 	}
 
-	protected void integrate(Software s) {
+	protected void installieren(Software s) {
 		software = s;
 	}
 
-	protected void integrate(SensorenAktorenKit s) {
+	protected void installieren(SensorenAktorenKit s) {
 		kit = s;
 	}
 
@@ -38,45 +38,32 @@ public abstract class Android {
 	protected abstract void calledFromHochfester(HochfesterSkin s);
 	protected abstract void calledFromBeruehrungs(BeruehrungssensitiverSkin s);
 	
-	public abstract void einbauen(GepanzerterSkin s);
-	public abstract void einbauen(HochfesterSkin s);
-	public abstract void einbauen(BeruehrungssensitiverSkin s);
+//	public abstract void skinEinbauen(GepanzerterSkin s);
+//	public abstract void skinEinbauen(HochfesterSkin s);
+//	public abstract void skinEinbauen(BeruehrungssensitiverSkin s);
+	public abstract void skinEinbauen(Skin s);
 	
 	/*********************/
 	
+	public abstract void softwareInstallieren(Software s);
+	
+	public abstract void calledFromBauarbeiterSoftware(BauarbeiterSoftware s);
+	public abstract void calledFromGesellschaftlerSoftware(GesellschaftlerSoftware s);
+	public abstract void calledFromHilfskraefteSoftware(HilfskraefteSoftware s);
+	public abstract void calledFromKaempferSoftware(KaempferSoftware s);
+	public abstract void calledFromLeibwaechterSoftware(LeibwaechterSoftware s);
+	public abstract void calledFromObjektbewacherSoftware(ObjektbewacherSoftware s);
+	public abstract void calledFromServiceTechnikerSoftware(ServiceTechnikerSoftware s);
+	public abstract void calledFromTransportarbeiterSoftware(TransportarbeiterSoftware s);
 	
 	
-	protected abstract void calledFromHilfssoftware(HilfskraefteSoftware s);
+	public abstract void calledFromSoftwareLevel1(Software s);
+	public abstract void calledFromSoftwareLevel2(Software s);
+	public abstract void calledFromSoftwareLevel3(Software s);
+	public abstract void calledFromSoftwareLevel4(Software s);
+	public abstract void calledFromSoftwareLevel5(Software s);
 
-	
-
-	public abstract void einbauen(HilfskraefteSoftware s);
-	public abstract void einbauen(GesellschaftlerSoftware s);
-	public abstract void einbauen(BauarbeiterSoftware s);
-	public abstract void einbauen(ServiceTechnikerSoftware s);
-	public abstract void einbauen(TransportarbeiterSoftware s);
-	public abstract void einbauen(ObjektbewacherSoftware s);
-	public abstract void einbauen(LeibwaechterSoftware s);
-	public abstract void einbauen(KaempferSoftware s);
-
-	/*****************/
-	
-	public abstract void erlaubnis(SecurityLevel1 l, GesellschaftlerSoftware s);
-	
-	public abstract void erlaubnis(SecurityLevel1 l, HilfskraefteSoftware s);
-	public abstract void erlaubnis(SecurityLevel2 l, HilfskraefteSoftware s);
-	
-	public abstract void erlaubnis(SecurityLevel3 l, BauarbeiterSoftware s);
-	public abstract void erlaubnis(SecurityLevel3 l, ServiceTechnikerSoftware s);
-	public abstract void erlaubnis(SecurityLevel3 l, TransportarbeiterSoftware s);
-	public abstract void erlaubnis(SecurityLevel4 l, BauarbeiterSoftware s);
-	public abstract void erlaubnis(SecurityLevel4 l, ServiceTechnikerSoftware s);
-	public abstract void erlaubnis(SecurityLevel4 l, TransportarbeiterSoftware s);
-	
-	public abstract void erlaubnis(SecurityLevel4 l, ObjektbewacherSoftware s);
-	public abstract void erlaubnis(SecurityLevel4 l, LeibwaechterSoftware s);
-	
-	public abstract void erlaubnis(SecurityLevel5 l, KaempferSoftware s);
 
 	/*****************/
+
 }

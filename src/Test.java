@@ -33,6 +33,9 @@ public class Test {
 		Hilfskraft sonnic4;
 		sonnic4 = new Hilfskraft("R8-D2");
 		
+		Kaempfer warrior;
+		warrior = new Kaempfer("Obi-Wan");
+		
 		
 		BeruehrungssensitiverSkin bSkin = new BeruehrungssensitiverSkin();
 		HochfesterSkin hSkin = new HochfesterSkin();
@@ -41,15 +44,28 @@ public class Test {
 		bSkin.integrate(sonnic);
 		bSkin.integrate(sonnic2);
 		
-		sonnic3.einbauen(hSkin);
-		sonnic4.einbauen(gSkin);
+		sonnic3.skinEinbauen(hSkin);
+		sonnic4.skinEinbauen(gSkin);
+		
+		HilfskraefteSoftware winWord = new HilfskraefteSoftware(new SecurityLevel1());
+		KaempferSoftware excel = new KaempferSoftware(new SecurityLevel5());
+		
+		sonnic2.softwareInstallieren(excel);
+		
 		
 		System.out.println();
 		
-		HilfskraefteSoftware winWord = new HilfskraefteSoftware(new SecurityLevel1());
+		sonnic2.softwareInstallieren(winWord);
 		
-		sonnic.einbauen(winWord);
+		System.out.println();
 		
+		warrior.softwareInstallieren(winWord);
+		
+		System.out.println();
+		
+		warrior.softwareInstallieren(excel);
+		
+		System.out.println();
 		
 	}
 }

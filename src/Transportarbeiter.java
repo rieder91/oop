@@ -7,19 +7,30 @@ public class Transportarbeiter extends Schwerarbeiter {
 	}
 
 	@Override
-	public void einbauen(BauarbeiterSoftware s) {
+	public void softwareInstallieren(Software s) {
+		// TODO Auto-generated method stub
+		s.vonTransportarbeiterInstalliert(this);
 		
 	}
 
 	@Override
-	public void einbauen(ServiceTechnikerSoftware s) {
-		
-	}
-
-	@Override
-	public void einbauen(TransportarbeiterSoftware s) {
+	public void calledFromBauarbeiterSoftware(BauarbeiterSoftware s) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void calledFromServiceTechnikerSoftware(ServiceTechnikerSoftware s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void calledFromTransportarbeiterSoftware(TransportarbeiterSoftware s) {
+		// TODO Auto-generated method stub
+		super.installieren(s);
+		
+	}
+
 
 }

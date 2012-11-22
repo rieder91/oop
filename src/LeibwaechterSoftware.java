@@ -2,37 +2,90 @@
 
 public class LeibwaechterSoftware implements Software {
 
-	@Override
-	public void integrate(Hilfskraft android) {
+	private SecurityLevel level;
+	@SuppressWarnings("unused")
+	private final String seriennummer;
+
+	public LeibwaechterSoftware(SecurityLevel level) {
+		this.level = level;
+		seriennummer = null;
+	}
+	
+	private LeibwaechterSoftware(String seriennummer, SecurityLevel level) {
+		this.seriennummer = seriennummer;
+		this.level = level;
 	}
 
-	@Override
-	public void integrate(Gesellschaftler android) {
-	}
+
+
+
 
 	@Override
-	public void integrate(Bauarbeiter android) {
+	public void vonHilfskraftInstalliert(Hilfskraft android) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	@Override
-	public void integrate(ServiceTechniker android) {
-	}
+
 
 	@Override
-	public void integrate(Transportarbeiter android) {
+	public void vonGesellschaftlerInstalliert(Gesellschaftler android) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	@Override
-	public void integrate(Objektbewacher android) {
-	}
+
 
 	@Override
-	public void integrate(Leibwaechter android) {
-		// ERLAUBT
+	public void vonBauarbeiterInstalliert(Bauarbeiter android) {
+		// TODO Auto-generated method stub
+		
 	}
 
+
+
 	@Override
-	public void integrate(Kaempfer android) {
+	public void vonServiceTechnikerInstalliert(ServiceTechniker android) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void vonTransportarbeiterInstalliert(Transportarbeiter android) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void vonObjektbewacherInstalliert(Objektbewacher android) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void vonLeibwaechterInstalliert(Leibwaechter android) {
+		// TODO Auto-generated method stub
+		android.calledFromLeibwaechterSoftware(new LeibwaechterSoftware(android.getSeriennummer(), this.level));
+
+		
+	}
+
+
+
+	@Override
+	public void vonKaempferInstalliert(Kaempfer android) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public SecurityLevel getSecurityLevel() {
+		return level;
 	}
 
 }

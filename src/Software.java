@@ -1,19 +1,20 @@
 public interface Software {
 
-	public void integrate(Hilfskraft android);
+	public void vonHilfskraftInstalliert(Hilfskraft android);
 
-	public void integrate(Gesellschaftler android);
+	public void vonGesellschaftlerInstalliert(Gesellschaftler android);
 
-	public void integrate(Bauarbeiter android);
+	public void vonBauarbeiterInstalliert(Bauarbeiter android);
 
-	public void integrate(ServiceTechniker android);
+	public void vonServiceTechnikerInstalliert(ServiceTechniker android);
 
-	public void integrate(Transportarbeiter android);
+	public void vonTransportarbeiterInstalliert(Transportarbeiter android);
 
-	public void integrate(Objektbewacher android);
+	public void vonObjektbewacherInstalliert(Objektbewacher android);
 
-	public void integrate(Leibwaechter android);
+	public void vonLeibwaechterInstalliert(Leibwaechter android);
 
-	public void integrate(Kaempfer android);
-
+	public void vonKaempferInstalliert(Kaempfer android);
+	
+	public SecurityLevel getSecurityLevel();
 }
