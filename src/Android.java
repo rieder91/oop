@@ -44,13 +44,31 @@ public abstract class Android {
 	protected String getSeriennummer() {
 		return seriennummer;
 	}
-	
+
 	/**
-	 * getter needed to verify the security level when adding a new kit
+	 * getter needed to verify the security level when adding a new kit 
+	 * and in the factory
+	 * 
 	 * @return software that is deployed
 	 */
 	protected Software getSoftware() {
 		return software;
+	}
+
+	/**
+	 * getter for the currently installed skin; used in the factory
+	 * @return installed skin
+	 */
+	protected Skin getSkin() {
+		return skin;
+	}
+
+	/**
+	 * getter for the currently installed kit; used in the facotry
+	 * @return installed kit
+	 */
+	protected SensorenAktorenKit getKit() {
+		return kit;
 	}
 
 	/**
@@ -77,8 +95,17 @@ public abstract class Android {
 		kit = s;
 	}
 
+	/**
+	 * removes the skin, software and kit
+	 */
+	public void uninstallAll() {
+		skin = null;
+		software = null;
+		kit = null;
+	}
+
 	/*********************/
-	
+
 	/**
 	 * installs a new skin, if it is valid for the current android	
 	 * @param s skin to be installed
@@ -86,14 +113,14 @@ public abstract class Android {
 	public void installSkin(Skin s) {
 		s.einbauen(this);
 	}
-	
+
 	// used for multimethods simulation
 	protected abstract void calledFromGepanzert(GepanzerterSkin s);
 	protected abstract void calledFromHochfester(HochfesterSkin s);
 	protected abstract void calledFromBeruehrungs(BeruehrungssensitiverSkin s);
-	
+
 	/*****************/
-	
+
 	/**
 	 * installs the software s if it is valid for the current android
 	 * @param s software to be installed
@@ -101,7 +128,7 @@ public abstract class Android {
 	public void installSoftware(Software s) {
 		s.installiertIn(this);
 	}
-	
+
 	// used for multimethods simulation
 	protected abstract void calledFromBauarbeiterSoftware(Software s);
 	protected abstract void calledFromGesellschaftlerSoftware(Software s);
@@ -111,7 +138,7 @@ public abstract class Android {
 	protected abstract void calledFromObjektbewacherSoftware(Software s);
 	protected abstract void calledFromServiceTechnikerSoftware(Software s);
 	protected abstract void calledFromTransportarbeiterSoftware(Software s);
-	
+
 	// used for multimethods simulation
 	protected abstract void calledFromSoftwareLevel1(Software s);
 	protected abstract void calledFromSoftwareLevel2(Software s);
@@ -120,60 +147,50 @@ public abstract class Android {
 	protected abstract void calledFromSoftwareLevel5(Software s);
 
 	/*****************/
-	
+
 	public void installKit(SensorenAktorenKit s) {
 		s.integrieren(this);
 	}
-	
+
 	protected void calledFromLeistungEins(SensorenAktorenKit s) {
 		installieren(s);
 	}
-	
+
 	// used for multimethods simulation
 	protected abstract void calledFromLeistungFuenf(SensorenAktorenKit s);
 	protected abstract void calledFromLeistungZehn(SensorenAktorenKit s);
 	protected abstract void calledFromLeistungUnbegrenzt(SensorenAktorenKit s);
-	
+
 	// used for multimethods simulation
 	protected abstract void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s);
 	protected abstract void calledForLeistungFuenfWithLevel4(SensorenAktorenKit s);
 	protected abstract void calledForLeistungZehnWithLevel4(SensorenAktorenKit s);
-	
-	
+
+
 	public String toString() {
 		StringBuilder ret = new StringBuilder();
 		ret.append("\nSerial: " + seriennummer);
 		ret.append("\nSoftware: " + software);
-		ret.append("\tSoftware-Level: " + software.getSecurityLevel());
+		ret.append("\nSoftware-Level: " + software.getSecurityLevel());
 		ret.append("\nSkin: " + skin);
 		ret.append("\nKit: " + kit + "\n");
 		return ret.toString();
 	}
-	
-	
+
+
 	/* USED FOR EASIER DEBUGGING ONLY!!! */
-	
+
 	protected void dismantleKit() {
 		this.kit = null;
 	}
-	
+
 	protected void wipeSoftware() {
 		this.software = null;
 	}
-	
+
 	protected void smashSkin() {
 		this.skin = null;
 	}
-	
 
-	protected Skin getSkin() {
-		return skin;
-	}
-
-	protected SensorenAktorenKit getKit() {
-		return kit;
-	}
-	
 	/* USED FOR EASIER DEBUGGING ONLY!!! */
-
 }

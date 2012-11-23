@@ -35,6 +35,7 @@ public class Test {
 		tests.add(new SkinTester());
 		tests.add(new SoftwareTester());
 		tests.add(new SensorTester());
+		tests.add(new FactoryTester());
 		
 		
 		for(Tester t : tests) {
