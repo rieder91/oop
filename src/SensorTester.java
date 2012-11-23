@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * This class tests the implementation of SensorenAktorenKit
  * 
  * THIS CLASS IS FOR TESTING PURPOSES ONLY AND NOT PART OF THE 
- * ACTUAL SOLUTION FOR THE ASSIGNMENT - THAT IS WHY WE USED GETCLASS!
+ * ACTUAL SOLUTION FOR THE ASSIGNMENT
  * 
  * @author Thomas
  *
@@ -72,8 +72,8 @@ public class SensorTester implements Tester {
 						android.installKit(sense);
 						
 						if(android.getKit() != null) {
-							System.out.print(android.getClass().getName() + " is allowed to install " + sense.getClass().getName() 
-											 + " with software " + s.getClass().getName() + " and level " + s.getSecurityLevel().getClass().getName());
+							System.out.print(android.getSeriennummer() + " is allowed to install " + sense 
+											 + " with software " + s + " and " + s.getSecurityLevel());
 						}
 						
 						android.dismantleKit();

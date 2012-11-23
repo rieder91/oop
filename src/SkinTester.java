@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * This class tests the implementation of Skin
  * 
  * THIS CLASS IS FOR TESTING PURPOSES ONLY AND NOT PART OF THE 
- * ACTUAL SOLUTION FOR THE ASSIGNMENT - THAT IS WHY WE USED GETCLASS!
+ * ACTUAL SOLUTION FOR THE ASSIGNMENT
  * 
  * @author Thomas
  *
@@ -42,7 +42,7 @@ public class SkinTester implements Tester {
 				android.smashSkin();
 				android.installSkin(s);
 				if(android.getSkin() != null) {
-					System.out.print(android.getClass().getName() + " is allowed to install " + s.getClass().getName());
+					System.out.print(android.getSeriennummer() + " is allowed to install " + s);
 					
 				}
 				

@@ -66,11 +66,9 @@ public class FactoryTester implements Tester {
 		factory.insert(bau, hSkin, bSoft4, kit10);
 		factory.insert(leib, hSkin, lSoft4, kit5);
 		
-		String result1 = "";
 		ArrayList<String> order1 = new ArrayList<String>();
 		
 		for(Android an : factory) {
-			result1 += an.toString();
 			System.out.println(an.toString());
 			order1.add(an.toString().substring(an.toString().indexOf("Serial:"), an.toString().indexOf("Software") - 1));
 		}
@@ -107,15 +105,6 @@ public class FactoryTester implements Tester {
 			System.out.println("Change allowed");
 		}
 		
-		String result2 = "";
-		
-		for(Android an : factory) {
-			result2 += an.toString();
-		}
-		
-		// EASE OF DEBUGGING ONLY - NO IMPACT ON IMPLEMENTATION OF SOLUTION
-		System.out.println("\nHave actual changes been made? " + !result1.equals(result2));
-		
 		
 		System.out.println("\nAttemp 5 legal changes...\n");
 		
@@ -149,15 +138,11 @@ public class FactoryTester implements Tester {
 			System.out.println("Change successful");
 		}
 		
-		String result3 = "";
 		ArrayList<String> order3 = new ArrayList<String>();
 		
 		for(Android an : factory) {
-			result3 += an.toString();
 			order3.add(an.toString().substring(an.toString().indexOf("Serial:"), an.toString().indexOf("Software") - 1));
 		}
-		
-		System.out.println("\nHave actual changes been made? " + !result1.equals(result3));
 		
 		
 		System.out.println("\nList several existant and non-existant robots...\n");

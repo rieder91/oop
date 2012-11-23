@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * This class tests the implementation of Software
  * 
  * THIS CLASS IS FOR TESTING PURPOSES ONLY AND NOT PART OF THE 
- * ACTUAL SOLUTION FOR THE ASSIGNMENT - THAT IS WHY WE USED GETCLASS!
+ * ACTUAL SOLUTION FOR THE ASSIGNMENT
  * 
  * @author Thomas
  *
@@ -60,7 +60,7 @@ public class SoftwareTester implements Tester {
 				android.wipeSoftware();
 				android.installSoftware(s);
 				if(android.getSoftware() != null) {
-					System.out.print(android.getClass().getName() + " is allowed to install " + s.getClass().getName() + " with level " + s.getSecurityLevel().getClass().getName());
+					System.out.print(android.getSeriennummer() + " is allowed to install " + s + " with " + s.getSecurityLevel());
 				}
 				
 				android.wipeSoftware();
