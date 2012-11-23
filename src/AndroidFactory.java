@@ -79,7 +79,7 @@ public class AndroidFactory implements Iterable<Android> {
 	 */
 	public String find(String serial) {
 		if(containedRobots.get(serial) == null) {
-			return "";
+			return null;
 		} else {
 			return containedRobots.get(serial).toString();
 		}
@@ -90,7 +90,6 @@ public class AndroidFactory implements Iterable<Android> {
 	 * aeltesten
 	 */
 	public Iterator<Android> iterator() {
-		
 		return timeList.iterator();
 	}
 

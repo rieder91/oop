@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 /**
  * This class tests the implementation of the Droid-Factory
@@ -65,10 +67,12 @@ public class FactoryTester implements Tester {
 		factory.insert(leib, hSkin, lSoft4, kit5);
 		
 		String result1 = "";
+		ArrayList<String> order1 = new ArrayList<String>();
 		
 		for(Android an : factory) {
 			result1 += an.toString();
 			System.out.println(an.toString());
+			order1.add(an.toString().substring(an.toString().indexOf("Serial:"), an.toString().indexOf("Software") - 1));
 		}
 		
 		System.out.println("\nAttempt 5 illegal changes...\n");
@@ -109,19 +113,13 @@ public class FactoryTester implements Tester {
 			result2 += an.toString();
 		}
 		
-		// EASE OF DEBUGGING ONLY - NO IMPACT ON IMPLEMENTATION
+		// EASE OF DEBUGGING ONLY - NO IMPACT ON IMPLEMENTATION OF SOLUTION
 		System.out.println("\nHave actual changes been made? " + !result1.equals(result2));
 		
 		
 		System.out.println("\nAttemp 5 legal changes...\n");
 		
-		if(factory.insert(hilf, bSkin, hSoft1, kit1) == null) {
-			System.out.println("Change failed");
-		} else {
-			System.out.println("Change successful");
-		}
-		
-		if(factory.insert(gesell, bSkin, gSoft1, kit1) == null) {
+		if(factory.insert(leib, gSkin, lSoft4, kit10) == null) {
 			System.out.println("Change failed");
 		} else {
 			System.out.println("Change successful");
@@ -139,19 +137,47 @@ public class FactoryTester implements Tester {
 			System.out.println("Change successful");
 		}
 		
-		if(factory.insert(leib, gSkin, lSoft4, kit10) == null) {
+		if(factory.insert(gesell, bSkin, gSoft1, kit1) == null) {
+			System.out.println("Change failed");
+		} else {
+			System.out.println("Change successful");
+		}
+		
+		if(factory.insert(hilf, bSkin, hSoft1, kit1) == null) {
 			System.out.println("Change failed");
 		} else {
 			System.out.println("Change successful");
 		}
 		
 		String result3 = "";
+		ArrayList<String> order3 = new ArrayList<String>();
 		
 		for(Android an : factory) {
 			result3 += an.toString();
+			order3.add(an.toString().substring(an.toString().indexOf("Serial:"), an.toString().indexOf("Software") - 1));
 		}
 		
 		System.out.println("\nHave actual changes been made? " + !result1.equals(result3));
+		
+		
+		System.out.println("\nList several existant and non-existant robots...\n");
+		
+		System.out.println("R2-D2: " + factory.find("R2-D2"));
+		System.out.println("C3P0: " + factory.find("C3P0") + "\n");
+		System.out.println("Sonnic: " + factory.find("Sonnic"));
+		System.out.println("Cybertron: " + factory.find("Cybertron") + "\n");
+		
+		
+		System.out.println("\nOrder of the Factory at the beginning: ");
+		for(String s : order1) {
+			System.out.println(s);
+		}
+		
+		System.out.println("\nOrder of the Factory after the changes: ");
+		for(String s : order3) {
+			System.out.println(s);
+		}
+		
 	}
 
 }

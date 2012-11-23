@@ -39,8 +39,8 @@ public class Test {
 		
 		
 		for(Tester t : tests) {
-			// GET CLASS FOR EASIER DEBUGGING ONLY!
-			System.out.println(t.getClass().getName() + ": ");
+			// GET CLASS FOR PRETTIER DEBUGGING ONLY!
+			System.out.println("=== " + t.getClass().getName() + " ===");
 			t.runTests();
 			System.out.println();
 		}
