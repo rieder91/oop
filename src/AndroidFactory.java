@@ -33,7 +33,7 @@ public class AndroidFactory implements Iterable<Android> {
 	 * @param skin Haut des Roboters
 	 * @param software Software des Roboters
 	 * @param kit SensorenAktorenKit des Roboters
-	 * @return -1 bei Fehler, ansonsten 0
+	 * @return null bei Fehler, ansonsten den zusammengebauten Androiden
 	 */
 	public Android insert(Android skeleton, Skin skin, Software software, SensorenAktorenKit kit) {
 		
@@ -44,9 +44,7 @@ public class AndroidFactory implements Iterable<Android> {
 		skeleton.uninstallAll();
 		skeleton.installSkin(skin);
 		skeleton.installSoftware(software);
-		if(skeleton.getSoftware() != null) {
-			skeleton.installKit(kit);
-		}
+		skeleton.installKit(kit);
 		
 		if (skeleton.getKit() == null 
 				|| skeleton.getSeriennummer() == null

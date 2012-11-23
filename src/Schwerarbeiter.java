@@ -51,11 +51,15 @@ public abstract class Schwerarbeiter extends Android{
 	protected void calledFromLeistungUnbegrenzt(SensorenAktorenKit s) {}
 	
 	protected void calledFromLeistungFuenf(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().calledWithLeistungFuenf(this, s);
+		if(this.getSoftware() != null) {
+			this.getSoftware().getSecurityLevel().calledWithLeistungFuenf(this, s);
+		}
 	}
 	
 	protected void calledFromLeistungZehn(SensorenAktorenKit s) {
-		this.getSoftware().getSecurityLevel().calledWithLeistungZehn(this, s);
+		if(this.getSoftware() != null) {
+			this.getSoftware().getSecurityLevel().calledWithLeistungZehn(this, s);
+		}
 	}
 	
 	protected void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s) {
