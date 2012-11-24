@@ -55,8 +55,8 @@ public class SoftwareTester implements Tester {
 				android.wipeSoftware();
 				android.installSoftware(s);
 				if (android.getSoftware() != null) {
-					System.out.print(android);
-					System.out.println("is allowed to install " + s + " with " + s.getSecurityLevel());
+					System.out.print(android.getSeriennummer());
+					System.out.println(" is allowed to install " + s + " with " + s.getSecurityLevel());
 				}
 
 				android.wipeSoftware();
