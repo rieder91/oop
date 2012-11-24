@@ -74,7 +74,12 @@ public class FactoryTester implements Tester {
 		}
 		
 		System.out.println("\nAttempt 5 illegal changes...\n");
-		
+		System.out.println("Test successful " + (factory.insert(hilf, bSkin, hSoft3, kit1) == null));
+		System.out.println("Test successful " + (factory.insert(gesell, bSkin, kSoft4, kit5) == null));
+		System.out.println("Test successful " + (factory.insert(kampf, gSkin, lSoft5, kit10) == null));
+		System.out.println("Test successful " + (factory.insert(bau, hSkin, bSoft3, kit10) == null));
+		System.out.println("Test successful " + (factory.insert(leib, gSkin, hSoft1, kit5) == null));
+		/*
 		if(factory.insert(hilf, bSkin, hSoft3, kit1) == null) {
 			System.out.println("Change denied");
 		} else {
@@ -104,10 +109,15 @@ public class FactoryTester implements Tester {
 		} else {
 			System.out.println("Change allowed");
 		}
-		
+		*/
 		
 		System.out.println("\nAttemp 5 legal changes...\n");
-		
+		System.out.println("Test successful " + (factory.insert(leib, gSkin, lSoft4, kit10) != null));
+		System.out.println("Test successful " + (factory.insert(kampf, hSkin, kSoft5, kit5) != null));
+		System.out.println("Test successful " + (factory.insert(bau, bSkin, bSoft3, kit5) != null));
+		System.out.println("Test successful " + (factory.insert(gesell, bSkin, gSoft1, kit1) != null));
+		System.out.println("Test successful " + (factory.insert(hilf, bSkin, hSoft1, kit1) != null));
+		/*
 		if(factory.insert(leib, gSkin, lSoft4, kit10) == null) {
 			System.out.println("Change failed");
 		} else {
@@ -137,7 +147,7 @@ public class FactoryTester implements Tester {
 		} else {
 			System.out.println("Change successful");
 		}
-		
+		*/
 		ArrayList<String> order3 = new ArrayList<String>();
 		
 		for(Android an : factory) {
