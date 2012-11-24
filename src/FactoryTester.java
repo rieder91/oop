@@ -74,19 +74,19 @@ public class FactoryTester implements Tester {
 		}
 		
 		System.out.println("\nAttempt 5 illegal changes...\n");
-		System.out.println("New robot: " + factory.insert(hilf, bSkin, hSoft3, kit1));
-		System.out.println("New robot: " + factory.insert(gesell, bSkin, kSoft4, kit5));
-		System.out.println("New robot: " + factory.insert(kampf, gSkin, lSoft5, kit10));
-		System.out.println("New robot: " + factory.insert(bau, hSkin, bSoft3, kit10));
-		System.out.println("New robot: " + factory.insert(leib, gSkin, hSoft1, kit5));
+		System.out.println("New robot added: " + factory.insert(hilf, bSkin, hSoft3, kit1));
+		System.out.println("New robot added: " + factory.insert(gesell, bSkin, kSoft4, kit5));
+		System.out.println("New robot added: " + factory.insert(kampf, gSkin, lSoft5, kit10));
+		System.out.println("New robot added: " + factory.insert(bau, hSkin, bSoft3, kit10));
+		System.out.println("New robot added: " + factory.insert(leib, gSkin, hSoft1, kit5));
 
 		
 		System.out.println("\nAttemp 5 legal changes...\n");
-		System.out.println("Test successful " + (factory.insert(leib, gSkin, lSoft4, kit10) != null));
-		System.out.println("Test successful " + (factory.insert(kampf, hSkin, kSoft5, kit5) != null));
-		System.out.println("Test successful " + (factory.insert(bau, bSkin, bSoft3, kit5) != null));
-		System.out.println("Test successful " + (factory.insert(gesell, bSkin, gSoft1, kit1) != null));
-		System.out.println("Test successful " + (factory.insert(hilf, bSkin, hSoft1, kit1) != null));
+		System.out.println("New robot added: \n" + (factory.insert(leib, gSkin, lSoft4, kit10)));
+		System.out.println("New robot added: \n" + (factory.insert(kampf, hSkin, kSoft5, kit5)));
+		System.out.println("New robot added: \n" + (factory.insert(bau, bSkin, bSoft3, kit5)));
+		System.out.println("New robot added: \n" + (factory.insert(gesell, bSkin, gSoft1, kit1)));
+		System.out.println("New robot added: \n" + (factory.insert(hilf, bSkin, hSoft1, kit1)));
 
 		ArrayList<String> order3 = new ArrayList<String>();
 		

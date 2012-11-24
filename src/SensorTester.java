@@ -67,15 +67,14 @@ public class SensorTester implements Tester {
 						android.installKit(sense);
 
 						if (android.getKit() != null) {
-							System.out.println(android.getSeriennummer());
-							System.out.println("is allowed to install " + sense + "\nwith software: " + s + " and "
+							System.out.print(android.getSeriennummer() + "is allowed to install " + sense + " with software " + s + " and "
 									+ s.getSecurityLevel());
 						}
 
 						android.dismantleKit();
 						sense.integrieren(android);
 						if (android.getKit() != null) {
-							System.out.println("reverse-calling works\n");
+							System.out.println(" and reverse-calling works");
 						}
 
 					}
