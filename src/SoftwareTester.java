@@ -69,4 +69,8 @@ public class SoftwareTester implements Tester {
 
 	}
 
+	public String getName() {
+		return "Software";
+	}
+
 }

@@ -39,8 +39,7 @@ public class Test {
 		
 		
 		for(Tester t : tests) {
-			// GET CLASS FOR PRETTIER DEBUGGING ONLY!
-			System.out.println("=== " + t.getClass().getName() + " ===");
+			System.out.println("=== Testing module: " + t.getName() + " ===");
 			t.runTests();
 			System.out.println();
 		}

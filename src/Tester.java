@@ -6,5 +6,14 @@
  */
 
 public interface Tester {
+	/**
+	 * runs all tests cases and reports to stdout
+	 */
 	public void runTests();
+	
+	/**
+	 * 
+	 * @return the name of the module that is being tested
+	 */
+	public String getName();
 }

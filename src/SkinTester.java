@@ -51,4 +51,8 @@ public class SkinTester implements Tester {
 		}
 
 	}
+
+	public String getName() {
+		return "Skin";
+	}
 }

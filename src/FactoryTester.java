@@ -82,11 +82,11 @@ public class FactoryTester implements Tester {
 
 		
 		System.out.println("\nAttemp 5 legal changes...\n");
-		System.out.println("New robot added: \n" + (factory.insert(leib, gSkin, lSoft4, kit10)));
-		System.out.println("New robot added: \n" + (factory.insert(kampf, hSkin, kSoft5, kit5)));
-		System.out.println("New robot added: \n" + (factory.insert(bau, bSkin, bSoft3, kit5)));
-		System.out.println("New robot added: \n" + (factory.insert(gesell, bSkin, gSoft1, kit1)));
-		System.out.println("New robot added: \n" + (factory.insert(hilf, bSkin, hSoft1, kit1)));
+		System.out.println("Robot changed to: \n" + (factory.insert(leib, gSkin, lSoft4, kit10)));
+		System.out.println("Robot changed to: \n" + (factory.insert(kampf, hSkin, kSoft5, kit5)));
+		System.out.println("Robot changed to: \n" + (factory.insert(bau, bSkin, bSoft3, kit5)));
+		System.out.println("Robot changed to: \n" + (factory.insert(gesell, bSkin, gSoft1, kit1)));
+		System.out.println("Robot changed to: \n" + (factory.insert(hilf, bSkin, hSoft1, kit1)));
 
 		ArrayList<String> order3 = new ArrayList<String>();
 		
@@ -113,6 +113,10 @@ public class FactoryTester implements Tester {
 			System.out.println(s);
 		}
 		
+	}
+
+	public String getName() {
+		return "Factory";
 	}
 
 }

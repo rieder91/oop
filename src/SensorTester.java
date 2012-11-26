@@ -83,4 +83,8 @@ public class SensorTester implements Tester {
 			}
 		}
 	}
+
+	public String getName() {
+		return "Sensoren-Kit";
+	}
 }
