@@ -36,6 +36,7 @@ public class Test {
 		tests.add(new SoftwareTester());
 		tests.add(new SensorTester());
 		tests.add(new FactoryTester());
+		tests.add(new ReplacementTester());
 		
 		
 		for(Tester t : tests) {

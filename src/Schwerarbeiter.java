@@ -73,4 +73,22 @@ public abstract class Schwerarbeiter extends Android{
 	protected void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {
 		this.installieren(s);
 	}
+	
+	protected Android replacedByHilfskraft(Android android) { return null; }
+	protected Android replacedByGesellschaftler(Android android)  { return null; }
+	protected Android replacedByKaempfer(Android android)  { return null; }
+	protected Android replacedByLeibwaechter(Android android)  { return null; }
+	protected Android replacedByObjektbewacher(Android android)  { return null; }
+	
+	protected Android replacedByBauarbeiter(Android android) {
+		return new Bauarbeiter(android.getSeriennummer());
+	}
+	
+	protected Android replacedByTransportarbeiter(Android android) {
+		return new Transportarbeiter(android.getSeriennummer());
+	}
+	
+	protected Android replacedByServiceTechniker(Android android) {
+		return new ServiceTechniker(android.getSeriennummer());
+	}
 }

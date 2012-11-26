@@ -22,4 +22,9 @@ public class Hilfskraft extends Bediener {
 	public String toString() {
 		return "Typ: Hilfskraft-Roboter" + super.toString();
 	}
+	
+	public Android replaceRobotWith(Android android) {
+		return android.replacedByHilfskraft(android);
+	}
+
 }

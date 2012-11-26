@@ -60,4 +60,33 @@ public abstract class Beschuetzer extends Android {
 	protected void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) {
 		this.installieren(s);
 	}
+	
+	protected void calledFromLeistungFuenf(SensorenAktorenKit s) {
+		if(this.getSoftware() != null) {
+			this.getSoftware().getSecurityLevel().calledWithLeistungFuenf(this, s);
+		}
+	}
+	
+	protected void calledFromLeistungZehn(SensorenAktorenKit s) {
+		if(this.getSoftware() != null) {
+			this.getSoftware().getSecurityLevel().calledWithLeistungZehn(this, s);
+		}
+	}
+	
+	protected Android replacedByHilfskraft(Android android) { return null; }
+	protected Android replacedByGesellschaftler(Android android) { return null; }
+	protected Android replacedByBauarbeiter(Android android) { return null; }
+	protected Android replacedByTransportarbeiter(Android android) { return null; }
+	protected Android replacedByServiceTechniker(Android android) { return null; }
+	protected Android replacedByKaempfer(Android android) {
+		return new Kaempfer(android.getSeriennummer());
+	}
+	protected Android replacedByLeibwaechter(Android android) {
+		return new Leibwaechter(android.getSeriennummer());
+	}
+	protected Android replacedByObjektbewacher(Android android) {
+		return new Objektbewacher(android.getSeriennummer());
+	}
+	
+
 }

@@ -25,4 +25,9 @@ public class Transportarbeiter extends Schwerarbeiter {
 	public String toString() {
 		return "Typ: Transport-Roboter" + super.toString();
 	}
+	
+	public Android replaceRobotWith(Android android) {
+		return android.replacedByTransportarbeiter(android);
+	}
+
 }

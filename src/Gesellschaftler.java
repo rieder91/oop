@@ -24,4 +24,9 @@ public class Gesellschaftler extends Bediener {
 	public String toString() {
 		return "Typ: Gesellschaftler-Roboter" + super.toString();
 	}
+
+	public Android replaceRobotWith(Android android) {
+		return android.replacedByGesellschaftler(android);
+	}
+
 }

@@ -40,13 +40,15 @@ public class SkinTester implements Tester {
 				android.smashSkin();
 				android.installSkin(s);
 				if (android.getSkin() != null) {
-					System.out.print(android.getSeriennummer() + " is allowed to install " + s);
+					System.out.println(android.getSeriennummer() + " is allowed to install " + s);
 				}
-				android.smashSkin();
-				s.einbauen(android);
-				if (android.getSkin() != null) {
-					System.out.println(" and reverse-calling works");
-				}
+				
+				// save if's
+				// android.smashSkin();
+				// s.einbauen(android);
+				// if (android.getSkin() != null) {
+				// System.out.println(" and reverse-calling works");
+				// }
 			}
 		}
 

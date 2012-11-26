@@ -57,4 +57,21 @@ public abstract class Bediener extends Android {
 	protected void calledForLeistungFuenfWithLevel3(SensorenAktorenKit s) { }
 	protected void calledForLeistungFuenfWithLevel4(SensorenAktorenKit s) { }
 	protected void calledForLeistungZehnWithLevel4(SensorenAktorenKit s) { }
+	
+	protected Android replacedByBauarbeiter(Android android) { return null; }
+	protected Android replacedByServiceTechniker(Android android) { return null; }
+	protected Android replacedByTransportarbeiter(Android android) { return null;}
+	protected Android replacedByKaempfer(Android android) { return null; }
+	protected Android replacedByObjektbewacher(Android android) { return null; }
+	protected Android replacedByLeibwaechter(Android android) { return null;}
+	
+	public abstract Android replaceRobotWith(Android android);
+	
+	
+	protected Android replacedByHilfskraft(Android android) {
+		return new Hilfskraft(android.getSeriennummer());
+	}
+	protected Android replacedByGesellschaftler(Android android) {
+		return new Gesellschaftler(android.getSeriennummer());
+	}
 }

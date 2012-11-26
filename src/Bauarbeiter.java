@@ -27,4 +27,7 @@ public class Bauarbeiter extends Schwerarbeiter {
 		return "Typ: Bauarbeiter-Roboter" + super.toString();
 	}
 	
+	public Android replaceRobotWith(Android android) {
+		return android.replacedByBauarbeiter(android);
+	}
 }

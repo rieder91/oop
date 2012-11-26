@@ -56,14 +56,15 @@ public class SoftwareTester implements Tester {
 				android.installSoftware(s);
 				if (android.getSoftware() != null) {
 					System.out.print(android.getSeriennummer());
-					System.out.print(" is allowed to install " + s + " with " + s.getSecurityLevel());
+					System.out.println(" is allowed to install " + s + " with " + s.getSecurityLevel());
 				}
 
-				android.wipeSoftware();
-				s.installiertIn(android);
-				if (android.getSoftware() != null) {
-					System.out.println(" and reverse-calling works");
-				}
+				// save if's
+				// android.wipeSoftware();
+				// s.installiertIn(android);
+				// if (android.getSoftware() != null) {
+				// System.out.println(" and reverse-calling works");
+				// }
 			}
 		}
 

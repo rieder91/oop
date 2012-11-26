@@ -51,7 +51,8 @@ public class AndroidFactory implements Iterable<Android> {
 				|| skeleton.getSkin() == null
 				|| skeleton.getSoftware() == null) {
 			
-			// roll back changes made to droid
+			// roll back changes made to droid, as one of it's components
+			// couldn't be installed
 			skeleton.installSkin(previousSkin);
 			skeleton.installSoftware(previousSoftware);
 			skeleton.installKit(previousKit);
@@ -62,7 +63,11 @@ public class AndroidFactory implements Iterable<Android> {
 				containedRobots.put(seriennummer, skeleton);
 				timeList.add(containedRobots.get(seriennummer));
 			} else {
-				containedRobots.put(seriennummer, skeleton);
+				if(containedRobots.get(skeleton.getSeriennummer()).replaceRobotWith(skeleton) != null) {
+					containedRobots.put(seriennummer, skeleton);
+				} else {
+					return null;
+				}
 			}
 			return skeleton;
 		}

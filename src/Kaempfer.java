@@ -47,4 +47,9 @@ public class Kaempfer extends Beschuetzer {
 	public String toString() {
 		return "Typ: Kampf-Roboter" + super.toString();
 	}
+	
+	public Android replaceRobotWith(Android android) {
+		return android.replacedByKaempfer(android);
+	}
+
 }

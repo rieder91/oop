@@ -166,7 +166,18 @@ public abstract class Android {
 	protected abstract void calledForLeistungFuenfWithLevel4(SensorenAktorenKit s);
 	protected abstract void calledForLeistungZehnWithLevel4(SensorenAktorenKit s);
 
+	// used to define valid replacements
+	protected abstract Android replacedByHilfskraft(Android android);
+	protected abstract Android replacedByGesellschaftler(Android android);
+	protected abstract Android replacedByBauarbeiter(Android android);
+	protected abstract Android replacedByTransportarbeiter(Android android);
+	protected abstract Android replacedByServiceTechniker(Android android);
+	protected abstract Android replacedByKaempfer(Android android);
+	protected abstract Android replacedByLeibwaechter(Android android);
+	protected abstract Android replacedByObjektbewacher(Android android);
 
+	public abstract Android replaceRobotWith(Android android);
+	
 	public String toString() {
 		StringBuilder ret = new StringBuilder();
 		ret.append("\nSerial: " + seriennummer);

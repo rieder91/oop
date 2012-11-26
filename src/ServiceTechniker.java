@@ -25,4 +25,9 @@ public class ServiceTechniker extends Schwerarbeiter {
 	public String toString() {
 		return "Typ: Servicetechnik-Roboter" + super.toString();
 	}
+	
+	public Android replaceRobotWith(Android android) {
+		return android.replacedByServiceTechniker(android);
+	}
+
 }
