@@ -37,9 +37,9 @@ public class AndroidFactory implements Iterable<Android> {
 	 */
 	public Android insert(Android skeleton, Skin skin, Software software, SensorenAktorenKit kit) {
 		
-		Skin previousSkin = skeleton.getSkin();
-		Software previousSoftware = skeleton.getSoftware();
-		SensorenAktorenKit previousKit = skeleton.getKit();
+		// Skin previousSkin = skeleton.getSkin();
+		// Software previousSoftware = skeleton.getSoftware();
+		// SensorenAktorenKit previousKit = skeleton.getKit();
 		
 		skeleton.uninstallAll();
 		skeleton.installSkin(skin);
