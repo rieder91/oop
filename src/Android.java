@@ -1,18 +1,18 @@
 /**
- * Jeder Androide muss mit einer berührungssensitiven, hochfesten oder
+ * Jeder Androide muss mit einer beruehrungssensitiven, hochfesten oder
  * gepanzerten Skin ausgestattet sein.
  * 
  * 
  * Die Software muss dem Einsatzgebiet des Androiden entsprechen. Die Software
  * muss entsprechend der Sicherheitsstufen 1 bis 5 zertifiziert sein.
  * 
- * Nachträgliche Änderungen der Androiden sind nur auf eingeschränkte Weise
+ * Nachtraegliche Aenderungen der Androiden sind nur auf eingeschraenkte Weise
  * erlaubt: Die Seriennummer, der Haupttyp (Bediener, Schwerarbeiter oder
- * Beschützer) sowie die Sicherheitsstufe der Software dürfen nicht geändert
+ * Beschuetzer) sowie die Sicherheitsstufe der Software duerfen nicht geaendert
  * werden.
  * 
  * Bei allen Androiden, die mit Software der Stufe 3 ausgestattet sind, darf die
- * Grenze von 5 kW nicht überschritten werden, bei Androiden mit Software der
+ * Grenze von 5 kW nicht ueberschritten werden, bei Androiden mit Software der
  * Stufe 4 die Grenze von 10 kW.
  * 
  * Alle Androiden duerfen Aktoren mit 1KW verwenden.

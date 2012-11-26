@@ -29,7 +29,7 @@ public abstract class Schwerarbeiter extends Android{
 	
 	protected void calledFromGepanzert(GepanzerterSkin s) {}
 	
-	// Schwerarbeiter können mit Software der Stufen 3 und 4 ausgestattet sein
+	// Schwerarbeiter koennen mit Software der Stufen 3 und 4 ausgestattet sein
 	protected void calledFromSoftwareLevel3(Software s) {
 		super.installieren(s);
 	}
