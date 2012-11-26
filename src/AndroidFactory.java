@@ -53,9 +53,9 @@ public class AndroidFactory implements Iterable<Android> {
 			
 			// roll back changes made to droid, as one of it's components
 			// couldn't be installed
-			skeleton.installSkin(previousSkin);
-			skeleton.installSoftware(previousSoftware);
-			skeleton.installKit(previousKit);
+			// skeleton.installSkin(previousSkin);
+			// skeleton.installSoftware(previousSoftware);
+			// skeleton.installKit(previousKit);
 			return null;
 		} else {
 			String seriennummer = skeleton.getSeriennummer();
