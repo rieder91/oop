@@ -27,11 +27,11 @@ public class FactoryTester implements Tester {
 		SecurityLevel level4 = new SecurityLevel4(); 
 		SecurityLevel level5 = new SecurityLevel5(); 
 		
-		Android hilf = new Hilfskraft("R2-D2");
-		Android gesell = new Gesellschaftler("R4");
-		Android kampf = new Kaempfer("Sonnic");
-		Android bau = new Bauarbeiter("Bob");
-		Android leib = new Leibwaechter("Megatron");
+		Bediener hilf = new Hilfskraft("R2-D2");
+		Bediener gesell = new Gesellschaftler("R4");
+		Beschuetzer kampf = new Kaempfer("Sonnic");
+		Schwerarbeiter bau = new Bauarbeiter("Bob");
+		Beschuetzer leib = new Leibwaechter("Megatron");
 		
 		
 		SensorenAktorenKit kit1 = new SensorenAktorenKitEinKW();

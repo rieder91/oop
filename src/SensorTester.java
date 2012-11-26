@@ -67,7 +67,7 @@ public class SensorTester implements Tester {
 						android.installKit(sense);
 
 						if (android.getKit() != null) {
-							System.out.print(android.getSeriennummer() + "is allowed to install " + sense + " with software " + s + " and "
+							System.out.print(android.getSeriennummer() + " is allowed to install " + sense + " with software " + s + " and "
 									+ s.getSecurityLevel());
 						}
 
