@@ -5,7 +5,7 @@
  * die TransportarbeiterSoftware Software darf nur bei einem Transportarbeiter installiert werden
  * das Level der TransportarbeiterSoftware kann 3 oder 4 sein
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class TransportarbeiterSoftware implements Software {

@@ -1,6 +1,6 @@
 /**
  * interface used by differently sized Kits
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public interface SensorenAktorenKit {

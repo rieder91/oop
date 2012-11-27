@@ -9,7 +9,7 @@
  * extra fuer alle untertypen implementiert
  * 
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  * 
  */
 public abstract class Beschuetzer extends Android {

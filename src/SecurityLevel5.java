@@ -6,7 +6,7 @@
  * verwenden darf. die Ausnahme fuer den Kaempfer ist naemlich laut Angabe
  * nicht von Level 5 abhhaengig
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class SecurityLevel5 extends SecurityLevel{

@@ -5,7 +5,7 @@
  * Er kann Aktoren-Kits mit unbegrenzt viel Leistung verwenden
  * 
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class Kaempfer extends Beschuetzer {

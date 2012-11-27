@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * THIS CLASS IS FOR TESTING PURPOSES ONLY AND NOT PART OF THE
  * ACTUAL SOLUTION FOR THE ASSIGNMENT
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  */
 public class SensorTester implements Tester {
 

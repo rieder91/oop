@@ -3,7 +3,7 @@
  * darf in allen Androiden verbaut werden
  * 
  * in Bediener darf ausschliesslich dieses Kit verbaut werden
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class SensorenAktorenKitEinKW implements SensorenAktorenKit {

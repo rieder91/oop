@@ -4,7 +4,7 @@
  * 
  * Mit Security Level 3 darf man Aktoren mit 5KW verwenden. 10KW jedoch nicht
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  * 
  */
 public class SecurityLevel3 extends SecurityLevel {

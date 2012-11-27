@@ -2,7 +2,7 @@
 /**
  * wird von allen Bedienern verwendet
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class BeruehrungssensitiverSkin implements Skin {

@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 
-
+/**
+ * This class tests witch android could be replaced with another
+ * THIS CLASS IS FOR TESTING PURPOSES ONLY AND NOT PART OF THE
+ * ACTUAL SOLUTION FOR THE ASSIGNMENT
+ * 
+ * @author OOP Gruppe 187
+ */
 public class ReplacementTester implements Tester {
 
 	public void runTests() {

@@ -5,7 +5,7 @@
  * die LeibwaechterSoftware darf nur bei einem Leibwaechter installiert werden
  * das Level der LeibwaechterSoftware kann 4 sein
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class LeibwaechterSoftware implements Software {

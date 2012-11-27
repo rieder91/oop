@@ -11,7 +11,7 @@ import java.util.Iterator;
  * wird, wird der Eintrag nur als Aenderung betrachtet und es aendert sich nichts
  * am Produktionszeitpunkt des Roboters
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class AndroidFactory implements Iterable<Android> {

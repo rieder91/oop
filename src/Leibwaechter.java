@@ -4,7 +4,7 @@
  * 
  * wenn sein SecurityLevel 4 ist, darf er Kits mit <= 10KW verwenden
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class Leibwaechter extends Beschuetzer {

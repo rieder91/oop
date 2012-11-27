@@ -5,7 +5,7 @@
  * die Gesellschaftler-Software darf nur bei einem Gesellschaftler installiert werden
  * das Level der Gesellschaftler Software kann 1 sein
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class GesellschaftlerSoftware implements Software {

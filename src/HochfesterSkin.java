@@ -2,7 +2,7 @@
 /**
  * hochfesterskin kann beschuetzer und schwerarbeiter verwendet werden
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class HochfesterSkin implements Skin {

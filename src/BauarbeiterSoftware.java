@@ -5,7 +5,7 @@
  * die Bauarbeiter Software darf nur bei einem Bauarbeiter installiert werden
  * das Level der Bauarbeiter Software kann 3 oder 4 sein
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class BauarbeiterSoftware implements Software {

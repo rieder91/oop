@@ -5,7 +5,7 @@
  * die KaempferSoftware darf nur bei einem Kaempfer installiert werden
  * das Level der KaempferSoftware kann 5 sein
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class KaempferSoftware implements Software {

@@ -6,7 +6,7 @@
  * 
  * alle Bediener muessen ein Kit mit 1KW verwenden
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public abstract class Bediener extends Android {

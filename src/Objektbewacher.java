@@ -4,7 +4,7 @@
  * 
  * wenn er software vom level 4 hat, darf er kits mit <= 10 KW verwenden
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class Objektbewacher extends Beschuetzer {

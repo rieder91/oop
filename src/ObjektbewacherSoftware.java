@@ -5,7 +5,7 @@
  * die ObjektbewacherSoftware darf nur bei einem Objektbewacher installiert werden
  * das Level der ObjektbewacherSoftware kann 4 sein
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class ObjektbewacherSoftware implements Software {

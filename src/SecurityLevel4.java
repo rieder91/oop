@@ -6,7 +6,7 @@
  * 
  * 
  * Mit Level 4 Software darf man sowohl 5 als auch 10 KW Aktoren verwenden
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class SecurityLevel4 extends SecurityLevel {

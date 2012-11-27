@@ -3,7 +3,7 @@
  * security level klasse, dass verwendet wird um zu pruefen ob eine software
  * verwendet oder ein kit eingebaut werden kann
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  * 
  */
 public abstract class SecurityLevel {

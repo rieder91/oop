@@ -2,7 +2,7 @@
  * ein Gesellschaftler darf nur seine eigene software von level 1 verwenden
  * (level 2 ist verboten)
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  * 
  */
 public class Gesellschaftler extends Bediener {

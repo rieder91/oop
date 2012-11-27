@@ -5,7 +5,7 @@
  * die ServiceTechnikerSoftware Software darf nur bei einem ServiceTechniker installiert werden
  * das Level der ServiceTechnikerSoftware kann 3 oder 4 sein
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class ServiceTechnikerSoftware implements Software {

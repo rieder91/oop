@@ -7,7 +7,7 @@
  * Security Level 1 ist nicht aufreichend um Aktoren mit 5 oder 10KW zu
  * verwenden
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  * 
  */
 public class SecurityLevel2 extends SecurityLevel{

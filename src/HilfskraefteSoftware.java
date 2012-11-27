@@ -5,7 +5,7 @@
  * die HilfskraefteSoftware darf nur bei einer Hilfskraft installiert werden
  * das Level der HilfskraefteSoftware kann 1 oder 2 sein
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class HilfskraefteSoftware implements Software {

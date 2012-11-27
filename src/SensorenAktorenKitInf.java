@@ -1,7 +1,7 @@
 
 /**
  * darf nur im Kaempfer verbaut werden (unabhaengig vom Software Level)
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class SensorenAktorenKitInf implements SensorenAktorenKit {

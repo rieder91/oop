@@ -4,7 +4,7 @@
  * each software has a unique serial tied to the android it is used by and
  * a security level
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public interface Software {

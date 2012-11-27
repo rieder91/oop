@@ -1,6 +1,6 @@
 /**
  * darf in allen Androiden mit Software Level 4 verbaut werden
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class SensorenAktorenKitZehnKW implements SensorenAktorenKit {

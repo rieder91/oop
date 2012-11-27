@@ -2,7 +2,7 @@
 /**
  * der gepanzerte Skin wird nur von Beschuetzern verwendet
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class GepanzerterSkin implements Skin {

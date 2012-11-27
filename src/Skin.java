@@ -3,7 +3,7 @@
  * 
  * each skin has a unique serial tied to the android it is used by
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public interface Skin {

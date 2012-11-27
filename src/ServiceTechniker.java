@@ -2,7 +2,7 @@
 /**
  * ein ServiceTechniker kann nur seine eigene Software mit Level 3 oder 4 verwenden
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class ServiceTechniker extends Schwerarbeiter {

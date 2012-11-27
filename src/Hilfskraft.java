@@ -1,6 +1,6 @@
 /**
  * eine Hilfskraft kann nur Hilfskraftsoftware verwenden
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public class Hilfskraft extends Bediener {

@@ -3,7 +3,7 @@
  * darf in allen Androiden ausser Bedienern mit Software Level 3 oder 4 verbaut
  * werden
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  * 
  */
 public class SensorenAktorenKitFuenfKW implements SensorenAktorenKit {

@@ -6,7 +6,7 @@
  * 
  * darf Kits mit <= 5KW (wenn Level = 3) oder <= 10KW verwenden (wenn Level = 4)
  * 
- * @author Thomas
+ * @author OOP Gruppe 187
  *
  */
 public abstract class Schwerarbeiter extends Android{
