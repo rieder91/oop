@@ -19,10 +19,12 @@ _WS2012, Vienna University of Technology_
    - generics, interfaces and inheritance
  - Assignment 5
     - generics and iterators 
-
-## WIP
  - Assignment 6
     - Covariance
+
+## WIP
+ - Assignment 7
+    - TBD
 
 
 ## TODO
