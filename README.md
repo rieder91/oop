@@ -24,11 +24,11 @@ _WS2012, Vienna University of Technology_
 
 ## WIP
  - Assignment 7
-    - TBD
+    - Exceptions and Threads
 
 
 ## TODO
- - Assignment 7 - 9
+ - Assignment 8 - 9
  
 ## Syllabus
  - Überblick über das objektorientierte Programmierparadigma und entsprechende Programmiersprachen
