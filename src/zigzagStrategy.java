@@ -1,9 +1,37 @@
-
 /**
- * 
  * @author Markus
- *
  */
 public class zigzagStrategy implements Strategy {
+
+	boolean last, beforelast;
+	boolean left;
+
+	zigzagStrategy() {
+		this.last = false;
+		this.beforelast = false;
+	}
+
+	/**
+	 * 
+	 * @return the direction of the next move
+	 */
+	@Override
+	public int next() {
+		if (this.last && this.beforelast) {
+			this.left = !this.left;
+			this.last = false;
+			this.beforelast = false;
+		}
+		this.beforelast = this.last;
+		this.last = false;
+		if (this.left) {
+			this.last = true;
+			return -1;
+		}
+		else {
+			this.last = true;
+			return 1;
+		}
+	}
 
 }
