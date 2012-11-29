@@ -1,6 +1,6 @@
 
 
-public class maneuverableCar extends Autodrom{
+public class maneuverableCar extends Car{
 
 	public maneuverableCar(int ival, Strategy s) {
 		super(ival, s);

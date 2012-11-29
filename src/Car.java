@@ -1,11 +1,12 @@
 
 
-public abstract class Autodrom implements Runnable{
+public abstract class Car implements Runnable{
 
+	int dir;
 	private int interval;
 	private Strategy s;
 	
-	public Autodrom(int ival,Strategy s){
+	public Car(int ival,Strategy s){
 		this.interval=ival;
 		this.s=s;
 	}

@@ -1,6 +1,6 @@
 
 
-public class fastCar extends Autodrom{
+public class fastCar extends Car{
 
 	public fastCar(int ival, Strategy s) {
 		super(ival, s);
