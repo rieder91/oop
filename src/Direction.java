@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author OOP Gruppe 187
+ *
+ */
 
 public enum Direction {
 	North, South, East, West;

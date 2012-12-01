@@ -1,5 +1,5 @@
 /**
- * @author Markus
+ * @author OOP Gruppe 187
  */
 public class zigzagStrategy implements Strategy {
 

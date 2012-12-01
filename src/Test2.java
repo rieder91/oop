@@ -1,7 +1,14 @@
-
+/**
+ * 
+ * @author OOP Gruppe 187
+ *
+ */
 
 public class Test2 implements Tester {
 
+	/**
+	 * only fast cars on a small to medium sized map
+	 */
 	@Override
 	public void runTests() {
 		System.out.println("Test2:");

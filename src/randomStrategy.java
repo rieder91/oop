@@ -1,7 +1,7 @@
 import java.util.Random;
 
 /**
- * @author Markus
+ * @author OOP Gruppe 187
  */
 public class randomStrategy implements Strategy {
 

@@ -1,7 +1,14 @@
-
+/**
+ * 
+ * @author OOP Gruppe 187
+ *
+ */
 
 public class Test4 implements Tester {
 
+	/**
+	 * a lot of cars on a large map
+	 */
 	@Override
 	public void runTests() {
 		System.out.println("Test4:");
