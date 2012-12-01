@@ -55,6 +55,7 @@ public class Test4 implements Tester {
 		t.addCar(c21);
 		t.addCar(c22);
 		t.addCar(c23);
+		t.addCar(c24);
 		t.start();
 		synchronized (t) {
 			try {
