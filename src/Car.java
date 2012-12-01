@@ -3,7 +3,7 @@
  */
 public abstract class Car implements Runnable {
 
-	private int dir;
+	private Direction dir;
 	private int interval;
 	private Strategy s;
 	private int x;
@@ -28,7 +28,7 @@ public abstract class Car implements Runnable {
 	 * @param t
 	 * 		the track the car is placed on
 	 */
-	public Car(int ival, Strategy s, int x, int y, int dir, Track t) {
+	public Car(int ival, Strategy s, int x, int y, Direction dir, Track t) {
 		this.interval = ival;
 		this.s = s;
 		this.x = x;
@@ -47,7 +47,7 @@ public abstract class Car implements Runnable {
 	/**
 	 * @return the direction the car faces
 	 */
-	public int getdir() {
+	public Direction getdir() {
 		return this.dir;
 	}
 
@@ -133,7 +133,7 @@ public abstract class Car implements Runnable {
 	 * 
 	 * @param dir the new direction
 	 */
-	public void setdir(int dir) {
+	public void setdir(Direction dir) {
 		this.dir = dir;
 	}
 

@@ -55,7 +55,7 @@ public class Track {
 				s[c.getY()][c.getX()] = 'x';
 			}
 			else {
-				s[c.getY()][c.getX()] = (c.getdir() == 0 ? 'v' : c.getdir() == 2 ? '>' : c.getdir() == 4 ? '^' : '<');
+				s[c.getY()][c.getX()] = (c.getdir() == Direction.North ? 'v' : c.getdir() == Direction.East ? '>' : c.getdir() == Direction.South ? '^' : '<');
 			}
 		}
 		this.map.add(s);
@@ -81,85 +81,100 @@ public class Track {
 	public synchronized void move(Car c, int move) {
 		int newx = 0;
 		int newy = 0;
-		int newdir = 0;
+		Direction newdir = Direction.North;
 
 		switch (move) {
 			case 0:
 				newx = c.getX();
 				newy = c.getY() + 1;
-				newdir = 0;
+				newdir = Direction.North;
 				break;
 			case 1:
 				newx = c.getX() + 1;
 				newy = c.getY() + 1;
-				if (c.getdir() == 0) {
-					newdir = 2;
+				if (c.getdir() == Direction.North) {
+					newdir = Direction.East;
 				}
 				else {
-					newdir = 0;
+					newdir = Direction.North;
 				}
 				break;
 			case 2:
 				newx = c.getX() + 1;
 				newy = c.getY();
-				newdir = 2;
+				newdir = Direction.East;
 				break;
 			case 3:
 				newx = c.getX() + 1;
 				newy = c.getY() - 1;
-				if (c.getdir() == 2) {
-					newdir = 4;
+				if (c.getdir() == Direction.East) {
+					newdir = Direction.South;
 				}
 				else {
-					newdir = 2;
+					newdir = Direction.East;
 				}
 				break;
 			case 4:
 				newx = c.getX();
 				newy = c.getY() - 1;
-				newdir = 4;
+				newdir = Direction.South;
 				break;
 			case 5:
 				newx = c.getX() - 1;
 				newy = c.getY() - 1;
-				if (c.getdir() == 4) {
-					newdir = 6;
+				if (c.getdir() == Direction.South) {
+					newdir = Direction.West;
 				}
 				else {
-					newdir = 4;
+					newdir = Direction.South;
 				}
 				break;
 			case 6:
 				newx = c.getX() - 1;
 				newy = c.getY();
-				newdir = 5;
+				newdir = Direction.West;
 				break;
 			case 7:
 				newx = c.getX() - 1;
 				newy = c.getY() + 1;
-				if (c.getdir() == 6) {
-					newdir = 0;
+				if (c.getdir() == Direction.West) {
+					newdir = Direction.North;
 				}
 				else {
-					newdir = 6;
+					newdir = Direction.West;
 				}
 				break;
 
 		}
 
-		if (!((newx >= 0) && (newx <= this.maxx) && (newy >= 0) && (newy <= this.maxy))) { return; }
+		if (!((newx >= 0) && (newx < this.maxx) && (newy >= 0) && (newy < this.maxy))) { return; }
 		c.incmoves();
+		
+		
 		this.generateMap();
+		
+		
+		crash(c,newx,newy);
+		
+		if ((c.getPoints() >= 10) || (c.getmoves() >= this.maxmoves)) {
+			this.stop();
+		}
+		c.setdir(newdir);
+		c.setX(newx);
+		c.setY(newy);
 
-		int invdir;
-		invdir = (c.getdir());
+	}
 
-		int left, right;
+	private void crash(Car c,int newx, int newy){
+		Direction invdir;
+		invdir=c.getdir().invert();
+
+		Direction left, right;
 
 		for (Car cc : this.cars) {
 			if ((cc.getX() == newx) && (cc.getY() == newy)) {
-				left = (cc.getdir() + 6) % 8;
-				right = cc.getdir() + 2;
+				left = cc.getdir().left();
+				right = cc.getdir().right();
 
 				if (invdir == cc.getdir()) {
 					c.notification(1);
@@ -176,15 +191,7 @@ public class Track {
 			}
 
 		}
-		if ((c.getPoints() >= 10) || (c.getmoves() >= this.maxmoves)) {
-			this.stop();
-		}
-		c.setdir(newdir);
-		c.setX(newx);
-		c.setY(newy);
-
 	}
-
 	/**
 	 * 
 	 * @return the points of every car

@@ -19,7 +19,7 @@ public class fastCar extends Car {
 	 * @param t
 	 * 		the track the car is placed on
 	 */
-	public fastCar(int ival, Strategy s, int x, int y, int dir, Track t) {
+	public fastCar(int ival, Strategy s, int x, int y, Direction dir, Track t) {
 		super(ival, s, x, y, dir, t);
 	}
 
@@ -27,7 +27,7 @@ public class fastCar extends Car {
 	protected void drive() {
 		int nextmove = this.getStrategy().next();
 		nextmove = nextmove % 2;
-		nextmove = (this.getdir() + nextmove) % 8;
+		nextmove = (this.getdir().toNumber() + nextmove) % 8;
 		if (nextmove < 0) {
 			nextmove += 8;
 		}
