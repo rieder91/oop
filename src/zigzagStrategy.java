@@ -1,4 +1,6 @@
 /**
+ * in this Strategy the car drives in a zigzag line
+ * 
  * @author OOP Gruppe 187
  */
 public class zigzagStrategy implements Strategy {

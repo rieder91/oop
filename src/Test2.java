@@ -1,4 +1,5 @@
 /**
+ * the second test class
  * 
  * @author OOP Gruppe 187
  *

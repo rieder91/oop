@@ -1,4 +1,5 @@
 /**
+ * the fourth test class
  * 
  * @author OOP Gruppe 187
  *

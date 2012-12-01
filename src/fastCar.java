@@ -1,4 +1,6 @@
 /**
+ * a fast car is not as maneuverable as a maneuverable car but therfore it is faster
+ * 
  * @author OOP Gruppe 187
  */
 public class fastCar extends Car {

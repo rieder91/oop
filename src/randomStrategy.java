@@ -1,6 +1,8 @@
 import java.util.Random;
 
 /**
+ * in this Strategy the car drives in a random direction
+ * 
  * @author OOP Gruppe 187
  */
 public class randomStrategy implements Strategy {

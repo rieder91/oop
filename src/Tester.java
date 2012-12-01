@@ -1,6 +1,6 @@
 
 /**
- * Test interface for Assignment 6
+ * Test interface for Assignment 7
  * 
  * @author OOP Gruppe 187
  */

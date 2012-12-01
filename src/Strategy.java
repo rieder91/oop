@@ -1,4 +1,6 @@
 /**
+ * drive strategy of the car
+ * 
  * @author OOP Gruppe 187
  */
 public interface Strategy {
@@ -7,6 +9,6 @@ public interface Strategy {
 	 * 
 	 * @return the direction of the next move
 	 */
-	int next();
+	public int next();
 
 }

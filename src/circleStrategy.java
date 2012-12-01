@@ -1,4 +1,6 @@
 /**
+ * in this Strategy the car drives in left circles
+ * 
  * @author OOP Gruppe 187
  */
 public class circleStrategy implements Strategy {

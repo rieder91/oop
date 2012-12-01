@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 /**
+ * the Track on which the car is placed
+ * 
  * @author OOP Gruppe 187
  */
 

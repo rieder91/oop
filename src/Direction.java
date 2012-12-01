@@ -1,4 +1,5 @@
 /**
+ * enum class that has every possible direction a car is able to face
  * 
  * @author OOP Gruppe 187
  *
