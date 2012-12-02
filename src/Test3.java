@@ -12,7 +12,7 @@ public class Test3 implements Tester {
 	@Override
 	public void runTests() {
 		System.out.println("Test3:");
-		Track t = new Track(10, 10, 200);
+		Track t = new Track(10, 10, 100);
 		Car c1 = new maneuverableCar(15, new randomStrategy(), 5, 7, Direction.South, t);
 		Car c2 = new maneuverableCar(12, new zigzagStrategy(), 5, 5, Direction.South, t);
 		Car c3 = new maneuverableCar(13, new zigzagStrategy(), 5, 3, Direction.North, t);
@@ -34,6 +34,7 @@ public class Test3 implements Tester {
 		System.out.println(t.points());
 		int sum = t.pointSum();
 		System.out.println("Punktesumme: " + sum);
+
 		if (((sum % 2) == 0) && (sum > 0)) {
 			System.out.println("Test erfolgreich.");
 		}

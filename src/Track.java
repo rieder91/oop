@@ -10,7 +10,7 @@ public class Track {
 
 	private ArrayList<Car> cars;
 	private ArrayList<Thread> carthread;
-	private ArrayList<char[][]> map;
+	// private ArrayList<char[][]> map;
 	private int maxx;
 	private int maxy;
 	private int maxmoves;
@@ -28,7 +28,7 @@ public class Track {
 	public Track(int length, int height, int maxmoves) {
 		this.cars = new ArrayList<Car>();
 		this.carthread = new ArrayList<Thread>();
-		this.map = new ArrayList<char[][]>();
+		// this.map = new ArrayList<char[][]>();
 		this.maxx = length;
 		this.maxy = height;
 		this.maxmoves = maxmoves;
@@ -54,7 +54,7 @@ public class Track {
 		Direction left, right;
 
 		for (Car cc : this.cars) {
-			if ((cc.getX() == newx) && (cc.getY() == newy)) {
+			if ((cc.getX() == newx) && (cc.getY() == newy) && (cc != c)) {
 				c.notification(1);
 				left = cc.getdir().left();
 				right = cc.getdir().right();
@@ -76,35 +76,35 @@ public class Track {
 		}
 	}
 
-	/**
-	 * generates a character representation of the track
-	 */
-	public void generateMap() {
-		char[][] s = new char[this.maxy + 1][this.maxx + 1];
-		for (int i = 0; i <= this.maxx; i++) {
-			for (int a = 0; a <= this.maxy; a++) {
-				s[a][i] = '.';
-			}
-		}
-		for (Car c : this.cars) {
-			if (s[c.getY()][c.getX()] != '.') {
-				s[c.getY()][c.getX()] = 'x';
-			}
-			else {
-				s[c.getY()][c.getX()] = (c.getdir() == Direction.North ? 'v' : c.getdir() == Direction.East ? '>' : c
-						.getdir() == Direction.South ? '^' : '<');
-			}
-		}
-		this.map.add(s);
-
-	}
-
-	/**
-	 * @return c characater representation of the track
-	 */
-	public ArrayList<char[][]> getMap() {
-		return this.map;
-	}
+	// /**
+	// * generates a character representation of the track
+	// */
+	// public void generateMap() {
+	// char[][] s = new char[this.maxy + 1][this.maxx + 1];
+	// for (int i = 0; i <= this.maxx; i++) {
+	// for (int a = 0; a <= this.maxy; a++) {
+	// s[a][i] = '.';
+	// }
+	// }
+	// for (Car c : this.cars) {
+	// if (s[c.getY()][c.getX()] != '.') {
+	// s[c.getY()][c.getX()] = 'x';
+	// }
+	// else {
+	// s[c.getY()][c.getX()] = (c.getdir() == Direction.North ? 'v' : c.getdir() == Direction.East ? '>' : c
+	// .getdir() == Direction.South ? '^' : '<');
+	// }
+	// }
+	// this.map.add(s);
+	//
+	// }
+	//
+	// /**
+	// * @return c characater representation of the track
+	// */
+	// public ArrayList<char[][]> getMap() {
+	// return this.map;
+	// }
 
 	/**
 	 * moves the car in the given direction
@@ -184,10 +184,15 @@ public class Track {
 		}
 
 		if (!((newx >= 0) && (newx < this.maxx) && (newy >= 0) && (newy < this.maxy))) { return; }
-		synchronized (this) {
-			c.incmoves();
 
-			this.generateMap();
+		synchronized (this) {
+
+			// this.generateMap();
+
+			c.incmoves();
+			c.setdir(newdir);
+			c.setX(newx);
+			c.setY(newy);
 
 			this.crash(c, newx, newy);
 
@@ -195,9 +200,6 @@ public class Track {
 				this.stop();
 			}
 
-			c.setdir(newdir);
-			c.setX(newx);
-			c.setY(newy);
 		}
 
 	}
