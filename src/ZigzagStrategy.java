@@ -3,12 +3,12 @@
  * 
  * @author OOP Gruppe 187
  */
-public class zigzagStrategy implements Strategy {
+public class ZigzagStrategy implements Strategy {
 
 	boolean last, beforelast;
 	boolean left;
 
-	zigzagStrategy() {
+	ZigzagStrategy() {
 		this.last = false;
 		this.beforelast = false;
 	}

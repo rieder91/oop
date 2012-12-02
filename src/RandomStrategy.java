@@ -5,11 +5,11 @@ import java.util.Random;
  * 
  * @author OOP Gruppe 187
  */
-public class randomStrategy implements Strategy {
+public class RandomStrategy implements Strategy {
 
 	Random rnd;
 
-	randomStrategy() {
+	RandomStrategy() {
 		this.rnd = new Random();
 	}
 

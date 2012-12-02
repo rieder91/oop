@@ -3,7 +3,7 @@
  * 
  * @author OOP Gruppe 187
  */
-public class fastCar extends Car {
+public class FastCar extends Car {
 
 	/**
 	 * Constructor with 6 arguments
@@ -21,7 +21,7 @@ public class fastCar extends Car {
 	 * @param t
 	 *            the track the car is placed on
 	 */
-	public fastCar(int ival, Strategy s, int x, int y, Direction dir, Track t) {
+	public FastCar(int ival, Strategy s, int x, int y, Direction dir, Track t) {
 		super(ival, s, x, y, dir, t);
 	}
 
