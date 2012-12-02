@@ -19,11 +19,11 @@ public class Track {
 	 * constructor with 3 parameter
 	 * 
 	 * @param length
-	 * 		the length of the track
+	 *            the length of the track
 	 * @param height
-	 * 		the height of the track
+	 *            the height of the track
 	 * @param maxmoves
-	 * 		the maximum moves one car make bevor the game ends
+	 *            the maximum moves one car make bevor the game ends
 	 */
 	public Track(int length, int height, int maxmoves) {
 		this.cars = new ArrayList<Car>();
@@ -43,6 +43,40 @@ public class Track {
 	}
 
 	/**
+	 * @param c
+	 * @param newx
+	 * @param newy
+	 */
+	private void crash(Car c, int newx, int newy) {
+		Direction invdir;
+		invdir = c.getdir().invert();
+
+		Direction left, right;
+
+		for (Car cc : this.cars) {
+			if ((cc.getX() == newx) && (cc.getY() == newy)) {
+				c.notification(1);
+				left = cc.getdir().left();
+				right = cc.getdir().right();
+
+				if (invdir == cc.getdir()) {
+					cc.notification(1);
+				}
+				if (c.getdir() == cc.getdir()) {
+					cc.notification(-1);
+				}
+				if (c.getdir() == left) {
+					cc.notification(-1);
+				}
+				if (c.getdir() == right) {
+					cc.notification(-1);
+				}
+			}
+
+		}
+	}
+
+	/**
 	 * generates a character representation of the track
 	 */
 	public void generateMap() {
@@ -57,7 +91,8 @@ public class Track {
 				s[c.getY()][c.getX()] = 'x';
 			}
 			else {
-				s[c.getY()][c.getX()] = (c.getdir() == Direction.North ? 'v' : c.getdir() == Direction.East ? '>' : c.getdir() == Direction.South ? '^' : '<');
+				s[c.getY()][c.getX()] = (c.getdir() == Direction.North ? 'v' : c.getdir() == Direction.East ? '>' : c
+						.getdir() == Direction.South ? '^' : '<');
 			}
 		}
 		this.map.add(s);
@@ -65,22 +100,21 @@ public class Track {
 	}
 
 	/**
-	 * 
 	 * @return c characater representation of the track
 	 */
 	public ArrayList<char[][]> getMap() {
 		return this.map;
 	}
 
-
 	/**
 	 * moves the car in the given direction
+	 * 
 	 * @param c
-	 * 		the car that moves
+	 *            the car that moves
 	 * @param move
-	 * 		the direction the car wants to move
+	 *            the direction the car wants to move
 	 */
-	public synchronized void move(Car c, int move) {
+	public void move(Car c, int move) {
 		int newx = 0;
 		int newy = 0;
 		Direction newdir = Direction.North;
@@ -150,52 +184,25 @@ public class Track {
 		}
 
 		if (!((newx >= 0) && (newx < this.maxx) && (newy >= 0) && (newy < this.maxy))) { return; }
-		c.incmoves();
-		
-		
-		this.generateMap();
-		
-		
-		crash(c,newx,newy);
-		
-		if ((c.getPoints() >= 10) || (c.getmoves() >= this.maxmoves)) {
-			this.stop();
-		}
-		c.setdir(newdir);
-		c.setX(newx);
-		c.setY(newy);
+		synchronized (this) {
+			c.incmoves();
 
-	}
+			this.generateMap();
 
-	private void crash(Car c,int newx, int newy){
-		Direction invdir;
-		invdir=c.getdir().invert();
+			this.crash(c, newx, newy);
 
-		Direction left, right;
-
-		for (Car cc : this.cars) {
-			if ((cc.getX() == newx) && (cc.getY() == newy)) {
-				left = cc.getdir().left();
-				right = cc.getdir().right();
-
-				if (invdir == cc.getdir()) {
-					c.notification(1);
-				}
-				if (c.getdir() == cc.getdir()) {
-					cc.notification(-1);
-				}
-				if (c.getdir() == left) {
-					cc.notification(-1);
-				}
-				if (c.getdir() == right) {
-					cc.notification(-1);
-				}
+			if ((c.getPoints() >= 10) || (c.getmoves() >= this.maxmoves)) {
+				this.stop();
 			}
 
+			c.setdir(newdir);
+			c.setX(newx);
+			c.setY(newy);
 		}
+
 	}
+
 	/**
-	 * 
 	 * @return the points of every car
 	 */
 	public String points() {
@@ -204,6 +211,17 @@ public class Track {
 			s = s + c.getPoints() + "\n";
 		}
 		return s;
+	}
+
+	/**
+	 * @return the sum off all points
+	 */
+	public int pointSum() {
+		int sum = 0;
+		for (Car c : this.cars) {
+			sum = sum + c.getPoints();
+		}
+		return sum;
 	}
 
 	/**
@@ -218,7 +236,7 @@ public class Track {
 	/**
 	 * stops the game
 	 */
-	public synchronized void stop() {
+	private void stop() {
 
 		this.notifyAll();
 		for (Thread t : this.carthread) {

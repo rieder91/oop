@@ -16,17 +16,17 @@ public abstract class Car implements Runnable {
 	 * Constructor with 6 arguments
 	 * 
 	 * @param ival
-	 * 		time the car waits between the moves
+	 *            time the car waits between the moves
 	 * @param s
-	 * 		strategy the car uses to move
+	 *            strategy the car uses to move
 	 * @param x
-	 * 		the x coordinate of the car on the track
+	 *            the x coordinate of the car on the track
 	 * @param y
-	 * 		the y coordinate of the car on the track
+	 *            the y coordinate of the car on the track
 	 * @param dir
-	 * 		the direction the car faces
+	 *            the direction the car faces
 	 * @param t
-	 * 		the track the car is placed on
+	 *            the track the car is placed on
 	 */
 	public Car(int ival, Strategy s, int x, int y, Direction dir, Track t) {
 		this.interval = ival;
@@ -103,7 +103,8 @@ public abstract class Car implements Runnable {
 	/**
 	 * notifies the car about a crash
 	 * 
-	 * @param p the points the car gets
+	 * @param p
+	 *            the points the car gets
 	 */
 	public void notification(int p) {
 		this.points += p;
@@ -131,7 +132,8 @@ public abstract class Car implements Runnable {
 	/**
 	 * sets the direction of the car to dir
 	 * 
-	 * @param dir the new direction
+	 * @param dir
+	 *            the new direction
 	 */
 	public void setdir(Direction dir) {
 		this.dir = dir;
@@ -140,7 +142,8 @@ public abstract class Car implements Runnable {
 	/**
 	 * sets the x coordinate of the car to x
 	 * 
-	 * @param x the new x cooridiante
+	 * @param x
+	 *            the new x cooridiante
 	 */
 	public void setX(int x) {
 		this.x = x;
@@ -149,7 +152,8 @@ public abstract class Car implements Runnable {
 	/**
 	 * sets the y coordinate of the car to y
 	 * 
-	 * @param y the new y coordinate
+	 * @param y
+	 *            the new y coordinate
 	 */
 	public void setY(int y) {
 		this.y = y;

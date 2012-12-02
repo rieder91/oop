@@ -6,7 +6,6 @@
 public interface Strategy {
 
 	/**
-	 * 
 	 * @return the direction of the next move
 	 */
 	public int next();

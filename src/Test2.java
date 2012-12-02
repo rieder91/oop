@@ -2,7 +2,6 @@
  * the second test class
  * 
  * @author OOP Gruppe 187
- *
  */
 
 public class Test2 implements Tester {
@@ -41,7 +40,14 @@ public class Test2 implements Tester {
 			}
 		}
 		System.out.println(t.points());
-
+		int sum = t.pointSum();
+		System.out.println("Punktesumme: " + sum);
+		if (((sum % 2) == 0) && (sum > 0)) {
+			System.out.println("Test erfolgreich.");
+		}
+		else {
+			System.out.println("Test fehlgeschlagen.");
+		}
 	}
 
 }

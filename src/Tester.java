@@ -1,4 +1,3 @@
-
 /**
  * Test interface for Assignment 7
  * 
@@ -6,6 +5,7 @@
  */
 
 public interface Tester {
+
 	/**
 	 * runs all tests cases and reports to stdout
 	 */

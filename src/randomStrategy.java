@@ -14,7 +14,6 @@ public class randomStrategy implements Strategy {
 	}
 
 	/**
-	 * 
 	 * @return the direction of the next move
 	 */
 	@Override

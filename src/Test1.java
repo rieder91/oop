@@ -2,7 +2,6 @@
  * the first test class
  * 
  * @author OOP Gruppe 187
- *
  */
 
 public class Test1 implements Tester {
@@ -14,19 +13,19 @@ public class Test1 implements Tester {
 	public void runTests() {
 		System.out.println("Test1:");
 		Track t = new Track(80, 20, 200);
-		Car c1 = new maneuverableCar(15, new randomStrategy(), 	40, 10, Direction.South, t);
-		Car c2 = new maneuverableCar(12, new circleStrategy(), 	40, 12, Direction.South, t);
-		Car c3 = new maneuverableCar(13, new zigzagStrategy(), 	40, 8, Direction.North, t);
-		Car c4 = new maneuverableCar(12, new circleStrategy(), 	42, 10, Direction.West, t);
-		Car c5 = new maneuverableCar(15, new randomStrategy(), 	38, 10, Direction.East, t);
-		Car c6 = new fastCar(4, new randomStrategy(), 			42, 12, Direction.West, t);
-		Car c7 = new fastCar(6, new circleStrategy(), 			42, 8, Direction.West, t);
-		Car c8 = new fastCar(4, new zigzagStrategy(), 			38, 12, Direction.East, t);
-		Car c9 = new fastCar(6, new circleStrategy(), 			38, 8, Direction.East, t);
-		Car c10 = new fastCar(4, new randomStrategy(), 			40, 14, Direction.South, t);
+		Car c1 = new maneuverableCar(15, new randomStrategy(), 40, 10, Direction.South, t);
+		Car c2 = new maneuverableCar(12, new circleStrategy(), 40, 12, Direction.South, t);
+		Car c3 = new maneuverableCar(13, new zigzagStrategy(), 40, 8, Direction.North, t);
+		Car c4 = new maneuverableCar(12, new circleStrategy(), 42, 10, Direction.West, t);
+		Car c5 = new maneuverableCar(15, new randomStrategy(), 38, 10, Direction.East, t);
+		Car c6 = new fastCar(4, new randomStrategy(), 42, 12, Direction.West, t);
+		Car c7 = new fastCar(6, new circleStrategy(), 42, 8, Direction.West, t);
+		Car c8 = new fastCar(4, new zigzagStrategy(), 38, 12, Direction.East, t);
+		Car c9 = new fastCar(6, new circleStrategy(), 38, 8, Direction.East, t);
+		Car c10 = new fastCar(4, new randomStrategy(), 40, 14, Direction.South, t);
 		Car c11 = new maneuverableCar(12, new circleStrategy(), 40, 6, Direction.North, t);
 		Car c12 = new maneuverableCar(15, new randomStrategy(), 36, 10, Direction.East, t);
-		Car c13 = new fastCar(6, new circleStrategy(), 			42, 10, Direction.West, t);
+		Car c13 = new fastCar(6, new circleStrategy(), 42, 10, Direction.West, t);
 		t.addCar(c1);
 		t.addCar(c2);
 		t.addCar(c3);
@@ -49,6 +48,14 @@ public class Test1 implements Tester {
 			}
 		}
 		System.out.println(t.points());
+		int sum = t.pointSum();
+		System.out.println("Punktesumme: " + sum);
+		if (((sum % 2) == 0) && (sum > 0)) {
+			System.out.println("Test erfolgreich.");
+		}
+		else {
+			System.out.println("Test fehlgeschlagen.");
+		}
 
 	}
 
