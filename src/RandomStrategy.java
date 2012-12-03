@@ -7,9 +7,9 @@ import java.util.Random;
  */
 public class RandomStrategy implements Strategy {
 
-	Random rnd;
+	private Random rnd;
 
-	RandomStrategy() {
+	public RandomStrategy() {
 		this.rnd = new Random();
 	}
 

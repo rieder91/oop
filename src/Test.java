@@ -29,6 +29,7 @@ public class Test {
 
 		for (Tester t : al) {
 			t.runTests();
+			System.out.println();
 		}
 
 	}

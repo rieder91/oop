@@ -28,9 +28,9 @@ public class ManeuverableCar extends Car {
 	@Override
 	protected void drive() {
 		int nextmove = this.getStrategy().next();
-		nextmove = (this.getdir().toNumber() + nextmove) % 8;
+		nextmove = (this.getDir().toNumber() + nextmove) % 8;
 		if (nextmove < 0) {
-			nextmove += 7;
+			nextmove += 8;
 		}
 		this.getTrack().move(this, nextmove);
 

@@ -10,5 +10,9 @@ public interface Strategy {
 	 */
 	public int next();
 
+	/**
+	 * return the name of the strategy
+	 * @return name of the strategy
+	 */
 	public String getBez();
 }

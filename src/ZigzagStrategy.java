@@ -5,10 +5,10 @@
  */
 public class ZigzagStrategy implements Strategy {
 
-	boolean last, beforelast;
-	boolean left;
+	private boolean last, beforelast;
+	private boolean left;
 
-	ZigzagStrategy() {
+	public ZigzagStrategy() {
 		this.last = false;
 		this.beforelast = false;
 	}

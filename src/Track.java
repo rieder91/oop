@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class Track {
 
 	private ArrayList<Car> cars;
-	private ArrayList<Thread> carthread;
+	private ArrayList<Thread> carThread;
 	// private ArrayList<char[][]> map;
 	private int maxx;
 	private int maxy;
@@ -28,7 +28,7 @@ public class Track {
 	 */
 	public Track(int length, int height, int maxmoves) {
 		this.cars = new ArrayList<Car>();
-		this.carthread = new ArrayList<Thread>();
+		this.carThread = new ArrayList<Thread>();
 		// this.map = new ArrayList<char[][]>();
 		this.maxx = length;
 		this.maxy = height;
@@ -40,7 +40,7 @@ public class Track {
 	 */
 	public void addCar(Car car) {
 		this.cars.add(car);
-		this.carthread.add(new Thread(car));
+		this.carThread.add(new Thread(car));
 	}
 
 	/**
@@ -50,26 +50,26 @@ public class Track {
 	 */
 	private void crash(Car c, int newx, int newy) {
 		Direction invdir;
-		invdir = c.getdir().invert();
+		invdir = c.getDir().invert();
 
 		Direction left, right;
 
 		for (Car cc : this.cars) {
 			if ((cc.getX() == newx) && (cc.getY() == newy) && (cc != c)) {
 				c.notification(1);
-				left = cc.getdir().left();
-				right = cc.getdir().right();
+				left = cc.getDir().left();
+				right = cc.getDir().right();
 
-				if (invdir == cc.getdir()) {
+				if (invdir == cc.getDir()) {
 					cc.notification(1);
 				}
-				if (c.getdir() == cc.getdir()) {
+				if (c.getDir() == cc.getDir()) {
 					cc.notification(-1);
 				}
-				if (c.getdir() == left) {
+				if (c.getDir() == left) {
 					cc.notification(-1);
 				}
-				if (c.getdir() == right) {
+				if (c.getDir() == right) {
 					cc.notification(-1);
 				}
 			}
@@ -115,7 +115,7 @@ public class Track {
 	 * @param move
 	 *            the direction the car wants to move
 	 */
-	public void move(Car c, int move) {
+	protected void move(Car c, int move) {
 		int newx = 0;
 		int newy = 0;
 		Direction newdir = Direction.North;
@@ -129,7 +129,7 @@ public class Track {
 			case 1:
 				newx = c.getX() + 1;
 				newy = c.getY() + 1;
-				if (c.getdir() == Direction.North) {
+				if (c.getDir() == Direction.North) {
 					newdir = Direction.East;
 				}
 				else {
@@ -144,7 +144,7 @@ public class Track {
 			case 3:
 				newx = c.getX() + 1;
 				newy = c.getY() - 1;
-				if (c.getdir() == Direction.East) {
+				if (c.getDir() == Direction.East) {
 					newdir = Direction.South;
 				}
 				else {
@@ -159,7 +159,7 @@ public class Track {
 			case 5:
 				newx = c.getX() - 1;
 				newy = c.getY() - 1;
-				if (c.getdir() == Direction.South) {
+				if (c.getDir() == Direction.South) {
 					newdir = Direction.West;
 				}
 				else {
@@ -174,7 +174,7 @@ public class Track {
 			case 7:
 				newx = c.getX() - 1;
 				newy = c.getY() + 1;
-				if (c.getdir() == Direction.West) {
+				if (c.getDir() == Direction.West) {
 					newdir = Direction.North;
 				}
 				else {
@@ -190,14 +190,14 @@ public class Track {
 
 			// this.generateMap();
 
-			c.incmoves();
-			c.setdir(newdir);
+			c.increaseMoves();
+			c.setDir(newdir);
 			c.setX(newx);
 			c.setY(newy);
 
 			this.crash(c, newx, newy);
 
-			if ((c.getPoints() >= 10) || (c.getmoves() >= this.maxmoves)) {
+			if ((c.getPoints() >= 10) || (c.getMoves() >= this.maxmoves)) {
 				this.stop();
 			}
 
@@ -209,14 +209,15 @@ public class Track {
 	 * @return the points of every car
 	 */
 	public String points() {
-		String s = "";
+		StringBuilder s = new StringBuilder();
 		Car[] cc = new Car[this.cars.size()];
 		cc=this.cars.toArray(cc);
 		Arrays.sort(cc);
+		s.append("Results ordered by points:\n");
 		for (Car c : cc) {
-			s = s + c + "\n";
+			s.append(c + "\n");
 		}
-		return s;
+		return s.toString();
 	}
 
 	/**
@@ -234,7 +235,7 @@ public class Track {
 	 * starts the game
 	 */
 	public void start() {
-		for (Thread t : this.carthread) {
+		for (Thread t : this.carThread) {
 			t.start();
 		}
 	}
@@ -245,7 +246,7 @@ public class Track {
 	private void stop() {
 
 		this.notifyAll();
-		for (Thread t : this.carthread) {
+		for (Thread t : this.carThread) {
 			t.interrupt();
 		}
 

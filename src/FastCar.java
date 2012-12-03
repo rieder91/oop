@@ -29,7 +29,7 @@ public class FastCar extends Car {
 	protected void drive() {
 		int nextmove = this.getStrategy().next();
 		nextmove = nextmove % 2;
-		nextmove = (this.getdir().toNumber() + nextmove) % 8;
+		nextmove = (this.getDir().toNumber() + nextmove) % 8;
 		if (nextmove < 0) {
 			nextmove += 8;
 		}

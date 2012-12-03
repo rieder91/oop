@@ -47,21 +47,21 @@ public abstract class Car implements Runnable,Comparable<Car> {
 	/**
 	 * @return the direction the car faces
 	 */
-	public Direction getdir() {
+	protected Direction getDir() {
 		return this.dir;
 	}
 
 	/**
 	 * @return the number of moves the car made
 	 */
-	public int getmoves() {
+	protected int getMoves() {
 		return this.moves;
 	}
 
 	/**
 	 * @return the points of the car
 	 */
-	public int getPoints() {
+	protected int getPoints() {
 		return this.points;
 	}
 
@@ -82,21 +82,21 @@ public abstract class Car implements Runnable,Comparable<Car> {
 	/**
 	 * @return the x coordinate of the car
 	 */
-	public int getX() {
+	protected int getX() {
 		return this.x;
 	}
 
 	/**
 	 * @return the y coordinate of the car
 	 */
-	public int getY() {
+	protected int getY() {
 		return this.y;
 	}
 
 	/**
 	 * increments the move counter by one
 	 */
-	public void incmoves() {
+	protected void increaseMoves() {
 		this.moves++;
 	}
 
@@ -106,7 +106,7 @@ public abstract class Car implements Runnable,Comparable<Car> {
 	 * @param p
 	 *            the points the car gets
 	 */
-	public void notification(int p) {
+	protected void notification(int p) {
 		this.points += p;
 
 	}
@@ -135,7 +135,7 @@ public abstract class Car implements Runnable,Comparable<Car> {
 	 * @param dir
 	 *            the new direction
 	 */
-	public void setdir(Direction dir) {
+	protected void setDir(Direction dir) {
 		this.dir = dir;
 	}
 
@@ -145,7 +145,7 @@ public abstract class Car implements Runnable,Comparable<Car> {
 	 * @param x
 	 *            the new x cooridiante
 	 */
-	public void setX(int x) {
+	protected void setX(int x) {
 		this.x = x;
 	}
 
@@ -155,11 +155,11 @@ public abstract class Car implements Runnable,Comparable<Car> {
 	 * @param y
 	 *            the new y coordinate
 	 */
-	public void setY(int y) {
+	protected void setY(int y) {
 		this.y = y;
 	}
 
-	public abstract String getBez();
+	protected abstract String getBez();
 	
 	public String toString(){
 		return "Punkte: " + this.points + " Autotyp: " + this.getBez() + " Strategie: " + this.s.getBez();
