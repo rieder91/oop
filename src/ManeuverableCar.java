@@ -36,4 +36,9 @@ public class ManeuverableCar extends Car {
 
 	}
 
+	@Override
+	public String getBez() {
+		return "Maneuverable Car";
+	}
+
 }

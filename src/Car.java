@@ -1,7 +1,7 @@
 /**
  * @author OOP Gruppe 187
  */
-public abstract class Car implements Runnable {
+public abstract class Car implements Runnable,Comparable<Car> {
 
 	private Direction dir;
 	private int interval;
@@ -159,4 +159,14 @@ public abstract class Car implements Runnable {
 		this.y = y;
 	}
 
+	public abstract String getBez();
+	
+	public String toString(){
+		return "Punkte: " + this.points + " Autotyp: " + this.getBez() + " Strategie: " + this.s.getBez();
+	}
+	
+	@Override
+	public int compareTo(Car arg0) {
+		return (arg0.points==this.points)?0:(arg0.points<this.points)?-1:1;
+	}
 }

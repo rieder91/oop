@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * the Track on which the car is placed
@@ -209,8 +210,11 @@ public class Track {
 	 */
 	public String points() {
 		String s = "";
-		for (Car c : this.cars) {
-			s = s + c.getPoints() + "\n";
+		Car[] cc = new Car[this.cars.size()];
+		cc=this.cars.toArray(cc);
+		Arrays.sort(cc);
+		for (Car c : cc) {
+			s = s + c + "\n";
 		}
 		return s;
 	}

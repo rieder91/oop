@@ -37,4 +37,9 @@ public class FastCar extends Car {
 
 	}
 
+	@Override
+	public String getBez() {
+		return "Fast Car";
+	}
+
 }

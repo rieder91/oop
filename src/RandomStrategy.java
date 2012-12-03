@@ -21,4 +21,7 @@ public class RandomStrategy implements Strategy {
 		return (this.rnd.nextInt(5)) - 3;
 	}
 
+	public String getBez(){
+		return "Random";
+	}
 }

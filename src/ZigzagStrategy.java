@@ -34,5 +34,10 @@ public class ZigzagStrategy implements Strategy {
 			return 1;
 		}
 	}
+	
+	public String getBez(){
+		return "Zigzag";
+	}
+	
 
 }

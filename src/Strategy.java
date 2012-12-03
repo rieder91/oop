@@ -10,4 +10,5 @@ public interface Strategy {
 	 */
 	public int next();
 
+	public String getBez();
 }
