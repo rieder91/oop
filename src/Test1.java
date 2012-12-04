@@ -1,14 +1,13 @@
 /**
  * the first test class
  * 
+ * mixed car types on a medium sized map
+ * 
  * @author OOP Gruppe 187
  */
 
 public class Test1 implements Tester {
 
-	/**
-	 * mixed car types on a medium sized map
-	 */
 	@Override
 	public void runTests() {
 		System.out.println("Test1:");

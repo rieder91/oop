@@ -1,19 +1,23 @@
 /**
- * Ein Auto befindet sich auf einem Feld und ist nach einer der vier Himmelsrichtungen 
- * (Norden, Osten, Süden und Westen) ausgerichtet. 
+ * Ein Auto befindet sich auf einem Feld und ist nach einer der vier Himmelsrichtungen
+ * (Norden, Osten, Süden und Westen) ausgerichtet.
  * 
- * Das Fahren wird in viele unterschiedlich lange dauernde Teilschritte unterteilt. 
+ * Das Fahren wird in viele unterschiedlich lange dauernde Teilschritte unterteilt.
  * 
- * In jedem Schritt kann sich ein Auto vom aktuellen Feld auf ein benachbartes Feld bewegen. 
+ * In jedem Schritt kann sich ein Auto vom aktuellen Feld auf ein benachbartes Feld bewegen.
  * 
  * Es gibt zwei Arten von Autos, ein schnelleres und ein beweglicheres.
  * 
- * Die Autos bewegen sich mit unterschiedlichen möglichst einfachen Strategien weiter, 
+ * Die Autos bewegen sich mit unterschiedlichen möglichst einfachen Strategien weiter,
  * z.B. zufällig, oder im Kreis oder in Schlangenlinien im Kreis, aber nie über die Fahrbahn hinaus.
+ * 
+ * Jedes Auto bewegt nach einer gewissen Zeit (wenige Millisekunden) von einem Feld zu einem Nachbarfeld,
+ * ein schnelles Auto nach sehr wenigen Millisekunden, ein bewegliches Auto nach etwas mehr Millisekunden.
+ * Simulieren Sie Wartezeiten mittels der Methode Thread.sleep(n).
  * 
  * @author OOP Gruppe 187
  */
-public abstract class Car implements Runnable,Comparable<Car> {
+public abstract class Car implements Runnable, Comparable<Car> {
 
 	private Direction dir;
 	private int interval;
@@ -23,7 +27,7 @@ public abstract class Car implements Runnable,Comparable<Car> {
 	private int points;
 	private Track t;
 	private int moves;
-	
+
 	// used for rollback
 	private int tempInc;
 	private int tempX;
@@ -57,7 +61,11 @@ public abstract class Car implements Runnable,Comparable<Car> {
 		this.t = t;
 		this.moves = 0;
 	}
-	
+
+	@Override
+	public int compareTo(Car arg0) {
+		return (arg0.points == this.points) ? 0 : (arg0.points < this.points) ? -1 : 1;
+	}
 
 	/**
 	 * 
@@ -132,6 +140,19 @@ public abstract class Car implements Runnable,Comparable<Car> {
 	}
 
 	/**
+	 * should be called if a thread is stopped and there are pending changes
+	 */
+	protected void rollbackChanges() {
+		this.dir = this.tempDir;
+		this.moves = this.tempInc;
+		this.x = this.tempX;
+		this.y = this.tempY;
+		if (!this.t.getLastCars().contains(this)) {
+			this.points = this.tempPoints;
+		}
+	}
+
+	/**
 	 * main method of the car
 	 */
 	@Override
@@ -139,19 +160,27 @@ public abstract class Car implements Runnable,Comparable<Car> {
 		while (true) {
 			try {
 				Thread.sleep(this.interval);
-			} catch (InterruptedException e) {
+			}
+			catch (InterruptedException e) {
 				return;
 			}
-			
-			
+
 			this.saveState();
 			this.drive();
-			if(this.t.getGameEnded().get()) {
+			if (this.t.getGameEnded().get()) {
 				this.rollbackChanges();
 				return;
 			}
 		}
 
+	}
+
+	protected void saveState() {
+		this.tempDir = this.dir;
+		this.tempInc = this.moves;
+		this.tempX = this.x;
+		this.tempY = this.y;
+		this.tempPoints = this.points;
 	}
 
 	/**
@@ -184,34 +213,8 @@ public abstract class Car implements Runnable,Comparable<Car> {
 		this.y = y;
 	}
 
-	public String toString(){
-		return "Punkte: " + this.points + " Strategie: " + this.s + " Autotyp: ";
-	}
-	
 	@Override
-	public int compareTo(Car arg0) {
-		return (arg0.points==this.points)?0:(arg0.points<this.points)?-1:1;
-	}
-	
-	
-	protected void saveState() {
-		this.tempDir = dir;
-		this.tempInc = moves;
-		this.tempX = x;
-		this.tempY = y;
-		this.tempPoints = this.points;
-	}
-	
-	/**
-	 * should be called if a thread is stopped and there are pending changes
-	 */
-	protected void rollbackChanges() {
-		dir = this.tempDir;
-		moves = tempInc;
-		x = tempX;
-		y = tempY;
-		if(!this.t.getLastCars().contains(this)) {
-			points = tempPoints;
-		}
+	public String toString() {
+		return "Punkte: " + this.points + " Strategie: " + this.s + " Autotyp: ";
 	}
 }

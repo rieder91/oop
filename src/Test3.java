@@ -1,14 +1,13 @@
 /**
  * the fourth third class
  * 
+ * only maneuverable cars on a smal map
+ * 
  * @author OOP Gruppe 187
  */
 
 public class Test3 implements Tester {
 
-	/**
-	 * only maneuverable cars on a smal map
-	 */
 	@Override
 	public void runTests() {
 		System.out.println("Test3:");

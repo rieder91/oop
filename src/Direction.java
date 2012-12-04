@@ -1,4 +1,7 @@
 /**
+ * Ein Auto befindet sich auf einem Feld und ist nach einer der vier Himmelsrichtungen 
+ * (Norden, Osten, Süden und Westen) ausgerichtet.
+ * 
  * enum class that has every possible direction a car is able to face
  * 
  * @author OOP Gruppe 187

@@ -3,14 +3,22 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
+ * Befinden sich bereits Autos auf dem Feld, so gibt es einen Zusammenstoß.
  * 
- * Befinden sich bereits Autos auf dem Feld, so gibt es einen Zusammenstoß. 
- * Für jedes Auto, das man von vorne trifft, gibt es einen Bonuspunkt, 
- * wird man von einem anderen Auto hinten, links oder rechts getroffen, so gibt es einen Minuspunkt. 
- * Ziel ist es möglichst viele Punkte zu sammeln. 
- *
- *
+ * Für jedes Auto, das man von vorne trifft, gibt es einen Bonuspunkt,
+ * wird man von einem anderen Auto hinten, links oder rechts getroffen, so gibt es einen Minuspunkt.
+ * Ziel ist es möglichst viele Punkte zu sammeln.
+ * 
+ * Wenn ein Auto die Maximalpunktezahl (10) erreicht hat,
+ * oder ein Auto eine Maximalzahl an Feldwechseln ausgeführt hat,
+ * geben Sie von allen Autos die Punktezahl aus und beenden alle Threads.
+ * 
+ * Verwenden Sie Thread.interrupt() um einen Thread zu unterbrechen,
+ * geben Sie den Namen und den Punktestand aus, und beenden Sie den Thread.
  * the Track on which the car is placed
+ * 
+ * Die Autos bewegen sich mit unterschiedlichen möglichst einfachen Strategien weiter,
+ * z.B. zufällig, oder im Kreis oder in Schlangenlinien im Kreis, aber nie über die Fahrbahn hinaus.
  * 
  * @author OOP Gruppe 187
  */
@@ -24,7 +32,7 @@ public class Track {
 	private int maxmoves;
 	private Boolean usedFields[][];
 	private AtomicBoolean gameEnded;
-	
+
 	private ArrayList<Car> lastCars;
 
 	/**
@@ -43,22 +51,23 @@ public class Track {
 		this.maxx = length;
 		this.maxy = height;
 		this.maxmoves = maxmoves;
-		this.usedFields = new Boolean[maxx][maxy];
+		this.usedFields = new Boolean[this.maxx][this.maxy];
 		this.gameEnded = new AtomicBoolean(false);
-		
+
 		this.lastCars = new ArrayList<Car>();
-		
-		for(int i = 0; i < maxx; i++) {
-			for(int j = 0; j < maxy; j++) {
-				usedFields[i][j] = new Boolean(false);
+
+		for (int i = 0; i < this.maxx; i++) {
+			for (int j = 0; j < this.maxy; j++) {
+				this.usedFields[i][j] = new Boolean(false);
 			}
 		}
 	}
 
 	/**
 	 * adds a new car to the track
+	 * 
 	 * @param car
-	 * 			the new car
+	 *            the new car
 	 */
 	public void addCar(Car car) {
 		this.cars.add(car);
@@ -95,12 +104,20 @@ public class Track {
 				if (c.getDir() == right) {
 					cc.notification(-1);
 				}
-				
+
 				crashedCars.add(cc);
 			}
-			
+
 		}
 		return crashedCars;
+	}
+
+	protected AtomicBoolean getGameEnded() {
+		return this.gameEnded;
+	}
+
+	protected ArrayList<Car> getLastCars() {
+		return this.lastCars;
 	}
 
 	/**
@@ -112,15 +129,15 @@ public class Track {
 	 *            the direction the car wants to move
 	 */
 	protected void move(Car c, int move) {
-//		System.out.println("Attempt to move with moves: " + c.getMoves());
-		
+		// System.out.println("Attempt to move with moves: " + c.getMoves());
+
 		int newx = 0;
 		int newy = 0;
 		Direction newdir = Direction.North;
-		
+
 		int previousX = c.getX();
 		int previousY = c.getY();
-		
+
 		switch (move) {
 			case 0:
 				newx = c.getX();
@@ -184,12 +201,12 @@ public class Track {
 				break;
 
 		}
-		
+
 		// check if the new coordinates are inside the game area
-		if (!((newx >= 0) && (newx < this.maxx) && (newy >= 0) && (newy < this.maxy))) { 
+		if (!((newx >= 0) && (newx < this.maxx) && (newy >= 0) && (newy < this.maxy))) {
 			c.increaseMoves();
 			if (c.getMoves() >= this.maxmoves) {
-				if(this.gameEnded.compareAndSet(false, true)) {
+				if (this.gameEnded.compareAndSet(false, true)) {
 					this.stop();
 				}
 			}
@@ -197,18 +214,18 @@ public class Track {
 		}
 
 		// sort fields to prevent deadlock
-		if(previousX < newx) {
+		if (previousX < newx) {
 			int tempX = newx;
 			newx = previousX;
 			previousX = tempX;
-		} 
-		
-		if(previousY < newy) {
+		}
+
+		if (previousY < newy) {
 			int tempY = newy;
 			newy = previousY;
 			previousY = tempY;
 		}
-		
+
 		synchronized (this.usedFields[previousX][previousY]) {
 			synchronized (this.usedFields[newx][newy]) {
 				ArrayList<Car> crashedCars;
@@ -220,15 +237,13 @@ public class Track {
 
 				/*
 				 * TODO: if the game has ended and another thread already called the 5 methods above
-				 * 			we need to roll the changes back
-				 * 
-				 * 
+				 * we need to roll the changes back
 				 * ALTERNATIVE:
-				 * 		throw interrupted exception and catch it here!
+				 * throw interrupted exception and catch it here!
 				 */
 
 				if ((c.getPoints() >= 10) || (c.getMoves() >= this.maxmoves)) {
-					if(this.gameEnded.compareAndSet(false, true)) {
+					if (this.gameEnded.compareAndSet(false, true)) {
 						this.lastCars.add(c);
 						this.lastCars.addAll(crashedCars);
 						this.stop();
@@ -244,7 +259,7 @@ public class Track {
 	public String points() {
 		StringBuilder s = new StringBuilder();
 		Car[] cc = new Car[this.cars.size()];
-		cc=this.cars.toArray(cc);
+		cc = this.cars.toArray(cc);
 		Arrays.sort(cc);
 		s.append("Results ordered by points:\n");
 		for (Car c : cc) {
@@ -280,16 +295,8 @@ public class Track {
 
 		this.notifyAll();
 		for (Thread t : this.carThread) {
-				t.interrupt();
+			t.interrupt();
 		}
 
-	}
-
-	protected AtomicBoolean getGameEnded() {
-		return gameEnded;
-	}
-
-	protected ArrayList<Car> getLastCars() {
-		return lastCars;
 	}
 }

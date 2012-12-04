@@ -3,6 +3,19 @@ import java.util.ArrayList;
 /**
  * Test class for Assignment 7
  * 
+ * Die Klasse Test soll (nicht interaktiv) Testläufe des Autodroms durchführen und die Ergebnisse in allgemein
+ * verständlicher Form in der Standardausgabe darstellen. 
+ * Bitte achten Sie darauf, dass die Testläufe nach kurzer Zeit terminieren (maximal 10 Sekunden für alle zusammen). 
+ * 
+ * Führen Sie mindestens drei Testläufe mit unterschiedlichen Einstellungen durch:
+ * Jeder Testlauf soll eine unterschiedliche Menge an
+ * Autos mit unterschiedlicher Beweglichkeit und Bewegungsstrategie
+ * vor dem Start auf unterschiedliche Felder der Fahrbahn positionieren.
+ * 
+ * Auch innerhalb eines Testlaufs sollen Autos unterschiedliche Geschwindigkeiten haben.
+ * 
+ * Stellen Sie die Parameter so ein, dass irgendwann Autos auch zusammenstoßen.
+ * 
  * @author OOP Gruppe 187
  */
 
