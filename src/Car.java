@@ -169,4 +169,18 @@ public abstract class Car implements Runnable,Comparable<Car> {
 	public int compareTo(Car arg0) {
 		return (arg0.points==this.points)?0:(arg0.points<this.points)?-1:1;
 	}
+	
+	/**
+	 * should be called when the changes have become valid
+	 */
+	protected void commitChanges() {
+		// TODO: stuff
+	}
+	
+	/**
+	 * should be called if a thread is stopped and there are pending changes
+	 */
+	protected void rollbackChanges() {
+		// TODO
+	}
 }

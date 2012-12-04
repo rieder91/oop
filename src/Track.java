@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * the Track on which the car is placed
@@ -14,6 +15,7 @@ public class Track {
 	private int maxx;
 	private int maxy;
 	private int maxmoves;
+	private AtomicBoolean usedFields[][];
 
 	/**
 	 * constructor with 3 parameter
@@ -31,6 +33,13 @@ public class Track {
 		this.maxx = length;
 		this.maxy = height;
 		this.maxmoves = maxmoves;
+		this.usedFields = new AtomicBoolean[maxx][maxy];
+
+		for(int i = 0; i < maxx; i++) {
+			for(int j = 0; j < maxy; j++) {
+				usedFields[i][j] = new AtomicBoolean(false);
+			}
+		}
 	}
 
 	/**
@@ -89,6 +98,9 @@ public class Track {
 		int newx = 0;
 		int newy = 0;
 		Direction newdir = Direction.North;
+		
+		int previousX = c.getX();
+		int previousY = c.getY();
 
 		switch (move) {
 			case 0:
@@ -153,23 +165,39 @@ public class Track {
 				break;
 
 		}
-
+		
+		// check if the new coordinates are inside the game area
 		if (!((newx >= 0) && (newx < this.maxx) && (newy >= 0) && (newy < this.maxy))) { return; }
 
+
+		// DOES NOT WORK PROPERLY
+		// SUGGESTION: use atomicinteger and save which car locks which fields!
+		while(this.usedFields[newx][newy].compareAndSet(false, true) == false &&
+				this.usedFields[previousX][previousY].compareAndSet(false, true) == false) {
+			// wait until the new field and the old field are available
+		}
+
+		c.increaseMoves();
+		c.setDir(newdir);
+		c.setX(newx);
+		c.setY(newy);
+		this.crash(c, newx, newy);
+
+
+		/*
+		 * TODO: if the game has ended and another thread already called the 5 methods above
+		 * 			we need to roll the changes back
+		 */
+
 		synchronized (this) {
-
-			c.increaseMoves();
-			c.setDir(newdir);
-			c.setX(newx);
-			c.setY(newy);
-
-			this.crash(c, newx, newy);
-
 			if ((c.getPoints() >= 10) || (c.getMoves() >= this.maxmoves)) {
 				this.stop();
+			} else {
+				// COMMIT CHANGES MADE TO CAR!
 			}
-
 		}
+		this.usedFields[newx][newy].compareAndSet(true, false);
+		this.usedFields[previousX][previousY].compareAndSet(true, false);
 
 	}
 
