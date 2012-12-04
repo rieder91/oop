@@ -43,12 +43,6 @@ public class Test2 implements Tester {
 		int sum = t.pointSum();
 		System.out.println("Punktesumme: " + sum);
 
-		if (((sum % 2) == 0) && (sum >= 0)) {
-			System.out.println("Test erfolgreich.");
-		}
-		else {
-			System.out.println("Test fehlgeschlagen.");
-		}
 	}
 
 }
