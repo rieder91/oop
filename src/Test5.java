@@ -3,17 +3,20 @@ public class Test5 implements Tester {
 
 	public void runTests() {
 		System.out.println("Test5:");
-		Track t = new Track(3, 15, 20);
-		Car c0 = new FastCar(5, new RandomStrategy(), 2, 1, Direction.South, t);
-		Car c1 = new FastCar(5, new RandomStrategy(), 2, 2, Direction.South, t);
-		Car c2 = new FastCar(5, new RandomStrategy(), 2, 3, Direction.East, t);
-		Car c3 = new FastCar(5, new RandomStrategy(), 2, 4, Direction.North, t);
-		Car c4 = new FastCar(5, new RandomStrategy(), 2, 5, Direction.North, t);
-		Car c5 = new FastCar(5, new RandomStrategy(), 2, 6, Direction.South, t);
-		Car c6 = new FastCar(5, new RandomStrategy(), 2, 7, Direction.East, t);
-		Car c7 = new FastCar(5, new RandomStrategy(), 2, 8, Direction.East, t);
-		Car c8 = new FastCar(5, new RandomStrategy(), 2, 9, Direction.East, t);
-		Car c9 = new FastCar(5, new RandomStrategy(), 2, 10, Direction.North, t);
+		
+		int waitingTime = 0;
+		
+		Track t = new Track(3, 15, 200);
+		Car c0 = new FastCar(waitingTime, new RandomStrategy(), 2, 1, Direction.South, t);
+		Car c1 = new FastCar(waitingTime, new RandomStrategy(), 2, 2, Direction.South, t);
+		Car c2 = new FastCar(waitingTime, new RandomStrategy(), 2, 3, Direction.East, t);
+		Car c3 = new FastCar(waitingTime, new RandomStrategy(), 2, 4, Direction.North, t);
+		Car c4 = new FastCar(waitingTime, new RandomStrategy(), 2, 5, Direction.North, t);
+		Car c5 = new FastCar(waitingTime, new RandomStrategy(), 2, 6, Direction.South, t);
+		Car c6 = new FastCar(waitingTime, new RandomStrategy(), 2, 7, Direction.East, t);
+		Car c7 = new FastCar(waitingTime, new RandomStrategy(), 2, 8, Direction.East, t);
+		Car c8 = new FastCar(waitingTime, new RandomStrategy(), 2, 9, Direction.East, t);
+		Car c9 = new FastCar(waitingTime, new RandomStrategy(), 2, 10, Direction.North, t);
 		t.addCar(c0);
 		t.addCar(c1);
 		t.addCar(c2);

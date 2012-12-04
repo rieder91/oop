@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * the Track on which the car is placed
@@ -15,6 +16,7 @@ public class Track {
 	private int maxy;
 	private int maxmoves;
 	private Boolean usedFields[][];
+	private AtomicBoolean gameEnded;
 
 	/**
 	 * constructor with 3 parameter
@@ -33,6 +35,7 @@ public class Track {
 		this.maxy = height;
 		this.maxmoves = maxmoves;
 		this.usedFields = new Boolean[maxx][maxy];
+		this.gameEnded = new AtomicBoolean(false);
 
 		for(int i = 0; i < maxx; i++) {
 			for(int j = 0; j < maxy; j++) {
@@ -165,7 +168,6 @@ public class Track {
 
 		}
 		
-		// TODO: i would suggest still increasing the move counter!
 		// check if the new coordinates are inside the game area
 		if (!((newx >= 0) && (newx < this.maxx) && (newy >= 0) && (newy < this.maxy))) { 
 			c.increaseMoves();
@@ -177,16 +179,12 @@ public class Track {
 			int tempX = newx;
 			newx = previousX;
 			previousX = tempX;
-		} else if(previousX >= newx) {
-			
-		}
+		} 
 		
 		if(previousY < newy) {
 			int tempY = newy;
 			newy = previousY;
 			previousY = tempY;
-		} else if(previousY >= newy) {
-			
 		}
 		
 		synchronized (this.usedFields[previousX][previousY]) {
@@ -209,9 +207,10 @@ public class Track {
 				 */
 
 				if ((c.getPoints() >= 10) || (c.getMoves() >= this.maxmoves)) {
-					this.stop();
-				} else {
-					// COMMIT CHANGES MADE TO CAR!
+					
+					if(this.gameEnded.compareAndSet(false, true)) {
+						this.stop();
+					}
 				}
 			}
 		}
@@ -262,5 +261,9 @@ public class Track {
 				t.interrupt();
 		}
 
+	}
+
+	protected AtomicBoolean getGameEnded() {
+		return gameEnded;
 	}
 }

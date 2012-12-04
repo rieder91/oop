@@ -128,12 +128,13 @@ public abstract class Car implements Runnable,Comparable<Car> {
 			} catch (InterruptedException e) {
 				return;
 			}
+			
+			
 			this.saveState();
 			this.drive();
-			if (Thread.interrupted()) {
+			if(this.t.getGameEnded().get()) {
 				this.rollbackChanges();
 			}
-
 		}
 
 	}
