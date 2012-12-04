@@ -4,9 +4,9 @@ public class Test5 implements Tester {
 	public void runTests() {
 		System.out.println("Test5:");
 		
-		int waitingTime = 0;
+		int waitingTime = 4;
 		
-		Track t = new Track(3, 15, 200);
+		Track t = new Track(3, 15, 20);
 		Car c0 = new FastCar(waitingTime, new RandomStrategy(), 2, 1, Direction.South, t);
 		Car c1 = new FastCar(waitingTime, new RandomStrategy(), 2, 2, Direction.South, t);
 		Car c2 = new FastCar(waitingTime, new RandomStrategy(), 2, 3, Direction.East, t);

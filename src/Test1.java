@@ -57,7 +57,7 @@ public class Test1 implements Tester {
 		else {
 			System.out.println("Test fehlgeschlagen.");
 		}
-
+		
 	}
 
 }

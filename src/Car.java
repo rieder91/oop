@@ -16,6 +16,7 @@ public abstract class Car implements Runnable,Comparable<Car> {
 	private int tempX;
 	private int tempY;
 	private Direction tempDir;
+	private int tempPoints;
 
 	/**
 	 * Constructor with 6 arguments
@@ -134,6 +135,7 @@ public abstract class Car implements Runnable,Comparable<Car> {
 			this.drive();
 			if(this.t.getGameEnded().get()) {
 				this.rollbackChanges();
+				return;
 			}
 		}
 
@@ -186,6 +188,7 @@ public abstract class Car implements Runnable,Comparable<Car> {
 		this.tempInc = moves;
 		this.tempX = x;
 		this.tempY = y;
+		this.tempPoints = this.points;
 	}
 	
 	/**
@@ -196,5 +199,8 @@ public abstract class Car implements Runnable,Comparable<Car> {
 		moves = tempInc;
 		x = tempX;
 		y = tempY;
+		if(!this.t.getLastCars().contains(this)) {
+			points = tempPoints;
+		}
 	}
 }

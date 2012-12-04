@@ -17,6 +17,8 @@ public class Track {
 	private int maxmoves;
 	private Boolean usedFields[][];
 	private AtomicBoolean gameEnded;
+	
+	private ArrayList<Car> lastCars;
 
 	/**
 	 * constructor with 3 parameter
@@ -36,7 +38,9 @@ public class Track {
 		this.maxmoves = maxmoves;
 		this.usedFields = new Boolean[maxx][maxy];
 		this.gameEnded = new AtomicBoolean(false);
-
+		
+		this.lastCars = new ArrayList<Car>();
+		
 		for(int i = 0; i < maxx; i++) {
 			for(int j = 0; j < maxy; j++) {
 				usedFields[i][j] = new Boolean(false);
@@ -59,8 +63,9 @@ public class Track {
 	 * @param newx
 	 * @param newy
 	 */
-	private void crash(Car c, int newx, int newy) {
+	private ArrayList<Car> crash(Car c, int newx, int newy) {
 		Direction invdir;
+		ArrayList<Car> crashedCars = new ArrayList<Car>();
 		invdir = c.getDir().invert();
 
 		Direction left, right;
@@ -83,9 +88,12 @@ public class Track {
 				if (c.getDir() == right) {
 					cc.notification(-1);
 				}
+				
+				crashedCars.add(cc);
 			}
-
+			
 		}
+		return crashedCars;
 	}
 
 	/**
@@ -97,6 +105,8 @@ public class Track {
 	 *            the direction the car wants to move
 	 */
 	protected void move(Car c, int move) {
+//		System.out.println("Attempt to move with moves: " + c.getMoves());
+		
 		int newx = 0;
 		int newy = 0;
 		Direction newdir = Direction.North;
@@ -171,6 +181,11 @@ public class Track {
 		// check if the new coordinates are inside the game area
 		if (!((newx >= 0) && (newx < this.maxx) && (newy >= 0) && (newy < this.maxy))) { 
 			c.increaseMoves();
+			if (c.getMoves() >= this.maxmoves) {
+				if(this.gameEnded.compareAndSet(false, true)) {
+					this.stop();
+				}
+			}
 			return;
 		}
 
@@ -189,13 +204,12 @@ public class Track {
 		
 		synchronized (this.usedFields[previousX][previousY]) {
 			synchronized (this.usedFields[newx][newy]) {
-
+				ArrayList<Car> crashedCars;
 				c.increaseMoves();
 				c.setDir(newdir);
 				c.setX(newx);
 				c.setY(newy);
-				this.crash(c, newx, newy);
-
+				crashedCars = this.crash(c, newx, newy);
 
 				/*
 				 * TODO: if the game has ended and another thread already called the 5 methods above
@@ -207,8 +221,9 @@ public class Track {
 				 */
 
 				if ((c.getPoints() >= 10) || (c.getMoves() >= this.maxmoves)) {
-					
 					if(this.gameEnded.compareAndSet(false, true)) {
+						this.lastCars.add(c);
+						this.lastCars.addAll(crashedCars);
 						this.stop();
 					}
 				}
@@ -265,5 +280,9 @@ public class Track {
 
 	protected AtomicBoolean getGameEnded() {
 		return gameEnded;
+	}
+
+	protected ArrayList<Car> getLastCars() {
+		return lastCars;
 	}
 }

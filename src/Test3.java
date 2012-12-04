@@ -12,7 +12,7 @@ public class Test3 implements Tester {
 	@Override
 	public void runTests() {
 		System.out.println("Test3:");
-		Track t = new Track(10, 10, 100);
+		Track t = new Track(10, 10, 50);
 		Car c1 = new ManeuverableCar(15, new RandomStrategy(), 5, 7, Direction.South, t);
 		Car c2 = new ManeuverableCar(12, new ZigzagStrategy(), 5, 5, Direction.South, t);
 		Car c3 = new ManeuverableCar(13, new ZigzagStrategy(), 5, 3, Direction.North, t);
