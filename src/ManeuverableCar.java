@@ -1,4 +1,14 @@
 /**
+ *  Das beweglichere Auto kann sich zusätzlich noch auf das Feld links 
+ *  (1) bei gleichzeitiger Änderung der Fahrtrichtung um 90° nach links und auf das Feld rechts 
+ *  (5) bei gleichzeitiger Änderung der Fahrtrichtung um 90° nach rechts bewegen.
+ *  
+ * Rückwärtsfahren (Felder (6), (7) und (8)) ist nicht möglich.
+ * 
+ * 8 1 2
+ * 7 > 3
+ * 6 5 4
+ *
  * a maneuverable car is not as fast as a fast car but therfore it is more maneuverable
  * 
  * @author OOP Gruppe 187

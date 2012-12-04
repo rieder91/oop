@@ -1,4 +1,16 @@
 /**
+ * Ein Auto befindet sich auf einem Feld und ist nach einer der vier Himmelsrichtungen 
+ * (Norden, Osten, Süden und Westen) ausgerichtet. 
+ * 
+ * Das Fahren wird in viele unterschiedlich lange dauernde Teilschritte unterteilt. 
+ * 
+ * In jedem Schritt kann sich ein Auto vom aktuellen Feld auf ein benachbartes Feld bewegen. 
+ * 
+ * Es gibt zwei Arten von Autos, ein schnelleres und ein beweglicheres.
+ * 
+ * Die Autos bewegen sich mit unterschiedlichen möglichst einfachen Strategien weiter, 
+ * z.B. zufällig, oder im Kreis oder in Schlangenlinien im Kreis, aber nie über die Fahrbahn hinaus.
+ * 
  * @author OOP Gruppe 187
  */
 public abstract class Car implements Runnable,Comparable<Car> {

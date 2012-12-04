@@ -3,6 +3,13 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
+ * 
+ * Befinden sich bereits Autos auf dem Feld, so gibt es einen Zusammenstoß. 
+ * Für jedes Auto, das man von vorne trifft, gibt es einen Bonuspunkt, 
+ * wird man von einem anderen Auto hinten, links oder rechts getroffen, so gibt es einen Minuspunkt. 
+ * Ziel ist es möglichst viele Punkte zu sammeln. 
+ *
+ *
  * the Track on which the car is placed
  * 
  * @author OOP Gruppe 187
