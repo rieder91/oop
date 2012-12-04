@@ -199,8 +199,8 @@ public abstract class Car implements Runnable,Comparable<Car> {
 		moves = tempInc;
 		x = tempX;
 		y = tempY;
-		if(!this.t.getLastCars().contains(this)) {
-			points = tempPoints;
-		}
+//		if(!this.t.getLastCars().contains(this)) {
+//			points = tempPoints;
+//		}
 	}
 }
