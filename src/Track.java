@@ -163,6 +163,7 @@ public class Track {
 
 		}
 		
+		// TODO: i would suggest still increasing the move counter!
 		// check if the new coordinates are inside the game area
 		if (!((newx >= 0) && (newx < this.maxx) && (newy >= 0) && (newy < this.maxy))) { return; }
 
@@ -173,30 +174,31 @@ public class Track {
 //				this.usedFields[previousX][previousY].compareAndSet(false, true) == false) {
 //			// wait until the new field and the old field are available
 //		}
+		synchronized (this.usedFields[c.getX()][c.getY()]) {
+			synchronized (this.usedFields[newx][newy]) {
 
-		synchronized (this.usedFields[newx][newy]) {
-
-			c.increaseMoves();
-			c.setDir(newdir);
-			c.setX(newx);
-			c.setY(newy);
-			this.crash(c, newx, newy);
+				c.increaseMoves();
+				c.setDir(newdir);
+				c.setX(newx);
+				c.setY(newy);
+				this.crash(c, newx, newy);
 
 
-			/*
-			 * TODO: if the game has ended and another thread already called the 5 methods above
-			 * 			we need to roll the changes back
-			 * 
-			 * 
-			 * ALTERNATIVE:
-			 * 		throw interrupted exception and catch it here!
-			 */
-			
-			synchronized (this) {
-				if ((c.getPoints() >= 10) || (c.getMoves() >= this.maxmoves)) {
-					this.stop();
-				} else {
-					// COMMIT CHANGES MADE TO CAR!
+				/*
+				 * TODO: if the game has ended and another thread already called the 5 methods above
+				 * 			we need to roll the changes back
+				 * 
+				 * 
+				 * ALTERNATIVE:
+				 * 		throw interrupted exception and catch it here!
+				 */
+
+				synchronized (this) {
+					if ((c.getPoints() >= 10) || (c.getMoves() >= this.maxmoves)) {
+						this.stop();
+					} else {
+						// COMMIT CHANGES MADE TO CAR!
+					}
 				}
 			}
 		}
