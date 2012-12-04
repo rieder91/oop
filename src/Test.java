@@ -21,13 +21,14 @@ public class Test {
 				+ "Aufgabe 7                                              \n"
 				+ "Gruppe 187: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
 
-		ArrayList<Tester> al = new ArrayList<Tester>();
-		al.add(new Test1());
-		al.add(new Test2());
-		al.add(new Test3());
-		al.add(new Test4());
+		ArrayList<Tester> allTests = new ArrayList<Tester>();
+		allTests.add(new Test1());
+		allTests.add(new Test2());
+		allTests.add(new Test3());
+		allTests.add(new Test4());
+		allTests.add(new Test5());
 
-		for (Tester t : al) {
+		for (Tester t : allTests) {
 			t.runTests();
 			System.out.println();
 		}
