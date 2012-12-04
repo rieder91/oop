@@ -39,7 +39,6 @@ public class Test {
 		allTests.add(new Test2());
 		allTests.add(new Test3());
 		allTests.add(new Test4());
-		allTests.add(new Test5());
 
 		for (Tester t : allTests) {
 			t.runTests();
