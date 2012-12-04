@@ -1,25 +1,25 @@
 /**
- * Von den acht benachbarten Feldern kann sich das schnellere Auto auf das nächste in Fahrtrichtung liegende Feld
+ * Von den acht benachbarten Feldern kann sich das schnellere Auto auf das naechste in Fahrtrichtung liegende Feld
  * (3, siehe das 3x3-Feld unten) nach vorne bewegen,
  * 
- * auf das Feld schräg links nach vorne (2)
- * bei gleichzeitiger Änderung der Fahrtrichtung um 90° nach links 
+ * auf das Feld schraeg links nach vorne (2)
+ * bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach links 
  * 
- * oder auf das Feld schräg rechts nach vorne (4) bei
- * gleichzeitiger Änderung der Fahrtrichtung um 90° nach rechts.
+ * oder auf das Feld schraeg rechts nach vorne (4) bei
+ * gleichzeitiger aenderung der Fahrtrichtung um 90° nach rechts.
  * 
  * 8 1 2
  * 7 > 3
  * 6 5 4
  * 
- * Das beweglichere Auto kann sich zusätzlich noch 
+ * Das beweglichere Auto kann sich zusaetzlich noch 
  * auf das Feld links
- * (1) bei gleichzeitiger Änderung der Fahrtrichtung um 90° nach links 
+ * (1) bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach links 
  * 
  * und auf das Feld rechts
- * (5) bei gleichzeitiger Änderung der Fahrtrichtung um 90° nach rechts bewegen.
+ * (5) bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach rechts bewegen.
  * 
- * Rückwärtsfahren (Felder (6), (7) und (8)) ist nicht möglich.
+ * Rueckwaertsfahren (Felder (6), (7) und (8)) ist nicht moeglich.
  * 
  * 8 1 2
  * 7 > 3

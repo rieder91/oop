@@ -1,6 +1,6 @@
 /**
  * Ein Auto befindet sich auf einem Feld und ist nach einer der vier Himmelsrichtungen
- * (Norden, Osten, Süden und Westen) ausgerichtet.
+ * (Norden, Osten, Sueden und Westen) ausgerichtet.
  * 
  * Das Fahren wird in viele unterschiedlich lange dauernde Teilschritte unterteilt.
  * 
@@ -8,8 +8,8 @@
  * 
  * Es gibt zwei Arten von Autos, ein schnelleres und ein beweglicheres.
  * 
- * Die Autos bewegen sich mit unterschiedlichen möglichst einfachen Strategien weiter,
- * z.B. zufällig, oder im Kreis oder in Schlangenlinien im Kreis, aber nie über die Fahrbahn hinaus.
+ * Die Autos bewegen sich mit unterschiedlichen moeglichst einfachen Strategien weiter,
+ * z.B. zufaellig, oder im Kreis oder in Schlangenlinien im Kreis, aber nie ueber die Fahrbahn hinaus.
  * 
  * Jedes Auto bewegt nach einer gewissen Zeit (wenige Millisekunden) von einem Feld zu einem Nachbarfeld,
  * ein schnelles Auto nach sehr wenigen Millisekunden, ein bewegliches Auto nach etwas mehr Millisekunden.

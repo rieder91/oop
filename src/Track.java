@@ -5,20 +5,20 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Befinden sich bereits Autos auf dem Feld, so gibt es einen Zusammenstoß.
  * 
- * Für jedes Auto, das man von vorne trifft, gibt es einen Bonuspunkt,
+ * Fuer jedes Auto, das man von vorne trifft, gibt es einen Bonuspunkt,
  * wird man von einem anderen Auto hinten, links oder rechts getroffen, so gibt es einen Minuspunkt.
- * Ziel ist es möglichst viele Punkte zu sammeln.
+ * Ziel ist es moeglichst viele Punkte zu sammeln.
  * 
  * Wenn ein Auto die Maximalpunktezahl (10) erreicht hat,
- * oder ein Auto eine Maximalzahl an Feldwechseln ausgeführt hat,
+ * oder ein Auto eine Maximalzahl an Feldwechseln ausgefuehrt hat,
  * geben Sie von allen Autos die Punktezahl aus und beenden alle Threads.
  * 
  * Verwenden Sie Thread.interrupt() um einen Thread zu unterbrechen,
  * geben Sie den Namen und den Punktestand aus, und beenden Sie den Thread.
  * the Track on which the car is placed
  * 
- * Die Autos bewegen sich mit unterschiedlichen möglichst einfachen Strategien weiter,
- * z.B. zufällig, oder im Kreis oder in Schlangenlinien im Kreis, aber nie über die Fahrbahn hinaus.
+ * Die Autos bewegen sich mit unterschiedlichen moeglichst einfachen Strategien weiter,
+ * z.B. zufaellig, oder im Kreis oder in Schlangenlinien im Kreis, aber nie ueber die Fahrbahn hinaus.
  * 
  * @author OOP Gruppe 187
  */

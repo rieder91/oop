@@ -1,6 +1,6 @@
 /**
- * Die Autos bewegen sich mit unterschiedlichen möglichst einfachen Strategien weiter,
- * z.B. zufällig, oder im Kreis oder in Schlangenlinien im Kreis, aber nie über die Fahrbahn hinaus.
+ * Die Autos bewegen sich mit unterschiedlichen moeglichst einfachen Strategien weiter,
+ * z.B. zufaellig, oder im Kreis oder in Schlangenlinien im Kreis, aber nie ueber die Fahrbahn hinaus.
  * 
  * Implementieren Sie zumindest zwei unterschiedliche Bewegungsstrategien.
  * 
