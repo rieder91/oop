@@ -15,7 +15,7 @@ public class Test3 implements Tester {
 		Car c1 = new ManeuverableCar(15, new RandomStrategy(), 5, 7, Direction.South, t);
 		Car c2 = new ManeuverableCar(12, new ZigzagStrategy(), 5, 5, Direction.South, t);
 		Car c3 = new ManeuverableCar(13, new ZigzagStrategy(), 5, 3, Direction.North, t);
-		Car c4 = new ManeuverableCar(12, new CircleStrategy(), 4, 5, Direction.East, t);
+		Car c4 = new ManeuverableCar(12, new LeftCircleStrategy(), 4, 5, Direction.East, t);
 		Car c5 = new ManeuverableCar(15, new RandomStrategy(), 6, 5, Direction.West, t);
 		t.addCar(c1);
 		t.addCar(c2);

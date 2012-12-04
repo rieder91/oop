@@ -3,7 +3,7 @@
  * 
  * @author OOP Gruppe 187
  */
-public class CircleStrategy implements Strategy {
+public class LeftCircleStrategy implements Strategy {
 
 	/**
 	 * @return the direction of the next move

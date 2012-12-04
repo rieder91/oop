@@ -153,6 +153,10 @@ public abstract class Car implements Runnable, Comparable<Car> {
 	}
 
 	/**
+	 * Jedes Auto bewegt nach einer gewissen Zeit (wenige Millisekunden) von einem Feld zu einem Nachbarfeld,
+	 * ein schnelles Auto nach sehr wenigen Millisekunden, ein bewegliches Auto nach etwas mehr Millisekunden.
+	 * Simulieren Sie Wartezeiten mittels der Methode Thread.sleep(n).
+	 * 
 	 * main method of the car
 	 */
 	@Override
