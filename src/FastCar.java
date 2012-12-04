@@ -38,8 +38,8 @@ public class FastCar extends Car {
 	}
 
 	@Override
-	public String getBez() {
-		return "Fast Car";
+	public String toString() {
+		return super.toString() + "Fast Car";
 	}
 
 }

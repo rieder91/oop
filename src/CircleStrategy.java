@@ -14,7 +14,7 @@ public class CircleStrategy implements Strategy {
 		return 1;
 	}
 
-	public String getBez(){
+	public String toString(){
 		return "Circle";
 	}
 }

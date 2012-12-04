@@ -35,7 +35,7 @@ public class ZigzagStrategy implements Strategy {
 		}
 	}
 	
-	public String getBez(){
+	public String toString(){
 		return "Zigzag";
 	}
 	

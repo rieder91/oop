@@ -12,6 +12,7 @@ public abstract class Car implements Runnable,Comparable<Car> {
 	private Track t;
 	private int moves;
 	
+	// used for rollback
 	private int tempInc;
 	private int tempX;
 	private int tempY;
@@ -171,10 +172,8 @@ public abstract class Car implements Runnable,Comparable<Car> {
 		this.y = y;
 	}
 
-	protected abstract String getBez();
-	
 	public String toString(){
-		return "Punkte: " + this.points + " Autotyp: " + this.getBez() + " Strategie: " + this.s.getBez();
+		return "Punkte: " + this.points + " Strategie: " + this.s + " Autotyp: ";
 	}
 	
 	@Override
