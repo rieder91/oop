@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * the Track on which the car is placed
@@ -99,6 +98,9 @@ public class Track {
 		int newy = 0;
 		Direction newdir = Direction.North;
 		
+		int previousX = c.getX();
+		int previousY = c.getY();
+		
 		switch (move) {
 			case 0:
 				newx = c.getX();
@@ -165,16 +167,29 @@ public class Track {
 		
 		// TODO: i would suggest still increasing the move counter!
 		// check if the new coordinates are inside the game area
-		if (!((newx >= 0) && (newx < this.maxx) && (newy >= 0) && (newy < this.maxy))) { return; }
+		if (!((newx >= 0) && (newx < this.maxx) && (newy >= 0) && (newy < this.maxy))) { 
+			c.increaseMoves();
+			return;
+		}
 
-
-		// DOES NOT WORK PROPERLY
-		// SUGGESTION: use atomicinteger and save which car locks which fields!
-//		while(this.usedFields[newx][newy].compareAndSet(false, true) == false &&
-//				this.usedFields[previousX][previousY].compareAndSet(false, true) == false) {
-//			// wait until the new field and the old field are available
-//		}
-		synchronized (this.usedFields[c.getX()][c.getY()]) {
+		// sort fields to prevent deadlock
+		if(previousX < newx) {
+			int tempX = newx;
+			newx = previousX;
+			previousX = tempX;
+		} else if(previousX >= newx) {
+			
+		}
+		
+		if(previousY < newy) {
+			int tempY = newy;
+			newy = previousY;
+			previousY = tempY;
+		} else if(previousY >= newy) {
+			
+		}
+		
+		synchronized (this.usedFields[previousX][previousY]) {
 			synchronized (this.usedFields[newx][newy]) {
 
 				c.increaseMoves();
@@ -193,12 +208,10 @@ public class Track {
 				 * 		throw interrupted exception and catch it here!
 				 */
 
-				synchronized (this) {
-					if ((c.getPoints() >= 10) || (c.getMoves() >= this.maxmoves)) {
-						this.stop();
-					} else {
-						// COMMIT CHANGES MADE TO CAR!
-					}
+				if ((c.getPoints() >= 10) || (c.getMoves() >= this.maxmoves)) {
+					this.stop();
+				} else {
+					// COMMIT CHANGES MADE TO CAR!
 				}
 			}
 		}
@@ -242,11 +255,11 @@ public class Track {
 	/**
 	 * stops the game
 	 */
-	private void stop() {
+	private synchronized void stop() {
 
 		this.notifyAll();
 		for (Thread t : this.carThread) {
-			t.interrupt();
+				t.interrupt();
 		}
 
 	}

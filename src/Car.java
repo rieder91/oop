@@ -11,6 +11,11 @@ public abstract class Car implements Runnable,Comparable<Car> {
 	private int points;
 	private Track t;
 	private int moves;
+	
+	private int tempInc;
+	private int tempX;
+	private int tempY;
+	private Direction tempDir;
 
 	/**
 	 * Constructor with 6 arguments
@@ -38,6 +43,7 @@ public abstract class Car implements Runnable,Comparable<Car> {
 		this.t = t;
 		this.moves = 0;
 	}
+	
 
 	/**
 	 * 
@@ -119,10 +125,13 @@ public abstract class Car implements Runnable,Comparable<Car> {
 		while (true) {
 			try {
 				Thread.sleep(this.interval);
-				this.drive();
-			}
-			catch (InterruptedException e) {
+			} catch (InterruptedException e) {
 				return;
+			}
+			this.saveState();
+			this.drive();
+			if (Thread.interrupted()) {
+				this.rollbackChanges();
 			}
 
 		}
@@ -170,17 +179,21 @@ public abstract class Car implements Runnable,Comparable<Car> {
 		return (arg0.points==this.points)?0:(arg0.points<this.points)?-1:1;
 	}
 	
-	/**
-	 * should be called when the changes have become valid
-	 */
-	protected void commitChanges() {
-		// TODO: stuff
+	
+	protected void saveState() {
+		this.tempDir = dir;
+		this.tempInc = moves;
+		this.tempX = x;
+		this.tempY = y;
 	}
 	
 	/**
 	 * should be called if a thread is stopped and there are pending changes
 	 */
 	protected void rollbackChanges() {
-		// TODO
+		dir = this.tempDir;
+		moves = tempInc;
+		x = tempX;
+		y = tempY;
 	}
 }
