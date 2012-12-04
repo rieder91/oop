@@ -93,7 +93,7 @@ public class Track {
 				right = cc.getDir().right();
 
 				if (invdir == cc.getDir()) {
-					cc.notification(1);
+					c.notification(1);
 				}
 				if (c.getDir() == cc.getDir()) {
 					cc.notification(-1);
