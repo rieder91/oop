@@ -29,14 +29,22 @@ public class Test {
 		myList.add(new Double(25));
 		
 		Bauernhof b = new Bauernhof("Tony's Freilandeier");
+		//Bauernhof b2 = new Bauernhof("Tony's Freilandmilch");
+
 		Traktor t = new DieselTraktor("Diesel #1");
 		b.addTraktor(t);
 		b.addTraktor(bio);
 //		b.removeTraktor(2);
 		
-		System.out.println();
+		System.out.println(myList.searchFor(25.0));
 		
-		System.out.println(b);
+//		System.out.println(bio.equals("blabla"));
+//		
+//		System.out.println(b.equals("Tony's Freilandeier"));
+//		
+//		System.out.println();
+//		
+//		System.out.println(b);
 
 	}
 }

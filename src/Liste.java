@@ -1,4 +1,3 @@
-import java.util.Iterator;
 
 
 
@@ -18,6 +17,18 @@ public class Liste {
 	private Liste(Object o, Liste previous) {
 		this.value = o;
 		this.previous = previous;
+	}
+	
+	public Object searchFor(Object o) {
+		MyIterator it = iterator();
+			while(it.hasNext()) {
+				Object next = it.next();
+				if(next.equals(o)) {
+					return next;
+				}
+			}
+			return null;
+		
 	}
 	
 	public void add(Object o) {

@@ -3,7 +3,7 @@
 public abstract class Traktor {
 
 	private String name;
-	private final int nummer;
+	private final Integer nummer;
 	private int betriebsstunden;
 	private TraktorGeraet geraet;
 	
@@ -22,6 +22,14 @@ public abstract class Traktor {
 		this.nummer=runningSerial;
 		// increase running serial to keep it unique
 		Traktor.runningSerial++;
+	}
+	
+	// TODO proper equals
+	public boolean equals(Object query) {
+		if(Integer.class.isAssignableFrom(query.getClass())) {
+			return ((Integer) query).equals(nummer);
+		}
+		return false;
 	}
 	
 	//TODO sanity check
