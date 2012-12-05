@@ -27,11 +27,9 @@ public class Test {
 //		System.out.println(bio.getDuengerCapacity());
 		
 		
-		Liste myList = new Liste(new Double(5), Double.class);
+		Liste myList = new Liste();
 		myList.add(new Double(10));
 		myList.add(new Double(15));
-		System.out.println("FAIL");
-		myList.add(new Object());
 		
 
 	}
