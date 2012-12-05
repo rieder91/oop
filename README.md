@@ -21,14 +21,16 @@ _WS2012, Vienna University of Technology_
     - generics and iterators 
  - Assignment 6
     - Covariance
+  - Assignment 7
+    - Exceptions and Threads
+ 
 
 ## WIP
- - Assignment 7
-    - Exceptions and Threads
-
+ - Assignment 8
+    - Annotations, generics and dynamic typing
 
 ## TODO
- - Assignment 8 - 9
+ - Assignment 9
  
 ## Syllabus
  - Überblick über das objektorientierte Programmierparadigma und entsprechende Programmiersprachen
@@ -42,6 +44,7 @@ _WS2012, Vienna University of Technology_
  
 ## Contact
  - Thomas Rieder
+ 	- [Blog](http://thomasrieder.github.com)
     - via twitter: [My Profile](https://twitter.com/#!/thomasrieder)
     - via email: thomasrieder _at_ aon _dot_ at
  - Markus Zisser
