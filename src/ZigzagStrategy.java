@@ -8,13 +8,19 @@ public class ZigzagStrategy implements Strategy {
 	private boolean last, beforelast;
 	private boolean left;
 
+	/**
+	 * default constructor
+	 */
 	public ZigzagStrategy() {
 		this.last = false;
 		this.beforelast = false;
 	}
 
 	/**
-	 * @return the direction of the next move
+	 * used to get the next move direction 
+	 * 
+	 * @return the direction of the next move (between -1 and 1)
+	 * 		2 times -1 and then 2 times 1
 	 */
 	@Override
 	public int next() {

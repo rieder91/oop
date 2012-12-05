@@ -11,7 +11,7 @@
 public interface Strategy {
 
 	/**
-	 * @return the direction of the next move
+	 * @return the direction of the next move ( the value is between -2 and 2)
 	 */
 	public int next();
 }

@@ -33,8 +33,9 @@ public class Test {
 				+ "Datum: 28.11.2012                                      \n"
 				+ "Aufgabe 7                                              \n"
 				+ "Gruppe 187: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
-
-		ArrayList<Tester> allTests = new ArrayList<Tester>();
+		ArrayList<Tester> allTests;
+		for(int i=0;i<15;i++){
+		allTests = new ArrayList<Tester>();
 		allTests.add(new Test1());
 		allTests.add(new Test2());
 		allTests.add(new Test3());
@@ -43,7 +44,7 @@ public class Test {
 		for (Tester t : allTests) {
 			t.runTests();
 			System.out.println();
-		}
+		}}
 
 	}
 }

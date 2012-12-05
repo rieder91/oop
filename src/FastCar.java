@@ -3,7 +3,7 @@
  * (3, siehe das 3x3-Feld unten) nach vorne bewegen,
  * 
  * auf das Feld schraeg links nach vorne (2)
- * bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach links 
+ * bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach links
  * 
  * oder auf das Feld schraeg rechts nach vorne (4) bei
  * gleichzeitiger aenderung der Fahrtrichtung um 90° nach rechts.
@@ -40,6 +40,9 @@ public class FastCar extends Car {
 		super(ival, s, x, y, dir, t);
 	}
 
+	/**
+	 * bewegt sich schraeg links, geradeaus oder schraeg rechts
+	 */
 	@Override
 	protected void drive() {
 		int nextmove = this.getStrategy().next();

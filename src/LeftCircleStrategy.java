@@ -6,7 +6,8 @@
 public class LeftCircleStrategy implements Strategy {
 
 	/**
-	 * @return the direction of the next move
+	 * 
+	 * @return the direction of the next move(everytime 1)
 	 */
 	@Override
 	public int next() {

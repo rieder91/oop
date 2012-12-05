@@ -80,6 +80,15 @@ public enum Direction {
 		return dir;
 	}
 
+	/**
+	 * converts the Direction to integer
+	 * 
+	 * @return the number representation of the Direction
+	 * 	-West = 6
+	 *  -East = 2
+	 *  -North = 0
+	 *  -South = 4
+	 */
 	public int toNumber() {
 		int num = 0;
 		switch (this) {

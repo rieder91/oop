@@ -80,7 +80,7 @@ public abstract class Car implements Runnable, Comparable<Car> {
 	}
 
 	/**
-	 * @return the number of moves the car made
+	 * @return the number of moves the car made (>=0)
 	 */
 	protected int getMoves() {
 		return this.moves;
@@ -179,6 +179,9 @@ public abstract class Car implements Runnable, Comparable<Car> {
 
 	}
 
+	/**
+	 * saves the current state
+	 */
 	protected void saveState() {
 		this.tempDir = this.dir;
 		this.tempInc = this.moves;

@@ -3,7 +3,7 @@
  * (3, siehe das 3x3-Feld unten) nach vorne bewegen,
  * 
  * auf das Feld schraeg links nach vorne (2)
- * bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach links 
+ * bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach links
  * 
  * oder auf das Feld schraeg rechts nach vorne (4) bei
  * gleichzeitiger aenderung der Fahrtrichtung um 90° nach rechts.
@@ -12,9 +12,9 @@
  * 7 > 3
  * 6 5 4
  * 
- * Das beweglichere Auto kann sich zusaetzlich noch 
+ * Das beweglichere Auto kann sich zusaetzlich noch
  * auf das Feld links
- * (1) bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach links 
+ * (1) bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach links
  * 
  * und auf das Feld rechts
  * (5) bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach rechts bewegen.
@@ -51,6 +51,9 @@ public class ManeuverableCar extends Car {
 		super(ival, s, x, y, dir, t);
 	}
 
+	/**
+	 * beweg sich auf das feld rechts , schraeg rechts, geradeaus, schraeg links oder links
+	 */
 	@Override
 	protected void drive() {
 		int nextmove = this.getStrategy().next();

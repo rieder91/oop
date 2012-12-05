@@ -75,9 +75,11 @@ public class Track {
 	}
 
 	/**
-	 * @param c
-	 * @param newx
-	 * @param newy
+	 * calculates the points the cars get
+	 * 
+	 * @param c the car that moved
+	 * @param newx the x position of the move
+	 * @param newy the y position of the move
 	 */
 	private ArrayList<Car> crash(Car c, int newx, int newy) {
 		Direction invdir;
@@ -112,16 +114,25 @@ public class Track {
 		return crashedCars;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	protected AtomicBoolean getGameEnded() {
 		return this.gameEnded;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	protected ArrayList<Car> getLastCars() {
 		return this.lastCars;
 	}
 
 	/**
 	 * moves the car in the given direction
+	 * if the car wants to move outside of the track nothing happens
 	 * 
 	 * @param c
 	 *            the car that moves
