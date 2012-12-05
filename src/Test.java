@@ -20,17 +20,23 @@ public class Test {
 				+ "Gruppe 187: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
 		
 		BiogasTraktor bio = new BiogasTraktor("Bio #1");
-//		System.out.println(bio.getDuengerCapacity());
-		
 		bio.setEinsatzart(new Duengerstreuer(5));
-		
-//		System.out.println(bio.getDuengerCapacity());
-		
 		
 		Liste myList = new Liste();
 		myList.add(new Double(10));
 		myList.add(new Double(15));
+		myList.add(new Double(20));
+		myList.add(new Double(25));
 		
+		Bauernhof b = new Bauernhof("Tony's Freilandeier");
+		Traktor t = new DieselTraktor("Diesel #1");
+		b.addTraktor(t);
+		b.addTraktor(bio);
+//		b.removeTraktor(2);
+		
+		System.out.println();
+		
+		System.out.println(b);
 
 	}
 }

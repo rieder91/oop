@@ -54,4 +54,22 @@ public abstract class Traktor {
 			return 0.0;
 		}
 	}
+
+	public int getNummer() {
+		return nummer;
+	}
+	
+	public String toString() {
+		StringBuilder ret = new StringBuilder();
+		ret.append("Name: " + name);
+		ret.append("; Nummer: " + nummer);
+		ret.append("; Betriebsstunden: " + betriebsstunden);
+		ret.append("; Geraet: ");
+		if(geraet == null) {
+			ret.append("keines");
+		} else {
+			ret.append(geraet);
+		}
+		return ret.toString();
+	}
 }

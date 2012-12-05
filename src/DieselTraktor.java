@@ -18,4 +18,8 @@ public class DieselTraktor extends Traktor {
 	protected void incrFuel (int liter){
 		this.liter+=liter;
 	}
+	
+	public String toString() {
+		return super.toString() + "; Typ: Dieseltraktor; Dieselverbrauch: " + liter;
+	}
 }

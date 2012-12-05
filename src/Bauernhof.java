@@ -1,18 +1,29 @@
 
 public class Bauernhof {
-	
+	private final String name;
 	private Liste traktoren;
 	
-	public Bauernhof() {
-		
+	public Bauernhof(String name) {
+		this.name = name;
+		traktoren = new Liste();
 	}
 	
-	public void addTraktor() {
-		
+	public void addTraktor(Traktor t) {
+		traktoren.add(t);
 	}
 	
-	public Traktor removeTraktor() {
-		return null;
+	public void removeTraktor(int serial) {
+		MyIterator it = traktoren.iterator();
+		while(it.hasNext()) {
+			Traktor t = (Traktor) it.next();
+			if(t.getNummer() == serial) {
+				it.remove();
+			}
+		}
+	}
+	
+	public String toString() {
+		return traktoren.toString();
 	}
 	
 	public void increaseHours(int serial, int hours) {
@@ -23,20 +34,16 @@ public class Bauernhof {
 		
 	}
 	
-	public int getDiesel(Traktor t) {
-		return 0;
-	}
-	
 	public int getDiesel(int serial) {
-		return 0;
-	}
-	
-	public double getGas(Traktor t) {
 		return 0;
 	}
 	
 	public double getGas(int serial) {
 		return 0;
+	}
+
+	public String getName() {
+		return name;
 	}
 	
 	

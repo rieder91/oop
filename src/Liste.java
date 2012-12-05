@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 
 
 public class Liste {
@@ -32,7 +34,21 @@ public class Liste {
 		return new ListIterator(this);
 	}
 	
-	private class ListIterator {
+	public String toString() {
+		String ret = "[";
+		
+		MyIterator it = iterator();
+		while(it.hasNext()) {
+			ret += it.next();
+			if(it.hasNext()) {
+				ret += ",\n ";
+			}
+		}
+		
+		return ret + "]";
+	}
+	
+	private class ListIterator implements MyIterator {
 		
 		Liste current;
 		Liste lastReturned;
@@ -43,9 +59,7 @@ public class Liste {
 		}
 		
 		public boolean hasNext() {
-			if(current.value == null) {
-				return false;
-			} else if (current.next == null) {
+			if(current == null || current.value == null) {
 				return false;
 			} else {
 				return true;
@@ -56,7 +70,12 @@ public class Liste {
 			if(hasNext()) {
 				Object tmp = current.value;
 				lastReturned = current;
-				current = current.next;
+				if(current.next == null) {
+					current = null;
+				} else {
+					current = current.next;
+				}
+
 				return tmp;
 			} else  {
 				return null;
@@ -71,15 +90,22 @@ public class Liste {
 				lastReturned.previous.next = null;
 			} else if(lastReturned.previous == null) {
 				lastReturned.value = lastReturned.next.value;
+				
+				
 				if(lastReturned.next.next != null) {
 					lastReturned.next.next.previous = lastReturned;
+				} else {
+					lastReturned.next.previous = null;
 				}
+				
 				lastReturned.next = lastReturned.next.next;
+				
+				current = lastReturned;
 			} else {
 				lastReturned.previous.next = lastReturned.next;
 				lastReturned.next.previous = lastReturned.previous;
 			}
+			lastReturned = null;
 		}
 	}
-	
 }

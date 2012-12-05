@@ -15,5 +15,8 @@ public class Drillmaschine implements TraktorGeraet {
 		return this.anz;
 	}
 	
+	public String toString() {
+		return "Drillmaschine mit " + anz + " Saescharen";
+	}
 	
 }

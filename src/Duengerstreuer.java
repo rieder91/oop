@@ -15,5 +15,8 @@ public class Duengerstreuer implements TraktorGeraet {
 		return this.kapazitaet;
 	}
 	
+	public String toString() {
+		return "Duengerstreuer mit " + kapazitaet + "l Fassungsvolumen";
+	}
 	
 }

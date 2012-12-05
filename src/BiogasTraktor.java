@@ -18,4 +18,8 @@ public class BiogasTraktor extends Traktor {
 	protected void incrFuel (double kubikmeter){
 		this.kubikmeter+=kubikmeter;
 	}
+	
+	public String toString() {
+		return super.toString() + "; Typ: BiogasTraktor; Gasverbrauch: " + kubikmeter;
+	}
 }
