@@ -34,7 +34,6 @@ public class Test {
 				+ "Aufgabe 7                                              \n"
 				+ "Gruppe 187: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
 		ArrayList<Tester> allTests;
-		for(int i=0;i<15;i++){
 		allTests = new ArrayList<Tester>();
 		allTests.add(new Test1());
 		allTests.add(new Test2());
@@ -44,7 +43,7 @@ public class Test {
 		for (Tester t : allTests) {
 			t.runTests();
 			System.out.println();
-		}}
+		}
 
 	}
 }
