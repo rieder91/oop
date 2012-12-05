@@ -246,13 +246,6 @@ public class Track {
 				c.setY(newy);
 				crashedCars = this.crash(c, newx, newy);
 
-				/*
-				 * TODO: if the game has ended and another thread already called the 5 methods above
-				 * we need to roll the changes back
-				 * ALTERNATIVE:
-				 * throw interrupted exception and catch it here!
-				 */
-
 				if ((c.getPoints() >= 10) || (c.getMoves() >= this.maxmoves)) {
 					if (this.gameEnded.compareAndSet(false, true)) {
 						this.lastCars.add(c);
