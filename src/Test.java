@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * 
  * Auch innerhalb eines Testlaufs sollen Autos unterschiedliche Geschwindigkeiten haben.
  * 
- * Stellen Sie die Parameter so ein, dass irgendwann Autos auch zusammenstoﬂen.
+ * Stellen Sie die Parameter so ein, dass irgendwann Autos auch zusammenstossen.
  * 
  * @author OOP Gruppe 187
  */
