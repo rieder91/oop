@@ -21,8 +21,8 @@ _WS2012, Vienna University of Technology_
     - generics and iterators 
  - Assignment 6
     - Covariance
-  - Assignment 7
-    - Exceptions and Threads
+ - Assignment 7
+	- Exceptions and Threads
  
 
 ## WIP
