@@ -166,6 +166,7 @@ public abstract class Car implements Runnable, Comparable<Car> {
 				Thread.sleep(this.interval);
 			}
 			catch (InterruptedException e) {
+				this.rollbackChanges();
 				return;
 			}
 
