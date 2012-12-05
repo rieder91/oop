@@ -1,7 +1,7 @@
 
 
 public class Duengerstreuer implements TraktorGeraet {
-	private Double kapazitaet;
+	private double kapazitaet;
 
 	/**
 	 * @param kapazitaet
@@ -11,8 +11,7 @@ public class Duengerstreuer implements TraktorGeraet {
 		this.kapazitaet = kapazitaet;
 	}
 
-	@Override
-	public Object getDetail() {
+	public double getDetail() {
 		return this.kapazitaet;
 	}
 	

@@ -5,8 +5,8 @@ public class BiogasTraktor extends Traktor {
 	private double kubikmeter;
 	
 	//TODO sanity check
-	public BiogasTraktor (String name, int nummer){
-		super(name,nummer);
+	public BiogasTraktor (String name){
+		super(name);
 		this.kubikmeter=0.0;
 	}
 	

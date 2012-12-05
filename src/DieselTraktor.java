@@ -5,8 +5,8 @@ public class DieselTraktor extends Traktor {
 	private int liter;
 	
 	//TODO sanity check
-	public DieselTraktor(String name, int nummer){
-		super(name,nummer);
+	public DieselTraktor(String name){
+		super(name);
 		liter=0;
 	}
 	

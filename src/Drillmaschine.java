@@ -1,7 +1,7 @@
 
 
 public class Drillmaschine implements TraktorGeraet {
-	private Integer anz;
+	private int anz;
 
 	/**
 	 * @param anz
@@ -11,8 +11,7 @@ public class Drillmaschine implements TraktorGeraet {
 		this.anz = anz;
 	}
 
-	@Override
-	public Object getDetail() {
+	public int getDetail() {
 		return this.anz;
 	}
 	
