@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Befinden sich bereits Autos auf dem Feld, so gibt es einen Zusammenstoﬂ.
+ * Befinden sich bereits Autos auf dem Feld, so gibt es einen Zusammenstoss.
  * 
  * Fuer jedes Auto, das man von vorne trifft, gibt es einen Bonuspunkt,
  * wird man von einem anderen Auto hinten, links oder rechts getroffen, so gibt es einen Minuspunkt.

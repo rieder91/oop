@@ -3,10 +3,10 @@
  * (3, siehe das 3x3-Feld unten) nach vorne bewegen,
  * 
  * auf das Feld schraeg links nach vorne (2)
- * bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach links
+ * bei gleichzeitiger aenderung der Fahrtrichtung um 90 Grad nach links
  * 
  * oder auf das Feld schraeg rechts nach vorne (4) bei
- * gleichzeitiger aenderung der Fahrtrichtung um 90° nach rechts.
+ * gleichzeitiger aenderung der Fahrtrichtung um 90 Grad nach rechts.
  * 
  * 8 1 2
  * 7 > 3
@@ -14,10 +14,10 @@
  * 
  * Das beweglichere Auto kann sich zusaetzlich noch
  * auf das Feld links
- * (1) bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach links
+ * (1) bei gleichzeitiger aenderung der Fahrtrichtung um 90 Grad nach links
  * 
  * und auf das Feld rechts
- * (5) bei gleichzeitiger aenderung der Fahrtrichtung um 90° nach rechts bewegen.
+ * (5) bei gleichzeitiger aenderung der Fahrtrichtung um 90 Grad nach rechts bewegen.
  * 
  * Rueckwaertsfahren (Felder (6), (7) und (8)) ist nicht moeglich.
  * 
@@ -25,7 +25,7 @@
  * 7 > 3
  * 6 5 4
  * 
- * a maneuverable car is not as fast as a fast car but therfore it is more maneuverable
+ * a maneuverable car is not as fast as a fast car but therefore it is more maneuverable
  * 
  * @author OOP Gruppe 187
  */
