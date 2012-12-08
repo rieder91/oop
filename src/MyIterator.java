@@ -4,19 +4,19 @@
  * @author Dominic
  * 
  */
-@Creator(name = "Dominic", lastUpdate = "08.12.2012")
+@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 public interface MyIterator {
 
 	/**
 	 * @return true if there is a next element
 	 */
-	@Creator(name = "Dominic", lastUpdate = "08.12.2012")
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	public boolean hasNext();
 
 	/**
 	 * removes the element which was last returned by next()
 	 */
-	@Creator(name = "Dominic", lastUpdate = "08.12.2012")
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	public void remove();
 
 	/**
@@ -24,6 +24,6 @@ public interface MyIterator {
 	 * 
 	 * @return next element
 	 */
-	@Creator(name = "Dominic", lastUpdate = "08.12.2012")
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	public Object next();
 }

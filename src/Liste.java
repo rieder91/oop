@@ -1,38 +1,65 @@
-
 /**
- * a list that is not type-safe
+ * a doubly linked list that is not type-safe - obviously as type-parameters are
+ * forbidden
  * 
  * in our case the client ensure that everything is type-safe (the same way the
- * list is implemented in the Skriptum)
+ * list is implemented in the Skriptum 3.3.2)
  * 
- * @author Thomas
+ * @author Dominic
  * 
  */
-@Creator()
+@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 public class Liste {
 	private Object value;
 	private Liste next;
 	private Liste previous;
 
-	@Creator()
+	/**
+	 * default constructor for an empty list
+	 */
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	public Liste() {
 		next = null;
 		previous = null;
 		value = null;
 	}
 
-	@Creator()
+	/**
+	 * default constructor for a list with one element
+	 * 
+	 * @param o
+	 *            first element
+	 */
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	public Liste(Object o) {
 		this(o, null);
 	}
 
-	@Creator()
+	/**
+	 * private constructor used to append new elements
+	 * 
+	 * @param o
+	 *            new element
+	 * @param previous
+	 *            previous element
+	 */
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	private Liste(Object o, Liste previous) {
 		this.value = o;
 		this.previous = previous;
 	}
 
-	@Creator()
+	/**
+	 * searches for an returns an object that is equal to the argument - if it
+	 * exists
+	 * 
+	 * @param o
+	 *            object which is searched for
+	 * @return the object if one is found - null otherwise
+	 * 
+	 *         NOTE: used to search a list for a traktor given only the serial
+	 */
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	public Object searchFor(Object o) {
 		MyIterator it = iterator();
 		while (it.hasNext()) {
@@ -45,7 +72,13 @@ public class Liste {
 
 	}
 
-	@Creator()
+	/**
+	 * adds an object to the list - type-safety has to be ensured by the client
+	 * 
+	 * @param o
+	 *            new object
+	 */
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	public void add(Object o) {
 		if (value == null) {
 			value = o;
@@ -56,12 +89,20 @@ public class Liste {
 		}
 	}
 
-	@Creator()
+	/**
+	 * returns an iterator to traverse the list
+	 * 
+	 * @return iterator
+	 */
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	public MyIterator iterator() {
 		return new ListIterator(this);
 	}
 
-	@Creator()
+	/**
+	 * string representation of the list for easier debugging
+	 */
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	public String toString() {
 		StringBuilder ret = new StringBuilder("[");
 
@@ -78,32 +119,45 @@ public class Liste {
 		return ret.toString();
 	}
 
-	@Creator()
+	/**
+	 * returns true if the list contains an object
+	 * 
+	 * @param o
+	 *            object which we seek
+	 * @return true if the list contains the object
+	 */
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	public boolean contains(Object o) {
-		MyIterator it = new ListIterator(this);
-
-		while (it.hasNext()) {
-			if (it.next().equals(o)) {
-				return true;
-			}
-		}
-
-		return false;
+		return this.searchFor(o) != null ? true : false;
 	}
 
-	@Creator()
+	/**
+	 * nested class for the iterator to access the list elements
+	 * 
+	 * @author Dominic
+	 * 
+	 */
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	private class ListIterator implements MyIterator {
 
 		private Liste current;
 		private Liste lastReturned;
 
-		@Creator()
+		/**
+		 * default constructor which takes the list over which we are going to
+		 * iterator as an argument
+		 * 
+		 * @param l
+		 *            target list
+		 */
+		@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 		public ListIterator(Liste l) {
 			current = l;
 			lastReturned = null;
 		}
 
-		@Creator()
+		@Override
+		@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 		public boolean hasNext() {
 			if (current == null || current.value == null) {
 				return false;
@@ -112,7 +166,8 @@ public class Liste {
 			}
 		}
 
-		@Creator()
+		@Override
+		@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 		public Object next() {
 			if (hasNext()) {
 				Object tmp = current.value;
@@ -129,14 +184,20 @@ public class Liste {
 			}
 
 		}
-		
-		@Creator()
+
+		@Override
+		@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 		public void remove() {
 			if (lastReturned.next == null && lastReturned.previous == null) {
+
 				lastReturned.value = null;
+
 			} else if (lastReturned.next == null) {
+
 				lastReturned.previous.next = null;
+
 			} else if (lastReturned.previous == null) {
+
 				lastReturned.value = lastReturned.next.value;
 
 				if (lastReturned.next.next != null) {
@@ -149,9 +210,12 @@ public class Liste {
 
 				current = lastReturned;
 			} else {
+
 				lastReturned.previous.next = lastReturned.next;
 				lastReturned.next.previous = lastReturned.previous;
+
 			}
+
 			lastReturned = null;
 		}
 	}
