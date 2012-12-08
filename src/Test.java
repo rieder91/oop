@@ -22,7 +22,7 @@ public class Test {
 		
 		Liste myTests = new Liste();
 		myTests.add(new BauernhofTester());
-		myTests.add(new AnnotationTester());
+//		myTests.add(new AnnotationTester());
 		
 		MyIterator it = myTests.iterator();
 		
