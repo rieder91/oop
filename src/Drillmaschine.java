@@ -1,22 +1,24 @@
 
-
 public class Drillmaschine implements TraktorGeraet {
 	private int anz;
 
 	/**
 	 * @param anz
 	 */
-	//TODO sanity check
 	public Drillmaschine(int anz) {
-		this.anz = anz;
+		if (anz > 0) {
+			this.anz = anz;
+		} else {
+			anz = 0;
+		}
 	}
 
-	public int getDetail() {
+	public Object getDetail() {
 		return this.anz;
 	}
-	
+
 	public String toString() {
 		return "Drillmaschine mit " + anz + " Saescharen";
 	}
-	
+
 }

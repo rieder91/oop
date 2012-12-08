@@ -1,22 +1,24 @@
 
-
 public class Duengerstreuer implements TraktorGeraet {
 	private double kapazitaet;
 
 	/**
 	 * @param kapazitaet
 	 */
-	//TODO sanity check
 	public Duengerstreuer(double kapazitaet) {
-		this.kapazitaet = kapazitaet;
+		if (kapazitaet > 0) {
+			this.kapazitaet = kapazitaet;
+		} else {
+			kapazitaet = 0.0;
+		}
 	}
 
-	public double getDetail() {
+	public Object getDetail() {
 		return this.kapazitaet;
 	}
-	
+
 	public String toString() {
 		return "Duengerstreuer mit " + kapazitaet + "l Fassungsvolumen";
 	}
-	
+
 }
