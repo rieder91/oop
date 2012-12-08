@@ -1,12 +1,18 @@
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
+/**
+ * prints the annotations for all classes and their methods
+ * 
+ * @author Thomas
+ * 
+ */
 @Creator(name = "Thomas", lastUpdate = "08.12.2012")
 public class AnnotationTester implements Tester{
 	
+	@Override
 	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	public void runTests() {
-		
 		System.out.println("=== " + Bauernhof.class.getName() + " ===");
 		displayAnnotations(Bauernhof.class.getAnnotations());
 		System.out.println();
@@ -79,6 +85,12 @@ public class AnnotationTester implements Tester{
 		
 	}
 
+	/**
+	 * prints the annotations in a pretty manner
+	 * 
+	 * @param a
+	 *            annotation-array (ALLOWED!)
+	 */
 	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	private void displayAnnotations(Annotation[] a) {
 		if (a != null) {
@@ -88,6 +100,12 @@ public class AnnotationTester implements Tester{
 		}
 	}
 
+	/**
+	 * prints the annotations of all methods passed as arg
+	 * 
+	 * @param m
+	 *            method-array (ALLOWED!)
+	 */
 	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	private void displayMethodAnnotations(Method[] m) {
 		if (m != null) {
