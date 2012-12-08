@@ -315,8 +315,9 @@ public class Bauernhof {
 		
 		while (it.hasNext()){
 			t=(Traktor)it.next();
-			helper = ((DieselTraktor) t).getFuel();
+			
 			if(t instanceof DieselTraktor){
+				helper = ((DieselTraktor) t).getFuel();
 				all+=helper;
 				if(t.getGeraet() instanceof Duengerstreuer){
 					fertilize+=helper;
@@ -331,7 +332,7 @@ public class Bauernhof {
 		ret.add(all);
 		ret.add(fertilize);
 		ret.add(drill);
-		return traktoren;
+		return ret;
 		
 	}
 	
@@ -355,9 +356,9 @@ public class Bauernhof {
 		
 		while (it.hasNext()){
 			t=(Traktor)it.next();
-			helper = ((BiogasTraktor) t).getFuel();
 			
 			if(t instanceof BiogasTraktor){
+				helper = ((BiogasTraktor) t).getFuel();
 				all+=helper;
 				if(t.getGeraet() instanceof Duengerstreuer){
 					fertilize+=helper;
@@ -372,7 +373,7 @@ public class Bauernhof {
 		ret.add(all);
 		ret.add(fertilize);
 		ret.add(drill);
-		return traktoren;
+		return ret;
 		
 		
 	}
