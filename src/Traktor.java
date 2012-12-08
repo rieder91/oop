@@ -43,7 +43,7 @@ public abstract class Traktor {
 	@Creator()
 	public Traktor(String name, int serial, TraktorGeraet geraet) {
 		if (usedSerials.contains(serial)) {
-			throw new RuntimeException("Serial already exists");
+			throw new RuntimeException("Traktoren-Seriennummer existiert bereits");
 		} else {
 			usedSerials.add(serial);
 		}
