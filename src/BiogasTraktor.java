@@ -1,25 +1,30 @@
 
-
 public class BiogasTraktor extends Traktor {
 
 	private double kubikmeter;
-	
-	//TODO sanity check
-	public BiogasTraktor (String name){
-		super(name);
-		this.kubikmeter=0.0;
+
+	public BiogasTraktor(String name, int serial) {
+		super(name, serial);
+		this.kubikmeter = 0.0;
 	}
-	
-	protected double getFuel (){
+
+	public BiogasTraktor(String name, int serial, TraktorGeraet geraet) {
+		super(name, serial, geraet);
+		this.kubikmeter = 0.0;
+	}
+
+	protected double getFuel() {
 		return this.kubikmeter;
 	}
-	
-	//TODO sanity check
-	protected void incrFuel (double kubikmeter){
-		this.kubikmeter+=kubikmeter;
+
+	protected void increaseFuel(double kubikmeter) {
+		if (kubikmeter > 0) {
+			this.kubikmeter += kubikmeter;
+		}
 	}
-	
+
 	public String toString() {
-		return super.toString() + "; Typ: BiogasTraktor; Gasverbrauch: " + kubikmeter;
+		return super.toString() + "; Typ: BiogasTraktor; Gasverbrauch: "
+				+ kubikmeter;
 	}
 }
