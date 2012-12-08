@@ -38,15 +38,17 @@ public class BiogasTraktor extends Traktor {
 		this.kubikmeter = 0.0;
 	}
 
+	@Override
 	@Creator(name = "Markus", lastUpdate = "07.12.2012")
-	protected double getFuel() {
+	protected Object getFuel() {
 		return this.kubikmeter;
 	}
-
+	
+	@Override
 	@Creator(name = "Markus", lastUpdate = "07.12.2012")
-	protected void increaseFuel(double kubikmeter) {
-		if (kubikmeter > 0) {
-			this.kubikmeter += kubikmeter;
+	protected void increaseFuel(Object kubikmeter) {
+		if (kubikmeter instanceof Double && (Double) kubikmeter > 0) {
+			this.kubikmeter += (Double) kubikmeter;
 		}
 	}
 

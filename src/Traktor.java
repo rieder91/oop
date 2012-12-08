@@ -143,4 +143,18 @@ public abstract class Traktor {
 		}
 		return ret.toString();
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
+	protected abstract Object getFuel();
+	
+	/**
+	 * 
+	 * @param o
+	 */
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
+	protected abstract void increaseFuel(Object o);
 }

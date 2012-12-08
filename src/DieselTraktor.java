@@ -42,7 +42,7 @@ public class DieselTraktor extends Traktor {
 	 * @return the fuel used by the tractor
 	 */
 	@Creator(name = "Markus", lastUpdate = "07.12.2012")
-	protected int getFuel() {
+	protected Object getFuel() {
 		return this.liter;
 	}
 
@@ -53,9 +53,9 @@ public class DieselTraktor extends Traktor {
 	 *            additional fuel used
 	 */
 	@Creator(name = "Markus", lastUpdate = "07.12.2012")
-	protected void increaseFuel(int liter) {
-		if (liter > 0) {
-			this.liter += liter;
+	protected void increaseFuel(Object liter) {
+		if (liter instanceof Integer && (Integer) liter > 0) {
+			this.liter += (Integer) liter;
 		}
 	}
 
