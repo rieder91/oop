@@ -46,9 +46,13 @@ public class BauernhofTester implements Tester {
 		b.increaseDieselUsage(14, 10);
 		b.increaseDieselUsage(15, 10);
 		b.increaseDieselUsage(10, 10);
+		b.increaseDieselUsage(1, 5);
+		b.increaseDieselUsage(4, 3);
 		b.increaseGasUsage(15, 10);
 		b.increaseGasUsage(14, 10);
 		b.increaseGasUsage(10, 10);
+		b.increaseGasUsage(5, 20);
+		b.increaseGasUsage(3, 25);
 
 		b.changeUsageOfTraktor(14, new Drillmaschine(10));
 
@@ -57,6 +61,13 @@ public class BauernhofTester implements Tester {
 		System.out.println(b.getSaescharenStats());
 
 		System.out.println(b.getCapacityStats());
+		
+		b.changeUsageOfTraktor(14, null);
+		b.changeUsageOfTraktor(5, null);
+		
+		System.out.println(b.avgDiesel());
+		
+		System.out.println(b.avgGas());
 
 	}
 
