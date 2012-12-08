@@ -2,37 +2,50 @@
 public class Bauernhof {
 	private final String name;
 	private Liste traktoren;
+	
 	private static Liste existingBauernhoefe = new Liste();
 	
 	public Bauernhof(String name) {
-		MyIterator it = existingBauernhoefe.iterator();
-		while(it.hasNext()) {
-			if(it.next().equals(name)) {
-				throw new RuntimeException("Bauernhofname bereits vorhanden");
-			}
+		// check if the name if unique among all other Farms
+		if(existingBauernhoefe.contains(name)) {
+			throw new RuntimeException("Bauernhofname bereits vorhanden");
+		} else {
+			existingBauernhoefe.add(name);
 		}
+
 		this.name = name;
-		existingBauernhoefe.add(name);
 		traktoren = new Liste();
 	}
 	
-	// TODO proper equals
-	public boolean equals(Object query) {
-		if(String.class.isAssignableFrom(query.getClass())) {
-			return ((String) query).equals(name);
+	public boolean equals(Object other) {
+		if(this == other) {
+			return true;
 		}
-		return false;
+		
+		if(other == null) {
+			return false;
+		}
+		
+		// only compare the name!
+		if (other.equals(this.name)) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 	
 	public void addTraktor(Traktor t) {
-		traktoren.add(t);
+		// only add traktor if a traktor with the same serial has not been added before
+		if(!this.traktoren.contains(t)) {
+			traktoren.add(t);
+		}
 	}
 	
 	public void removeTraktor(int serial) {
 		MyIterator it = traktoren.iterator();
 		while(it.hasNext()) {
-			Traktor t = (Traktor) it.next();
-			if(t.getNummer() == serial) {
+			if(it.next().equals(serial)) {
 				it.remove();
 			}
 		}
@@ -42,21 +55,108 @@ public class Bauernhof {
 		return traktoren.toString();
 	}
 	
-	public void increaseHours(int serial, int hours) {
+	protected void increaseHoursOfTraktor(int serial, int hours) {
+		Traktor t = (Traktor) traktoren.searchFor(serial);
+		
+		if(t != null && hours > 0) {
+			t.increaseHours(hours);
+		}
 		
 	}
 	
-	public void increaseHours(Traktor t, int hours) {
+	protected int getHoursOfTraktor(int serial) {
+		Traktor t = (Traktor) traktoren.searchFor(serial);
 		
+		if(t != null) {
+			return t.getHours();
+		} else {
+			return 0;
+		}
 	}
 	
-	public int getDiesel(int serial) {
-		return 0;
+	protected void increaseDieselUsage(int serial, int liters) {
+		Object t = traktoren.searchFor(serial);
+		
+		if(t != null && t instanceof DieselTraktor && liters > 0) {
+			((DieselTraktor) t).increaseFuel(liters);
+		}
 	}
 	
-	public double getGas(int serial) {
-		return 0;
+	protected int getDieselUsage(int serial) {
+		Object t = traktoren.searchFor(serial);
+		
+		if(t != null && t instanceof DieselTraktor) {
+			return ((DieselTraktor) t).getFuel();
+		} else {
+			return 0;
+		}
 	}
+	
+	protected void increaseGasUsage(int serial, double gas) {
+		Object t = traktoren.searchFor(serial);
+		
+		if(t != null && t instanceof BiogasTraktor && gas > 0.0) {
+			((BiogasTraktor) t).increaseFuel(gas);
+		}
+	}
+	
+	protected double getGasUsage(int serial) {
+		Object t = traktoren.searchFor(serial);
+
+		if (t != null && t instanceof BiogasTraktor) {
+			return ((BiogasTraktor) t).getFuel();
+		} else {
+			return 0.0;
+		}
+	}
+	
+	protected void changeUsageOfTraktor(int serial, TraktorGeraet geraet) {
+		Traktor t = (Traktor) traktoren.searchFor(serial);
+		
+		if(t != null) {
+			if(geraet == null) {
+				t.dismantle();
+			} else {
+				t.setEinsatzart(geraet);
+			}
+		}
+	}
+	
+	protected int getSaeschareCountOfTraktor(int serial) {
+		Traktor t = ((Traktor) traktoren.searchFor(serial));
+		TraktorGeraet tg;
+
+		if(t != null) {
+			tg = t.getGeraet();
+		} else {
+			return 0;
+		}
+		
+		if(tg != null && tg instanceof Drillmaschine) {
+			return (Integer) tg.getDetail();
+		} else {
+			return 0;
+		}
+	}
+	
+	protected double getCapacityOfTraktor(int serial) {
+		Traktor t = (Traktor) traktoren.searchFor(serial);
+		TraktorGeraet tg;
+		
+		if(t != null) {
+			tg = t.getGeraet();
+		} else {
+			return 0.0;
+		}
+		
+		if(tg != null && tg instanceof Duengerstreuer) {
+			return (Double) tg.getDetail();
+		} else {
+			return 0.0;
+		}
+	}
+	
+	
 
 	public String getName() {
 		return name;
