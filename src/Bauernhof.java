@@ -44,10 +44,16 @@ public class Bauernhof {
 	// list used to save the names of all existing farms
 	private static Liste existingBauernhoefe = new Liste();
 	
-	@Creator()
+	/**
+	 * one parameter constructor
+	 * 
+	 * @param name
+	 *            name of the farm (unique)
+	 */
+	@Creator(name = "Dominic", lastUpdate = "08.12.2012")
 	public Bauernhof(String name) {
 		// check if the name if unique among all other Farms
-		if(existingBauernhoefe.contains(name)) {
+		if (existingBauernhoefe.contains(name)) {
 			throw new RuntimeException("Bauernhofname bereits vorhanden");
 		} else {
 			existingBauernhoefe.add(name);
@@ -57,155 +63,183 @@ public class Bauernhof {
 		traktoren = new Liste();
 	}
 	
-	@Creator()
+	/**
+	 * equals that only compares the name of two farms
+	 */
+	@Override
+	@Creator(name = "Dominic", lastUpdate = "08.12.2012")
 	public boolean equals(Object other) {
-		if(this == other) {
+		if (this == other) {
 			return true;
 		}
-		
-		if(other == null) {
+
+		if (other == null) {
 			return false;
 		}
-		
+
 		// only compare the name!
 		if (other.equals(this.name)) {
 			return true;
 		} else {
 			return false;
 		}
-		
+
 	}
 	
-	@Creator()
+	/**
+	 * adds a new tractor - given that it doesnt already exist
+	 * 
+	 * @param t
+	 *            new tractor
+	 */
+	@Creator(name = "Dominic", lastUpdate = "08.12.2012")
 	public void addTraktor(Traktor t) {
-		// only add traktor if a traktor with the same serial has not been added before
-		if(!this.traktoren.contains(t)) {
+		// only add traktor if a traktor with the same serial has not been added
+		// before
+		if (!this.traktoren.contains(t)) {
 			traktoren.add(t);
 		}
 	}
-	
-	@Creator()
+
+	/**
+	 * removes a tractor with the serial passed as an argument
+	 * 
+	 * @param serial
+	 *            serial of the tractor to be removed
+	 */
+	@Creator(name = "Dominic", lastUpdate = "08.12.2012")
 	public void removeTraktor(int serial) {
 		MyIterator it = traktoren.iterator();
-		while(it.hasNext()) {
-			if(it.next().equals(serial)) {
+		while (it.hasNext()) {
+			if (it.next().equals(serial)) {
 				it.remove();
 			}
 		}
 	}
 	
-	@Creator()
+	/**
+	 * returns a string representation of the farm
+	 */
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	public String toString() {
 		return traktoren.toString();
 	}
 	
+	/**
+	 * increases the working hours of a certain tractor by a certain amount
+	 * 
+	 * @param serial
+	 *            serial of the tractor whose working hours are increased
+	 * @param hours
+	 *            additional working hours
+	 */
 	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	protected void increaseHoursOfTraktor(int serial, int hours) {
 		Traktor t = (Traktor) traktoren.searchFor(serial);
-		
-		if(t != null && hours > 0) {
+
+		if (t != null && hours > 0) {
 			t.increaseHours(hours);
 		}
-		
+
 	}
 	
+	/**
+	 * returns the working hours of a tractor identified by the serial
+	 * 
+	 * @param serial
+	 *            serial of the tractor
+	 * @return working hours of the tractor
+	 */
 	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	protected int getHoursOfTraktor(int serial) {
 		Traktor t = (Traktor) traktoren.searchFor(serial);
-		
-		if(t != null) {
+
+		if (t != null) {
 			return t.getHours();
 		} else {
 			return 0;
 		}
 	}
 	
+	/**
+	 * increases the fuel usage if the tractor with the given serial exists
+	 * 
+	 * @param serial
+	 *            serial of the tractor
+	 * @param liters
+	 *            additional fuel usage
+	 */
 	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
-	protected void increaseDieselUsage(int serial, int liters) {
-		Object t = traktoren.searchFor(serial);
-		
-		if(t != null && t instanceof DieselTraktor && liters > 0) {
-			((DieselTraktor) t).increaseFuel(liters);
-		}
-	}
-	
-	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
-	protected int getDieselUsage(int serial) {
-		Object t = traktoren.searchFor(serial);
-		
-		if(t != null && t instanceof DieselTraktor) {
-			return ((DieselTraktor) t).getFuel();
-		} else {
-			return 0;
-		}
-	}
-	
-	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
-	protected void increaseGasUsage(int serial, double gas) {
-		Object t = traktoren.searchFor(serial);
-		
-		if(t != null && t instanceof BiogasTraktor && gas > 0.0) {
-			((BiogasTraktor) t).increaseFuel(gas);
-		}
-	}
-	
-	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
-	protected double getGasUsage(int serial) {
-		Object t = traktoren.searchFor(serial);
+	protected void increaseFuelUsage(int serial, Object amount) {
+		Traktor t = (Traktor) traktoren.searchFor(serial);
 
-		if (t != null && t instanceof BiogasTraktor) {
-			return ((BiogasTraktor) t).getFuel();
-		} else {
-			return 0.0;
+		if (t != null) {
+			t.increaseFuel(amount);
 		}
 	}
+
+	/**
+	 * returns the fuel usage of the tractor identified by the serial if it
+	 * exists
+	 * 
+	 * @param serial
+	 *            serial of the tractor
+	 * @return fuel usage of the tractor
+	 */
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
+	protected Object getFuelUsage(int serial) {
+		Traktor t = (Traktor) traktoren.searchFor(serial);
+
+		if (t != null) {
+			return t.getFuel();
+		} else {
+			return null;
+		}
+	}
+
+
 	
+	/**
+	 * changes the device attached to a tractor identified by its serial
+	 * 
+	 * @param serial
+	 *            serial of the tractor
+	 * @param geraet
+	 *            new device
+	 */
 	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	protected void changeUsageOfTraktor(int serial, TraktorGeraet geraet) {
 		Traktor t = (Traktor) traktoren.searchFor(serial);
-		
-		if(t != null) {
-			if(geraet == null) {
+
+		if (t != null) {
+			if (geraet == null) {
 				t.dismantle();
 			} else {
 				t.setEinsatzart(geraet);
 			}
 		}
 	}
-	
+
+	/**
+	 * returns the details of the device attached to the tractor
+	 * @param serial serial of the tractor
+	 * @return device detail
+	 */
 	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
-	protected int getSaeschareCountOfTraktor(int serial) {
+	protected Object getDeviceDetailOfTraktor(int serial) {
 		Traktor t = ((Traktor) traktoren.searchFor(serial));
 		TraktorGeraet tg;
 
 		if(t != null) {
 			tg = t.getGeraet();
 		} else {
-			return 0;
+			return null;
 		}
 		
-		if(tg != null && tg instanceof Drillmaschine) {
-			return (Integer) tg.getDetail();
+		if(tg != null) {
+			return tg.getDetail();
 		} else {
-			return 0;
-		}
-	}
-	
-	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
-	protected double getCapacityOfTraktor(int serial) {
-		Traktor t = (Traktor) traktoren.searchFor(serial);
-		TraktorGeraet tg;
-		
-		if(t != null) {
-			tg = t.getGeraet();
-		} else {
-			return 0.0;
-		}
-		
-		if(tg != null && tg instanceof Duengerstreuer) {
-			return (Double) tg.getDetail();
-		} else {
-			return 0.0;
+			return null;
 		}
 	}
 
