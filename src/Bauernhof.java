@@ -295,24 +295,34 @@ public class Bauernhof {
 		return ret;
 	}
 	
-	@Creator()
+	/**
+	 * Der durchschnittliche Dieselverbrauch aller Diesetraktoren eines Bauernhofs 
+	 * – alle zusammen und zusätzlich aufgeschlüsselt nach den Einsatzarten (Saeen oder Duengen).
+	 * 
+	 * @return list with avg values in the following order:
+	 * 		- avg All
+	 * 		- avg Duengen
+	 * 		- avg Saeen
+	 */
+	@Creator(name = "Markus", lastUpdate = "08.12.2012")
 	public Liste avgDiesel(){
 		Integer fertilize=0;
 		Integer drill=0;
 		Integer all=0;
+		Integer helper = 0;
 		Traktor t;
 		MyIterator it=this.traktoren.iterator();
 		
 		while (it.hasNext()){
 			t=(Traktor)it.next();
-			
+			helper = ((DieselTraktor) t).getFuel();
 			if(t instanceof DieselTraktor){
-				all+=((DieselTraktor) t).getFuel();
+				all+=helper;
 				if(t.getGeraet() instanceof Duengerstreuer){
-					fertilize+=((DieselTraktor) t).getFuel();
+					fertilize+=helper;
 				}
 				if(t.getGeraet() instanceof Drillmaschine){
-					drill+=((DieselTraktor) t).getFuel();
+					drill+=helper;
 				}
 			}
 		}
@@ -325,24 +335,35 @@ public class Bauernhof {
 		
 	}
 	
-	@Creator()
+	/**
+	 * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs – 
+	 * alle zusammen und zusätzlich aufgeschlüsselt nach den Einsatzarten (Säen oder Düngen).
+	 * 
+	 * @return list with avg values in the following order:
+	 * 		- avg All
+	 * 		- avg Duengen
+	 * 		- avg Saeen
+	 */
+	@Creator(name = "Markus", lastUpdate = "08.12.2012")
 	public Liste avgGas(){
 		Double fertilize=0.0;
 		Double drill=0.0;
 		Double all=0.0;
+		Double helper = 0.0;
 		Traktor t;
 		MyIterator it=this.traktoren.iterator();
 		
 		while (it.hasNext()){
 			t=(Traktor)it.next();
+			helper = ((BiogasTraktor) t).getFuel();
 			
 			if(t instanceof BiogasTraktor){
-				all+=((BiogasTraktor) t).getFuel();
+				all+=helper;
 				if(t.getGeraet() instanceof Duengerstreuer){
-					fertilize+=((DieselTraktor) t).getFuel();
+					fertilize+=helper;
 				}
 				if(t.getGeraet() instanceof Drillmaschine){
-					drill+=((DieselTraktor) t).getFuel();
+					drill+=helper;
 				}
 			}
 		}
