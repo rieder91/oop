@@ -1,10 +1,12 @@
 
+@Creator()
 public class Bauernhof {
 	private final String name;
 	private Liste traktoren;
 	
 	private static Liste existingBauernhoefe = new Liste();
 	
+	@Creator()
 	public Bauernhof(String name) {
 		// check if the name if unique among all other Farms
 		if(existingBauernhoefe.contains(name)) {
@@ -17,6 +19,7 @@ public class Bauernhof {
 		traktoren = new Liste();
 	}
 	
+	@Creator()
 	public boolean equals(Object other) {
 		if(this == other) {
 			return true;
@@ -35,6 +38,7 @@ public class Bauernhof {
 		
 	}
 	
+	@Creator()
 	public void addTraktor(Traktor t) {
 		// only add traktor if a traktor with the same serial has not been added before
 		if(!this.traktoren.contains(t)) {
@@ -42,6 +46,7 @@ public class Bauernhof {
 		}
 	}
 	
+	@Creator()
 	public void removeTraktor(int serial) {
 		MyIterator it = traktoren.iterator();
 		while(it.hasNext()) {
@@ -51,10 +56,12 @@ public class Bauernhof {
 		}
 	}
 	
+	@Creator()
 	public String toString() {
 		return traktoren.toString();
 	}
 	
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	protected void increaseHoursOfTraktor(int serial, int hours) {
 		Traktor t = (Traktor) traktoren.searchFor(serial);
 		
@@ -64,6 +71,7 @@ public class Bauernhof {
 		
 	}
 	
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	protected int getHoursOfTraktor(int serial) {
 		Traktor t = (Traktor) traktoren.searchFor(serial);
 		
@@ -74,6 +82,7 @@ public class Bauernhof {
 		}
 	}
 	
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	protected void increaseDieselUsage(int serial, int liters) {
 		Object t = traktoren.searchFor(serial);
 		
@@ -82,6 +91,7 @@ public class Bauernhof {
 		}
 	}
 	
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	protected int getDieselUsage(int serial) {
 		Object t = traktoren.searchFor(serial);
 		
@@ -92,6 +102,7 @@ public class Bauernhof {
 		}
 	}
 	
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	protected void increaseGasUsage(int serial, double gas) {
 		Object t = traktoren.searchFor(serial);
 		
@@ -100,6 +111,7 @@ public class Bauernhof {
 		}
 	}
 	
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	protected double getGasUsage(int serial) {
 		Object t = traktoren.searchFor(serial);
 
@@ -110,6 +122,7 @@ public class Bauernhof {
 		}
 	}
 	
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	protected void changeUsageOfTraktor(int serial, TraktorGeraet geraet) {
 		Traktor t = (Traktor) traktoren.searchFor(serial);
 		
@@ -122,6 +135,7 @@ public class Bauernhof {
 		}
 	}
 	
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	protected int getSaeschareCountOfTraktor(int serial) {
 		Traktor t = ((Traktor) traktoren.searchFor(serial));
 		TraktorGeraet tg;
@@ -139,6 +153,7 @@ public class Bauernhof {
 		}
 	}
 	
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	protected double getCapacityOfTraktor(int serial) {
 		Traktor t = (Traktor) traktoren.searchFor(serial);
 		TraktorGeraet tg;
@@ -155,14 +170,132 @@ public class Bauernhof {
 			return 0.0;
 		}
 	}
-	
-	
 
-	public String getName() {
-		return name;
+	/**
+	 * Die durchschnittliche Fassungskapazitaet des Düngerbehaelters aller
+	 * Traktoren insgesamt und aufgeschluesselt nach Art des Traktors
+	 * (Dieseltraktor oder Biogastraktor).
+	 * 
+	 * @return list with the stats int the following order: avgOverall,
+	 *         avgDiesel, avgGas
+	 */
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
+	protected Liste getCapacityStats() {
+		MyIterator it = traktoren.iterator();
+		Liste ret = new Liste();
+
+		double sumDiesel = 0.0, sumGas = 0.0;
+		int cntDiesel = 0, cntGas = 0;
+
+		while (it.hasNext()) {
+			Traktor t = (Traktor) it.next();
+			TraktorGeraet tg = t.getGeraet();
+
+			if (tg != null && tg instanceof Duengerstreuer) {
+
+				Double value = (Double) tg.getDetail();
+
+				if (t instanceof DieselTraktor) {
+					cntDiesel++;
+					sumDiesel += value;
+				} else if (t instanceof BiogasTraktor) {
+					cntGas++;
+					sumGas += value;
+				}
+			}
+		}
+
+		if (cntDiesel != 0 || cntGas != 0) {
+			ret.add((sumDiesel + sumGas) / (cntDiesel + cntGas));
+		} else {
+			ret.add(0.0);
+		}
+
+		if (cntDiesel != 0) {
+			ret.add(sumDiesel / cntDiesel);
+		} else {
+			ret.add(0.0);
+		}
+
+		if (cntGas != 0) {
+			ret.add(sumGas / cntGas);
+		} else {
+			ret.add(0.0);
+		}
+
+		return ret;
 	}
 	
+	/**
+	 * Die minimale und maximale Anzahl an Saescharen insgesamt und
+	 * aufgeschluesselt nach Art des Traktors (Dieseltraktor oder
+	 * Biogastraktor).
+	 * 
+	 * @return list with max/min values in the following order: maxOverall,
+	 *         minOverall, maxGas, minGas, maxDiesel, minDiesel
+	 */
+	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
+	protected Liste getSaescharenStats() {
+		MyIterator it = traktoren.iterator();
+		Liste ret = new Liste();
+
+		int maxBio = 0, maxDiesel = 0, minBio = Integer.MAX_VALUE, minDiesel = Integer.MAX_VALUE;
+
+		while (it.hasNext()) {
+			Traktor t = (Traktor) it.next();
+			TraktorGeraet tg = t.getGeraet();
+
+			if (tg != null && tg instanceof Drillmaschine) {
+				Integer value = (Integer) tg.getDetail();
+
+				if (t instanceof BiogasTraktor) {
+
+					if (value < minBio) {
+						minBio = value;
+					}
+
+					if (value > maxBio) {
+						maxBio = value;
+					}
+
+				} else if (t instanceof DieselTraktor) {
+
+					if (value < minDiesel) {
+						minDiesel = value;
+					}
+
+					if (value > maxDiesel) {
+						maxDiesel = value;
+					}
+
+				}
+
+			}
+		}
+
+		ret.add(maxBio > maxDiesel ? maxBio : maxDiesel);
+		ret.add(minBio < minDiesel ? minBio : minDiesel);
+
+		if (maxDiesel != 0) {
+			ret.add(maxDiesel);
+			ret.add(minDiesel);
+		} else {
+			ret.add(0);
+			ret.add(0);
+		}
+
+		if (maxBio != 0) {
+			ret.add(maxBio);
+			ret.add(minBio);
+		} else {
+			ret.add(0);
+			ret.add(0);
+		}
+
+		return ret;
+	}
 	
+	@Creator()
 	public Liste avgDiesel(){
 		Integer fertilize=0;
 		Integer drill=0;
@@ -192,6 +325,7 @@ public class Bauernhof {
 		
 	}
 	
+	@Creator()
 	public Liste avgGas(){
 		Double fertilize=0.0;
 		Double drill=0.0;

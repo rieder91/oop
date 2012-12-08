@@ -8,26 +8,31 @@
  * @author Thomas
  * 
  */
+@Creator()
 public class Liste {
 	private Object value;
 	private Liste next;
 	private Liste previous;
 
+	@Creator()
 	public Liste() {
 		next = null;
 		previous = null;
 		value = null;
 	}
 
+	@Creator()
 	public Liste(Object o) {
 		this(o, null);
 	}
 
+	@Creator()
 	private Liste(Object o, Liste previous) {
 		this.value = o;
 		this.previous = previous;
 	}
 
+	@Creator()
 	public Object searchFor(Object o) {
 		MyIterator it = iterator();
 		while (it.hasNext()) {
@@ -40,6 +45,7 @@ public class Liste {
 
 	}
 
+	@Creator()
 	public void add(Object o) {
 		if (value == null) {
 			value = o;
@@ -50,10 +56,12 @@ public class Liste {
 		}
 	}
 
+	@Creator()
 	public MyIterator iterator() {
 		return new ListIterator(this);
 	}
 
+	@Creator()
 	public String toString() {
 		StringBuilder ret = new StringBuilder("[");
 
@@ -70,6 +78,7 @@ public class Liste {
 		return ret.toString();
 	}
 
+	@Creator()
 	public boolean contains(Object o) {
 		MyIterator it = new ListIterator(this);
 
@@ -82,16 +91,19 @@ public class Liste {
 		return false;
 	}
 
+	@Creator()
 	private class ListIterator implements MyIterator {
 
 		private Liste current;
 		private Liste lastReturned;
 
+		@Creator()
 		public ListIterator(Liste l) {
 			current = l;
 			lastReturned = null;
 		}
 
+		@Creator()
 		public boolean hasNext() {
 			if (current == null || current.value == null) {
 				return false;
@@ -100,6 +112,7 @@ public class Liste {
 			}
 		}
 
+		@Creator()
 		public Object next() {
 			if (hasNext()) {
 				Object tmp = current.value;
@@ -116,7 +129,8 @@ public class Liste {
 			}
 
 		}
-
+		
+		@Creator()
 		public void remove() {
 			if (lastReturned.next == null && lastReturned.previous == null) {
 				lastReturned.value = null;

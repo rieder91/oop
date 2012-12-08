@@ -1,4 +1,4 @@
-
+@Creator()
 public abstract class Traktor {
 
 	private String name;
@@ -8,10 +8,12 @@ public abstract class Traktor {
 
 	private static Liste usedSerials = new Liste();
 
+	@Creator()
 	public Traktor(String name, int serial) {
 		this(name, serial, null);
 	}
 
+	@Creator()
 	public Traktor(String name, int serial, TraktorGeraet geraet) {
 		if (usedSerials.contains(serial)) {
 			throw new RuntimeException("Serial already exists");
@@ -27,6 +29,7 @@ public abstract class Traktor {
 
 	}
 
+	@Creator()
 	public boolean equals(Object other) {
 		if (this == other) {
 			return true;
@@ -43,34 +46,41 @@ public abstract class Traktor {
 		}
 	}
 
+	@Creator()
 	protected void setEinsatzart(TraktorGeraet geraet) {
 		if(geraet != null) {
 			this.geraet = geraet;
 		}
 	}
 
+	@Creator()
 	protected void dismantle() {
 		this.geraet = null;
 	}
 
+	@Creator()
 	protected TraktorGeraet getGeraet() {
 		return geraet;
 	}
 
+	@Creator()
 	protected int getSerial() {
 		return nummer;
 	}
-	
+
+	@Creator()
 	protected void increaseHours(int hours) {
 		if(hours > 0) {
 			betriebsstunden += hours;
 		}
 	}
-	
+
+	@Creator()
 	protected int getHours() {
 		return this.betriebsstunden;
 	}
 
+	@Creator()
 	public String toString() {
 		StringBuilder ret = new StringBuilder();
 		ret.append("Name: " + name);
