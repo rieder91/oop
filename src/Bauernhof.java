@@ -337,7 +337,7 @@ public class Bauernhof {
 	
 	/**
 	 * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs – 
-	 * alle zusammen und zusätzlich aufgeschlüsselt nach den Einsatzarten (Säen oder Düngen).
+	 * alle zusammen und zusätzlich aufgeschlüsselt nach den Einsatzarten (Saeen oder Duengen).
 	 * 
 	 * @return list with avg values in the following order:
 	 * 		- avg All
