@@ -1,33 +1,68 @@
-@Creator()
+/**
+ * class which represents a dieseltraktor
+ * 
+ * @author Markus
+ * 
+ */
+@Creator(name = "Markus", lastUpdate = "07.12.2012")
 public class DieselTraktor extends Traktor {
 
 	private int liter;
-	
-	@Creator()
+
+	/**
+	 * two parameter constructor
+	 * 
+	 * @param name
+	 *            name of the tractor
+	 * @param serial
+	 *            serial of the tractor
+	 */
+	@Creator(name = "Markus", lastUpdate = "07.12.2012")
 	public DieselTraktor(String name, int serial) {
-		super(name, serial);
-		this.liter = 0;
+		this(name, serial, null);
 	}
 
-	@Creator()
+	/**
+	 * three parameter constructor
+	 * 
+	 * @param name
+	 *            name of the tractor
+	 * @param serial
+	 *            serial of the tractor
+	 * @param geraet
+	 *            device attached to the tractor
+	 */
+	@Creator(name = "Markus", lastUpdate = "07.12.2012")
 	public DieselTraktor(String name, int serial, TraktorGeraet geraet) {
 		super(name, serial, geraet);
 		this.liter = 0;
 	}
 
-	@Creator()
+	/**
+	 * @return the fuel used by the tractor
+	 */
+	@Creator(name = "Markus", lastUpdate = "07.12.2012")
 	protected int getFuel() {
 		return this.liter;
 	}
 
-	@Creator()
+	/**
+	 * increases the fuel used
+	 * 
+	 * @param liter
+	 *            additional fuel used
+	 */
+	@Creator(name = "Markus", lastUpdate = "07.12.2012")
 	protected void increaseFuel(int liter) {
 		if (liter > 0) {
 			this.liter += liter;
 		}
 	}
 
-	@Creator()
+	/**
+	 * returns a string representation of the tractor
+	 */
+	@Creator(name = "Markus", lastUpdate = "07.12.2012")
 	public String toString() {
 		return super.toString() + "; Typ: Dieseltraktor; Dieselverbrauch: "
 				+ liter;
