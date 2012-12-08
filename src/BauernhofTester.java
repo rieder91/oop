@@ -7,6 +7,7 @@
 @Creator(name = "Thomas", lastUpdate = "08.12.2012")
 public class BauernhofTester implements Tester {
 
+	@Override
 	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	public void runTests() {
 		Bauernhof b = new Bauernhof("Tony's Freilandeier");
@@ -38,7 +39,7 @@ public class BauernhofTester implements Tester {
 		b.addTraktor(t5);
 		b.addTraktor(t6);
 		b.addTraktor(bio);
-
+		
 		System.out.println(b);
 
 		b.increaseHoursOfTraktor(15, 10);
