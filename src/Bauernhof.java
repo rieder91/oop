@@ -1,9 +1,47 @@
-
-@Creator()
+/**
+ * Bauernhof Klasse
+ * 
+ * Folgende Methoden sollen unterstuetzt werden:
+ * 
+ * Erzeugen eines Bauernhofes.
+ * Einfuegen von Traktoren in einen Bauernhof.
+ * Entfernen von Traktoren aus einem Bauernhof.
+ * aendern der Informationen ueber Traktoren wie oben beschrieben.
+ * 
+ * Methoden zum Berechnen folgender statistischer Werte:
+ * 
+ * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines
+ * Bauernhofs – alle Traktoren zusammen und zusaetzlich aufgeschluesselt nach den
+ * Einsatzarten (Saeen oder Duengen).
+ * 
+ * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines
+ * Bauernhofs aufgeschluesselt nach der Art des Traktors (Dieseltraktor oder
+ * Biogastraktor).
+ * 
+ * Der durchschnittliche Dieselverbrauch aller Diesetraktoren eines Bauernhofs –
+ * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder
+ * Duengen).
+ * 
+ * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs –
+ * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder
+ * Duengen).
+ * 
+ * Die minimale und maximale Anzahl an Saescharen insgesamt und aufgeschluesselt
+ * nach Art des Traktors (Dieseltraktor oder Biogastraktor).
+ * 
+ * Die durchschnittliche Fassungskapazitaet des Duengerbehaelters aller Traktoren
+ * insgesamt und aufgeschluesselt nach Art des Traktors (Dieseltraktor oder
+ * Biogastraktor).
+ * 
+ * @author Thomas
+ * 
+ */
+@Creator(name = "Markus", lastUpdate = "09.12.2012")
 public class Bauernhof {
 	private final String name;
 	private Liste traktoren;
 	
+	// list used to save the names of all existing farms
 	private static Liste existingBauernhoefe = new Liste();
 	
 	@Creator()
@@ -172,35 +210,62 @@ public class Bauernhof {
 	}
 
 	/**
-	 * Die durchschnittliche Fassungskapazitaet des Düngerbehaelters aller
-	 * Traktoren insgesamt und aufgeschluesselt nach Art des Traktors
-	 * (Dieseltraktor oder Biogastraktor).
+	 * used to reduce duplicate code; calculates all the device statistics
 	 * 
-	 * @return list with the stats int the following order: avgOverall,
-	 *         avgDiesel, avgGas
+	 * @return List with the stats in the following order: avgOverall,
+	 *         avgDiesel, avgGas, maxOverall, minOverall, maxGas, minGas,
+	 *         maxDiesel, minDiesel
 	 */
-	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
-	protected Liste getCapacityStats() {
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
+	private Liste getDeviceStats() {
 		MyIterator it = traktoren.iterator();
 		Liste ret = new Liste();
 
 		double sumDiesel = 0.0, sumGas = 0.0;
 		int cntDiesel = 0, cntGas = 0;
 
+		int maxBio = 0, maxDiesel = 0;
+		int minBio = Integer.MAX_VALUE, minDiesel = Integer.MAX_VALUE;
+
 		while (it.hasNext()) {
 			Traktor t = (Traktor) it.next();
 			TraktorGeraet tg = t.getGeraet();
 
-			if (tg != null && tg instanceof Duengerstreuer) {
+			if (tg != null) {
+				if (tg instanceof Duengerstreuer) {
+					Double value = (Double) tg.getDetail();
+					// DO AVG STUFF
+					if (t instanceof DieselTraktor) {
+						cntDiesel++;
+						sumDiesel += value;
+					} else if (t instanceof BiogasTraktor) {
+						cntGas++;
+						sumGas += value;
+					}
 
-				Double value = (Double) tg.getDetail();
+				} else if (tg instanceof Drillmaschine) {
+					Integer value = (Integer) tg.getDetail();
+					if (t instanceof BiogasTraktor) {
 
-				if (t instanceof DieselTraktor) {
-					cntDiesel++;
-					sumDiesel += value;
-				} else if (t instanceof BiogasTraktor) {
-					cntGas++;
-					sumGas += value;
+						if (value < minBio) {
+							minBio = value;
+						}
+
+						if (value > maxBio) {
+							maxBio = value;
+						}
+
+					} else if (t instanceof DieselTraktor) {
+
+						if (value < minDiesel) {
+							minDiesel = value;
+						}
+
+						if (value > maxDiesel) {
+							maxDiesel = value;
+						}
+
+					}
 				}
 			}
 		}
@@ -223,56 +288,6 @@ public class Bauernhof {
 			ret.add(0.0);
 		}
 
-		return ret;
-	}
-	
-	/**
-	 * Die minimale und maximale Anzahl an Saescharen insgesamt und
-	 * aufgeschluesselt nach Art des Traktors (Dieseltraktor oder
-	 * Biogastraktor).
-	 * 
-	 * @return list with max/min values in the following order: maxOverall,
-	 *         minOverall, maxGas, minGas, maxDiesel, minDiesel
-	 */
-	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
-	protected Liste getSaescharenStats() {
-		MyIterator it = traktoren.iterator();
-		Liste ret = new Liste();
-
-		int maxBio = 0, maxDiesel = 0, minBio = Integer.MAX_VALUE, minDiesel = Integer.MAX_VALUE;
-
-		while (it.hasNext()) {
-			Traktor t = (Traktor) it.next();
-			TraktorGeraet tg = t.getGeraet();
-
-			if (tg != null && tg instanceof Drillmaschine) {
-				Integer value = (Integer) tg.getDetail();
-
-				if (t instanceof BiogasTraktor) {
-
-					if (value < minBio) {
-						minBio = value;
-					}
-
-					if (value > maxBio) {
-						maxBio = value;
-					}
-
-				} else if (t instanceof DieselTraktor) {
-
-					if (value < minDiesel) {
-						minDiesel = value;
-					}
-
-					if (value > maxDiesel) {
-						maxDiesel = value;
-					}
-
-				}
-
-			}
-		}
-
 		ret.add(maxBio > maxDiesel ? maxBio : maxDiesel);
 		ret.add(minBio < minDiesel ? minBio : minDiesel);
 
@@ -290,6 +305,54 @@ public class Bauernhof {
 		} else {
 			ret.add(0);
 			ret.add(0);
+		}
+
+		return ret;
+	}
+	
+	/**
+	 * Die durchschnittliche Fassungskapazitaet des Duengerbehaelters aller
+	 * Traktoren insgesamt und aufgeschluesselt nach Art des Traktors
+	 * (Dieseltraktor oder Biogastraktor).
+	 * 
+	 * @return list with the stats int the following order: avgOverall,
+	 *         avgDiesel, avgGas
+	 */
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
+	protected Liste getCapacityStats() {
+		Liste calc = getDeviceStats();
+		Liste ret = new Liste();
+		
+		MyIterator it = calc.iterator();
+		
+		for(int i = 0; i < 3; i++) {
+			ret.add(it.next());
+		}
+
+		return ret;
+	}
+	
+	/**
+	 * Die minimale und maximale Anzahl an Saescharen insgesamt und
+	 * aufgeschluesselt nach Art des Traktors (Dieseltraktor oder
+	 * Biogastraktor).
+	 * 
+	 * @return list with max/min values in the following order: maxOverall,
+	 *         minOverall, maxGas, minGas, maxDiesel, minDiesel
+	 */
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
+	protected Liste getSaescharenStats() {
+		Liste calc = getDeviceStats();
+		Liste ret = new Liste();
+		
+		MyIterator it = calc.iterator();
+		
+		for(int i = 0; i < 9; i++) {
+			if(i >= 3) {
+				ret.add(it.next());
+			} else {
+				it.next();
+			}
 		}
 
 		return ret;
