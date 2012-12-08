@@ -61,4 +61,64 @@ public class Bauernhof {
 	public String getName() {
 		return name;
 	}
+	
+	
+	public Liste avgDiesel(){
+		Integer fertilize=0;
+		Integer drill=0;
+		Integer all=0;
+		Traktor t;
+		MyIterator it=this.traktoren.iterator();
+		
+		while (it.hasNext()){
+			t=(Traktor)it.next();
+			
+			if(t instanceof DieselTraktor){
+				all+=((DieselTraktor) t).getFuel();
+				if(t.getGeraet() instanceof Duengerstreuer){
+					fertilize+=((DieselTraktor) t).getFuel();
+				}
+				if(t.getGeraet() instanceof Drillmaschine){
+					drill+=((DieselTraktor) t).getFuel();
+				}
+			}
+		}
+		
+		Liste ret=new Liste();
+		ret.add(all);
+		ret.add(fertilize);
+		ret.add(drill);
+		return traktoren;
+		
+	}
+	
+	public Liste avgGas(){
+		Double fertilize=0.0;
+		Double drill=0.0;
+		Double all=0.0;
+		Traktor t;
+		MyIterator it=this.traktoren.iterator();
+		
+		while (it.hasNext()){
+			t=(Traktor)it.next();
+			
+			if(t instanceof BiogasTraktor){
+				all+=((BiogasTraktor) t).getFuel();
+				if(t.getGeraet() instanceof Duengerstreuer){
+					fertilize+=((DieselTraktor) t).getFuel();
+				}
+				if(t.getGeraet() instanceof Drillmaschine){
+					drill+=((DieselTraktor) t).getFuel();
+				}
+			}
+		}
+		
+		Liste ret=new Liste();
+		ret.add(all);
+		ret.add(fertilize);
+		ret.add(drill);
+		return traktoren;
+		
+		
+	}
 }
