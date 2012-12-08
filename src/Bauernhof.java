@@ -297,7 +297,7 @@ public class Bauernhof {
 	
 	/**
 	 * Der durchschnittliche Dieselverbrauch aller Diesetraktoren eines Bauernhofs 
-	 * – alle zusammen und zusätzlich aufgeschlüsselt nach den Einsatzarten (Saeen oder Duengen).
+	 * – alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
 	 * 
 	 * @return list with avg values in the following order:
 	 * 		- avg All
@@ -337,7 +337,7 @@ public class Bauernhof {
 	
 	/**
 	 * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs – 
-	 * alle zusammen und zusätzlich aufgeschlüsselt nach den Einsatzarten (Saeen oder Duengen).
+	 * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
 	 * 
 	 * @return list with avg values in the following order:
 	 * 		- avg All
