@@ -111,7 +111,7 @@ public abstract class Traktor {
 	 * @param hours
 	 *            additional working hours
 	 */
-	@Creator()
+	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
 	protected void increaseHours(int hours) {
 		if (hours > 0) {
 			betriebsstunden += hours;
@@ -121,7 +121,7 @@ public abstract class Traktor {
 	/**
 	 * @return the current working hours
 	 */
-	@Creator()
+	@Creator(name = "Dominic", lastUpdate = "06.12.2012")
 	protected int getHours() {
 		return this.betriebsstunden;
 	}
