@@ -4,6 +4,7 @@
  * @author OOP Gruppe 187
  */
 
+@Creator(name = "Thomas", lastUpdate = "09.12.2012")
 public class Test {
 
 	/**
@@ -12,6 +13,7 @@ public class Test {
 	 * @param args
 	 *            command line arguments
 	 */
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
 	public static void main(String[] args) {
 
 		System.out.println("Objektorientierte Programmiertechniken                  \n"

@@ -81,7 +81,16 @@ public class AnnotationTester implements Tester{
 		System.out.println();
 		displayMethodAnnotations(AnnotationTester.class.getDeclaredMethods());
 
+		System.out.println("\n\n=== " + BauernhofTester.class.getName() + " ===");
+		displayAnnotations(BauernhofTester.class.getAnnotations());
+		System.out.println();
+		displayMethodAnnotations(BauernhofTester.class.getDeclaredMethods());
 		
+		
+		System.out.println("\n\n=== " + Test.class.getName() + " ===");
+		displayAnnotations(Test.class.getAnnotations());
+		System.out.println();
+		displayMethodAnnotations(Test.class.getDeclaredMethods());
 		
 	}
 
