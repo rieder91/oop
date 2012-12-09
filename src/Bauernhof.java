@@ -517,23 +517,108 @@ public class Bauernhof {
 	}
 	
 	/**
-	 * TODO DOMINIC
+	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines Bauernhofs 
+	 * – alle Traktoren zusammen und zusätzlich aufgeschlüsselt nach den Einsatzarten (Säen oder Düngen). 
+	 * 
 	 * @return List with the results in the following order: overallAvg, saeenAvg, dueengenAvg
 	 */
-	@Creator(name = "Dominic")
+	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
 	public Liste getWorkingHoursStatsByDevice() {
 		Liste ret = new Liste();
-		
+		MyIterator it = getAvgHours().iterator();
+		ret.add(it.next());
+		ret.add(it.next());
+		ret.add(it.next());
 		return ret;
 	}
 	
 	/**
-	 * TODO DOMINIC
-	 * @return List with the results in the following order: overallAvg, dieselAvg, gasAvg
+	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines Bauernhofs 
+	 * aufgeschlüsselt nach der Art des Traktors (Dieseltraktor oder Biogastraktor). 
+	 * 
+	 * @return List with the results in the following order: dieselAvg, gasAvg
 	 */
-	@Creator(name = "Dominic")
+	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
 	public Liste getWorkingHoursStatsByTractor() {
 		Liste ret = new Liste();
+		MyIterator it = getAvgHours().iterator();
+		it.next();
+		it.next();
+		it.next();
+		ret.add(it.next());
+		ret.add(it.next());
+		return ret;
+	}
+	
+	/**
+	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines Bauernhofs
+	 * – alle Traktoren zusammen und zusätzlich aufgeschlüsselt nach den Einsatzarten 
+	 * sowie der Art des Traktors.
+	 * 
+	 * @return List with results in following order: Gesamtstunden, Säen, Düngen, Dieseltraktor, Biotraktor
+	 */
+	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
+	public Liste getAvgHours() {
+		Liste ret = new Liste();
+		MyIterator it = this.traktoren.iterator();
+		int all = 0, seed = 0, fertilize = 0, diesel = 0, bio = 0;
+		int countAll = 0, countSeed = 0, countFertilize = 0, countDiesel = 0, countBio = 0;
+		int tmp = 0;
+		Traktor t = null;
+		
+		while(it.hasNext()) {
+			t = (Traktor) it.next();
+			tmp = t.getHours();
+			
+			countAll++;
+			all += tmp;
+			
+			if(t instanceof DieselTraktor) {
+				countDiesel++;
+				diesel += tmp;
+			} else if(t instanceof BiogasTraktor) {
+				countBio++;
+				bio += tmp;
+			}
+			
+			if(t.getGeraet() instanceof Duengerstreuer) {
+				countFertilize++;
+				fertilize += tmp;
+			} else if(t.getGeraet() instanceof Drillmaschine) {
+				countSeed++;
+				seed += tmp;
+			}
+		}
+		
+		if(all != 0) {
+			ret.add(all/countAll);
+		} else {
+			ret.add(0);
+		}
+		
+		if(seed != 0) {
+			ret.add(seed/countSeed);
+		} else {
+			ret.add(0);
+		}
+		
+		if(fertilize != 0) {
+			ret.add(fertilize/countFertilize);
+		} else {
+			ret.add(0);
+		}
+		
+		if(diesel != 0) {
+			ret.add(diesel/countDiesel);
+		} else {
+			ret.add(0);
+		}
+		
+		if(bio != 0) {
+			ret.add(bio/countBio);
+		} else {
+			ret.add(0);
+		}
 		
 		return ret;
 	}
