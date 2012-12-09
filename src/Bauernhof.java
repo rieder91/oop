@@ -36,7 +36,7 @@
  * @author Thomas
  * 
  */
-@Creator(name = "Markus", lastUpdate = "09.12.2012")
+@Creator(name = "Thomas", lastUpdate = "09.12.2012")
 public class Bauernhof {
 	private final String name;
 	private Liste traktoren;
@@ -406,6 +406,9 @@ public class Bauernhof {
 		
 		Liste ret=new Liste();
 		MyIterator it = getAvg().iterator();
+		it.next();
+		it.next();
+		it.next();
 		ret.add(it.next());
 		ret.add(it.next());
 		ret.add(it.next());
@@ -427,9 +430,6 @@ public class Bauernhof {
 
 		Liste ret=new Liste();
 		MyIterator it = getAvg().iterator();
-		it.next();
-		it.next();
-		it.next();
 		ret.add(it.next());
 		ret.add(it.next());
 		ret.add(it.next());
