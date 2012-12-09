@@ -25,7 +25,7 @@ public abstract class Traktor {
 	 * @param serial
 	 *            the (unique) serial of the tractor
 	 */
-	@Creator()
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
 	public Traktor(String name, int serial) {
 		this(name, serial, null);
 	}
@@ -40,7 +40,7 @@ public abstract class Traktor {
 	 * @param geraet
 	 *            the device that is attached to the tractor
 	 */
-	@Creator()
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
 	public Traktor(String name, int serial, TraktorGeraet geraet) {
 		if (usedSerials.contains(serial)) {
 			throw new RuntimeException("Traktoren-Seriennummer existiert bereits");
@@ -59,7 +59,7 @@ public abstract class Traktor {
 	/**
 	 * returns true if two objects are equals (only compares the serial though)
 	 */
-	@Creator()
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
 	public boolean equals(Object other) {
 		if (this == other) {
 			return true;
@@ -82,7 +82,7 @@ public abstract class Traktor {
 	 * @param geraet
 	 *            new device (mustn't be null - use dismantle())
 	 */
-	@Creator()
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
 	protected void setEinsatzart(TraktorGeraet geraet) {
 		if (geraet != null) {
 			this.geraet = geraet;
@@ -92,7 +92,7 @@ public abstract class Traktor {
 	/**
 	 * removes the current device from the tractor
 	 */
-	@Creator()
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
 	protected void dismantle() {
 		this.geraet = null;
 	}
@@ -100,7 +100,7 @@ public abstract class Traktor {
 	/**
 	 * @return the device that is currently attached (can be null)
 	 */
-	@Creator()
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
 	protected TraktorGeraet getGeraet() {
 		return geraet;
 	}
@@ -129,7 +129,7 @@ public abstract class Traktor {
 	/**
 	 * returns a string representation of the tractor for easier debugging
 	 */
-	@Creator()
+	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
 	public String toString() {
 		StringBuilder ret = new StringBuilder();
 		ret.append("Name: " + name);
