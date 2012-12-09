@@ -536,13 +536,13 @@ public class Bauernhof {
 	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines Bauernhofs 
 	 * aufgeschlüsselt nach der Art des Traktors (Dieseltraktor oder Biogastraktor). 
 	 * 
-	 * @return List with the results in the following order: dieselAvg, gasAvg
+	 * @return List with the results in the following order: overallAvg, dieselAvg, gasAvg
 	 */
 	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
 	public Liste getWorkingHoursStatsByTractor() {
 		Liste ret = new Liste();
 		MyIterator it = getAvgHours().iterator();
-		it.next();
+		ret.add(it.next());
 		it.next();
 		it.next();
 		ret.add(it.next());
