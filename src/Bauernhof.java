@@ -353,7 +353,7 @@ public class Bauernhof {
 	 *         avgDiesel, avgGas
 	 */
 	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
-	protected Liste getCapacityStats() {
+	public Liste getCapacityStats() {
 		Liste calc = getDeviceStats();
 		Liste ret = new Liste();
 		
@@ -375,7 +375,7 @@ public class Bauernhof {
 	 *         minOverall, maxGas, minGas, maxDiesel, minDiesel
 	 */
 	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
-	protected Liste getSaescharenStats() {
+	public Liste getSaescharenStats() {
 		Liste calc = getDeviceStats();
 		Liste ret = new Liste();
 		
