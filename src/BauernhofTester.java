@@ -200,7 +200,7 @@ public class BauernhofTester implements Tester {
 		
 		// Statistik #3
 		
-//		result = ((Bauernhof) hoefe.searchFor("Hof #5")).getAverageFuelDiesel();
+		result = ((Bauernhof) hoefe.searchFor("Hof #5")).getAverageFuelDiesel();
 		it = result.iterator();
 		System.out.println("\nTreibstoffstatitik der Dieseltraktoren von Hof 5: ");
 		System.out.println("Durchschnittlicher Dieselverbrauch Gesamt:\t" + it.next());
@@ -210,7 +210,7 @@ public class BauernhofTester implements Tester {
 		
 		// Statistik #4
 		
-//		result = ((Bauernhof) hoefe.searchFor("Hof #1")).getAverageFuelBio();
+		result = ((Bauernhof) hoefe.searchFor("Hof #1")).getAverageFuelBio();
 		it = result.iterator();
 		System.out.println("\nTreibstoffstatistik der Biogastraktoren von Hof 1: ");
 		System.out.println("Durchschnittlicher Gasverbrauch Gesamt:\t\t" + it.next());

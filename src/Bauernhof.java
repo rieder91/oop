@@ -401,34 +401,14 @@ public class Bauernhof {
 	 * 		- avg Duengen
 	 * 		- avg Saeen
 	 */
-	@Creator(name = "Markus", lastUpdate = "08.12.2012")
-	public Liste avgDiesel(){
-		Integer fertilize=0;
-		Integer drill=0;
-		Integer all=0;
-		Integer helper = 0;
-		Traktor t;
-		MyIterator it=this.traktoren.iterator();
-		
-		while (it.hasNext()){
-			t=(Traktor)it.next();
-			
-			if(t instanceof DieselTraktor){
-				helper = ((DieselTraktor) t).getFuel();
-				all+=helper;
-				if(t.getGeraet() instanceof Duengerstreuer){
-					fertilize+=helper;
-				}
-				if(t.getGeraet() instanceof Drillmaschine){
-					drill+=helper;
-				}
-			}
-		}
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
+	public Liste getAverageFuelDiesel(){
 		
 		Liste ret=new Liste();
-		ret.add(all);
-		ret.add(fertilize);
-		ret.add(drill);
+		MyIterator it = getAvg().iterator();
+		ret.add(it.next());
+		ret.add(it.next());
+		ret.add(it.next());
 		return ret;
 		
 	}
@@ -442,37 +422,98 @@ public class Bauernhof {
 	 * 		- avg Duengen
 	 * 		- avg Saeen
 	 */
-	@Creator(name = "Markus", lastUpdate = "08.12.2012")
-	public Liste avgGas(){
-		Double fertilize=0.0;
-		Double drill=0.0;
-		Double all=0.0;
-		Double helper = 0.0;
-		Traktor t;
-		MyIterator it=this.traktoren.iterator();
-		
-		while (it.hasNext()){
-			t=(Traktor)it.next();
-			
-			if(t instanceof BiogasTraktor){
-				helper = ((BiogasTraktor) t).getFuel();
-				all+=helper;
-				if(t.getGeraet() instanceof Duengerstreuer){
-					fertilize+=helper;
-				}
-				if(t.getGeraet() instanceof Drillmaschine){
-					drill+=helper;
-				}
-			}
-		}
-		
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
+	public Liste getAverageFuelBio(){
+
 		Liste ret=new Liste();
-		ret.add(all);
-		ret.add(fertilize);
-		ret.add(drill);
+		MyIterator it = getAvg().iterator();
+		it.next();
+		it.next();
+		it.next();
+		ret.add(it.next());
+		ret.add(it.next());
+		ret.add(it.next());
 		return ret;
 		
 		
+	}
+	
+	/**
+	 * Der durchschnittliche Treibstoffverbrauch aller Biogastraktoren und Dieseltraktoren eines Bauernhofs – 
+	 * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
+	 * 
+	 * @return list with avg values in the following order:
+	 * 		- avg All Biogas
+	 * 		- avg Duengen Biogas
+	 * 		- avg Saeen Biogas
+	 * 		- avg All Diesel
+	 * 		- avg Duengen Diesel
+	 * 		- avg Saeen Diesel
+	 */
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
+	private Liste getAvg() {
+		Double biofertilize = 0.0, biodrill = 0.0, bioall = 0.0;
+		Double dieselfertilize = 0.0, dieseldrill = 0.0, dieselall = 0.0;
+		Double helper = 0.0;
+		int countfdieselfertilize = 0, countdieseldrill = 0, countdieselall = 0;
+		int countfbiofertilize = 0, countbiodrill = 0, countbioall = 0;
+		Traktor t;
+		MyIterator it = this.traktoren.iterator();
+
+		while (it.hasNext()) {
+			t = (Traktor) it.next();
+			if (t.getFuel() instanceof Double)
+				helper = (Double) t.getFuel();
+			if (t.getFuel() instanceof Integer)
+				helper = ((Integer) t.getFuel()).doubleValue();
+			
+			if (t instanceof BiogasTraktor) {
+
+				countbioall++;
+				bioall = (bioall) + (helper);
+
+				if (t.getGeraet() instanceof Duengerstreuer) {
+					countfbiofertilize++;
+					biofertilize = (biofertilize) + (helper);
+				}
+				if (t.getGeraet() instanceof Drillmaschine) {
+					countbiodrill++;
+					biodrill = (biodrill) + (helper);
+				}
+
+			}else{
+
+				countdieselall++;
+				dieselall = (dieselall) + (helper);
+
+				if (t.getGeraet() instanceof Duengerstreuer) {
+					countfdieselfertilize++;
+					dieselfertilize = (dieselfertilize) + (helper);
+				}
+				if (t.getGeraet() instanceof Drillmaschine) {
+					countdieseldrill++;
+					dieseldrill = (dieseldrill) + (helper);
+				}
+			}
+		}
+
+		Liste ret = new Liste();
+		if(countbioall!=0.0)bioall=bioall / countbioall;
+		if(countfbiofertilize!=0.0)biofertilize=biofertilize / countfbiofertilize;
+		if(countbiodrill!=0.0)biodrill=biodrill / countbiodrill;
+		if(countdieselall!=0.0)dieselall=dieselall / countdieselall;
+		if(countfdieselfertilize!=0.0)dieselfertilize=dieselfertilize / countfdieselfertilize;
+		if(countdieseldrill!=0.0)dieseldrill=dieseldrill / countdieseldrill;
+		
+		ret.add(bioall);
+		ret.add(biofertilize);
+		ret.add(biodrill);
+
+		ret.add(dieselall);
+		ret.add(dieselfertilize);
+		ret.add(dieseldrill);
+		return ret;
+
 	}
 	
 	/**
