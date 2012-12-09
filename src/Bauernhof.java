@@ -122,7 +122,7 @@ public class Bauernhof {
 	 */
 	@Creator(name = "Thomas", lastUpdate = "08.12.2012")
 	public String toString() {
-		return traktoren.toString();
+		return "Hofname: " + this.name + "\nTraktoren: \n" + traktoren.toString() + "\n";
 	}
 	
 	/**
@@ -473,5 +473,27 @@ public class Bauernhof {
 		return ret;
 		
 		
+	}
+	
+	/**
+	 * TODO DOMINIC
+	 * @return List with the results in the following order: overallAvg, saeenAvg, dueengenAvg
+	 */
+	@Creator(name = "Dominic")
+	public Liste getWorkingHoursStatsByDevice() {
+		Liste ret = new Liste();
+		
+		return ret;
+	}
+	
+	/**
+	 * TODO DOMINIC
+	 * @return List with the results in the following order: overallAvg, dieselAvg, gasAvg
+	 */
+	@Creator(name = "Dominic")
+	public Liste getWorkingHoursStatsByTractor() {
+		Liste ret = new Liste();
+		
+		return ret;
 	}
 }
