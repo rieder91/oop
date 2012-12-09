@@ -11,18 +11,18 @@
  * Methoden zum Berechnen folgender statistischer Werte:
  * 
  * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines
- * Bauernhofs – alle Traktoren zusammen und zusaetzlich aufgeschluesselt nach den
+ * Bauernhofs - alle Traktoren zusammen und zusaetzlich aufgeschluesselt nach den
  * Einsatzarten (Saeen oder Duengen).
  * 
  * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines
  * Bauernhofs aufgeschluesselt nach der Art des Traktors (Dieseltraktor oder
  * Biogastraktor).
  * 
- * Der durchschnittliche Dieselverbrauch aller Diesetraktoren eines Bauernhofs –
+ * Der durchschnittliche Dieselverbrauch aller Diesetraktoren eines Bauernhofs -
  * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder
  * Duengen).
  * 
- * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs –
+ * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs -
  * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder
  * Duengen).
  * 
@@ -394,7 +394,7 @@ public class Bauernhof {
 
 	/**
 	 * Der durchschnittliche Treibstoffverbrauch aller Biogastraktoren und
-	 * Dieseltraktoren eines Bauernhofs – alle zusammen und zusaetzlich
+	 * Dieseltraktoren eines Bauernhofs - alle zusammen und zusaetzlich
 	 * aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
 	 * 
 	 * @return list with avg values in the following order: - avg All Biogas -
@@ -475,7 +475,7 @@ public class Bauernhof {
 
 	/**
 	 * Der durchschnittliche Dieselverbrauch aller Diesetraktoren eines
-	 * Bauernhofs – alle zusammen und zusaetzlich aufgeschluesselt nach den
+	 * Bauernhofs - alle zusammen und zusaetzlich aufgeschluesselt nach den
 	 * Einsatzarten (Saeen oder Duengen).
 	 * 
 	 * @return list with avg values in the following order: - avg All - avg
@@ -498,7 +498,7 @@ public class Bauernhof {
 
 	/**
 	 * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs
-	 * – alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten
+	 * - alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten
 	 * (Saeen oder Duengen).
 	 * 
 	 * @return list with avg values in the following order: - avg All - avg
@@ -518,7 +518,7 @@ public class Bauernhof {
 
 	/**
 	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines
-	 * Bauernhofs – alle Traktoren zusammen und zusaetzlich aufgeschluesselt
+	 * Bauernhofs - alle Traktoren zusammen und zusaetzlich aufgeschluesselt
 	 * nach den Einsatzarten sowie der Art des Traktors.
 	 * 
 	 * @return List with results in following order: Gesamtstunden, Saeen,
@@ -592,7 +592,7 @@ public class Bauernhof {
 
 	/**
 	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines
-	 * Bauernhofs – alle Traktoren zusammen und zusaetzlich aufgeschluesselt
+	 * Bauernhofs - alle Traktoren zusammen und zusaetzlich aufgeschluesselt
 	 * nach den Einsatzarten (Saeen oder Duengen).
 	 * 
 	 * @return List with the results in the following order: overallAvg,
