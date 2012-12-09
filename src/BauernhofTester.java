@@ -20,6 +20,7 @@ public class BauernhofTester implements Tester {
 		Bauernhof hof4 = new Bauernhof("Hof #4");
 		Bauernhof hof5 = new Bauernhof("Hof #5");
 		
+		
 		// Hoefe in einer Collection speichern!
 		
 		Liste hoefe = new Liste();
@@ -135,6 +136,7 @@ public class BauernhofTester implements Tester {
 		
 		((Bauernhof) hoefe.searchFor("Hof #1")).increaseFuelUsage(10, 100);
 		((Bauernhof) hoefe.searchFor("Hof #1")).increaseFuelUsage(110, 200.0);
+		((Bauernhof) hoefe.searchFor("Hof #1")).increaseFuelUsage(120, 300.0);
 		((Bauernhof) hoefe.searchFor("Hof #2")).increaseFuelUsage(30, 300);
 		((Bauernhof) hoefe.searchFor("Hof #2")).increaseFuelUsage(140, 500.0);
 		((Bauernhof) hoefe.searchFor("Hof #3")).increaseFuelUsage(50, 700);
@@ -204,8 +206,8 @@ public class BauernhofTester implements Tester {
 		it = result.iterator();
 		System.out.println("\nTreibstoffstatitik der Dieseltraktoren von Hof 5: ");
 		System.out.println("Durchschnittlicher Dieselverbrauch Gesamt:\t" + it.next());
-		System.out.println("Durchschnittlicher Dieselverbrauch Saeen:\t" + it.next());
 		System.out.println("Durchschnittlicher Dieselverbrauch Duengen:\t" + it.next());
+		System.out.println("Durchschnittlicher Dieselverbrauch Saeen:\t" + it.next());
 		
 		
 		// Statistik #4
@@ -214,8 +216,8 @@ public class BauernhofTester implements Tester {
 		it = result.iterator();
 		System.out.println("\nTreibstoffstatistik der Biogastraktoren von Hof 1: ");
 		System.out.println("Durchschnittlicher Gasverbrauch Gesamt:\t\t" + it.next());
-		System.out.println("Durchschnittlicher Gasverbrauch Saeen:\t\t" + it.next());
 		System.out.println("Durchschnittlicher Gasverbrauch Duengen:\t" + it.next());
+		System.out.println("Durchschnittlicher Gasverbrauch Saeen:\t\t" + it.next());
 		
 		
 		// Statistik #5
