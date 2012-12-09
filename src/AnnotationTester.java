@@ -115,7 +115,7 @@ public class AnnotationTester implements Tester{
 					for (int k = 0; k < m[i].getParameterTypes().length; k++) {
 						System.out.print(m[i].getParameterTypes()[k].getName());
 						if (k != m[i].getParameterTypes().length - 1) {
-							System.out.print(" ");
+							System.out.print(", ");
 						}
 					}
 					System.out.print("):\n");
