@@ -353,7 +353,7 @@ public class Bauernhof {
 	 *         avgDiesel, avgGas
 	 */
 	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
-	public Liste getCapacityStats() {
+	public Liste getDeviceCapacityStats() {
 		Liste calc = getDeviceStats();
 		Liste ret = new Liste();
 		
@@ -375,7 +375,7 @@ public class Bauernhof {
 	 *         minOverall, maxGas, minGas, maxDiesel, minDiesel
 	 */
 	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
-	public Liste getSaescharenStats() {
+	public Liste getDeviceSaescharenStats() {
 		Liste calc = getDeviceStats();
 		Liste ret = new Liste();
 		
@@ -391,53 +391,7 @@ public class Bauernhof {
 
 		return ret;
 	}
-	
-	/**
-	 * Der durchschnittliche Dieselverbrauch aller Diesetraktoren eines Bauernhofs 
-	 * – alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
-	 * 
-	 * @return list with avg values in the following order:
-	 * 		- avg All
-	 * 		- avg Duengen
-	 * 		- avg Saeen
-	 */
-	@Creator(name = "Markus", lastUpdate = "09.12.2012")
-	public Liste getAverageFuelDiesel(){
-		
-		Liste ret=new Liste();
-		MyIterator it = getAvg().iterator();
-		it.next();
-		it.next();
-		it.next();
-		ret.add(it.next());
-		ret.add(it.next());
-		ret.add(it.next());
-		return ret;
-		
-	}
-	
-	/**
-	 * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs – 
-	 * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
-	 * 
-	 * @return list with avg values in the following order:
-	 * 		- avg All
-	 * 		- avg Duengen
-	 * 		- avg Saeen
-	 */
-	@Creator(name = "Markus", lastUpdate = "09.12.2012")
-	public Liste getAverageFuelBio(){
 
-		Liste ret=new Liste();
-		MyIterator it = getAvg().iterator();
-		ret.add(it.next());
-		ret.add(it.next());
-		ret.add(it.next());
-		return ret;
-		
-		
-	}
-	
 	/**
 	 * Der durchschnittliche Treibstoffverbrauch aller Biogastraktoren und Dieseltraktoren eines Bauernhofs – 
 	 * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
@@ -451,7 +405,7 @@ public class Bauernhof {
 	 * 		- avg Saeen Diesel
 	 */
 	@Creator(name = "Markus", lastUpdate = "09.12.2012")
-	private Liste getAvg() {
+	private Liste getAverageFuelStats() {
 		Double biofertilize = 0.0, biodrill = 0.0, bioall = 0.0;
 		Double dieselfertilize = 0.0, dieseldrill = 0.0, dieselall = 0.0;
 		Double helper = 0.0;
@@ -517,37 +471,49 @@ public class Bauernhof {
 	}
 	
 	/**
-	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines Bauernhofs 
-	 * – alle Traktoren zusammen und zusätzlich aufgeschlüsselt nach den Einsatzarten (Säen oder Düngen). 
+	 * Der durchschnittliche Dieselverbrauch aller Diesetraktoren eines Bauernhofs 
+	 * – alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
 	 * 
-	 * @return List with the results in the following order: overallAvg, saeenAvg, dueengenAvg
+	 * @return list with avg values in the following order:
+	 * 		- avg All
+	 * 		- avg Duengen
+	 * 		- avg Saeen
 	 */
-	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
-	public Liste getWorkingHoursStatsByDevice() {
-		Liste ret = new Liste();
-		MyIterator it = getAvgHours().iterator();
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
+	public Liste getAverageFuelStatsDiesel(){
+		
+		Liste ret=new Liste();
+		MyIterator it = getAverageFuelStats().iterator();
+		it.next();
+		it.next();
+		it.next();
 		ret.add(it.next());
 		ret.add(it.next());
 		ret.add(it.next());
 		return ret;
+		
 	}
 	
 	/**
-	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines Bauernhofs 
-	 * aufgeschlüsselt nach der Art des Traktors (Dieseltraktor oder Biogastraktor). 
+	 * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs – 
+	 * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
 	 * 
-	 * @return List with the results in the following order: overallAvg, dieselAvg, gasAvg
+	 * @return list with avg values in the following order:
+	 * 		- avg All
+	 * 		- avg Duengen
+	 * 		- avg Saeen
 	 */
-	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
-	public Liste getWorkingHoursStatsByTractor() {
-		Liste ret = new Liste();
-		MyIterator it = getAvgHours().iterator();
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
+	public Liste getAverageFuelStatsBio(){
+
+		Liste ret=new Liste();
+		MyIterator it = getAverageFuelStats().iterator();
 		ret.add(it.next());
-		it.next();
-		it.next();
 		ret.add(it.next());
 		ret.add(it.next());
 		return ret;
+		
+		
 	}
 	
 	/**
@@ -558,7 +524,7 @@ public class Bauernhof {
 	 * @return List with results in following order: Gesamtstunden, Säen, Düngen, Dieseltraktor, Biotraktor
 	 */
 	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
-	public Liste getAvgHours() {
+	private Liste getWorkingHoursStats() {
 		Liste ret = new Liste();
 		MyIterator it = this.traktoren.iterator();
 		int all = 0, seed = 0, fertilize = 0, diesel = 0, bio = 0;
@@ -622,4 +588,40 @@ public class Bauernhof {
 		
 		return ret;
 	}
+	
+	/**
+	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines Bauernhofs 
+	 * – alle Traktoren zusammen und zusätzlich aufgeschlüsselt nach den Einsatzarten (Säen oder Düngen). 
+	 * 
+	 * @return List with the results in the following order: overallAvg, saeenAvg, dueengenAvg
+	 */
+	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
+	public Liste getWorkingHoursStatsByDevice() {
+		Liste ret = new Liste();
+		MyIterator it = getWorkingHoursStats().iterator();
+		ret.add(it.next());
+		ret.add(it.next());
+		ret.add(it.next());
+		return ret;
+	}
+	
+	/**
+	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines Bauernhofs 
+	 * aufgeschlüsselt nach der Art des Traktors (Dieseltraktor oder Biogastraktor). 
+	 * 
+	 * @return List with the results in the following order: overallAvg, dieselAvg, gasAvg
+	 */
+	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
+	public Liste getWorkingHoursStatsByTractor() {
+		Liste ret = new Liste();
+		MyIterator it = getWorkingHoursStats().iterator();
+		ret.add(it.next());
+		it.next();
+		it.next();
+		ret.add(it.next());
+		ret.add(it.next());
+		return ret;
+	}
+	
+
 }

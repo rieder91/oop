@@ -206,7 +206,7 @@ public class BauernhofTester implements Tester {
 		
 		// Statistik #3
 		
-		result = ((Bauernhof) hoefe.searchFor("Hof #5")).getAverageFuelDiesel();
+		result = ((Bauernhof) hoefe.searchFor("Hof #5")).getAverageFuelStatsDiesel();
 		it = result.iterator();
 		System.out.println("\nTreibstoffstatitik der Dieseltraktoren von Hof 5: ");
 		System.out.println("Durchschnittlicher Dieselverbrauch Gesamt:\t" + it.next());
@@ -216,7 +216,7 @@ public class BauernhofTester implements Tester {
 		
 		// Statistik #4
 		
-		result = ((Bauernhof) hoefe.searchFor("Hof #1")).getAverageFuelBio();
+		result = ((Bauernhof) hoefe.searchFor("Hof #1")).getAverageFuelStatsBio();
 		it = result.iterator();
 		System.out.println("\nTreibstoffstatistik der Biogastraktoren von Hof 1: ");
 		System.out.println("Durchschnittlicher Gasverbrauch Gesamt:\t\t" + it.next());
@@ -226,7 +226,7 @@ public class BauernhofTester implements Tester {
 		
 		// Statistik #5
 		
-		result = ((Bauernhof) hoefe.searchFor("Hof #2")).getSaescharenStats();
+		result = ((Bauernhof) hoefe.searchFor("Hof #2")).getDeviceSaescharenStats();
 		it = result.iterator();
 		System.out.println("\nSaescharenstatistik von Hof 2: ");
 		System.out.println("Maximale Anzahl Gesamt:\t" + it.next());
@@ -239,7 +239,7 @@ public class BauernhofTester implements Tester {
 		
 		// Statistik #6
 		
-		result = ((Bauernhof) hoefe.searchFor("Hof #1")).getCapacityStats();
+		result = ((Bauernhof) hoefe.searchFor("Hof #1")).getDeviceCapacityStats();
 		it = result.iterator();
 		System.out.println("\nKapazitaetisstatistik von Hof 1: ");
 		System.out.println("Gesamtdurchschnitt:\t" + it.next());
