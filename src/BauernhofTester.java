@@ -152,6 +152,10 @@ public class BauernhofTester implements Tester {
 		((Bauernhof) hoefe.searchFor("Hof #1")).increaseHoursOfTraktor(10, 390);
 		((Bauernhof) hoefe.searchFor("Hof #2")).increaseHoursOfTraktor(120, 250);
 		((Bauernhof) hoefe.searchFor("Hof #3")).increaseHoursOfTraktor(40, 5000);
+		((Bauernhof) hoefe.searchFor("Hof #3")).increaseHoursOfTraktor(50, 50);
+		((Bauernhof) hoefe.searchFor("Hof #3")).increaseHoursOfTraktor(60, 30);
+		((Bauernhof) hoefe.searchFor("Hof #3")).increaseHoursOfTraktor(160, 20);
+		((Bauernhof) hoefe.searchFor("Hof #4")).increaseHoursOfTraktor(180, 70);
 		((Bauernhof) hoefe.searchFor("Hof #4")).increaseHoursOfTraktor(70, 90);
 		((Bauernhof) hoefe.searchFor("Hof #5")).increaseHoursOfTraktor(90, 500);
 		
