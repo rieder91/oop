@@ -11,18 +11,18 @@
  * Methoden zum Berechnen folgender statistischer Werte:
  * 
  * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines
- * Bauernhofs – alle Traktoren zusammen und zusaetzlich aufgeschluesselt nach den
+ * Bauernhofs - alle Traktoren zusammen und zusaetzlich aufgeschluesselt nach den
  * Einsatzarten (Saeen oder Duengen).
  * 
  * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines
  * Bauernhofs aufgeschluesselt nach der Art des Traktors (Dieseltraktor oder
  * Biogastraktor).
  * 
- * Der durchschnittliche Dieselverbrauch aller Diesetraktoren eines Bauernhofs –
+ * Der durchschnittliche Dieselverbrauch aller Diesetraktoren eines Bauernhofs -
  * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder
  * Duengen).
  * 
- * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs –
+ * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs -
  * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder
  * Duengen).
  * 
@@ -343,7 +343,7 @@ public class Bauernhof {
 
 		return ret;
 	}
-	
+
 	/**
 	 * Die durchschnittliche Fassungskapazitaet des Duengerbehaelters aller
 	 * Traktoren insgesamt und aufgeschluesselt nach Art des Traktors
@@ -356,16 +356,16 @@ public class Bauernhof {
 	public Liste getDeviceCapacityStats() {
 		Liste calc = getDeviceStats();
 		Liste ret = new Liste();
-		
+
 		MyIterator it = calc.iterator();
-		
-		for(int i = 0; i < 3; i++) {
+
+		for (int i = 0; i < 3; i++) {
 			ret.add(it.next());
 		}
 
 		return ret;
 	}
-	
+
 	/**
 	 * Die minimale und maximale Anzahl an Saescharen insgesamt und
 	 * aufgeschluesselt nach Art des Traktors (Dieseltraktor oder
@@ -378,11 +378,11 @@ public class Bauernhof {
 	public Liste getDeviceSaescharenStats() {
 		Liste calc = getDeviceStats();
 		Liste ret = new Liste();
-		
+
 		MyIterator it = calc.iterator();
-		
-		for(int i = 0; i < 9; i++) {
-			if(i >= 3) {
+
+		for (int i = 0; i < 9; i++) {
+			if (i >= 3) {
 				ret.add(it.next());
 			} else {
 				it.next();
@@ -393,16 +393,13 @@ public class Bauernhof {
 	}
 
 	/**
-	 * Der durchschnittliche Treibstoffverbrauch aller Biogastraktoren und Dieseltraktoren eines Bauernhofs – 
-	 * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
+	 * Der durchschnittliche Treibstoffverbrauch aller Biogastraktoren und
+	 * Dieseltraktoren eines Bauernhofs - alle zusammen und zusaetzlich
+	 * aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
 	 * 
-	 * @return list with avg values in the following order:
-	 * 		- avg All Biogas
-	 * 		- avg Duengen Biogas
-	 * 		- avg Saeen Biogas
-	 * 		- avg All Diesel
-	 * 		- avg Duengen Diesel
-	 * 		- avg Saeen Diesel
+	 * @return list with avg values in the following order: - avg All Biogas -
+	 *         avg Duengen Biogas - avg Saeen Biogas - avg All Diesel - avg
+	 *         Duengen Diesel - avg Saeen Diesel
 	 */
 	@Creator(name = "Markus", lastUpdate = "09.12.2012")
 	private Liste getAverageFuelStats() {
@@ -420,7 +417,7 @@ public class Bauernhof {
 				helper = (Double) t.getFuel();
 			if (t.getFuel() instanceof Integer)
 				helper = ((Integer) t.getFuel()).doubleValue();
-			
+
 			if (t instanceof BiogasTraktor) {
 
 				countbioall++;
@@ -435,7 +432,7 @@ public class Bauernhof {
 					biodrill = (biodrill) + (helper);
 				}
 
-			}else{
+			} else {
 
 				countdieselall++;
 				dieselall = (dieselall) + (helper);
@@ -452,13 +449,19 @@ public class Bauernhof {
 		}
 
 		Liste ret = new Liste();
-		if(countbioall!=0.0)bioall=bioall / countbioall;
-		if(countfbiofertilize!=0.0)biofertilize=biofertilize / countfbiofertilize;
-		if(countbiodrill!=0.0)biodrill=biodrill / countbiodrill;
-		if(countdieselall!=0.0)dieselall=dieselall / countdieselall;
-		if(countfdieselfertilize!=0.0)dieselfertilize=dieselfertilize / countfdieselfertilize;
-		if(countdieseldrill!=0.0)dieseldrill=dieseldrill / countdieseldrill;
-		
+		if (countbioall != 0.0)
+			bioall = bioall / countbioall;
+		if (countfbiofertilize != 0.0)
+			biofertilize = biofertilize / countfbiofertilize;
+		if (countbiodrill != 0.0)
+			biodrill = biodrill / countbiodrill;
+		if (countdieselall != 0.0)
+			dieselall = dieselall / countdieselall;
+		if (countfdieselfertilize != 0.0)
+			dieselfertilize = dieselfertilize / countfdieselfertilize;
+		if (countdieseldrill != 0.0)
+			dieseldrill = dieseldrill / countdieseldrill;
+
 		ret.add(bioall);
 		ret.add(biofertilize);
 		ret.add(biodrill);
@@ -469,59 +472,57 @@ public class Bauernhof {
 		return ret;
 
 	}
-	
-	/**
-	 * Der durchschnittliche Dieselverbrauch aller Diesetraktoren eines Bauernhofs 
-	 * – alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
-	 * 
-	 * @return list with avg values in the following order:
-	 * 		- avg All
-	 * 		- avg Duengen
-	 * 		- avg Saeen
-	 */
-	@Creator(name = "Markus", lastUpdate = "09.12.2012")
-	public Liste getAverageFuelStatsDiesel(){
-		
-		Liste ret=new Liste();
-		MyIterator it = getAverageFuelStats().iterator();
-		it.next();
-		it.next();
-		it.next();
-		ret.add(it.next());
-		ret.add(it.next());
-		ret.add(it.next());
-		return ret;
-		
-	}
-	
-	/**
-	 * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs – 
-	 * alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten (Saeen oder Duengen).
-	 * 
-	 * @return list with avg values in the following order:
-	 * 		- avg All
-	 * 		- avg Duengen
-	 * 		- avg Saeen
-	 */
-	@Creator(name = "Markus", lastUpdate = "09.12.2012")
-	public Liste getAverageFuelStatsBio(){
 
-		Liste ret=new Liste();
+	/**
+	 * Der durchschnittliche Dieselverbrauch aller Diesetraktoren eines
+	 * Bauernhofs - alle zusammen und zusaetzlich aufgeschluesselt nach den
+	 * Einsatzarten (Saeen oder Duengen).
+	 * 
+	 * @return list with avg values in the following order: - avg All - avg
+	 *         Duengen - avg Saeen
+	 */
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
+	public Liste getAverageFuelStatsDiesel() {
+
+		Liste ret = new Liste();
+		MyIterator it = getAverageFuelStats().iterator();
+		it.next();
+		it.next();
+		it.next();
+		ret.add(it.next());
+		ret.add(it.next());
+		ret.add(it.next());
+		return ret;
+
+	}
+
+	/**
+	 * Der durchschnittliche Gasverbrauch aller Biogastraktoren eines Bauernhofs
+	 * - alle zusammen und zusaetzlich aufgeschluesselt nach den Einsatzarten
+	 * (Saeen oder Duengen).
+	 * 
+	 * @return list with avg values in the following order: - avg All - avg
+	 *         Duengen - avg Saeen
+	 */
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
+	public Liste getAverageFuelStatsBio() {
+
+		Liste ret = new Liste();
 		MyIterator it = getAverageFuelStats().iterator();
 		ret.add(it.next());
 		ret.add(it.next());
 		ret.add(it.next());
 		return ret;
-		
-		
+
 	}
-	
+
 	/**
-	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines Bauernhofs
-	 * – alle Traktoren zusammen und zusätzlich aufgeschlüsselt nach den Einsatzarten 
-	 * sowie der Art des Traktors.
+	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines
+	 * Bauernhofs - alle Traktoren zusammen und zusaetzlich aufgeschluesselt
+	 * nach den Einsatzarten sowie der Art des Traktors.
 	 * 
-	 * @return List with results in following order: Gesamtstunden, Säen, Düngen, Dieseltraktor, Biotraktor
+	 * @return List with results in following order: Gesamtstunden, Saeen,
+	 *         Duengen, Dieseltraktor, Biotraktor
 	 */
 	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
 	private Liste getWorkingHoursStats() {
@@ -531,69 +532,71 @@ public class Bauernhof {
 		int countAll = 0, countSeed = 0, countFertilize = 0, countDiesel = 0, countBio = 0;
 		int tmp = 0;
 		Traktor t = null;
-		
-		while(it.hasNext()) {
+
+		while (it.hasNext()) {
 			t = (Traktor) it.next();
 			tmp = t.getHours();
-			
+
 			countAll++;
 			all += tmp;
-			
-			if(t instanceof DieselTraktor) {
+
+			if (t instanceof DieselTraktor) {
 				countDiesel++;
 				diesel += tmp;
-			} else if(t instanceof BiogasTraktor) {
+			} else if (t instanceof BiogasTraktor) {
 				countBio++;
 				bio += tmp;
 			}
-			
-			if(t.getGeraet() instanceof Duengerstreuer) {
+
+			if (t.getGeraet() instanceof Duengerstreuer) {
 				countFertilize++;
 				fertilize += tmp;
-			} else if(t.getGeraet() instanceof Drillmaschine) {
+			} else if (t.getGeraet() instanceof Drillmaschine) {
 				countSeed++;
 				seed += tmp;
 			}
 		}
-		
-		if(all != 0) {
-			ret.add(all/countAll);
+
+		if (all != 0) {
+			ret.add(all / countAll);
 		} else {
 			ret.add(0);
 		}
-		
-		if(seed != 0) {
-			ret.add(seed/countSeed);
+
+		if (seed != 0) {
+			ret.add(seed / countSeed);
 		} else {
 			ret.add(0);
 		}
-		
-		if(fertilize != 0) {
-			ret.add(fertilize/countFertilize);
+
+		if (fertilize != 0) {
+			ret.add(fertilize / countFertilize);
 		} else {
 			ret.add(0);
 		}
-		
-		if(diesel != 0) {
-			ret.add(diesel/countDiesel);
+
+		if (diesel != 0) {
+			ret.add(diesel / countDiesel);
 		} else {
 			ret.add(0);
 		}
-		
-		if(bio != 0) {
-			ret.add(bio/countBio);
+
+		if (bio != 0) {
+			ret.add(bio / countBio);
 		} else {
 			ret.add(0);
 		}
-		
+
 		return ret;
 	}
-	
+
 	/**
-	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines Bauernhofs 
-	 * – alle Traktoren zusammen und zusätzlich aufgeschlüsselt nach den Einsatzarten (Säen oder Düngen). 
+	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines
+	 * Bauernhofs - alle Traktoren zusammen und zusaetzlich aufgeschluesselt
+	 * nach den Einsatzarten (Saeen oder Duengen).
 	 * 
-	 * @return List with the results in the following order: overallAvg, saeenAvg, dueengenAvg
+	 * @return List with the results in the following order: overallAvg,
+	 *         saeenAvg, dueengenAvg
 	 */
 	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
 	public Liste getWorkingHoursStatsByDevice() {
@@ -604,12 +607,14 @@ public class Bauernhof {
 		ret.add(it.next());
 		return ret;
 	}
-	
+
 	/**
-	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines Bauernhofs 
-	 * aufgeschlüsselt nach der Art des Traktors (Dieseltraktor oder Biogastraktor). 
+	 * Die durchschnittliche Anzahl der Betriebsstunden aller Traktoren eines
+	 * Bauernhofs aufgeschluesselt nach der Art des Traktors (Dieseltraktor oder
+	 * Biogastraktor).
 	 * 
-	 * @return List with the results in the following order: overallAvg, dieselAvg, gasAvg
+	 * @return List with the results in the following order: overallAvg,
+	 *         dieselAvg, gasAvg
 	 */
 	@Creator(name = "Dominic", lastUpdate = "09.12.2012")
 	public Liste getWorkingHoursStatsByTractor() {
@@ -622,6 +627,5 @@ public class Bauernhof {
 		ret.add(it.next());
 		return ret;
 	}
-	
 
 }
