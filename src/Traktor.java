@@ -2,10 +2,10 @@
  * abstract class which contains all methods common to both BioGas- and
  * DieselTraktor
  * 
- * @author Thomas
+ * @author Markus
  * 
  */
-@Creator(name = "Thomas", lastUpdate = "08.12.2012")
+@Creator(name = "Markus", lastUpdate = "08.12.2012")
 public abstract class Traktor {
 
 	private String name;
@@ -25,7 +25,7 @@ public abstract class Traktor {
 	 * @param serial
 	 *            the (unique) serial of the tractor
 	 */
-	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
 	public Traktor(String name, int serial) {
 		this(name, serial, null);
 	}
@@ -40,7 +40,7 @@ public abstract class Traktor {
 	 * @param geraet
 	 *            the device that is attached to the tractor
 	 */
-	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
 	public Traktor(String name, int serial, TraktorGeraet geraet) {
 		if (usedSerials.contains(serial)) {
 			throw new RuntimeException("Traktoren-Seriennummer existiert bereits");
@@ -59,7 +59,7 @@ public abstract class Traktor {
 	/**
 	 * returns true if two objects are equals (only compares the serial though)
 	 */
-	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
 	public boolean equals(Object other) {
 		if (this == other) {
 			return true;
@@ -82,7 +82,7 @@ public abstract class Traktor {
 	 * @param geraet
 	 *            new device (mustn't be null - use dismantle())
 	 */
-	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
 	protected void setEinsatzart(TraktorGeraet geraet) {
 		if (geraet != null) {
 			this.geraet = geraet;
@@ -92,7 +92,7 @@ public abstract class Traktor {
 	/**
 	 * removes the current device from the tractor
 	 */
-	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
 	protected void dismantle() {
 		this.geraet = null;
 	}
@@ -100,7 +100,7 @@ public abstract class Traktor {
 	/**
 	 * @return the device that is currently attached (can be null)
 	 */
-	@Creator(name = "Thomas", lastUpdate = "09.12.2012")
+	@Creator(name = "Markus", lastUpdate = "09.12.2012")
 	protected TraktorGeraet getGeraet() {
 		return geraet;
 	}
