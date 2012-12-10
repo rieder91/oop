@@ -31,6 +31,22 @@ public class BauernhofTester implements Tester {
 		hoefe.add(hof5);
 		
 		
+		// Statistiken berechnen und ausgeben
+
+		Liste result;
+		MyIterator it;		
+		
+		
+		// Wuerde ein Div/0-Exception werfen
+		result = ((Bauernhof) hoefe.searchFor("Hof #1")).getWorkingHoursStatsByDevice();
+		it = result.iterator();
+		System.out.println("Arbeitsstundenstatistik nach Geraet von Hof 1 (zum Testen von Div/0-Exceptions): ");
+		System.out.println("Durchschnittliche Anzahl Betriebsstunden Gesamt:\t" + it.next());
+		System.out.println("Durchschnittliche Anzahl Betriebsstunden Saeen:\t\t" + it.next());
+		System.out.println("Durchschnittliche Anzahl Betriebsstunden Duengn:\t" + it.next() + "\n");
+		
+		
+		
 		// Traktoren erstellen
 		
 		Traktor d1 = new DieselTraktor("Diesel #1", 10);
@@ -177,12 +193,6 @@ public class BauernhofTester implements Tester {
 		System.out.println(hoefe.searchFor("Hof #4"));
 		System.out.println(hoefe.searchFor("Hof #5"));
 		
-		
-		// Statistiken berechnen und ausgeben
-		
-		Liste result;
-		MyIterator it;
-	
 		
 		// Statistik #1
 		
