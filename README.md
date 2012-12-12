@@ -22,15 +22,15 @@ _WS2012, Vienna University of Technology_
  - Assignment 6
     - Covariance
  - Assignment 7
-	- Exceptions and Threads
- 
-
-## WIP
+    - Exceptions and Threads
  - Assignment 8
     - Annotations, generics and dynamic typing
+## WIP
+ - Assignment 9
+    - Putting it all together
 
 ## TODO
- - Assignment 9
+ - Nothing :-)
  
 ## Syllabus
  - Überblick über das objektorientierte Programmierparadigma und entsprechende Programmiersprachen
