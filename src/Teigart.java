@@ -1,0 +1,4 @@
+
+public enum Teigart {
+MUERBTEIG,ZIMTSTERNTEIG,SCHOKOLADENTEIG;
+}
