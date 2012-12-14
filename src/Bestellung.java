@@ -1,17 +1,24 @@
+import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Bestellung {
+//TODO
+public class Bestellung implements Iterable<Position> {
 
-	public class Positionen{
-		private int anz;
-		private Form form;
-		private Teigart teigart;
-		private Fuellung fuellung;
-		
-		public Positionen(int a, Form fo, Teigart tart, Fuellung fu){
-			this.anz=a;
-			this.form=fo;
-			this.teigart=tart;
-			this.fuellung=fu;
+	private ArrayList<Position> al = new ArrayList<Position>();
+
+	public void addPosition(int a, Form f, Teigart t, Fuellung fu) {
+		al.add(new Position(a, f, t, fu));
+	}
+
+	@Override
+	public Iterator<Position> iterator() {
+		return this.al.iterator();
+	}
+	
+	public void drucke(){
+		for(Position p:this.al){
+			System.out.println(p);
 		}
 	}
+
 }

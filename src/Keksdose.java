@@ -8,7 +8,9 @@ public class Keksdose {
 		al.add(k);
 	}
 	
-	public ArrayList<Keks> getKekse(){
-		return this.al;
+	public void inhalt(){
+		for(Keks k :this.al){
+			System.out.println(k);
+		}
 	}
 }

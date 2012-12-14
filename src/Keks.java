@@ -13,6 +13,7 @@ public class Keks {
 		
 	}
 	
+	@Override
 	public Keks clone(){
 		return (new Keks(this));
 		
@@ -24,5 +25,11 @@ public class Keks {
 	
 	protected Teigart getTeigart(){
 		return this.teig;
+	}
+	
+	@Override
+	public String toString(){
+		return "Teigart: " + teig + " Form: " + form;
+		
 	}
 }

@@ -18,9 +18,15 @@ public class Doppelkeks extends Keks{
 		this.fuellung=dk.fuellung;
 	}
 	
+	@Override
 	public Doppelkeks clone(){
 		return (new Doppelkeks(this));
 		
+	}
+	
+	@Override
+	public String toString(){
+		return super.toString()+" Fuellung: " + fuellung;
 	}
 	
 }
