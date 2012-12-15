@@ -3,6 +3,7 @@ public class Position {
 		private int anz;
 		private Form form;
 		private Teigart teigart;
+		private Fuellung fuellung;
 
 		public int getAnz() {
 			return anz;
@@ -20,7 +21,7 @@ public class Position {
 			return fuellung;
 		}
 
-		private Fuellung fuellung;
+		
 
 		public Position(int a, Form fo, Teigart tart, Fuellung fu) {
 			this.anz = a;
@@ -29,6 +30,7 @@ public class Position {
 			this.fuellung = fu;
 		}
 
+		@Override
 		public String toString(){
 			return "Anzahl: " + anz + " Form: " + form + " Teigart: " + teigart;
 		}

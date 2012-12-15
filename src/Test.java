@@ -18,5 +18,7 @@ public class Test {
 				+ "Datum: 12.12.2012                                      \n"
 				+ "Aufgabe 9                                              \n"
 				+ "Gruppe 187: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
+		
+		
 	}
 }

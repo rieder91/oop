@@ -9,7 +9,7 @@ public class Doppelkeksbackmaschine extends Keksbackmaschine {
 		this.f=f;
 	}
 	
-	public Doppelkeks backen(){
+	public Keks backen(){
 		return (new Doppelkeks(this.k.clone(),this.f));
 	}
 

@@ -1,5 +1,5 @@
 
-public class Keksbackmaschine {
+public class Keksbackmaschine extends Backmaschine{
 	Form f;
 	
 	public Keksbackmaschine(Form f){
