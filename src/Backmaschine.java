@@ -5,18 +5,14 @@
  */
 public abstract class Backmaschine {
 
+	private Keks k = null;
 	/**
 	 * 
 	 * @param p
 	 * @return
 	 */
-	protected static Backmaschine getBackmaschine(Position p) {
-		if (p.getFuellung() == null) {
-			return (new Keksbackmaschine(p.getForm()));
-		} else {
-			return (new Doppelkeksbackmaschine((new Keksbackmaschine(
-					p.getForm()).backen(p))));
-		}
+	protected Keks getKeks(Position p) {
+		return backen(p);
 	}
 	
 	/**

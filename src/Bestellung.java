@@ -44,7 +44,13 @@ public class Bestellung implements Iterable<Position> {
 	public Keksdose backe() {
 
 		for (Position p : this) {
-			Backmaschine b = Backmaschine.getBackmaschine(p);
+			Backmaschine b;
+			if (p.getFuellung() == null) {
+				b= (new Keksbackmaschine(p.getForm()));
+			} else {
+				b = (new Doppelkeksbackmaschine((new Keksbackmaschine(
+						p.getForm()).backen(p))));
+			}
 			Keks k = b.backen(p);
 			int a = p.getAnz();
 			for (int i = 0; i < a; i++) {
