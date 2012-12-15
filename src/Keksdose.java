@@ -1,13 +1,24 @@
 import java.util.ArrayList;
 
-
+/**
+ * 
+ * @author OOP Gruppe 187
+ *
+ */
 public class Keksdose {
 	private ArrayList<Keks> al = new ArrayList<Keks>();
 	
-	public void addKeks(Keks k){
+	/**
+	 * 
+	 * @param k
+	 */
+	protected void addKeks(Keks k){
 		al.add(k);
 	}
 	
+	/**
+	 * 
+	 */
 	public void inhalt(){
 		for(Keks k :this.al){
 			System.out.println(k);

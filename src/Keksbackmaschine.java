@@ -1,12 +1,24 @@
-
+/**
+ * 
+ * @author OOP Gruppe 187
+ *
+ */
 public class Keksbackmaschine extends Backmaschine{
-	Form f;
 	
-	public Keksbackmaschine(Form f){
+	private Form f;
+	
+	/**
+	 * 
+	 * @param f
+	 */
+	protected Keksbackmaschine(Form f){
 		this.f=f;
 	}
 	
-	public Keks backen(Teigart t){
-		return (new Keks(t,f));
+	/**
+	 * 
+	 */
+	protected Keks backen(Position p){
+		return (new Keks(p.getTeigart(),f));
 	}
 }

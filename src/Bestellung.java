@@ -1,31 +1,59 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
-//TODO
+/**
+ * 
+ * @author OOP Gruppe 187
+ *
+ */
 public class Bestellung implements Iterable<Position> {
 
 	private ArrayList<Position> positionen = new ArrayList<Position>();
 	private Keksdose kekse = new Keksdose();
 
-	public void addPosition(int a, Form f, Teigart t, Fuellung fu) {
-		positionen.add(new Position(a, f, t, fu));
+	/**
+	 * 
+	 * @param p
+	 */
+	public void addPosition(Position p) {
+		positionen.add(p);
+
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public Iterator<Position> iterator() {
 		return this.positionen.iterator();
 	}
-	
-	public void drucke(){
-		for(Position p:this.positionen){
+
+	/**
+	 * 
+	 */
+	public void drucke() {
+		for (Position p : this) {
 			System.out.println(p);
 		}
 	}
-	
-	public Keksdose backen(){
-		for(Position p:this.positionen){
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Keksdose backe() {
+
+		for (Position p : this) {
+			Backmaschine b = Backmaschine.getBackmaschine(p);
+			Keks k = b.backen(p);
+			int a = p.getAnz();
+			for (int i = 0; i < a; i++) {
+				this.kekse.addKeks(k.clone());
+			}
 		}
-		return null;
+
+		return kekse;
+
 	}
 
 }

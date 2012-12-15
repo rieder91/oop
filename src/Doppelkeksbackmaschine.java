@@ -1,16 +1,25 @@
-
-public class Doppelkeksbackmaschine extends Keksbackmaschine {
+/**
+ * 
+ * @author OOP Gruppe 187
+ *
+ */
+public class Doppelkeksbackmaschine extends Backmaschine {
 
 	Keks k;
-	Fuellung f;
-	public Doppelkeksbackmaschine(Keks k,Fuellung f) {
-		super(k.getForm());
+	
+	/**
+	 * 
+	 * @param k
+	 */
+	protected Doppelkeksbackmaschine(Keks k) {
 		this.k=k;
-		this.f=f;
 	}
 	
-	public Keks backen(){
-		return (new Doppelkeks(this.k.clone(),this.f));
+	/**
+	 * 
+	 */
+	protected Keks backen(Position p){
+		return (new Doppelkeks(this.k.clone(),p.getFuellung()));
 	}
 
 }

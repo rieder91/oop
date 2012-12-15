@@ -1,32 +1,44 @@
-
+/**
+ * 
+ * @author OOP Gruppe 187
+ *
+ */
 public class Keks {
 
 	private Teigart teig;
 	private Form form;
 	
-	public Keks(Teigart t, Form f){
+	/**
+	 * 
+	 * @param t
+	 * @param f
+	 */
+	protected Keks(Teigart t, Form f){
 		this.teig=t;
 		this.form=f;
 	}
 	
+	/**
+	 * 
+	 * @param k
+	 */
 	protected Keks(Keks k){
-		
+		this.teig=k.teig;
+		this.form=k.form;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
-	public Keks clone(){
+	protected Keks clone(){
 		return (new Keks(this));
 		
 	}
-	
-	protected Form getForm(){
-		return this.form;
-	}
-	
-	protected Teigart getTeigart(){
-		return this.teig;
-	}
-	
+
+	/**
+	 * 
+	 */
 	@Override
 	public String toString(){
 		return "Teigart: " + teig + " Form: " + form;
