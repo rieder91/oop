@@ -42,21 +42,26 @@ public class Bestellung implements Iterable<Position> {
 	 * @return
 	 */
 	public Keksdose backe() {
-
-		for (Position p : this) {
+		// wir backen nur, falls unsere Keksdose noch leer ist - wir wollen ja
+		// nicht zwei mal das selbe backen!
+		
+		if (kekse.isEmpty()) {
 			Backmaschine b;
-			
-			if (p.isDoubleSidedCookie()) {
-				b = new Doppelkeksbackmaschine(new EinfacherKeks(p.getTeigart(), p.getForm()));
-			} else {
-				b = new Keksbackmaschine(p.getForm());
-			}
+			for (Position p : this) {
+				
 
-			for (int i = 0; i < p.getAnzahl(); i++) {
-				this.kekse.addKeks(b.backen(p));
+				if (p.isDoubleSidedCookie()) {
+					b = new Doppelkeksbackmaschine(new EinfacherKeks(
+							p.getTeigart(), p.getForm()));
+				} else {
+					b = new Keksbackmaschine(p.getForm());
+				}
+
+				for (int i = 0; i < p.getAnzahl(); i++) {
+					this.kekse.addKeks(b.backen());
+				}
 			}
 		}
-
 		return kekse;
 
 	}

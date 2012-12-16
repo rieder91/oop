@@ -5,21 +5,27 @@
  */
 public class Doppelkeksbackmaschine extends Backmaschine {
 
-	private EinfacherKeks template;
+	private EinfacherKeks vorlage;
+	private Fuellung fuellung;
 	
 	/**
 	 * 
-	 * @param k
+	 * @param vorlage
 	 */
-	protected Doppelkeksbackmaschine(EinfacherKeks k) {
-		this.template = k;
+	protected Doppelkeksbackmaschine(EinfacherKeks vorlage) {
+		this.vorlage = vorlage;
+		this.fuellung = null;
+	}
+	
+	protected void setFuellung(Fuellung fuellung) {
+		this.fuellung = fuellung;
 	}
 	
 	/**
 	 * 
 	 */
-	protected Keks backen(Position p){
-		return (new Doppelkeks(this.template.clone(), this.template.clone() ,p.getFuellung()));
+	protected Keks backen(){
+		return (new Doppelkeks(this.vorlage, this.vorlage.clone() , fuellung));
 	}
 
 }

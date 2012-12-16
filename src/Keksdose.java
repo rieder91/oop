@@ -31,4 +31,12 @@ public class Keksdose {
 			System.out.println(k);
 		}
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isEmpty() {
+		return kekse.isEmpty();
+	}
 }

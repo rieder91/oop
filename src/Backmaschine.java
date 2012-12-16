@@ -10,5 +10,5 @@ public abstract class Backmaschine {
 	 * @param p
 	 * @return
 	 */
-	protected abstract Keks backen(Position p);
+	protected abstract Keks backen();
 }

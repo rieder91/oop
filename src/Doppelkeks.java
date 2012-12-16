@@ -24,9 +24,9 @@ public class Doppelkeks implements Keks {
 	 * 
 	 * @param dk
 	 */
-	protected Doppelkeks(Doppelkeks dk){
-		this.oberSeite = new EinfacherKeks(dk.oberSeite);
-		this.unterSeite = new EinfacherKeks(dk.unterSeite);
+	private Doppelkeks(Doppelkeks dk){
+		this.oberSeite = dk.oberSeite.clone();
+		this.unterSeite = dk.unterSeite.clone();
 		this.fuellung=dk.fuellung;
 	}
 	

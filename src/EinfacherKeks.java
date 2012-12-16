@@ -22,7 +22,7 @@ public class EinfacherKeks implements Keks{
 	 * 
 	 * @param keks
 	 */
-	protected EinfacherKeks(EinfacherKeks keks) {
+	private EinfacherKeks(EinfacherKeks keks) {
 		this.teig = keks.teig;
 		this.form = keks.form;
 	}
@@ -40,14 +40,6 @@ public class EinfacherKeks implements Keks{
 	 */
 	@Override
 	public String toString(){
-		return "Form: " + form + ", Teigart: " + teig;
-	}
-
-	protected Teigart getTeig() {
-		return teig;
-	}
-
-	protected Form getForm() {
-		return form;
+		return "Einfacher Keks - " + "Form: " + form + ", Teigart: " + teig;
 	}
 }
