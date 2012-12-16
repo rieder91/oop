@@ -45,16 +45,15 @@ public class Bestellung implements Iterable<Position> {
 
 		for (Position p : this) {
 			Backmaschine b;
-			if (p.getFuellung() == null) {
-				b= (new Keksbackmaschine(p.getForm()));
+			
+			if (p.isDoubleSidedCookie()) {
+				b = new Doppelkeksbackmaschine(new EinfacherKeks(p.getTeigart(), p.getForm()));
 			} else {
-				b = (new Doppelkeksbackmaschine((new Keksbackmaschine(
-						p.getForm()).backen(p))));
+				b = new Keksbackmaschine(p.getForm());
 			}
-			Keks k = b.backen(p);
-			int a = p.getAnz();
-			for (int i = 0; i < a; i++) {
-				this.kekse.addKeks(k.clone());
+
+			for (int i = 0; i < p.getAnzahl(); i++) {
+				this.kekse.addKeks(b.backen(p));
 			}
 		}
 

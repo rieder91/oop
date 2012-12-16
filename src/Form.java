@@ -4,15 +4,18 @@
  *
  */
 public enum Form {
-	RUND("Rund"), MOND("Mond"), WEIHNACHTSMANN("Weihnachtsmann");
-	private String bez;
+	RUND("Rund"), 
+	MOND("Mond"), 
+	WEIHNACHTSMANN("Weihnachtsmann");
+	
+	private String bezeichnung;
 
 	/**
 	 * 
-	 * @param f
+	 * @param bezeichnung
 	 */
-	private Form(String f) {
-		this.bez = f;
+	private Form(String bezeichnung) {
+		this.bezeichnung = bezeichnung;
 	}
 
 	/**
@@ -20,6 +23,6 @@ public enum Form {
 	 */
 	@Override
 	public String toString() {
-		return this.bez;
+		return this.bezeichnung;
 	}
 }

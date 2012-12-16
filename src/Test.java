@@ -29,5 +29,7 @@ public class Test {
 		
 		b1.drucke();
 		b1.backe().inhalt();
+		
+		System.out.println(Teigart.SCHOKOLADENTEIG);
 	}
 }

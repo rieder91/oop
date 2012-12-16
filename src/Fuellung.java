@@ -4,15 +4,17 @@
  *
  */
 public enum Fuellung {
-	SCHOKOLADE("Schokolade"), MARMELADE("Marmelade");
-	private String bez;
+	SCHOKOLADE("Schokolade"), 
+	MARMELADE("Marmelade");
+	
+	private String bezeichnung;
 
 	/**
 	 * 
-	 * @param f
+	 * @param bezeichnung
 	 */
-	private Fuellung(String f) {
-		this.bez = f;
+	private Fuellung(String bezeichnung) {
+		this.bezeichnung = bezeichnung;
 	}
 
 	/**
@@ -20,6 +22,6 @@ public enum Fuellung {
 	 */
 	@Override
 	public String toString() {
-		return this.bez;
+		return this.bezeichnung;
 	}
 }

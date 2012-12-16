@@ -6,21 +6,28 @@ import java.util.ArrayList;
  *
  */
 public class Keksdose {
-	private ArrayList<Keks> al = new ArrayList<Keks>();
+	private ArrayList<Keks> kekse;
+	
+	/**
+	 * 
+	 */
+	public Keksdose() {
+		kekse = new ArrayList<Keks>();
+	}
 	
 	/**
 	 * 
 	 * @param k
 	 */
 	protected void addKeks(Keks k){
-		al.add(k);
+		kekse.add(k);
 	}
 	
 	/**
 	 * 
 	 */
-	public void inhalt(){
-		for(Keks k :this.al){
+	public void inhalt() {
+		for(Keks k : this.kekse){
 			System.out.println(k);
 		}
 	}

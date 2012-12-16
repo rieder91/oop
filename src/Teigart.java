@@ -4,16 +4,18 @@
  *
  */
 public enum Teigart {
-	MUERBTEIG("Muerbteig"), ZIMTSTERNTEIG("Zimtsternteig"), SCHOKOLADENTEIG(
-			"Schokoladenteig");
-	private String bez;
+	MUERBTEIG("Muerbteig"), 
+	ZIMTSTERNTEIG("Zimtsternteig"), 
+	SCHOKOLADENTEIG("Schokoladenteig");
+	
+	private String bezeichnung;
 
 	/**
 	 * 
-	 * @param f
+	 * @param bezeichnung
 	 */
-	private Teigart(String f) {
-		this.bez = f;
+	private Teigart(String bezeichnung) {
+		this.bezeichnung = bezeichnung;
 	}
 
 	/**
@@ -21,6 +23,6 @@ public enum Teigart {
 	 */
 	@Override
 	public String toString() {
-		return this.bez;
+		return this.bezeichnung;
 	}
 }

@@ -4,17 +4,43 @@
  *
  */
 public class Position {
-		private int anz;
+		private int anzahl;
 		private Form form;
 		private Teigart teigart;
 		private Fuellung fuellung;
 
+		
+		/**
+		 * 
+		 * @param anzahl
+		 * @param form
+		 * @param teigart
+		 * @param fuellung
+		 */
+		public Position(int anzahl, Form form, Teigart teigart, Fuellung fuellung) {
+			this.anzahl = anzahl;
+			this.form = form;
+			this.teigart = teigart;
+			this.fuellung = fuellung;
+		}
+		
+		/**
+		 * 
+		 * @param anzahl
+		 * @param form
+		 * @param teigart
+		 */
+		public Position(int anzahl, Form form, Teigart teigart) {
+			this(anzahl, form, teigart, null);
+		}
+		
+		
 		/**
 		 * 
 		 * @return
 		 */
-		public int getAnz() {
-			return anz;
+		public int getAnzahl() {
+			return anzahl;
 		}
 
 		/**
@@ -40,27 +66,34 @@ public class Position {
 		public Fuellung getFuellung() {
 			return fuellung;
 		}
-
+		
 		/**
 		 * 
-		 * @param a
-		 * @param fo
-		 * @param tart
-		 * @param fu
+		 * @return
 		 */
-		public Position(int a, Form fo, Teigart tart, Fuellung fu) {
-			this.anz = a;
-			this.form = fo;
-			this.teigart = tart;
-			this.fuellung = fu;
+		public boolean isDoubleSidedCookie() {
+			return fuellung != null;
 		}
+		
 
 		/**
 		 * 
 		 */
 		@Override
 		public String toString(){
-			return "Anzahl: " + anz + " Form: " + form + " Teigart: " + teigart;
+			StringBuilder ret = new StringBuilder();
+			
+			ret.append("Position: ");
+			
+			if(fuellung == null) {
+				ret.append("Einfacher Keks - ");
+				ret.append("Anzahl: " + anzahl + ", Form: " + form + ", Teigart: " + teigart);
+			} else {
+				ret.append("Doppelter Keks - ");
+				ret.append("Anzahl: " + anzahl + ", Form: " + form + ", Teigart: " + teigart + ", Fuellung: " + fuellung);
+			}
+			
+			return ret.toString();
 		}
 	
 }

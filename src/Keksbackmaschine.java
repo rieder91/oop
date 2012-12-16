@@ -5,20 +5,20 @@
  */
 public class Keksbackmaschine extends Backmaschine{
 	
-	private Form f;
+	private Form form;
 	
 	/**
 	 * 
-	 * @param f
+	 * @param form
 	 */
-	protected Keksbackmaschine(Form f){
-		this.f=f;
+	protected Keksbackmaschine(Form form) {
+		this.form = form;
 	}
 	
 	/**
 	 * 
 	 */
-	protected Keks backen(Position p){
-		return (new Keks(p.getTeigart(),f));
+	protected EinfacherKeks backen(Position p){
+		return (new EinfacherKeks(p.getTeigart(),form));
 	}
 }
