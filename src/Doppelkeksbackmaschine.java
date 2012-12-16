@@ -31,10 +31,14 @@ public class Doppelkeksbackmaschine extends Backmaschine {
 	}
 
 	@Override
-	protected void setDetail(Teigart t) { }
+	protected void setDetail(Teigart t) {
+		throw new RuntimeException("error: die Teigart einer Doppelkeksbackmaschine kann nicht geaendert werden");
+	}
 
 	@Override
-	protected void setDetail(Form f) { }
+	protected void setDetail(Form f) { 
+		throw new RuntimeException("error: die Form einer Doppelkeksbackmaschine kann nicht geaendert werden");
+	}
 	
 	@Override
 	protected Keks backen(){

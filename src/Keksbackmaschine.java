@@ -31,10 +31,12 @@ public class Keksbackmaschine extends Backmaschine {
 
 	@Override
 	protected void setDetail(Fuellung f) {
+		throw new RuntimeException("error: die Fuellung einer einfachen Keksbackmaschine kann nicht geaendert werden");
 	}
 
 	@Override
 	protected void setDetail(Form f) {
+		throw new RuntimeException("error: die Form einer einfachen Keksbackmaschine kann nicht geaendert werden");
 	}
 
 	
