@@ -40,7 +40,7 @@ public class Doppelkeks implements Keks {
 	}
 	
 	/**
-	 * 
+	 * toString-Method for fancy output
 	 */
 	@Override
 	public String toString() {

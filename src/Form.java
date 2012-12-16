@@ -19,7 +19,7 @@ public enum Form {
 	}
 
 	/**
-	 * 
+	 * toString-Method for fancy output
 	 */
 	@Override
 	public String toString() {

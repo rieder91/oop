@@ -11,7 +11,7 @@ public class Position {
 
 		
 		/**
-		 * 
+		 * constructor for a double sided cookie
 		 * @param anzahl
 		 * @param form
 		 * @param teigart
@@ -25,7 +25,7 @@ public class Position {
 		}
 		
 		/**
-		 * 
+		 * constructor for a single sided cookie
 		 * @param anzahl
 		 * @param form
 		 * @param teigart
@@ -39,7 +39,7 @@ public class Position {
 		 * 
 		 * @return
 		 */
-		public int getAnzahl() {
+		protected int getAnzahl() {
 			return anzahl;
 		}
 
@@ -47,7 +47,7 @@ public class Position {
 		 * 
 		 * @return
 		 */
-		public Form getForm() {
+		protected Form getForm() {
 			return form;
 		}
 
@@ -55,7 +55,7 @@ public class Position {
 		 * 
 		 * @return
 		 */
-		public Teigart getTeigart() {
+		protected Teigart getTeigart() {
 			return teigart;
 		}
 
@@ -63,7 +63,7 @@ public class Position {
 		 * 
 		 * @return
 		 */
-		public Fuellung getFuellung() {
+		protected Fuellung getFuellung() {
 			return fuellung;
 		}
 		
@@ -77,7 +77,7 @@ public class Position {
 		
 
 		/**
-		 * 
+		 * toString-Method for fancy output
 		 */
 		@Override
 		public String toString(){

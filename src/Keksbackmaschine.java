@@ -6,7 +6,6 @@
 public class Keksbackmaschine extends Backmaschine{
 	
 	private Form form;
-	private Teigart teig;
 	
 	/**
 	 * 
@@ -14,17 +13,13 @@ public class Keksbackmaschine extends Backmaschine{
 	 */
 	protected Keksbackmaschine(Form form) {
 		this.form = form;
-		teig = null;
 	}
 	
-	protected void setTeigart(Teigart teig) {
-		this.teig = teig;
-	}
 	
 	/**
 	 * 
 	 */
-	protected EinfacherKeks backen(){
-		return (new EinfacherKeks(teig, form));
+	protected EinfacherKeks backen(Position p){
+		return (new EinfacherKeks(p.getTeigart(), form));
 	}
 }

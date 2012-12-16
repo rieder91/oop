@@ -18,7 +18,7 @@ public enum Fuellung {
 	}
 
 	/**
-	 * 
+	 * toString-Method for fancy output
 	 */
 	@Override
 	public String toString() {

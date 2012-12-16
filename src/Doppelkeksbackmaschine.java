@@ -6,7 +6,6 @@
 public class Doppelkeksbackmaschine extends Backmaschine {
 
 	private EinfacherKeks vorlage;
-	private Fuellung fuellung;
 	
 	/**
 	 * 
@@ -14,18 +13,19 @@ public class Doppelkeksbackmaschine extends Backmaschine {
 	 */
 	protected Doppelkeksbackmaschine(EinfacherKeks vorlage) {
 		this.vorlage = vorlage;
-		this.fuellung = null;
 	}
 	
-	protected void setFuellung(Fuellung fuellung) {
-		this.fuellung = fuellung;
-	}
 	
 	/**
 	 * 
 	 */
-	protected Keks backen(){
-		return (new Doppelkeks(this.vorlage, this.vorlage.clone() , fuellung));
+	protected Keks backen(Position p){
+		Fuellung f = p.getFuellung();
+		if(f != null) {
+			return (new Doppelkeks(this.vorlage, this.vorlage.clone() , f));
+		} else {
+			return null;
+		}
 	}
 
 }
