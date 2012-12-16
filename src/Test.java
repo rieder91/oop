@@ -28,8 +28,8 @@ public class Test {
 		b1.addPosition(new Position(1, Form.WEIHNACHTSMANN, Teigart.ZIMTSTERNTEIG, null));
 		
 		b1.drucke();
+		System.out.println();
 		b1.backe().inhalt();
 		
-		System.out.println(Teigart.SCHOKOLADENTEIG);
 	}
 }

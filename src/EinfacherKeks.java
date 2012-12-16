@@ -8,30 +8,35 @@
  * @author OOP Gruppe 187
  * 
  */
-public class EinfacherKeks implements Keks{
+public class EinfacherKeks implements Keks {
 
 	private Teigart teig;
 	private Form form;
-	
+
 	/**
 	 * constructor which creates a new cookie inside the factory
-	 * @param teig teig of the cookie
-	 * @param form form of the cookie
+	 * 
+	 * @param teig
+	 *            teig of the cookie
+	 * @param form
+	 *            form of the cookie
 	 */
-	protected EinfacherKeks(Teigart teig, Form form){
+	protected EinfacherKeks(Teigart teig, Form form) {
 		this.teig = teig;
 		this.form = form;
 	}
-	
+
 	/**
 	 * copy-constructor used for clone
-	 * @param keks cookie that is copied
+	 * 
+	 * @param keks
+	 *            cookie that is copied
 	 */
 	private EinfacherKeks(EinfacherKeks keks) {
 		this.teig = keks.teig;
 		this.form = keks.form;
 	}
-	
+
 	/**
 	 * clones a cookie
 	 */
@@ -44,7 +49,7 @@ public class EinfacherKeks implements Keks{
 	 * toString-Method for fancy output
 	 */
 	@Override
-	public String toString(){
+	public String toString() {
 		return "Einfacher Keks - " + "Form: " + form + ", Teigart: " + teig;
 	}
 }
