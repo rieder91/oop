@@ -32,6 +32,9 @@ public class Keksdose {
 	 */
 	public void inhalt() {
 		System.out.println("Keksdose: ");
+		if(this.kekse.size() == 0) {
+			System.out.println("keine Kekse vorhanden");
+		}
 		for (Keks k : this.kekse) {
 			System.out.println(k);
 		}

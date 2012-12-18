@@ -48,6 +48,9 @@ public class Bestellung implements Iterable<Position> {
 	 */
 	public void drucke() {
 		System.out.println("Bestellung: ");
+		if(this.positionen.size() == 0) {
+			System.out.println("keine Positionen vorhanden");
+		}
 		for (Position p : this) {
 			System.out.println(p);
 		}
