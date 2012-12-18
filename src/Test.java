@@ -27,10 +27,14 @@ public class Test {
 		b1.addPosition(new Position(4, Form.MOND, Teigart.MUERBTEIG, null));
 		b1.addPosition(new Position(3, Form.WEIHNACHTSMANN, Teigart.ZIMTSTERNTEIG, Fuellung.MARMELADE));
 		b1.addPosition(new Position(1, Form.WEIHNACHTSMANN, Teigart.ZIMTSTERNTEIG, null));
+		b1.addPosition(new Position(10, Form.RUND, Teigart.SCHOKOLADENTEIG, Fuellung.SCHOKOLADE));
 
 		b1.drucke();
 		System.out.println();
 		b.backe(b1).inhalt();
+		
+		
+		// TODO MOAR TEST CASES
 
 	}
 }
