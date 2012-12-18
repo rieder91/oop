@@ -83,9 +83,6 @@ public class Test {
 		b5.addPosition(new Position(1, Form.RUND, Teigart.ZIMTSTERNTEIG, null));
 		b5.addPosition(new Position(1, Form.MOND, Teigart.ZIMTSTERNTEIG, null));
 		b5.addPosition(new Position(1, Form.WEIHNACHTSMANN, Teigart.ZIMTSTERNTEIG, null));
-		b5.addPosition(new Position(1, Form.RUND, Teigart.ZIMTSTERNTEIG, null));
-		b5.addPosition(new Position(1, Form.MOND, Teigart.ZIMTSTERNTEIG, null));
-		b5.addPosition(new Position(1, Form.WEIHNACHTSMANN, Teigart.ZIMTSTERNTEIG, null));
 		
 		System.out.println("\nAlle Kombinationen einfacher Kekse mit Zimtsternteig: ");
 		b5.drucke();
