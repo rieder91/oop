@@ -10,6 +10,7 @@ import java.util.Iterator;
  * @author OOP Gruppe 187
  * 
  */
+//TODO gruppieren
 public class Bestellung implements Iterable<Position> {
 
 	private ArrayList<Position> positionen;
