@@ -21,7 +21,6 @@ public class Keksbackmaschine extends Backmaschine {
 		this.teig = null;
 	}
 
-	
 	/* only the teigart can be changed */
 
 	@Override
@@ -39,7 +38,6 @@ public class Keksbackmaschine extends Backmaschine {
 		throw new RuntimeException("error: die Form einer einfachen Keksbackmaschine kann nicht geaendert werden");
 	}
 
-	
 	@Override
 	protected Keks backen() {
 		if (this.teig != null) {

@@ -4,8 +4,8 @@ import java.util.Iterator;
 /**
  * Kunden geben Bestellungen an die Baeckerei ab. Eine Bestellung ist eine Liste
  * von Positionen, die jeweils die Anzahl, Form, Teigart und Fuelle (wenn
- * Doppelkekse gewuenscht sind, sonst keine Fuelle) angeben. Als Ergebnis erhaelt
- * man eine Keksdose, die mit allen entsprechenden Keksen gefuellt ist.
+ * Doppelkekse gewuenscht sind, sonst keine Fuelle) angeben. Als Ergebnis
+ * erhaelt man eine Keksdose, die mit allen entsprechenden Keksen gefuellt ist.
  * 
  * @author OOP Gruppe 187
  * 
@@ -13,7 +13,7 @@ import java.util.Iterator;
 public class Bestellung implements Iterable<Position> {
 
 	private ArrayList<Position> positionen;
-	
+
 	/**
 	 * constructor without args
 	 */
@@ -23,7 +23,9 @@ public class Bestellung implements Iterable<Position> {
 
 	/**
 	 * adds a new position to an order
-	 * @param p new position
+	 * 
+	 * @param p
+	 *            new position
 	 */
 	public void addPosition(Position p) {
 		positionen.add(p);
@@ -34,8 +36,7 @@ public class Bestellung implements Iterable<Position> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((positionen == null) ? 0 : positionen.hashCode());
+		result = prime * result + ((positionen == null) ? 0 : positionen.hashCode());
 		return result;
 	}
 
@@ -73,7 +74,5 @@ public class Bestellung implements Iterable<Position> {
 			System.out.println(p);
 		}
 	}
-
-
 
 }

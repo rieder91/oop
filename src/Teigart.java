@@ -7,10 +7,8 @@
  * 
  */
 public enum Teigart {
-	MUERBTEIG("Muerbteig"), 
-	ZIMTSTERNTEIG("Zimtsternteig"), 
-	SCHOKOLADENTEIG("Schokoladenteig");
-	
+	MUERBTEIG("Muerbteig"), ZIMTSTERNTEIG("Zimtsternteig"), SCHOKOLADENTEIG("Schokoladenteig");
+
 	private String bezeichnung;
 
 	/**

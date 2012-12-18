@@ -6,9 +6,7 @@
  * 
  */
 public enum Form {
-	RUND("Rund"), 
-	MOND("Mond"), 
-	WEIHNACHTSMANN("Weihnachtsmann");
+	RUND("Rund"), MOND("Mond"), WEIHNACHTSMANN("Weihnachtsmann");
 
 	private String bezeichnung;
 

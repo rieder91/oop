@@ -15,10 +15,14 @@ public class Position {
 	/**
 	 * constructor for a double sided cookie
 	 * 
-	 * @param anzahl number of cookies
-	 * @param form form of the cookies
-	 * @param teigart teig used in the cookies
-	 * @param fuellung the filling of the cookies
+	 * @param anzahl
+	 *            number of cookies
+	 * @param form
+	 *            form of the cookies
+	 * @param teigart
+	 *            teig used in the cookies
+	 * @param fuellung
+	 *            the filling of the cookies
 	 */
 	public Position(int anzahl, Form form, Teigart teigart, Fuellung fuellung) {
 		this.anzahl = anzahl;
@@ -30,9 +34,12 @@ public class Position {
 	/**
 	 * constructor for a single sided cookie
 	 * 
-	 * @param anzahl number of cookies
-	 * @param form form of the cookies
-	 * @param teigart teig used in the cookies
+	 * @param anzahl
+	 *            number of cookies
+	 * @param form
+	 *            form of the cookies
+	 * @param teigart
+	 *            teig used in the cookies
 	 */
 	public Position(int anzahl, Form form, Teigart teigart) {
 		this(anzahl, form, teigart, null);
@@ -95,12 +102,10 @@ public class Position {
 
 		if (fuellung == null) {
 			ret.append("Einfacher Keks - ");
-			ret.append("Anzahl: " + anzahl + ", Form: " + form + ", Teigart: "
-					+ teigart);
+			ret.append("Anzahl: " + anzahl + ", Form: " + form + ", Teigart: " + teigart);
 		} else {
 			ret.append("Doppelter Keks - ");
-			ret.append("Anzahl: " + anzahl + ", Form: " + form + ", Teigart: "
-					+ teigart + ", Fuellung: " + fuellung);
+			ret.append("Anzahl: " + anzahl + ", Form: " + form + ", Teigart: " + teigart + ", Fuellung: " + fuellung);
 		}
 
 		return ret.toString();

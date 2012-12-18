@@ -10,8 +10,50 @@
  */
 public class EinfacherKeks implements Keks {
 
+
 	private Teigart teig;
 	private Form form;
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((form == null) ? 0 : form.hashCode());
+		result = prime * result + ((teig == null) ? 0 : teig.hashCode());
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof EinfacherKeks)) {
+			return false;
+		}
+		EinfacherKeks other = (EinfacherKeks) obj;
+		if (form != other.form) {
+			return false;
+		}
+		if (teig != other.teig) {
+			return false;
+		}
+		return true;
+	}
+
 
 	/**
 	 * constructor which creates a new cookie inside the factory

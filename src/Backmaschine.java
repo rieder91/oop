@@ -29,23 +29,31 @@
 public abstract class Backmaschine {
 
 	/**
-	 * sets the fuellung used in the new cookie (if it applies to the specific machine)
-	 * @param f new fuellung
+	 * sets the fuellung used in the new cookie (if it applies to the specific
+	 * machine)
+	 * 
+	 * @param f
+	 *            new fuellung
 	 */
 	protected abstract void setDetail(Fuellung f);
-	
+
 	/**
-	 * sets the Teig used in the new cookie (if it applies to the specific machine)
-	 * @param t new teigart
+	 * sets the Teig used in the new cookie (if it applies to the specific
+	 * machine)
+	 * 
+	 * @param t
+	 *            new teigart
 	 */
 	protected abstract void setDetail(Teigart t);
-	
+
 	/**
 	 * sets the form of the new cookie (if it applies to the specific machine)
-	 * @param f new form
+	 * 
+	 * @param f
+	 *            new form
 	 */
 	protected abstract void setDetail(Form f);
-	
+
 	/**
 	 * creates a new cookie if the maschine has all the necessary data; return
 	 * null otherwise

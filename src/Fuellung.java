@@ -7,8 +7,7 @@
  * 
  */
 public enum Fuellung {
-	SCHOKOLADE("Schokolade"), 
-	MARMELADE("Marmelade");
+	SCHOKOLADE("Schokolade"), MARMELADE("Marmelade");
 
 	private String bezeichnung;
 

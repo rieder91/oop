@@ -2,8 +2,8 @@
  * Neben einfachen Keksen gibt es Doppelkekse, die aus zwei einfachen Keksen und
  * einer Fuellung (Schokolade oder Marmelade) bestehen.
  * 
- * Laut Angabe es ist NICHT vorrausgesetzt, dass die Ober- und Unterseite aus der
- * selben Form und Teigart sind!
+ * Laut Angabe es ist NICHT vorrausgesetzt, dass die Ober- und Unterseite aus
+ * der selben Form und Teigart sind!
  * 
  * @author OOP Gruppe 187
  * 

@@ -18,8 +18,8 @@ public class Test {
 				+ "Datum: 12.12.2012                                      \n"
 				+ "Aufgabe 9                                              \n"
 				+ "Gruppe 187: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
-		
-		Baeckerrei b=new Baeckerrei();
+
+		Baeckerrei b = new Baeckerrei();
 		Bestellung b1 = new Bestellung();
 		b1.addPosition(new Position(5, Form.RUND, Teigart.SCHOKOLADENTEIG, Fuellung.MARMELADE));
 		b1.addPosition(new Position(2, Form.RUND, Teigart.SCHOKOLADENTEIG, null));
@@ -27,10 +27,10 @@ public class Test {
 		b1.addPosition(new Position(4, Form.MOND, Teigart.MUERBTEIG, null));
 		b1.addPosition(new Position(3, Form.WEIHNACHTSMANN, Teigart.ZIMTSTERNTEIG, Fuellung.MARMELADE));
 		b1.addPosition(new Position(1, Form.WEIHNACHTSMANN, Teigart.ZIMTSTERNTEIG, null));
-		
+
 		b1.drucke();
 		System.out.println();
 		b.backe(b1).inhalt();
-		
+
 	}
 }
