@@ -11,6 +11,53 @@ public class Position {
 	private Form form;
 	private Teigart teigart;
 	private Fuellung fuellung;
+	
+	/**
+	 * @param anzahl the anzahl to set
+	 */
+	public void setAnzahl(int anzahl) {
+		this.anzahl = anzahl;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((form == null) ? 0 : form.hashCode());
+		result = prime * result + ((fuellung == null) ? 0 : fuellung.hashCode());
+		result = prime * result + ((teigart == null) ? 0 : teigart.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Position)) {
+			return false;
+		}
+		Position other = (Position) obj;
+		if (form != other.form) {
+			return false;
+		}
+		if (fuellung != other.fuellung) {
+			return false;
+		}
+		if (teigart != other.teigart) {
+			return false;
+		}
+		return true;
+	}
 
 	/**
 	 * constructor for a double sided cookie

@@ -10,7 +10,7 @@ import java.util.Iterator;
  * @author OOP Gruppe 187
  * 
  */
-//TODO gruppieren
+// TODO gruppieren
 public class Bestellung implements Iterable<Position> {
 
 	private ArrayList<Position> positionen;
@@ -29,7 +29,15 @@ public class Bestellung implements Iterable<Position> {
 	 *            new position
 	 */
 	public void addPosition(Position p) {
-		positionen.add(p);
+		if (this.positionen.contains(p)) {
+			int idx = this.positionen.indexOf(p);
+			Position helper = this.positionen.get(idx);
+			this.positionen.remove(helper);
+			helper.setAnzahl(helper.getAnzahl() + p.getAnzahl());
+			this.positionen.add(helper);
+		} else {
+			positionen.add(p);
+		}
 
 	}
 
