@@ -1,7 +1,6 @@
 /**
- * Jedes Keks hat eine bestimmte Form (rund, in der Form eines Mondes und in der
- * Form eines Weihnachtsmannes) und besteht aus einer bestimmten Teigart
- * (Muerbteig, Zimtsternteig oder Schololadenteig).
+ * Jedes Keks hat eine bestimmte Form (rund, in der Form eines Mondes und in der Form eines Weihnachtsmannes) und
+ * besteht aus einer bestimmten Teigart (Muerbteig, Zimtsternteig oder Schololadenteig).
  * 
  * Die Form und die Teigart eines Kekses laesst sich nicht aendern.
  * 
@@ -9,25 +8,42 @@
  * 
  */
 public class EinfacherKeks implements Keks {
-
-
-	private Teigart teig;
-	private Form form;
 	
-	/*
-	 * (non-Javadoc)
+	private Teigart	teig;
+	private Form	form;
+	
+	/**
+	 * copy-constructor used for clone
 	 * 
-	 * @see java.lang.Object#hashCode()
+	 * @param keks
+	 *            cookie that is copied
+	 */
+	private EinfacherKeks(EinfacherKeks keks) {
+		this.teig = keks.teig;
+		this.form = keks.form;
+	}
+	
+	/**
+	 * constructor which creates a new cookie inside the factory
+	 * 
+	 * @param teig
+	 *            teig of the cookie
+	 * @param form
+	 *            form of the cookie
+	 */
+	protected EinfacherKeks(Teigart teig, Form form) {
+		this.teig = teig;
+		this.form = form;
+	}
+	
+	/**
+	 * clones a cookie
 	 */
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((form == null) ? 0 : form.hashCode());
-		result = prime * result + ((teig == null) ? 0 : teig.hashCode());
-		return result;
+	protected EinfacherKeks clone() {
+		return (new EinfacherKeks(this));
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -45,53 +61,34 @@ public class EinfacherKeks implements Keks {
 			return false;
 		}
 		EinfacherKeks other = (EinfacherKeks) obj;
-		if (form != other.form) {
+		if (this.form != other.form) {
 			return false;
 		}
-		if (teig != other.teig) {
+		if (this.teig != other.teig) {
 			return false;
 		}
 		return true;
 	}
-
-
-	/**
-	 * constructor which creates a new cookie inside the factory
+	
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param teig
-	 *            teig of the cookie
-	 * @param form
-	 *            form of the cookie
-	 */
-	protected EinfacherKeks(Teigart teig, Form form) {
-		this.teig = teig;
-		this.form = form;
-	}
-
-	/**
-	 * copy-constructor used for clone
-	 * 
-	 * @param keks
-	 *            cookie that is copied
-	 */
-	private EinfacherKeks(EinfacherKeks keks) {
-		this.teig = keks.teig;
-		this.form = keks.form;
-	}
-
-	/**
-	 * clones a cookie
+	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
-	protected EinfacherKeks clone() {
-		return (new EinfacherKeks(this));
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (prime * result) + ((this.form == null) ? 0 : this.form.hashCode());
+		result = (prime * result) + ((this.teig == null) ? 0 : this.teig.hashCode());
+		return result;
 	}
-
+	
 	/**
 	 * toString-Method for fancy output
 	 */
 	@Override
 	public String toString() {
-		return "Einfacher Keks - " + "Form: " + form + ", Teigart: " + teig;
+		return "Einfacher Keks - " + "Form: " + this.form + ", Teigart: " + this.teig;
 	}
 }

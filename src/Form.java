@@ -1,15 +1,14 @@
 /**
- * Jedes Keks hat eine bestimmte Form (rund, in der Form eines Mondes und in der
- * Form eines Weihnachtsmannes) ...
+ * Jedes Keks hat eine bestimmte Form (rund, in der Form eines Mondes und in der Form eines Weihnachtsmannes) ...
  * 
  * @author OOP Gruppe 187
  * 
  */
 public enum Form {
 	RUND("Rund"), MOND("Mond"), WEIHNACHTSMANN("Weihnachtsmann");
-
-	private String bezeichnung;
-
+	
+	private String	bezeichnung;
+	
 	/**
 	 * private constructor used to provide toString
 	 * 
@@ -19,7 +18,7 @@ public enum Form {
 	private Form(String bezeichnung) {
 		this.bezeichnung = bezeichnung;
 	}
-
+	
 	/**
 	 * toString-Method for fancy output
 	 */

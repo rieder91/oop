@@ -1,6 +1,5 @@
 /**
- * cookie interface which all different types of cookie implement (single-sided,
- * double-sided)
+ * cookie interface which all different types of cookie implement (single-sided, double-sided)
  * 
  * @author OOP Gruppe 187
  * 

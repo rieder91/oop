@@ -1,6 +1,5 @@
 /**
- * ... und besteht aus einer bestimmten Teigart (Mürbteig, Zimtsternteig oder
- * Schokoladenteig)
+ * ... und besteht aus einer bestimmten Teigart (Mürbteig, Zimtsternteig oder Schokoladenteig)
  * 
  * 
  * @author OOP Gruppe 187
@@ -8,9 +7,9 @@
  */
 public enum Teigart {
 	MUERBTEIG("Muerbteig"), ZIMTSTERNTEIG("Zimtsternteig"), SCHOKOLADENTEIG("Schokoladenteig");
-
-	private String bezeichnung;
-
+	
+	private String	bezeichnung;
+	
 	/**
 	 * private constructor used to provide toString
 	 * 
@@ -20,7 +19,7 @@ public enum Teigart {
 	private Teigart(String bezeichnung) {
 		this.bezeichnung = bezeichnung;
 	}
-
+	
 	/**
 	 * toString-Method for fancy output
 	 */

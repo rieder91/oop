@@ -1,64 +1,31 @@
 /**
- * Eine Bestellung ist eine Liste von Positionen, die jeweils die Anzahl, Form,
- * Teigart und Fuelle (wenn Doppelkekse gewuenscht sind, sonst keine Fuelle)
- * angeben.
+ * Eine Bestellung ist eine Liste von Positionen, die jeweils die Anzahl, Form, Teigart und Fuelle (wenn Doppelkekse
+ * gewuenscht sind, sonst keine Fuelle) angeben.
  * 
  * @author OOP Gruppe 187
  * 
  */
 public class Position {
-	private int anzahl;
-	private Form form;
-	private Teigart teigart;
-	private Fuellung fuellung;
+	
+	private int	     anzahl;
+	private Form	 form;
+	private Teigart	 teigart;
+	private Fuellung	fuellung;
 	
 	/**
-	 * @param anzahl the anzahl to set
+	 * constructor for a single sided cookie
+	 * 
+	 * @param anzahl
+	 *            number of cookies
+	 * @param form
+	 *            form of the cookies
+	 * @param teigart
+	 *            teig used in the cookies
 	 */
-	public void setAnzahl(int anzahl) {
-		this.anzahl = anzahl;
+	public Position(int anzahl, Form form, Teigart teigart) {
+		this(anzahl, form, teigart, null);
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((form == null) ? 0 : form.hashCode());
-		result = prime * result + ((fuellung == null) ? 0 : fuellung.hashCode());
-		result = prime * result + ((teigart == null) ? 0 : teigart.hashCode());
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Position)) {
-			return false;
-		}
-		Position other = (Position) obj;
-		if (form != other.form) {
-			return false;
-		}
-		if (fuellung != other.fuellung) {
-			return false;
-		}
-		if (teigart != other.teigart) {
-			return false;
-		}
-		return true;
-	}
-
 	/**
 	 * constructor for a double sided cookie
 	 * 
@@ -77,84 +44,121 @@ public class Position {
 		this.teigart = teigart;
 		this.fuellung = fuellung;
 	}
-
-	/**
-	 * constructor for a single sided cookie
+	
+	/*
+	 * (non-Javadoc)
 	 * 
-	 * @param anzahl
-	 *            number of cookies
-	 * @param form
-	 *            form of the cookies
-	 * @param teigart
-	 *            teig used in the cookies
+	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
-	public Position(int anzahl, Form form, Teigart teigart) {
-		this(anzahl, form, teigart, null);
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Position)) {
+			return false;
+		}
+		Position other = (Position) obj;
+		if (this.form != other.form) {
+			return false;
+		}
+		if (this.fuellung != other.fuellung) {
+			return false;
+		}
+		if (this.teigart != other.teigart) {
+			return false;
+		}
+		return true;
 	}
-
+	
 	/**
 	 * @return the number of cookies
 	 */
 	protected int getAnzahl() {
-		return anzahl;
+		return this.anzahl;
 	}
-
+	
 	/**
 	 * @return the form of the cookies
 	 */
 	protected Form getForm() {
-		return form;
+		return this.form;
 	}
-
-	/**
-	 * @return the teig of the cookies
-	 */
-	protected Teigart getTeigart() {
-		return teigart;
-	}
-
+	
 	/**
 	 * @return the filling of the cookies
 	 */
 	protected Fuellung getFuellung() {
-		return fuellung;
+		return this.fuellung;
 	}
-
+	
+	/**
+	 * @return the teig of the cookies
+	 */
+	protected Teigart getTeigart() {
+		return this.teigart;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (prime * result) + ((this.form == null) ? 0 : this.form.hashCode());
+		result = (prime * result) + ((this.fuellung == null) ? 0 : this.fuellung.hashCode());
+		result = (prime * result) + ((this.teigart == null) ? 0 : this.teigart.hashCode());
+		return result;
+	}
+	
 	/**
 	 * 
-	 * @return returns true if the position is a double sided cookie; false
-	 *         otherwise
+	 * @return returns true if the position is a double sided cookie; false otherwise
 	 */
 	protected boolean isDoubleSidedCookie() {
-		return fuellung != null;
+		return this.fuellung != null;
 	}
-
+	
 	/**
 	 * 
-	 * @return returns true if the position is a single sided cookie; false
-	 *         otherwise
+	 * @return returns true if the position is a single sided cookie; false otherwise
 	 */
 	protected boolean isSingleSidedCookie() {
-		return fuellung == null;
+		return this.fuellung == null;
 	}
-
+	
+	/**
+	 * @param anzahl
+	 *            the anzahl to set
+	 */
+	public void setAnzahl(int anzahl) {
+		this.anzahl = anzahl;
+	}
+	
 	/**
 	 * toString-Method for fancy output
 	 */
 	@Override
 	public String toString() {
 		StringBuilder ret = new StringBuilder();
-
+		
 		ret.append("Position: ");
-
-		if (fuellung == null) {
+		
+		if (this.fuellung == null) {
 			ret.append("Einfacher Keks - ");
-			ret.append("Anzahl: " + anzahl + ", Form: " + form + ", Teigart: " + teigart);
+			ret.append("Anzahl: " + this.anzahl + ", Form: " + this.form + ", Teigart: " + this.teigart);
 		} else {
 			ret.append("Doppelter Keks - ");
-			ret.append("Anzahl: " + anzahl + ", Form: " + form + ", Teigart: " + teigart + ", Fuellung: " + fuellung);
+			ret.append("Anzahl: " + this.anzahl + ", Form: " + this.form + ", Teigart: " + this.teigart
+			        + ", Fuellung: " + this.fuellung);
 		}
-
+		
 		return ret.toString();
 	}
 }
