@@ -19,6 +19,7 @@ public class Test {
 				+ "Aufgabe 9                                              \n"
 				+ "Gruppe 187: Dominic Riedl, Thomas Rieder, Markus Zisser\n");
 		
+		Baeckerrei b=new Baeckerrei();
 		Bestellung b1 = new Bestellung();
 		b1.addPosition(new Position(5, Form.RUND, Teigart.SCHOKOLADENTEIG, Fuellung.MARMELADE));
 		b1.addPosition(new Position(2, Form.RUND, Teigart.SCHOKOLADENTEIG, null));
@@ -29,7 +30,7 @@ public class Test {
 		
 		b1.drucke();
 		System.out.println();
-		b1.backe().inhalt();
+		b.backe(b1).inhalt();
 		
 	}
 }

@@ -13,14 +13,12 @@ import java.util.Iterator;
 public class Bestellung implements Iterable<Position> {
 
 	private ArrayList<Position> positionen;
-	private Keksdose kekse;
 	
 	/**
 	 * constructor without args
 	 */
 	public Bestellung() {
 		positionen = new ArrayList<Position>();
-		kekse = new Keksdose();
 	}
 
 	/**
@@ -30,6 +28,32 @@ public class Bestellung implements Iterable<Position> {
 	public void addPosition(Position p) {
 		positionen.add(p);
 
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((positionen == null) ? 0 : positionen.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bestellung other = (Bestellung) obj;
+		if (positionen == null) {
+			if (other.positionen != null)
+				return false;
+		} else if (!positionen.equals(other.positionen))
+			return false;
+		return true;
 	}
 
 	/**
@@ -50,51 +74,6 @@ public class Bestellung implements Iterable<Position> {
 		}
 	}
 
-	/**
-	 * produces the cookies specified in the order; cookies are only baked once
-	 * @return
-	 */
-	public Keksdose backe() {
-		// wir backen nur, falls unsere Keksdose noch leer ist - wir wollen ja
-		// nicht zwei mal das selbe backen!
-		
-		if (kekse.isEmpty()) {
-			Backmaschine b = null;
-			
-			for (Position p : this) {
-				b = createMachineBasedOnPosition(p);
 
-				for (int i = 0; i < p.getAnzahl(); i++) {
-					Keks newKeks = b.backen();
-					if(newKeks != null) {
-						this.kekse.addKeks(newKeks);
-					}
-				}
-			}
-		}
-		return kekse;
-	}
-	
-	/**
-	 * creates a new cookie-machine based on the position
-	 * 
-	 * can be extended for new machines very easily
-	 * 
-	 * @param p position
-	 * @return new cookie machine - the type depends on the type of cookie the position contains
-	 */
-	private Backmaschine createMachineBasedOnPosition(Position p) {
-		Backmaschine b = null;
-		if (p.isDoubleSidedCookie()) {
-			b = new Doppelkeksbackmaschine(new EinfacherKeks(p.getTeigart(), p.getForm()));
-			b.setDetail(p.getFuellung());
-		} else if (p.isSingleSidedCookie()) {
-			b = new Keksbackmaschine(p.getForm());
-			b.setDetail(p.getTeigart());
-		} 
-		// can simply be extended with additional else-ifs...
-		
-		return b;
-	}
 
 }
