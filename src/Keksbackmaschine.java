@@ -1,6 +1,6 @@
 /**
  * Es gibt Keksbackmaschinen, die nur Kekse mit einer bestimmten Form, aber mit unterschiedlichen Teigarten backen
- * können.
+ * koennen.
  * 
  * @author OOP Gruppe 187
  * 

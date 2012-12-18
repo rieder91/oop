@@ -1,7 +1,7 @@
 /**
- * Weiters gibt es eine Backmaschine für Doppelkekse. Diese Maschine wird mit einem Keks beladen, erkennt automatisch
+ * Weiters gibt es eine Backmaschine fuer Doppelkekse. Diese Maschine wird mit einem Keks beladen, erkennt automatisch
  * die Teigart und Form dieses Kekses, baeckt ein aequivalentes Keks und erzeugt daraus ein Doppelkeks, das mit einer
- * bestimmten Fuellung gefüllt ist.
+ * bestimmten Fuellung gefuellt ist.
  * 
  * 
  * @author OOP Gruppe 187

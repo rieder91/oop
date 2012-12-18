@@ -1,5 +1,5 @@
 /**
- * ... und besteht aus einer bestimmten Teigart (Mürbteig, Zimtsternteig oder Schokoladenteig)
+ * ... und besteht aus einer bestimmten Teigart (Muerbteig, Zimtsternteig oder Schokoladenteig)
  * 
  * 
  * @author OOP Gruppe 187
