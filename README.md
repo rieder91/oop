@@ -25,8 +25,6 @@ _WS2012, Vienna University of Technology_
     - Exceptions and Threads
  - Assignment 8
     - Annotations, generics and dynamic typing
-
-## WIP
  - Assignment 9
     - Putting it all together
 
