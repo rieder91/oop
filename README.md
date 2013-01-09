@@ -7,7 +7,7 @@ _WS2012, Vienna University of Technology_
  - Markus Zisser
  - Dominic Riedl
 
-## Done
+## Done - all tagged
  - Assignment 1
    - band management
  - Assignment 2
